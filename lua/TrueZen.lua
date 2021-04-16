@@ -1,6 +1,7 @@
 
 
 local statusline = require("services.statusline.init")
+local cmd  = vim.cmd
 
 
 function main(option, command_option)
@@ -9,9 +10,10 @@ function main(option, command_option)
 	command_option = command_option or 0
 
 	if (option == 0) then
-		statusline.main(0)
+		-- statusline.main(command_option)
+		cmd("echo '0 was given'")
 	elseif (option == 1) then
-		--
+		cmd("echo '1 was given'")
 	else
 		-- command not recognized
 	end
