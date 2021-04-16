@@ -2,6 +2,7 @@
 -- imports
 -- TrueZen
 -- local service = require("service")
+local test_file = require("test_file")
 
 -- vars
 Is_statusline_shown = true
@@ -18,9 +19,11 @@ local function toggle()
 
 	if (Is_statusline_shown == true) then
 		-- service.statusline_false()
+		cmd("set laststatus=2 showtabline=2")
 		Is_statusline_shown = false
 	elseif (Is_statusline_shown == false) then
 		-- service.statusline_true()
+		cmd("set laststatus=0 showtabline=0")
 		Is_statusline_shown = true
 	else
 		-- nothing
