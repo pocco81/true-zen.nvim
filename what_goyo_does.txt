@@ -1,0 +1,68 @@
+
+
+
+This is what Goyo does:
+	+ Toggle status line:
+		+,i set laststatus=0 showtabline=0
+			hide the status line
+		+,i set laststatus=2 showtabline=2
+			show statusline
+	+ Toggle ruler
+		+,i set ruler
+			show ruler
+		+
+	+ Change window
+		+,i 
+			set winminheight=1
+			set winheight=1
+			set winminwidth=1 winwidth=1
+			set laststatus=0
+			set showtabline=0
+			set noruler
+			set fillchars+=vert:\ 
+			set fillchars+=stl:\ 
+			set fillchars+=stlnc:\ 
+
+	+ Hide left hand scroll bars if any on GUI
+		+,i
+			if has('gui_running')
+				set guioptions-=l
+				set guioptions-=L
+			endif
+		
+
+
+
+
+¿En qué eje se encuentra ubicado los vértices de una elipse?
+R) V1, V2, V3, V4
+
+¿En qué eje se encuentra ubicado los focos de una elipse? 
+R) en F2 y F1
+
+¿Con qué letra se identifica la distancia del centro a un foco?
+R) c
+
+¿Con qué letra se identifica la distancia del centro a un vértice? 
+R) a, b
+
+¿Con qué letra se identifica la distancia del centro a un punto de intersección de la elipse con el eje menor? 
+R) b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,36 +1,27 @@
 
 
--- local statusline = require("services.statusline")
-
-local cmd = vim.cmd
+local statusline = require("services.statusline.init")
 
 
---local function toggle_statusline()
---	-- check if status line is shown
---	--	if true, untoggle
---	--	if false, toggle
+function main(option, command_option)
 
---end
+	option = option or 0
+	command_option = command_option or 0
 
-local function statusline_true()		-- show
-	-- turn status line on
-	cmd("set laststatus=2 showtabline=2")
-end
-
-local function statusline_false()		-- don't show
-	-- turn status line off
-	cmd("set laststatus=0 showtabline=0")
-end
+	if (option == 0) then
+		statusline.main(command_option)
+	elseif (option == 1) then
+		--
+	else
+		-- command not recognized
+	end
 
 
--- local function main()
 	
--- end
+end
 
 -- export the functions
 return {
 	-- toggle_statusline = toggle_statusline, -- called with TZStatusline
-	statusline_true = statusline_true,
-	statusline_false = statusline_false
 }
 
