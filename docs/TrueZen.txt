@@ -1,0 +1,30 @@
+*TrueZen.nvim* Clean and elegant distraction free mode for NeoVim.
+
+Author:		Kdav5758 <https://github.com/kdav5758>
+License:	GPL-3.0 License
+
+
+SUMMARY                                         *TrueZen*
+
+This plugins lets you toggle general NeoVim components (e.g. ruler, statusline)
+and formats the current buffer in order to get a cleaner and decluttered look.
+
+INSTALLATION                                         *TrueZen-install*
+
+You can find the installation guide at https://github.com/kdav5758/TrueZen.nvim
+But since you are here, I guess you already read that, right?
+
+USAGE                                         *TrueZen-usage*
+
+The plugin executes all of it's functions using mappings. See |TrueZen-mapping|.
+
+
+MAPPING                                        *TrueZen-mapping*
+
+These are the default mappings:
+>
+    nmap <space>tt <Plug>ToggleLine
+<
+
+
+ vim:tw=78:et:ft=help:norl:
