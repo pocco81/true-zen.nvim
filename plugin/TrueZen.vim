@@ -10,6 +10,7 @@ set cpo&vim " reset them to defaults
 command! TZStatusline lua require'TrueZen'.main(0, 0)
 command! TZStatuslineT lua require'TrueZen'.main(0, 1)
 command! TZStatuslineF lua require'TrueZen'.main(0, 2)
+" command! TZStatuslineZ lua require'TrueZen'.main(0, 2)
 " }}}
 
 let &cpo = s:save_cpo " and restore after
