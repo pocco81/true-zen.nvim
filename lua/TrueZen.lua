@@ -9,7 +9,7 @@ function main(option, command_option)
 	command_option = command_option or 0
 
 	if (option == 0) then
-		statusline.main(command_option)
+		statusline.main(0)
 	elseif (option == 1) then
 		--
 	else
