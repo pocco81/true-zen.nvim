@@ -1,8 +1,8 @@
 
 -- imports
 -- TrueZen
--- local service = require("service")
-local test_file = require("test_file")
+local service = require("modules.service")
+-- local test_file = require("test_file")
 
 -- vars
 Is_statusline_shown = true
