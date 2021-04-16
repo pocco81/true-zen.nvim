@@ -1,28 +1,18 @@
 
 -- imports
 -- TrueZen
-local service = require("services.statusline.modules.service")
--- local test_file = require("test_file")
+local service = require("services.statusline.service")
+
 -- vars
 Is_statusline_shown = true
-
-
---local function toggle_statusline()
---	-- check if status line is shown
---	--	if true, untoggle
---	--	if false, toggle
-
---end
 
 local function toggle()
 
 	if (Is_statusline_shown == true) then
-		-- service.statusline_false()
-		cmd("set laststatus=2 showtabline=2")
+		service.statusline_false()
 		Is_statusline_shown = false
 	elseif (Is_statusline_shown == false) then
-		-- service.statusline_true()
-		cmd("set laststatus=0 showtabline=0")
+		service.statusline_true()
 		Is_statusline_shown = true
 	else
 		-- nothing
@@ -30,14 +20,13 @@ local function toggle()
 end
 
 local function statusline_true()
-	-- service.statusline_true()
+	service.statusline_true()
 end
 
 local function statusline_false()
-	-- service.statusline_false()
+	service.statusline_false()
 end
 
-local cmd = vim.cmd
 
 function main(option)
 	
@@ -46,11 +35,9 @@ function main(option)
 	if (option == 0) then			-- toggle statuline (on/off)
 		toggle()
 	elseif (option == 1) then		-- show status line
-		-- statusline_true()
-		cmd("set laststatus=2 showtabline=2")
+		statusline_true()
 	elseif (option == 2) then
-		-- statusline_false()
-		cmd("set laststatus=0 showtabline=0")
+		statusline_false()
 	else
 		-- not recognized
 	end
