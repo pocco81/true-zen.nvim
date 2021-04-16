@@ -10,8 +10,7 @@ function main(option, command_option)
 	command_option = command_option or 0
 
 	if (option == 0) then
-		-- statusline.main(command_option)
-		cmd("echo '0 was given'")
+		statusline.main(command_option)
 	elseif (option == 1) then
 		cmd("echo '1 was given'")
 	else
