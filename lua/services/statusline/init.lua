@@ -1,7 +1,7 @@
 
 -- imports
 -- TrueZen
-local service = require("modules.service")
+local service = require("lua.services.statusline.modules.service")
 -- local test_file = require("test_file")
 
 -- vars
