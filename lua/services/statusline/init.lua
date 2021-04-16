@@ -62,11 +62,14 @@ function main(option)
 	option = option or 0
 
 	if (option == 0) then			-- toggle statuline (on/off)
-		toggle()
+		-- toggle()
+		cmd("echo 'hello'")
 	elseif (option == 1) then		-- show status line
-		statusline_true()
+		-- statusline_true()
+		cmd("echo 'hello'")
 	elseif (option == 2) then
-		statusline_false()
+		-- statusline_false()
+		cmd("echo 'hello'")
 	else
 		-- not recognized
 	end
