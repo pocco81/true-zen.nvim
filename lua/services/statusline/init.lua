@@ -81,6 +81,8 @@ function main(option)
 	else
 		-- not recognized
 	end
+
+	toggle_line_show = 0
 end
 
 
