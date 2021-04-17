@@ -15,6 +15,33 @@ end
 
 
 
+	if (toggle_line_show) then		-- if var exists
+		-- global to script
+		show = get(toggle_line_show, 0)
+	else		-- var does not exist
+		-- global to script
+		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+		-- returns 1 if statusline shown
+		-- returns 0 if statusline is hidden
+		-- check this: echo &laststatus > 0 || &showtabline > 0
+	end
+
+
+
+-- -- count = 0
+-- if (count == 0) then
+-- 	-- io.write("executing code....\n")
+-- 	show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+-- elseif (count == 1) then
+-- 	-- io.write("nothing will be executed....\n")
+-- else
+-- 	-- io.write("executing code....\n")
+-- 	-- nothing
+-- 	-- io.write("nothing will be executed....\n")
+-- end
+
+-- count = 1
+
 
 
 local function is_shown()
@@ -47,8 +74,10 @@ end
 function resume()
 	if (is_shown() == 1) then
 		statusline_true()
+		cmd("echo 'I was resumend, and I was true (1)'")
 	elseif ((is_shown() == 0)) then
 		statusline_false()
+		cmd("echo 'I was resumend, and I was false (0)'")
 	else
 		-- nothing
 	end
@@ -57,17 +86,6 @@ end
 
 
 function main(option)
-
-	if (toggle_line_show) then		-- if var exists
-		-- global to script
-		show = get(toggle_line_show, 0)
-	else		-- var does not exist
-		-- global to script
-		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
-		-- returns 1 if statusline shown
-		-- returns 0 if statusline is hidden
-		-- check this: echo &laststatus > 0 || &showtabline > 0
-	end
 
 	
 	option = option or 0
