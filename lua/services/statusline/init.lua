@@ -24,10 +24,12 @@ end
 
 -- show and hide statusline funcs
 local function statusline_true()
+	show = 1
 	service.statusline_true()
 end
 
 local function statusline_false()
+	show = 0
 	service.statusline_false()
 end
 
@@ -35,9 +37,9 @@ end
 local function toggle()
 
 	if (is_shown() == 1) then
-		service.statusline_false()
+		statusline_false()
 	elseif ((is_shown() == 0)) then
-		service.statusline_true()
+		statusline_true()
 	else
 		-- nothing
 	end
