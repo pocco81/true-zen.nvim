@@ -90,6 +90,7 @@ function main_2()
 	cmd("echo 'I was resumend'")
 	-- statusline_false()
 
+
 	if (is_shown() == 1) then
 		statusline_true()
 		cmd("echo 'I was resumend, and I was true (1)'")
