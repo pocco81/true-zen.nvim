@@ -1,6 +1,6 @@
 
 
-local opts = require("lua.config").options
+local opts = require("config").options
 local statusline = require("services.statusline.init")
 local cmd  = vim.cmd
 
