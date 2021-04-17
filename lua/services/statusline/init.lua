@@ -82,7 +82,9 @@ function resume()
 	-- 	-- nothing
 	-- end
 
+	cmd("echo 'I was resumend'")
 	statusline_false()
+	cmd("setlocal laststatus=0 showtabline=0")
 end
 
 
