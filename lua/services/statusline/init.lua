@@ -82,10 +82,15 @@ function resume()
 	-- 	-- nothing
 	-- end
 
-	cmd("echo 'I was resumend'")
-	statusline_false()
+	main()
 end
 
+
+function main_2()
+	cmd("echo 'I was resumend'")
+	statusline_false()
+
+end
 
 
 function main(option)
