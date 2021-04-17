@@ -2,6 +2,7 @@
 -- imports
 -- TrueZen
 local service = require("services.statusline.service")
+-- local api = vim.api
 
 -- vars
 Is_statusline_shown = true
@@ -27,6 +28,17 @@ local function statusline_false()
 	service.statusline_false()
 end
 
+-- reset state on resume / focus gained
+local function resume()
+
+	if (Is_statusline_shown == true) then
+		service.statusline_true()
+	elseif (Is_statusline_shown == false) then
+		service.statusline_false()
+	else
+		-- nothing
+	end
+end
 
 function main(option)
 	
@@ -42,6 +54,13 @@ function main(option)
 		-- not recognized
 	end
 end
+
+vim.api.nvim_exec([[
+	augroup toggle_statusline
+		autocmd!
+		autocmd VimResume,FocusGained * lua resume()
+	augroup END
+]], false)
 
 
 return {

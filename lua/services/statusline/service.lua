@@ -6,6 +6,7 @@ local cmd = vim.cmd
 function statusline_true()		-- show
 	-- turn status line on
 	cmd("set laststatus=2 showtabline=2")
+	cmd("set noruler")
 end
 
 function statusline_false()		-- don't show
