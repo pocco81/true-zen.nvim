@@ -5,23 +5,30 @@ local service = require("services.statusline.service")
 -- local api = vim.api
 local cmd = vim.cmd
 
+local function get(var, default)
+	if (var) then
+		return var
+	else
+		return default
+	end
+end
+
 
 if (toggle_line_show) then		-- if var exists
-
+	-- global to script
+	show = get(toggle_line_show, 0)
+else		-- var does not exist
 	-- global to script
 	show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
 	-- returns 1 if statusline shown
 	-- returns 0 if statusline is hidden
 	-- check this: echo &laststatus > 0 || &showtabline > 0
-
-else		-- var does not exist
-	-- global to script
-	toggle_line_show = 0
-	show = toggle_line_show
 end
 
+
+
 local function is_shown()
-	return show
+	return get(show, 0)
 end
 
 -- show and hide statusline funcs
@@ -49,9 +56,9 @@ end
 
 function resume()
 	if (is_shown() == 1) then
-		service.statusline_true()
+		statusline_true()
 	elseif ((is_shown() == 0)) then
-		service.statusline_false()
+		statusline_false()
 	else
 		-- nothing
 	end
