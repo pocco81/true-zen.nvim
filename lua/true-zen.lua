@@ -5,13 +5,14 @@ local statusline = require("services.statusline.init")
 local cmd  = vim.cmd
 
 function setup(custom_opts)
-	require("lua.config").set_options(custom_opts)
-	if (opts.true_false_commands == true) then
-		cmd("command! TZStatuslineF lua require'TrueZen'.main(0, 2)")
-		cmd("command! TZStatuslineT lua require'TrueZen'.main(0, 1)")
-	else
-		-- nothing
-	end
+	cmd("echo 'TrueZen.nvim was set up...'")
+	-- require("lua.config").set_options(custom_opts)
+	-- if (opts.true_false_commands == true) then
+	-- 	cmd("command! TZStatuslineF lua require'TrueZen'.main(0, 2)")
+	-- 	cmd("command! TZStatuslineT lua require'TrueZen'.main(0, 1)")
+	-- else
+	-- 	-- nothing
+	-- end
 end
 
 
