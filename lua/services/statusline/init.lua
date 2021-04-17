@@ -47,9 +47,11 @@ end
 
 function resume()
 	if (is_shown() == 1) then
-		service.statusline_true()
-	elseif ((is_shown() == 0)) then
+		-- service.statusline_true()
 		service.statusline_false()
+	elseif ((is_shown() == 0)) then
+		-- service.statusline_false()
+		service.statusline_true()
 	else
 		-- nothing
 	end
