@@ -107,7 +107,7 @@ function main(option)
 end
 
 
-vim.api.nvim_exec([[
+vim.api.nvim_eval([[
 	augroup toggle_statusline
 		autocmd VimResume,FocusGained * lua resume()
 	augroup END
