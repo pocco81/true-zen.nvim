@@ -14,16 +14,6 @@ local function get(var, default)
 end
 
 
-if (toggle_line_show) then		-- if var exists
-	-- global to script
-	show = get(toggle_line_show, 0)
-else		-- var does not exist
-	-- global to script
-	show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
-	-- returns 1 if statusline shown
-	-- returns 0 if statusline is hidden
-	-- check this: echo &laststatus > 0 || &showtabline > 0
-end
 
 
 
@@ -67,6 +57,18 @@ end
 
 
 function main(option)
+
+	if (toggle_line_show) then		-- if var exists
+		-- global to script
+		show = get(toggle_line_show, 0)
+	else		-- var does not exist
+		-- global to script
+		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+		-- returns 1 if statusline shown
+		-- returns 0 if statusline is hidden
+		-- check this: echo &laststatus > 0 || &showtabline > 0
+	end
+
 	
 	option = option or 0
 
