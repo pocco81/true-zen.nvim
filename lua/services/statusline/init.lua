@@ -109,7 +109,6 @@ end
 
 vim.api.nvim_exec([[
 	augroup toggle_statusline
-		autocmd!
 		autocmd VimResume,FocusGained * lua resume()
 	augroup END
 ]], false)
