@@ -10,15 +10,15 @@ function setup(custom_opts)
 		cmd("command! TZStatuslineF lua require'TrueZen'.main(0, 2)")
 		cmd("command! TZStatuslineT lua require'TrueZen'.main(0, 1)")
 	else
-		-- nothing
+		-- do nothing
 	end
 
 	if (opts.setup_message == true) then
 		cmd("echo 'TrueZen.nvim was set up...'")		-- working...
 	elseif (opts.setup_message == false) then
-		;	-- do nothing
+		-- do nothing
 	else
-		;	-- do nothing
+		-- do nothing
 	end
 end
 
