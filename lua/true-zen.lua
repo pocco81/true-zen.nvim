@@ -1,7 +1,7 @@
 
 
 local opts = require("config").options
-local statusline = require("services.statusline.init")
+-- local statusline = require("services.statusline.init")
 local cmd  = vim.cmd
 
 function setup(custom_opts)
