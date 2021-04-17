@@ -3,6 +3,7 @@
 -- TrueZen
 local service = require("services.statusline.service")
 -- local api = vim.api
+local cmd = vim.cmd
 
 -- vars
 Is_statusline_shown = true
