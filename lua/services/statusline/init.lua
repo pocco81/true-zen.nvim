@@ -32,7 +32,8 @@ end
 -- reset state on resume / focus gained
 function resume()
 
-	cmd("echo 'Vim was resumed...'")
+	local to_cmd = "echo 'Vim was resumen, current status is -"..Is_statusline_shown.."-'"
+	cmd(to_cmd)
 	if (Is_statusline_shown == true) then
 		service.statusline_true()
 	elseif (Is_statusline_shown == false) then
