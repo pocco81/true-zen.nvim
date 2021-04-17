@@ -47,7 +47,7 @@ local function toggle()
 	end
 end
 
-local function resume()
+function resume()
 	if (is_shown() == 1) then
 		service.statusline_true()
 	elseif ((is_shown() == 0)) then
