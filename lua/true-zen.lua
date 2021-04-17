@@ -7,8 +7,8 @@ local cmd  = vim.cmd
 function setup(custom_opts)
 	require("config").set_options(custom_opts)
 	if (opts.true_false_commands == true) then
-		cmd("command! TZStatuslineF lua require'TrueZen'.main(0, 2)")
-		cmd("command! TZStatuslineT lua require'TrueZen'.main(0, 1)")
+		cmd("command! TZStatuslineF lua main(0, 2)")
+		cmd("command! TZStatuslineT lua main(0, 1)")
 	else
 		-- do nothing
 	end
