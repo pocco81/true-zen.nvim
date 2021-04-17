@@ -29,7 +29,7 @@ local function statusline_false()
 end
 
 -- reset state on resume / focus gained
-local function resume()
+function resume()
 
 	if (Is_statusline_shown == true) then
 		service.statusline_true()
