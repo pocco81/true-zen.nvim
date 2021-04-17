@@ -9,7 +9,7 @@ let s:save_cpo = &cpo " save user coptions
 set cpo&vim " reset them to defaults
 
 " mapping {{{
-command! TZStatusline lua require'TrueZen'.main(0, 0)
+command! TZStatusline lua require'true-zen'.main(0, 0)
 " command! TZStatuslineT lua require'TrueZen'.main(0, 1)
 " command! TZStatuslineF lua require'TrueZen'.main(0, 2)
 " }}}
