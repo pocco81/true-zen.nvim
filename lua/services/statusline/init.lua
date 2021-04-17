@@ -82,7 +82,7 @@ function resume()
 	-- 	-- nothing
 	-- end
 
-	main()
+	main_2()
 end
 
 
