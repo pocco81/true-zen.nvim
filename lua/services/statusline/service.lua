@@ -5,13 +5,13 @@ local cmd = vim.cmd
 
 function statusline_true()		-- show
 	-- turn status line on
-	cmd("set laststatus=2 showtabline=2")
-	cmd("set noruler")
+	cmd("setlocal laststatus=2 showtabline=2")
+	cmd("setlocal noruler")
 end
 
 function statusline_false()		-- don't show
 	-- turn status line off
-	cmd("set laststatus=0 showtabline=0")
+	cmd("setlocal laststatus=0 showtabline=0")
 end
 
 

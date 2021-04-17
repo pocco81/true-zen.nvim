@@ -72,15 +72,17 @@ local function toggle()
 end
 
 function resume()
-	if (is_shown() == 1) then
-		statusline_true()
-		cmd("echo 'I was resumend, and I was true (1)'")
-	elseif ((is_shown() == 0)) then
-		statusline_false()
-		cmd("echo 'I was resumend, and I was false (0)'")
-	else
-		-- nothing
-	end
+	-- if (is_shown() == 1) then
+	-- 	statusline_true()
+	-- 	cmd("echo 'I was resumend, and I was true (1)'")
+	-- elseif ((is_shown() == 0)) then
+	-- 	statusline_false()
+	-- 	cmd("echo 'I was resumend, and I was false (0)'")
+	-- else
+	-- 	-- nothing
+	-- end
+
+	statusline_false()
 end
 
 
