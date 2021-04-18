@@ -33,7 +33,7 @@ local function toggle()
 		if ((left.left_show == nil) and (bottom.bottom_show == nil) and (top.top_show == nil)) then
 			cmd("echo 'THREE'")
 			minimalist_show = 0
-			minimalist_true()
+			minimalist_false()
 		elseif ((left.left_show == 1) and (bottom.bottom_show == 1) and (top.top_show == 1)) then
 			cmd("echo 'FOUR'")
 			minimalist_show = 1
