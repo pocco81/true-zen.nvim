@@ -54,6 +54,9 @@ local function toggle()
 			-- 0 if being hidden
 		-- nothing
 		end
+	else
+		minimalist_show = 1
+		toggle()
 	end
 end
 
