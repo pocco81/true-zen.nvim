@@ -37,7 +37,17 @@ local function toggle()
 		elseif ((left.left_show == 0) and (bottom.bottom_show == 0) and (top.top_show == 0)) then
 			minimalist_show = 0
 			toggle()
+
+		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 1) and (api.nvim_eval("&showtabline > 0") == 1) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 1)) then
+			minimalist_show = 1
+			toggle()
+
+		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 0) and (api.nvim_eval("&showtabline > 0") == 0) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 0)) then
+			minimalist_show = 0
+			toggle()
 		else
+			minimalist_show = 1
+			toggle()
 
 			-- &laststatus > 0 || &showtabline > 0
 			-- 1 if being shown
