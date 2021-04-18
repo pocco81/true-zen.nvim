@@ -5,6 +5,8 @@ local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local cmd  = vim.cmd
 
+cmd("source lua/services/resume/init.vim")
+
 -- function setup(custom_opts)
 -- 	require("config").set_options(custom_opts)
 	-- if (opts.true_false_commands == true) then

@@ -62,13 +62,14 @@ function main(option)
 end
 
 
-vim.api.nvim_exec([[
-	augroup toggle_statusline
-		autocmd!
-		autocmd VimResume,FocusGained * lua resume()
-	augroup END
-]], false)
+-- vim.api.nvim_exec([[
+-- 	augroup toggle_statusline
+-- 		autocmd!
+-- 		autocmd VimResume,FocusGained * lua resume()
+-- 	augroup END
+-- ]], false)
 
 return {
-	main = main
+	main = main,
+	resume = resume
 }
