@@ -1,7 +1,7 @@
 
 
 local opts = require("config").options
--- local cmd = vim.cmd
+local cmd = vim.cmd
 
 
 local function setup_commands()
