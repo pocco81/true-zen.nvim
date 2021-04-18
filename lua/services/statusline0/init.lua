@@ -14,6 +14,11 @@ local function statusline_false()
 end
 
 
+local function resume()
+	statusline_false()
+end
+
+
 function main(option)
 
 	option = option or 0
@@ -30,6 +35,13 @@ function main(option)
 	-- end
 end
 
+
+vim.api.nvim_exec([[
+	augroup toggle_statusline
+		autocmd!
+		autocmd VimResume,FocusGained * lua resume()
+	augroup END
+]], false)
 
 return {
 	main = main
