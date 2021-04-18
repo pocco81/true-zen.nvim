@@ -2,11 +2,12 @@
 
 local service = require("services.mode-minimalist.service")
 
--- local bottom = require("services.bottom.init")
--- local top = require("services.top.init")
--- local left = require("services.left.init")
+local bottom = require("services.bottom.init")
+local top = require("services.top.init")
+local left = require("services.left.init")
 
 local cmd = vim.cmd
+local api = vim.api
 
 -- show and hide minimalist funcs
 local function minimalist_true()
@@ -27,8 +28,22 @@ local function toggle()
 		minimalist_true()
 	elseif (minimalist_show == nil) then
 		-- guess by context
-		minimalist_show = 1
+		if ((left.left_show == nil) and (bottom.bottom_show == nil) and (top.top_show == nil)) then
+			minimalist_show = 0
+			toggle()
+		elseif ((left.left_show == 1) and (bottom.bottom_show == 1) and (top.top_show == 1)) then
+			minimalist_show = 1
+			toggle()
+		elseif ((left.left_show == 0) and (bottom.bottom_show == 0) and (top.top_show == 0)) then
+			minimalist_show = 0
+			toggle()
+		else
+
+			-- &laststatus > 0 || &showtabline > 0
+			-- 1 if being shown
+			-- 0 if being hidden
 		-- nothing
+		end
 	end
 end
 
