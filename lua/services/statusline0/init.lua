@@ -33,7 +33,7 @@ function resume()
 		statusline_true()
 	elseif (show == 0) then			-- status line false; hidden
 		statusline_false()
-	elseif (show == nil)			-- show var is nil
+	elseif (show == nil) then			-- show var is nil
 		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
 	else
 		-- nothing
