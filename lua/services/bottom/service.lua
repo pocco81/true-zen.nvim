@@ -9,7 +9,7 @@ local cmd = vim.cmd
 -- set noshowcmd
 -- set cmdheight=1
 
-function statusline_true()		-- show
+function bottom_true()		-- show
 	-- turn status line on
 	-- this is for tabs: showtabline=2
 	-- cmd("setlocal laststatus=2 showtabline=2")
@@ -20,7 +20,7 @@ function statusline_true()		-- show
 	cmd("setlocal cmdheight=1")
 end
 
-function statusline_false()		-- don't show
+function bottom_false()		-- don't show
 	-- turn status line off
 	-- tabline is for the buffers
 	-- laststatus is for the statusline
@@ -34,7 +34,7 @@ end
 
 
 return {
-	statusline_true = statusline_true,
-	statusline_false = statusline_false
+	bottom_true = bottom_true,
+	bottom_false = bottom_false
 }
 
