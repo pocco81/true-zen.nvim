@@ -67,5 +67,6 @@ end
 
 return {
 	main = main,
-	resume = resume
+	resume = resume,
+	top_show = top_show
 }

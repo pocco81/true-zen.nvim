@@ -58,5 +58,6 @@ end
 
 return {
 	main = main,
-	resume = resume
+	resume = resume,
+	left_show = left_show
 }
