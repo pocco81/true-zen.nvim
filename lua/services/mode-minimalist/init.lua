@@ -33,29 +33,29 @@ local function toggle()
 		if ((left.left_show == nil) and (bottom.bottom_show == nil) and (top.top_show == nil)) then
 			cmd("echo 'THREE'")
 			minimalist_show = 0
-			toggle()
+			minimalist_true()
 		elseif ((left.left_show == 1) and (bottom.bottom_show == 1) and (top.top_show == 1)) then
 			cmd("echo 'FOUR'")
 			minimalist_show = 1
-			toggle()
+			minimalist_false()
 		elseif ((left.left_show == 0) and (bottom.bottom_show == 0) and (top.top_show == 0)) then
 			cmd("echo 'FIVE'")
 			minimalist_show = 0
-			toggle()
+			minimalist_true()
 
 		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 1) and (api.nvim_eval("&showtabline > 0") == 1) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 1)) then
 			cmd("echo 'SIX'")
 			minimalist_show = 1
-			toggle()
+			minimalist_false()
 
 		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 0) and (api.nvim_eval("&showtabline > 0") == 0) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 0)) then
 			cmd("echo 'SEVEN'")
 			minimalist_show = 0
-			toggle()
+			minimalist_true()
 		else
 			cmd("echo 'EIGHT'")
 			minimalist_show = 1
-			toggle()
+			minimalist_false()
 
 			-- &laststatus > 0 || &showtabline > 0
 			-- 1 if being shown
@@ -65,7 +65,7 @@ local function toggle()
 	else
 		cmd("echo 'NINE'")
 		minimalist_show = 1
-		toggle()
+		minimalist_false()
 		-- minimalist_false()
 	end
 end
