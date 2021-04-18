@@ -1,6 +1,5 @@
 
 
-local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local left = require("services.left.init")
