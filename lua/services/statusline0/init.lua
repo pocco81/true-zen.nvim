@@ -14,7 +14,7 @@ local function statusline_false()
 end
 
 
-local function resume()
+function resume()
 	statusline_false()
 end
 
