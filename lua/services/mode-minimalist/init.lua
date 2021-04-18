@@ -56,7 +56,8 @@ local function toggle()
 		end
 	else
 		minimalist_show = 1
-		toggle()
+		-- toggle()
+		minimalist_false()
 	end
 end
 
