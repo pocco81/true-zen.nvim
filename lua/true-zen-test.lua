@@ -2,7 +2,7 @@
 
 local cmd = vim.cmd
 
-function setup(custom_opts)
+function setup()
 	cmd("echo 'TrueZen was setup'")
 	-- require("config").set_options(custom_opts)
 	-- if (opts.true_false_commands == true) then
@@ -12,3 +12,8 @@ function setup(custom_opts)
 	-- 	-- do nothing
 	-- end
 end
+
+
+return {
+	setup = setup
+}
