@@ -14,8 +14,16 @@ local function statusline_false()
 end
 
 local function toggle()
-	show = 0
-	service.statusline_false()	
+	-- show = 0
+	-- service.statusline_false()
+	show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+	if (show == 1) then				-- status line true; shown
+		statusline_false()
+	elseif (show == 0) then			-- status line false; hidden
+		statusline_true()
+	else
+		-- nothing
+	end
 end
 
 function resume()
