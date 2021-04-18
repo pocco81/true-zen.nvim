@@ -1,6 +1,6 @@
 
 
-local service = require("services.statusline0.service")
+local service = require("services.bottom.service")
 local cmd = vim.cmd
 
 -- show and hide statusline funcs
