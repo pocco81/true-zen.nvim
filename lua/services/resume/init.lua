@@ -6,6 +6,7 @@ vim.api.nvim_exec([[
 		autocmd!
 		autocmd VimResume,FocusGained * lua require'services.top'.resume()
 		autocmd VimResume,FocusGained * lua require'services.bottom'.resume()
+		autocmd VimResume,FocusGained * lua require'services.left'.resume()
 	augroup END
 ]], false)
 

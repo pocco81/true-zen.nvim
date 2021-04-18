@@ -3,6 +3,8 @@
 local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
+local left = require("services.left.init")
+
 local resume = require("services.resume.init")
 local cmd  = vim.cmd
 
@@ -44,6 +46,8 @@ function main(option, command_option)
 		bottom.main(command_option)
 	elseif (option == 1) then
 		top.main(command_option)
+	elseif (option == 2) then
+		left.main(command_option)
 	else
 		-- command not recognized
 	end
