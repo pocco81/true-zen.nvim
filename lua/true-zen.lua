@@ -6,17 +6,17 @@ local opts = require("config").options
 
 local function setup_commands()
 
-	require("config").set_options(custom_opts)
 	if (opts.true_false_commands == true) then
-		cmd("command! TZStatuslineT lua require'tz_main'.main(0, 1)")
-		cmd("command! TZStatuslineF lua require'tz_main'.main(0, 2)")
+		cmd("command! TZBottomT lua require'tz_main'.main(0, 1)")
+		cmd("command! TZBottomF lua require'tz_main'.main(0, 2)")
 	else
 		-- do nothing
 	end
 end
 
 function setup(custom_opts)
-	setup_commands(custom_opts)
+	require("config").set_options(custom_opts)
+	setup_commands()
 end
 
 
