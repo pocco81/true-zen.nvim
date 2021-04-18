@@ -4,7 +4,7 @@ local config = {}
 
 
 config.options = {
-    true_false_commands = false
+    true_false_commands = true
 	-- setup_message = false
 }
 
