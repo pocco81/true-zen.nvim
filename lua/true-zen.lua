@@ -9,7 +9,7 @@ local minimalist_mode = require("services.mode-minimalist.init")
 local resume = require("services.resume.init")
 local cmd  = vim.cmd
 
-function setup(custom_opts)
+function setup()
 	cmd("echo 'TrueZen was setup'")
 	-- require("config").set_options(custom_opts)
 	-- if (opts.true_false_commands == true) then
