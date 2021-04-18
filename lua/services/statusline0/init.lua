@@ -35,9 +35,9 @@ function resume()
 	elseif (show == 0) then			-- status line false; hidden
 		cmd("echo 'I was set to false so I am turning status line off'")
 		statusline_false()
-	-- elseif (show == nil) then			-- show var is nil
-	-- 	cmd("echo 'I was not set to anything so I am nil'")
-	-- 	show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+	elseif (show == nil) then			-- show var is nil
+		cmd("echo 'I was not set to anything so I am nil'")
+		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
 	else
 		cmd("echo 'none of the above'")
 		-- nothing
