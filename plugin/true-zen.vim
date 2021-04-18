@@ -15,7 +15,7 @@ command! TZBottom silent lua require'true-zen'.main(0, 0)
 command! TZTop silent lua require'true-zen'.main(1, 0)
 command! TZLeft silent lua require'true-zen'.main(2, 0)
 
-" command! TZMinimalist silent lua require'true-zen'.main(3, 0)
+command! TZMinimalist silent lua require'true-zen'.main(3, 0)
 command! TZMinimalistT silent lua require'true-zen'.main(3, 1)
 command! TZMinimalistF silent lua require'true-zen'.main(3, 2)
 
