@@ -24,12 +24,12 @@ local cmd  = vim.cmd
 -- 	end
 -- end
 
-if (opts.true_false_commands == true) then
-	cmd("command! TZStatuslineT lua main(0, 1)")
-	cmd("command! TZStatuslineF lua main(0, 2)")
-else
-	-- do nothing
-end
+-- if (opts.true_false_commands == true) then
+-- 	cmd("command! TZStatuslineT lua main(0, 1)")
+-- 	cmd("command! TZStatuslineF lua main(0, 2)")
+-- else
+-- 	-- do nothing
+-- end
 
 
 function main(option, command_option)

@@ -2,6 +2,13 @@
 
 local cmd = vim.cmd
 
+-- statusline specific options
+-- set noshowmode
+-- set noruler
+-- set laststatus=0
+-- set noshowcmd
+-- set cmdheight=1
+
 function statusline_true()		-- show
 	-- turn status line on
 	cmd("setlocal laststatus=2 showtabline=2")
@@ -10,6 +17,8 @@ end
 
 function statusline_false()		-- don't show
 	-- turn status line off
+	-- tabline is for the buffers
+	-- laststatus is for the statusline
 	cmd("setlocal laststatus=0 showtabline=0")
 	cmd("setlocal noruler")
 end
