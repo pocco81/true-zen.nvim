@@ -13,6 +13,10 @@ local function statusline_false()
 	service.statusline_false()
 end
 
+local function toggle()
+	show = 0
+	service.statusline_false()	
+end
 
 function resume()
 	statusline_false()
@@ -22,17 +26,17 @@ end
 function main(option)
 
 	option = option or 0
-	statusline_false()
+	-- statusline_false()
 
-	-- if (option == 0) then			-- toggle statuline (on/off)
-	-- 	toggle()
-	-- elseif (option == 1) then		-- show status line
-	-- 	statusline_true()
-	-- elseif (option == 2) then
-	-- 	statusline_false()
-	-- else
-	-- 	-- not recognized
-	-- end
+	if (option == 0) then			-- toggle statuline (on/off)
+		toggle()
+	elseif (option == 1) then		-- show status line
+		statusline_true()
+	elseif (option == 2) then
+		statusline_false()
+	else
+		-- not recognized
+	end
 end
 
 
