@@ -3,6 +3,7 @@
 local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
+local resume = require("services.resume.init")
 local cmd  = vim.cmd
 
 -- cmd("source services/resume/init.vim")
