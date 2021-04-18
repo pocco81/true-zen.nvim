@@ -4,6 +4,7 @@ local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local left = require("services.left.init")
+local minimalist_mode = require("services.mode-minimalist.init")
 
 local resume = require("services.resume.init")
 local cmd  = vim.cmd
@@ -48,8 +49,10 @@ function main(option, command_option)
 		top.main(command_option)
 	elseif (option == 2) then
 		left.main(command_option)
+	elseif (option == 3) then
+		minimalist_mode.main(command_option)
 	else
-		-- command not recognized
+		-- command not recognized, raise an error
 	end
 
 
@@ -60,7 +63,7 @@ end
 -- export the functions
 return {
 	-- toggle_statusline = toggle_statusline, -- called with TZStatusline
-	main = main,
-	setup = setup
+	main = main
+	-- setup = setup
 }
 
