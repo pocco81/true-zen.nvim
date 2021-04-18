@@ -62,7 +62,7 @@ end
 -- export the functions
 return {
 	-- toggle_statusline = toggle_statusline, -- called with TZStatusline
-	main = main
-	-- setup = setup
+	main = main,
+	setup = setup
 }
 
