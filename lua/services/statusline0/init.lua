@@ -1,6 +1,7 @@
 
 
 local service = require("services.statusline0.service")
+local cmd = vim.cmd
 
 -- show and hide statusline funcs
 local function statusline_true()
@@ -27,15 +28,18 @@ local function toggle()
 end
 
 function resume()
-	statusline_false()
 
 	if (show == 1) then				-- status line true; shown
+		cmd("echo 'I was set to true so I am turning status line on'")
 		statusline_true()
 	elseif (show == 0) then			-- status line false; hidden
+		cmd("echo 'I was set to false so I am turning status line off'")
 		statusline_false()
 	elseif (show == nil) then			-- show var is nil
+		cmd("echo 'I was not set to anything so I am nil'")
 		show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
 	else
+		cmd("echo 'none of the above'")
 		-- nothing
 	end
 end
