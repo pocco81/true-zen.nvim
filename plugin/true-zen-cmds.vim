@@ -11,13 +11,13 @@ set cpo&vim " reset them to defaults
 " source lua/services/resume/init.vim
 
 " mapping {{{
-command! TZBottom lua require'true-zen'.main(0, 0)
-command! TZTop lua require'true-zen'.main(1, 0)
-command! TZLeft lua require'true-zen'.main(2, 0)
+command! TZBottom lua require'true_zen_main'.main(0, 0)
+command! TZTop lua require'true_zen_main'.main(1, 0)
+command! TZLeft lua require'true_zen_main'.main(2, 0)
 
-command! TZMinimalist lua require'true-zen'.main(3, 0)
-command! TZMinimalistT lua require'true-zen'.main(3, 1)
-command! TZMinimalistF lua require'true-zen'.main(3, 2)
+command! TZMinimalist lua require'true_zen_main'.main(3, 0)
+command! TZMinimalistT lua require'true_zen_main'.main(3, 1)
+command! TZMinimalistF lua require'true_zen_main'.main(3, 2)
 
 " command! TZStatuslineT lua require'true-zen'.main(0, 1)
 " command! TZStatuslineF lua require'true-zen'.main(0, 2)

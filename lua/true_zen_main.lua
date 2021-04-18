@@ -9,16 +9,16 @@ local minimalist_mode = require("services.mode-minimalist.init")
 local resume = require("services.resume.init")
 local cmd  = vim.cmd
 
-function setup()
-	cmd("echo 'TrueZen was setup'")
-	-- require("config").set_options(custom_opts)
-	-- if (opts.true_false_commands == true) then
-	-- 	cmd("command! TZStatuslineT lua main(0, 1)")
-	-- 	cmd("command! TZStatuslineF lua main(0, 2)")
-	-- else
-	-- 	-- do nothing
-	-- end
-end
+-- function setup()
+-- 	cmd("echo 'TrueZen was setup'")
+-- 	-- require("config").set_options(custom_opts)
+-- 	-- if (opts.true_false_commands == true) then
+-- 	-- 	cmd("command! TZStatuslineT lua main(0, 1)")
+-- 	-- 	cmd("command! TZStatuslineF lua main(0, 2)")
+-- 	-- else
+-- 	-- 	-- do nothing
+-- 	-- end
+-- end
 
 -- 	if (opts.setup_message == true) then
 -- 		cmd("echo 'TrueZen.nvim was set up...'")		-- working...
@@ -62,7 +62,6 @@ end
 -- export the functions
 return {
 	-- toggle_statusline = toggle_statusline, -- called with TZStatusline
-	main = main,
-	setup = setup
+	main = main
 }
 
