@@ -9,8 +9,6 @@ local minimalist_mode = require("services.mode-minimalist.init")
 local resume = require("services.resume.init")
 local cmd  = vim.cmd
 
--- cmd("source services/resume/init.vim")
-
 -- function setup(custom_opts)
 -- 	require("config").set_options(custom_opts)
 	-- if (opts.true_false_commands == true) then

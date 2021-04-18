@@ -20,72 +20,51 @@ local function minimalist_false()
 	service.minimalist_false()
 end
 
+-- 1 if being shown
+-- 0 if being hidden
 local function toggle()
 	-- minimalist_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
 	if (minimalist_show == 1) then				-- minimalist true, shown; thus, hide
-		cmd("echo 'ONE'")
+		-- cmd("echo 'ONE'")
 		minimalist_false()
 	elseif (minimalist_show == 0) then			-- minimalist false, hidden; thus, show
-		cmd("echo 'TWO'")
+		-- cmd("echo 'TWO'")
 		minimalist_true()
 	elseif (minimalist_show == nil) then
 		-- guess by context
 		if ((left.left_show == nil) and (bottom.bottom_show == nil) and (top.top_show == nil)) then
-			cmd("echo 'THREE'")
+			-- cmd("echo 'THREE'")
 			minimalist_show = 0
 			minimalist_false()
 		elseif ((left.left_show == 1) and (bottom.bottom_show == 1) and (top.top_show == 1)) then
-			cmd("echo 'FOUR'")
+			-- cmd("echo 'FOUR'")
 			minimalist_show = 1
 			minimalist_false()
 		elseif ((left.left_show == 0) and (bottom.bottom_show == 0) and (top.top_show == 0)) then
-			cmd("echo 'FIVE'")
+			-- cmd("echo 'FIVE'")
 			minimalist_show = 0
 			minimalist_true()
 
 		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 1) and (api.nvim_eval("&showtabline > 0") == 1) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 1)) then
-			cmd("echo 'SIX'")
+			-- cmd("echo 'SIX'")
 			minimalist_show = 1
 			minimalist_false()
 
 		elseif((api.nvim_eval("&laststatus > 0 || &showtabline > 0") == 0) and (api.nvim_eval("&showtabline > 0") == 0) and (api.nvim_eval("&number > 0 || &relativenumber > 0") == 0)) then
-			cmd("echo 'SEVEN'")
+			-- cmd("echo 'SEVEN'")
 			minimalist_show = 0
 			minimalist_true()
 		else
-			cmd("echo 'EIGHT'")
+			-- cmd("echo 'EIGHT'")
 			minimalist_show = 1
 			minimalist_false()
-
-			-- &laststatus > 0 || &showtabline > 0
-			-- 1 if being shown
-			-- 0 if being hidden
-		-- nothing
 		end
 	else
-		cmd("echo 'NINE'")
+		-- cmd("echo 'NINE'")
 		minimalist_show = 1
 		minimalist_false()
-		-- minimalist_false()
 	end
 end
-
--- function resume()
-
--- 	if (minimalist_show == 1) then				-- bottm true; shown
--- 		-- cmd("echo 'I was set to true so I am turning minimalist on'")
--- 		minimalist_true()
--- 	elseif (minimalist_show == 0) then			-- status line false; hidden
--- 		-- cmd("echo 'I was set to false so I am turning minimalist off'")
--- 		minimalist_false()
--- 	elseif (minimalist_show == nil) then			-- show var is nil
--- 		-- cmd("echo 'I was not set to anything so I am nil'")
--- 		minimalist_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
--- 	else
--- 		cmd("echo 'none of the above'")
--- 		-- nothing
--- 	end
--- end
 
 
 function main(option)
