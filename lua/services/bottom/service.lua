@@ -2,7 +2,7 @@
 
 local cmd = vim.cmd
 
--- statusline specific options
+-- bottom specific options
 -- set noshowmode
 -- set noruler
 -- set laststatus=0
