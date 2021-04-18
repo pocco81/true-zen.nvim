@@ -4,7 +4,7 @@
 vim.api.nvim_exec([[
 	augroup toggle_statusline
 		autocmd!
-		" autocmd VimResume,FocusGained * lua require'lua.services.top'.resume()
+		autocmd VimResume,FocusGained * lua require'services.top'.resume()
 		autocmd VimResume,FocusGained * lua require'services.bottom'.resume()
 	augroup END
 ]], false)
