@@ -11,6 +11,8 @@ local function setup_commands()
 		cmd("command! TZBottomF lua require'tz_main'.main(0, 2)")
 		cmd("command! TZMinimalistT lua require'tz_main'.main(3, 1)")
 		cmd("command! TZMinimalistF lua require'tz_main'.main(3, 2)")
+		cmd("command! TZAtaraxisT lua require'tz_main'.main(4, 1)")
+		cmd("command! TZAtaraxisF lua require'tz_main'.main(4, 2)")
 	else
 		-- do nothing
 	end
