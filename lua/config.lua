@@ -33,7 +33,6 @@ config.options = {
 		shown_relativenumber = false,
 		shown_signcolumn = "no"
 	}
-	-- setup_message = false
 }
 
 -- Default options
