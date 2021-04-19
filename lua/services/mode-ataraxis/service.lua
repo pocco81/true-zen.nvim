@@ -62,6 +62,7 @@ function ataraxis_false()		-- don't show
 		call BufDo("set fillchars+=vert:\\ ")
 	]], false)
 
+	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 
 
 
