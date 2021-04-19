@@ -20,7 +20,7 @@ config.options = {
 		shown_cmdheight = 1
 
 	},
-	top {
+	top = {
 		hidden_showtabline = 0,
 
 		shown_showtabline = 2
