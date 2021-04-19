@@ -57,7 +57,7 @@ function ataraxis_false()		-- don't show
 		endfunction
 
 		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
-		call BufDo("set fillchars+=vert:\ ")
+		call BufDo("set fillchars+=vert:\\ ")
 	]], false)
 
 
