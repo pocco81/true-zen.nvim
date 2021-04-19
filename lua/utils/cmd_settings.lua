@@ -3,7 +3,7 @@
 local cmd = vim.cmd
 
 
-local function test_bool(var, final_opt)
+local function test_bool(final_opt, var)
 	
 	if (var == true) then
 		return "setlocal "..final_opt..""
@@ -17,13 +17,20 @@ local function test_num(final_opt, num)
 	return "setlocal "..final_opt.."="..num..""
 end
 
+local function test_str(final_opt, str)
+	return "setlocal "..final_opt.."="..str..""
+end
+
 local function clean_and_exec(opt, table_opt, remove_str)
 	final_opt = opt:gsub(remove_str, "")
 	if (type(table_opt) == "boolean") then
-		to_cmd = test_bool(table_opt, final_opt)
+		to_cmd = test_bool(final_opt, table_opt)
 		cmd(to_cmd)
 	elseif (type(table_opt) == "number") then
 		to_cmd = test_num(final_opt, table_opt)
+		cmd(to_cmd)
+	elseif (type(table_opt) == "string") then
+		to_cmd = test_str(final_opt, table_opt)
 		cmd(to_cmd)
 	end
 end

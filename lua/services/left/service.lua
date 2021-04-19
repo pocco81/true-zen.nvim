@@ -1,6 +1,7 @@
 
 
-local cmd = vim.cmd
+local opts = require("config").options
+local cmd_settings = require("utils.cmd_settings")
 
 -- left specific options
 -- set number
@@ -8,15 +9,11 @@ local cmd = vim.cmd
 -- set signcolumn=no
 
 function left_true()		-- show
-	cmd("setlocal number")
-	-- cmd("setlocal relativenumber")
-	-- cmd("setlocal signcolumn=yes")
+	cmd_settings.map_settings(opts["left"], true)
 end
 
 function left_false()		-- don't show
-	cmd("setlocal nonumber")
-	cmd("setlocal norelativenumber")
-	cmd("setlocal signcolumn=no")
+	cmd_settings.map_settings(opts["left"], false)
 end
 
 
