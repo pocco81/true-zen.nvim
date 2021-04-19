@@ -61,9 +61,9 @@ function main(option)
 	if (option == 0) then			-- toggle statuline (on/off)
 		toggle()
 	elseif (option == 1) then		-- show status line
-		minimalist_true()
+		ataraxis_true()
 	elseif (option == 2) then
-		minimalist_false()
+		ataraxis_false()
 	else
 		-- not recognized
 	end
