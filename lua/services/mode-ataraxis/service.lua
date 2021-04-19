@@ -1,7 +1,7 @@
 
 
 local opts = require("config").options
--- local left = require("services.left.init")
+local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
 
 local cmd = vim.cmd
@@ -69,8 +69,8 @@ function ataraxis_false()		-- don't show
 	]], false)
 
 	
-
-	cmd([[lua call BufDo("lua require'services.left.service'").left_false()]])
+	-- failed
+	cmd([[lua call BufDo("lua require'services.left.service'.left_false()")]])
 
 
 
