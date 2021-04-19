@@ -55,10 +55,12 @@ function ataraxis_false()		-- don't show
 			execute 'bufdo ' . a:command
 			execute 'buffer ' . currBuff
 		endfunction
-
 		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
-		call BufDo("set fillchars+=vert:\\ ")
+
+		" escape backward slash
+		call BufDo('set fillchars+=vert:\\ ')
 	]], false)
+
 
 
 
