@@ -16,8 +16,6 @@ command! TZTop lua require'tz_main'.main(1, 0)
 command! TZLeft lua require'tz_main'.main(2, 0)
 
 command! TZMinimalist lua require'tz_main'.main(3, 0)
-command! TZMinimalistT lua require'tz_main'.main(3, 1)
-command! TZMinimalistF lua require'tz_main'.main(3, 2)
 
 " command! TZStatuslineT lua require'true-zen'.main(0, 1)
 " command! TZStatuslineF lua require'true-zen'.main(0, 2)
