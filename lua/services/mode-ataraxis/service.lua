@@ -7,6 +7,24 @@ local mode_minimalist = require("services.mode-minimalist.init")
 local cmd = vim.cmd
 
 
+	vim.api.nvim_exec([[
+		" Like bufdo but restore the current buffer.
+		function! BufDo(command)
+			let currBuff=bufnr("%")
+			execute 'bufdo ' . a:command
+			execute 'buffer ' . currBuff
+		endfunction
+		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+
+		" escape backward slash
+		" mental note: don't use simple quotation marks
+		" call BufDo("set fillchars+=vert:\\ ")
+
+		" since the function is global, it can be called outside of this nvim_exec statement like so:
+		" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
+		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
+	]], false)
+
 local function fillchars()
 	cmd([[set fillchars+=vert:\ ]])
 	cmd([[set fillchars+=stl:\ ]])
@@ -58,24 +76,25 @@ function ataraxis_false()		-- don't show
 	fillchars()
 	mode_minimalist.main(2)
 
-	vim.api.nvim_exec([[
-		" Like bufdo but restore the current buffer.
-		function! BufDo(command)
-			let currBuff=bufnr("%")
-			execute 'bufdo ' . a:command
-			execute 'buffer ' . currBuff
-		endfunction
-		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+	-- vim.api.nvim_exec([[
+	-- 	" Like bufdo but restore the current buffer.
+	-- 	function! BufDo(command)
+	-- 		let currBuff=bufnr("%")
+	-- 		execute 'bufdo ' . a:command
+	-- 		execute 'buffer ' . currBuff
+	-- 	endfunction
+	-- 	com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 
-		" escape backward slash
-		" mental note: don't use simple quotation marks
-		call BufDo("set fillchars+=vert:\\ ")
+	-- 	" escape backward slash
+	-- 	" mental note: don't use simple quotation marks
+	-- 	call BufDo("set fillchars+=vert:\\ ")
 
-		" since the function is global, it can be called outside of this nvim_exec statement like so:
-		" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
-		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
-	]], false)
+	-- 	" since the function is global, it can be called outside of this nvim_exec statement like so:
+	-- 	" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
+	-- 	" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
+	-- ]], false)
 
+	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 	
 	-- worked
 	-- cmd([[call BufDo("lua require'services.left.service'.left_false()")]])
