@@ -6,9 +6,9 @@ local cmd = vim.cmd
 
 
 local function fillchars()
-	cmd("setlocal fillchars+=vert:\ ")
-	cmd("setlocal fillchars+=stl:\ ")
-	cmd("setlocal fillchars+=stlnc:\ ")
+	cmd([[setlocal fillchars+=vert:\ ]])
+	cmd([[setlocal fillchars+=stl:\ ]])
+	cmd([[setlocal fillchars+=stlnc:\ ]])
 end
 
 function ataraxis_true()		-- show
