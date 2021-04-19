@@ -1,5 +1,5 @@
 
-local service = require("services.mode-minimalist.service")
+local service = require("services.mode-ataraxis.service")
 
 local cmd = vim.cmd
 local api = vim.api
