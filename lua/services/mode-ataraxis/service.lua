@@ -20,6 +20,7 @@ function ataraxis_true()		-- show
 	cmd("wincmd l")
 	cmd("q")
 	mode_minimalist.main(1)
+	cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 end
 
 function ataraxis_false()		-- don't show
