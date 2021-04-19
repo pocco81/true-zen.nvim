@@ -8,10 +8,7 @@ if exists('g:loaded_TrueZen') | finish | endif
 let s:save_cpo = &cpo " save user coptions
 set cpo&vim " reset them to defaults
 
-" source lua/services/resume/init.vim
-
 " mapping {{{
-
 " modes
 command! TZAtaraxis lua require'tz_main'.main(4, 0)
 command! TZMinimalist lua require'tz_main'.main(3, 0)

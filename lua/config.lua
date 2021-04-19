@@ -6,6 +6,7 @@ local config = {}
 -- e.g.: when hidden show ruler
 config.options = {
     true_false_commands = false,
+	cursor_by_mode = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
