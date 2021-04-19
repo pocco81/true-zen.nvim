@@ -35,15 +35,15 @@ This is what Goyo does:
 
 
 ¿En qué eje se encuentra ubicado los vértices de una elipse?
-R) V1, V2, V3, V4
+R) Se encuentran en el eje mayor.
 
-¿En qué eje se encuentra ubicado los focos de una elipse? 
+¿En qué eje se encuentra ubicado los focos de una elipse?
 R) en F2 y F1
 
 ¿Con qué letra se identifica la distancia del centro a un foco?
 R) c
 
-¿Con qué letra se identifica la distancia del centro a un vértice? 
+¿Con qué letra se identifica la distancia del centro a un vértice?
 R) a, b
 
 ¿Con qué letra se identifica la distancia del centro a un punto de intersección de la elipse con el eje menor? 
