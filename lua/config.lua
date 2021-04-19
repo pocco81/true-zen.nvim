@@ -19,7 +19,21 @@ config.options = {
 		shown_showcmd = false,
 		shown_cmdheight = 1
 
+	},
+	top {
+		hidden_showtabline = 0,
+
+		shown_showtabline = 2
 	}
+	-- left {
+	-- 	hidden_number = false,
+	-- 	hidden_relativenumber = false,
+	-- 	hidden_signcolumn = "no"
+
+	-- 	shown_number = true,
+	-- 	shown_relativenumber = false,
+	-- 	shown_signcolumn = "no"
+	-- }
 	-- setup_message = false
 }
 

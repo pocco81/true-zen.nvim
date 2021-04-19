@@ -1,16 +1,17 @@
 
 
-local cmd = vim.cmd
+local opts = require("config").options
+local cmd_settings = require("utils.cmd_settings")
 
 -- top specific options
 -- set showtabline=<num>
 
 function top_true()		-- show
-	cmd("setlocal showtabline=2")
+	cmd_settings.map_settings(opts["top"], true)
 end
 
 function top_false()		-- don't show
-	cmd("setlocal showtabline=0")
+	cmd_settings.map_settings(opts["top"], false)
 end
 
 
