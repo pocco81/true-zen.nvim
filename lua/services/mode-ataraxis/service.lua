@@ -69,8 +69,9 @@ function ataraxis_false()		-- don't show
 	]], false)
 
 	
-	-- failed
-	cmd([[call BufDo("lua require'services.left.service'.left_false()")]])
+	-- worked
+	-- cmd([[call BufDo("lua require'services.left.service'.left_false()")]])
+	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
 
 
 
