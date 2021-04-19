@@ -12,7 +12,7 @@ end
 
 local function ataraxis_false()
 	ataraxis_show = 0
-	service.minimalist_false()
+	service.ataraxis_false()
 end
 
 -- 1 if being shown
