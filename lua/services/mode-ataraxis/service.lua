@@ -15,13 +15,19 @@ end
 
 function ataraxis_true()		-- show
 
-	cmd("wincmd h")
-	cmd("q")
-	cmd("wincmd l")
-	cmd("q")
-	mode_minimalist.main(1)
+	amount_wins = vim.api.nvim_eval("winnr('$')")
 
-	-- cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
+	if (amount_wins == 1) then
+		cmd("echo 'Can't exit Ataraxi Mode because you are currently not in it")
+	elseif (amount_wins == 3) then
+		cmd("wincmd h")
+		cmd("q")
+		cmd("wincmd l")
+		cmd("q")
+		mode_minimalist.main(1)
+		-- cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
+	end
+
 end
 
 function ataraxis_false()		-- don't show
