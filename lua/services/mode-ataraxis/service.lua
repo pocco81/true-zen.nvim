@@ -43,6 +43,7 @@ function ataraxis_true()		-- show
 		cmd("wincmd l")
 		cmd("q")
 		mode_minimalist.main(1)
+		cmd("set fillchars=")
 		-- cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 	end
 
