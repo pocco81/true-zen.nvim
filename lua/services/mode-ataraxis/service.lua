@@ -66,7 +66,7 @@ function ataraxis_false()		-- don't show
 		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
 	]], false)
 
-	cmd([[lua call BufDo("lua require'services.left.init'").main(2)]])
+	-- cmd([[lua call BufDo("lua require'services.left.init'").main(2)]])
 
 
 
