@@ -18,7 +18,7 @@ function ataraxis_true()		-- show
 	amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
-		cmd("echo 'Can't exit Ataraxi Mode because you are currently not in it")
+		cmd("echo 'Can not exit Ataraxi Mode because you are currently not in it")
 	elseif (amount_wins == 3) then
 		cmd("wincmd h")
 		cmd("q")
