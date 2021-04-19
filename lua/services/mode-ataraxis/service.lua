@@ -53,7 +53,7 @@ function ataraxis_false()		-- don't show
 
 	-- padding
 	-- local padding_cmd = "vertical resize "..cmd_settings.map_settings["ataraxis"]["left_right_padding"]..""
-	previous_fillchars = vim.api.nvim_eval("set fillchars?")
+	previous_fillchars = vim.api.nvim_eval("fillchars?")
 	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
 
 	-- left buffer
