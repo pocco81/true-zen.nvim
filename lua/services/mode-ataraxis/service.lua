@@ -1,6 +1,6 @@
 
 
-local cmd_settings = require("utils.cmd_settings")
+local opts = require("config").options
 local mode_minimalist = require("services.mode-minimalist.init")
 local cmd = vim.cmd
 
@@ -11,7 +11,8 @@ end
 
 function ataraxis_false()		-- don't show
 	-- padding
-	local padding_cmd = "vertical resize "..cmd_settings.map_settings["ataraxis"]["left_right_padding"]..""
+	-- local padding_cmd = "vertical resize "..cmd_settings.map_settings["ataraxis"]["left_right_padding"]..""
+	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
 
 	cmd("leftabove vnew")
 	cmd(padding_cmd)
