@@ -2,7 +2,7 @@
 
 
 local opts = require("config").options
-local cmd_settings = require("lua.utils.cmd_settings")
+local cmd_settings = require("utils.cmd_settings")
 
 -- local cmd = vim.cmd
 
