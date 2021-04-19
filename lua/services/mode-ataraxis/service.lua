@@ -60,9 +60,14 @@ function ataraxis_false()		-- don't show
 		" escape backward slash
 		" mental note: don't use simple quotation marks
 		call BufDo("set fillchars+=vert:\\ ")
+
+		" since the function is global, it can be called outside of this nvim_exec statement like so:
+		" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
+		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
 	]], false)
 
-	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
+	cmd([[lua call BufDo("lua require'services.left.init'").main(2)]])
+
 
 
 
