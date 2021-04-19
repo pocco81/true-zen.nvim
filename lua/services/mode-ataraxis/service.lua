@@ -41,12 +41,12 @@ function ataraxis_false()		-- don't show
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 	fillchars()
 
-	cmd([[bufdo set fillchars+=vert:\ ]])
 
 
 	-- middle buffer
 	cmd("wincmd h")
 	fillchars()
+	cmd([[bufdo set fillchars+=vert:\ ]])
 	mode_minimalist.main(2)
 end
 
