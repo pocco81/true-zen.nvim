@@ -46,6 +46,7 @@ function ataraxis_false()		-- don't show
 	cmd("wincmd h")
 	fillchars()
 	mode_minimalist.main(2)
+	cmd([[bufdo set fillchars+=vert:\ ]])
 end
 
 
