@@ -43,7 +43,7 @@ function ataraxis_true()		-- show
 		cmd("wincmd l")
 		cmd("q")
 		mode_minimalist.main(1)
-		cmd(previous_fillchars)
+		-- cmd(previous_fillchars)
 		-- cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 	end
 
@@ -53,7 +53,7 @@ function ataraxis_false()		-- don't show
 
 	-- padding
 	-- local padding_cmd = "vertical resize "..cmd_settings.map_settings["ataraxis"]["left_right_padding"]..""
-	previous_fillchars = "set"..vim.api.nvim_eval("set fillchars?")..""
+	previous_fillchars = vim.api.nvim_eval("set fillchars?")
 	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
 
 	-- left buffer
