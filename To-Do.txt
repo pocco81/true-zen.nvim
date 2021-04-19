@@ -29,6 +29,38 @@ This is what Goyo does:
 				set guioptions-=l
 				set guioptions-=L
 			endif
+
+
+how centering text works:
+	1. create two splits on the sides (https://superuser.com/questions/537584/in-vim-how-to-move-text-to-be-edited-to-the-middle-of-the-window)
+		You could have empty windows on the left and right of the one you're editing:
+			:leftabove vnew			for creating split in the left
+			:wincmd l				move to split in the left
+			:vnew					for creating split in the right
+			:wincmd h				for moving to the split in the left (center)
+		
+		remember that before moving to other splits run the following command and also execute TZMinimalist
+			:setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn
+
+		for every buffer on each side do:
+			1. create it `:leftabove vnew			for creating split in the left`
+			3. set size width `:vertical resize 60`
+			4. disable all external stuff `:setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0`
+
+
+	2. resize those splits (:vertical resize <num>) https://vi.stackexchange.com/questions/514/how-do-i-change-the-current-splits-width-and-height/518
+	3. prevent window from resizing `:set noequalalways`
+	4. hide border chars with (based on goyo)
+		set fillchars+=vert:\ 
+		set fillchars+=stl:\ 
+		set fillchars+=stlnc:\ 
+	5. execute minimalist mode on all of the splits
+	6. avoid buffers from being modifiable (https://github.com/junegunn/goyo.vim/blob/master/autoload/goyo.vim#L51)
+	7. `:vertical resize 80` will set your current vsplit to 80 characters wide
+	8. after untoggled quit all buffers
+hide everything:
+
+
 		
 
 
