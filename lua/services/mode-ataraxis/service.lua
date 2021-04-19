@@ -58,7 +58,8 @@ function ataraxis_false()		-- don't show
 		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 
 		" escape backward slash
-		call BufDo('set fillchars+=vert:\\ ')
+		" mental note: don't use simple quotation marks
+		call BufDo("set fillchars+=vert:\\ ")
 	]], false)
 
 
