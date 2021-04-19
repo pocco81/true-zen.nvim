@@ -42,6 +42,9 @@ function main(option)
 		ataraxis_true()
 	elseif (option == 2) then
 		ataraxis_false()
+	elseif (option == 3) then		-- show status line
+		ataraxis_false()
+		cmd("wincmd l")
 	else
 		-- not recognized
 	end
