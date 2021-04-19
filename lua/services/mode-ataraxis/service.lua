@@ -46,8 +46,24 @@ function ataraxis_false()		-- don't show
 	-- middle buffer
 	cmd("wincmd h")
 	fillchars()
-	cmd([[bufdo set fillchars+=vert:\ ]])
 	mode_minimalist.main(2)
+
+	vim.api.nvim_exec([[
+		" Like bufdo but restore the current buffer.
+		function! BufDo(command)
+			let currBuff=bufnr("%")
+			execute 'bufdo ' . a:command
+			execute 'buffer ' . currBuff
+		endfunction
+
+		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+		call BufDo("set fillchars+=vert:\ ")
+	]], false)
+
+
+
+	-- leaves you in another place
+	-- cmd([[bufdo set fillchars+=vert:\ ]])
 end
 
 
