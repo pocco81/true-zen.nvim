@@ -127,6 +127,9 @@ function ataraxis_false()		-- hide
 
 	fillchars()
 	mode_minimalist.main(2)
+	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg ")
+	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	cmd("set statusline=-")
 
 	-- remove the border lines on every buffer
 	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
