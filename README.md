@@ -50,7 +50,7 @@
 # TL;DR
 
 <div style="text-align: justify">
-	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provided a cleaner and less cluttered interface [than usual] when toggled in either of it's two different modes (minimalist mode and ataraxis mode). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
+	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's two different modes (minimalist mode and ataraxis mode). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
 </div>
 
 
@@ -80,6 +80,7 @@
 * [Key Bindings](#-key-bindings)
 * [Inspirations](#-inspirations)
 * [License](#-license)
+* [FAQ](#-faq)
 * [Do you...](#-do-you)
 * [To-Do](#-to-do)
 
@@ -96,6 +97,8 @@
 - Custom cursor that changes shape according to current vi-mode
 - You can still cycle through open buffers even when you can't see them in the UI
 - Non nonsensical
+- Does not slow down your startup time since it's only loaded on demand
+- Can launch at startup if needed
 
 # 📦 Installation
 
@@ -130,7 +133,7 @@ NeoBundleFetch 'kdav5758/TrueZen.nvim'
 ```
 
 ## Setup (configuration)
-As it's mentioned in the TL;DR, there are already some sane defaults that you may like, however you can change them to match your taste. This are the defaults:
+As it's stated in the TL;DR, there are already some sane defaults that you may like, however you can change them to match your taste. This are the defaults:
 ```lua
 true_false_commands = false,
 cursor_by_mode = false,
@@ -313,7 +316,7 @@ Note: remember that `<prefix>` can either be "shown" or "hidden."
 - `left_right_padding`: (Integer) padding for the text.
 
 
-## 🧻 Key-bindings
+# 🧻 Key-bindings
 There are no default key-bindings. However you can set them on your own as you'd normally do! Here is an example mapping `<F12>` to toggle `Ataraxis` mode:
 
 **For init.lua**
@@ -326,7 +329,7 @@ vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], opt)
 map <F12> :TZAtaraxis<CR>
 ```
 
-## 🙋 FAQ
+# 🙋 FAQ
 
 - Q: ***"How can I make it launch at startup?"***
 - A: Easy! Just copy and paste this:
@@ -342,14 +345,15 @@ lua << EOF
 require("tz_main").main(4, 3)
 EOF
 ```
+However, as of now, there is an small bug that causes the cursor to appear in the wrong place. After this is solved, you'd be able to enjoy this feature, but for now, it's better not trying it out.
 
-## 💭 Inspirations
+# 💭 Inspirations
 
 The following projects inspired the creation of TrueZen.nvim. If possible, go check them out to see why they are so amazing :]
 - [junegunn/goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing in Vim
 - [IntelliJ IDEA's Zen Mode](https://www.jetbrains.com/help/idea/ide-viewing-modes.html): Combines the Full Screen and Distraction-free modes
 
-## 📜 License
+# 📜 License
 
 TrueZen.nvim is released under the GPL v3.0 license. It grants open-source permissions for users including:
 
@@ -360,13 +364,13 @@ TrueZen.nvim is released under the GPL v3.0 license. It grants open-source permi
 
 For more convoluted language, see the [LICENSE file](https://github.com/kdav5758/TrueZen.nvim/blob/main/README.md).
 
-## ✋ Do you...
+# ✋ Do you...
 
 - Have a question? Start a [discussion](https://github.com/kdav5758/TrueZen.nvim/discussions)
 - Have a problem? Make an [issue](https://github.com/kdav5758/TrueZen.nvim/issues)
 - Hava an idea? Create a [pull request](https://github.com/kdav5758/TrueZen.nvim/pulls)
 
-## 📋 TO-DO
+# 📋 TO-DO
 
 **High Priority**
 - Fix bug that causes cursor to appear on the left hand side split when Ataraxis mode is launched at startup.
