@@ -68,6 +68,11 @@ end
 
 function ataraxis_false()		-- hide
 
+	vim.api.nvim_command('augroup galaxyline')
+	vim.api.nvim_command('autocmd!')
+	vim.api.nvim_command('augroup END!')
+
+
 	-- padding
 	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
 
