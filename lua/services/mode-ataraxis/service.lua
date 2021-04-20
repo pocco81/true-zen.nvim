@@ -124,6 +124,7 @@ function ataraxis_false()		-- hide
 
 
 
+		cmd("set statusline=-")
 
 	fillchars()
 	mode_minimalist.main(2)
@@ -144,7 +145,6 @@ function ataraxis_false()		-- hide
 
 	if (hello == 1) then
 		cmd("echo 'I RANN'")
-		cmd([[set statusline=-]])
 	else
 		-- nothing
 	end
