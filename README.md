@@ -1,4 +1,4 @@
-# 🪶 true-zen.nvim
+# 🪶 TrueZen.nvim
 
 <p align="center">
 	Clean and elegant distraction free mode for NeoVim.
