@@ -37,7 +37,15 @@
 </p>
 
 
-<kbd><img src ="https://i.imgur.com/vvq4CLr.png"></kbd><hr>
+<kbd><img src ="https://i.imgur.com/vvq4CLr.png"></kbd>
+<p align="center">
+	Ataraxis Mode on
+</p><hr>
+
+<kbd><img src ="https://i.imgur.com/qYf0nE1.png"></kbd>
+<p align="center">
+	Minimalist Mode on
+</p>
 
 # TL;DR
 
