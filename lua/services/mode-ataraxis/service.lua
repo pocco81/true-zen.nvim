@@ -100,7 +100,7 @@ function ataraxis_false()		-- hide
 
 		-- return to middle buffer
 		cmd("wincmd k")
-	elseif (opts["ataraxis"]["top_padding"] == 0) then
+	elseif (opts["ataraxis"]["bottom_padding"] == 0) then
 		-- do nothing
 	else
 		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
