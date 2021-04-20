@@ -3,8 +3,15 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
+local integration_galaxyline = require("lua.services.mode-ataraxis.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
+
+
+
+-- integration test
+in_galaxyline = true
+
 
 
 vim.api.nvim_exec([[
@@ -33,6 +40,8 @@ local function fillchars()
 end
 
 function ataraxis_true()		-- show
+
+
 
 	amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -64,14 +73,25 @@ function ataraxis_true()		-- show
 		cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 	end
 
-	require('galaxyline').load_galaxyline()
+
+	if (in_galaxyline == true) then
+		integration_galaxyline.enable_statusline()
+	else
+		-- nothing
+	end
+
+
+	-- working for anabling galaxyline
+	-- require('galaxyline').load_galaxyline()
 end
 
 function ataraxis_false()		-- hide
 
-	vim.api.nvim_command('augroup galaxyline')
-	vim.api.nvim_command('autocmd!')
-	vim.api.nvim_command('augroup END!')
+	if (in_galaxyline == true) then
+		integration_galaxyline.disable_statusline()
+	else
+		-- nothing
+	end
 
 
 	-- padding
