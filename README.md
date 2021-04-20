@@ -7,32 +7,26 @@
 <p align="center">
     <a href="https://github.com/kdav5758/whid.nvim"
         ><img
-            src="https://img.shields.io/github/repo-size/kdav5758/whid.nvim"
+            src="https://img.shields.io/github/repo-size/kdav5758/TrueZen.nvim"
             alt="GitHub repository size"
     /></a>
-    <a href="https://github.com/kdav5758/whid.nvim/issues"
+    <a href="https://github.com/kdav5758/TrueZen.nvim/issues"
         ><img
-            src="https://img.shields.io/github/issues/kdav5758/whid.nvim"
+            src="https://img.shields.io/github/issues/kdav5758/TrueZen.nvim"
             alt="Issues"
     /></a>
-    <a href="https://github.com/kdav5758/MiniPrompt/blob/main/LICENSE"
+    <a href="https://github.com/kdav5758/TrueZen.nvim/blob/main/LICENSE"
         ><img
-            src="https://img.shields.io/github/license/kdav5758/whid.nvim"
+            src="https://img.shields.io/github/license/kdav5758/TrueZen.nvim"
             alt="License"
-    /></a>
-    <a href="https://github.com/kdav5758/MiniPrompt/releases"
+    /><br />
+    <a href="https://saythanks.io/to/kdav5758"
         ><img
-            src="https://img.shields.io/github/languages/count/kdav5758/whid.nvim"
-            alt="Languages"/></a
-    ><br />
-    <a href="https://github.com/kdav5758/whid.nvim/network/members"
-        ><img
-            src="https://img.shields.io/github/forks/kdav5758/whid.nvim"
-            alt="Forks"
-    /></a>
-    <a href="https://github.com/kdav5758/whid.nvim/commits/main"
+            src="https://img.shields.io/badge/say-thanks-modal.svg"
+            alt="Say thanks"/></a
+    ></a>    <a href="https://github.com/kdav5758/whid.nvim/commits/main"
             ><img
-            src="https://img.shields.io/github/last-commit/kdav5758/whid.nvim"
+            src="https://img.shields.io/github/last-commit/kdav5758/TrueZen.nvim"
             alt="Latest commit"
     /></a>
     <a href="https://github.com/kdav5758/whid.nvim/stargazers"
@@ -56,16 +50,28 @@
 # 🌲 Table of Contents
 
 * [Features](#-features)
-* [Installation](#-install)
-	* [Vim-plug](#vim-plug)
-	* [Packer.nvim](#packernvim)
-	* [Vundle](#vundle)
-	* [NeoBundle](#neobundle)
-* [Commands](#-commands)
-* [Mappings](#-mappings)
+* [Installation](#-installation)
+	* [Prerequisites](#prerequisites)
+	* [Adding the plugin](#adding-the-plugin)
+	* [Setup Configuration](#setup-configuration)
+		* [For init.lua](#for-initlua)
+		* [For init.vim](#for-initvim)
+	* [Updating](#updating)
+* [Usage (commands)](#-usage-commands)
+	* [Default](#default)
+	* [Extra (True/False)](#extra-truefalse)
+
+* [Configuration](#-configuration)
+	* [General Structure](#general-structure)
+	* [List of settings](#list-of-settings)
+		* [General](#general)
+		* [Bottom](#bottom)
+		* [Top](#top)
+		* [Left](#left)
+		* [Ataraxis](#ataraxis)
+* [Key Bindings](#-key-bindings)
 * [Inspirations](#-inspirations)
 * [License](#-license)
-* [Resporting issues](#-resporting-issues)
 * [Do you...](#-do-you)
 * [To-Do](#-to-do)
 
@@ -235,7 +241,13 @@ require("true-zen").setup({
 EOF
 ```
 
-For configuration instructions check out the `configuration` section.
+For configuration instructions check out the [configuration](#configuration) section.
+
+## Updating
+This depends on your plugin manager. If, for example, you are using Packer.nvim, you can update it with this command:
+```lua
+:PackerUpdate
+```
 
 # 🤖 Usage (commands)
 All the commands follow the *camel casing* naming convention and have the `TZ` prefix so that it's easy to remember that they are part of the TrueZen.nvim plugin. These are all of them:
@@ -292,12 +304,6 @@ Note: remember that `<prefix>` can either be "shown" or "hidden."
 ### Ataraxis
 - `left_right_padding`: (Integer) padding for the text.
 
-## Updating
-This depends on your plugin manager. If, for example, you are using Packer.nvim, you can update it with this command:
-```lua
-:PackerUpdate
-```
-
 
 ## 🧻 Key-bindings
 There are no default key-bindings. However you can set them on your own as you'd normally do! Here is an example mapping `<F12>` to toggle `Ataraxis` mode:
@@ -310,6 +316,23 @@ vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], opt)
 **For init.vim**
 ```vimscript
 map <F12> :TZAtaraxis<CR>
+```
+
+## 🙋 FAQ
+
+- Q: ***"How can I make it launch at startup?"***
+- A: Easy! Just copy and paste this:
+
+For **init.lua**:
+```lua
+require("tz_main").main(4, 3)
+```
+
+For **init.vim**:
+```vimscript
+lua << EOF
+require("tz_main").main(4, 3)
+EOF
 ```
 
 ## 💭 Inspirations
@@ -331,14 +354,14 @@ For more convoluted language, see the [LICENSE file](https://github.com/kdav5758
 
 ## ✋ Do you...
 
-- Have a question? Start a [discussion](https://github.com/kdav5758/NeoVim-Delightful/discussions)
-- Have a problem? Make an [issue](https://github.com/kdav5758/NeoVim-Delightful/issues)
-- Hava an idea? Create a [pull request](https://github.com/kdav5758/NeoVim-Delightful/pulls)
+- Have a question? Start a [discussion](https://github.com/kdav5758/TrueZen.nvim/discussions)
+- Have a problem? Make an [issue](https://github.com/kdav5758/TrueZen.nvim/issues)
+- Hava an idea? Create a [pull request](https://github.com/kdav5758/TrueZen.nvim/pulls)
 
 ## 📋 TO-DO
 
 **High Priority**
-- Fix bug that causes cursor to appear on the left hand side split when Ataraxis mode is set at startup.
+- Fix bug that causes cursor to appear on the left hand side split when Ataraxis mode is launched at startup.
 
 **Low Priority**
 - Tmux integration
