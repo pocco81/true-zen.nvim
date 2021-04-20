@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/kdav5758/whid.nvim"
+    <a href="https://github.com/kdav5758/TrueZen.nvim"
         ><img
             src="https://img.shields.io/github/repo-size/kdav5758/TrueZen.nvim"
             alt="GitHub repository size"
@@ -25,13 +25,14 @@
             src="https://img.shields.io/badge/say-thanks-modal.svg"
             alt="Say thanks"/></a
     ></a>    <a href="https://github.com/kdav5758/whid.nvim/commits/main"
-            ><img
-            src="https://img.shields.io/github/last-commit/kdav5758/TrueZen.nvim"
-            alt="Latest commit"
+    <a href="https://github.com/kdav5758/TrueZen.nvim/commits/main"
+		><img
+			src="https://img.shields.io/github/last-commit/kdav5758/TrueZen.nvim"
+			alt="Latest commit"
     /></a>
-    <a href="https://github.com/kdav5758/whid.nvim/stargazers"
+    <a href="https://github.com/kdav5758/TrueZen.nvim/stargazers"
         ><img
-            src="https://img.shields.io/github/stars/kdav5758/whid.nvim"
+            src="https://img.shields.io/github/stars/kdav5758/TrueZen.nvim"
             alt="Repository's starts"
     /></a>
 </p>
@@ -346,6 +347,9 @@ require("tz_main").main(4, 3)
 EOF
 ```
 However, as of now, there is an small bug that causes the cursor to appear in the wrong place. After this is solved, you'd be able to enjoy this feature, but for now, it's better not trying it out.
+
+- Q: ***"How can view the docs from NeoVim?"***
+- A: Use `:help TrueZen.nvim`
 
 # 💭 Inspirations
 
