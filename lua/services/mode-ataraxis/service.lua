@@ -144,11 +144,11 @@ function ataraxis_false()		-- hide
 
 	if (hello == 1) then
 		cmd("echo 'I RANN'")
+		cmd("set statusline=-")
 	else
 		-- nothing
 	end
 
-	-- cmd("set statusline=-")
 
 
 
