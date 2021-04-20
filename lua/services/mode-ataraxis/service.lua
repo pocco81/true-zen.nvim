@@ -38,7 +38,7 @@ function ataraxis_true()		-- show
 
 	if (amount_wins == 1) then
 		cmd("echo 'Can not exit Ataraxi Mode because you are currently not in it'")
-	elseif (amount_wins == 3) then
+	elseif (amount_wins > 1) then
 		cmd("wincmd h")
 		cmd("q")
 		cmd("wincmd l")
