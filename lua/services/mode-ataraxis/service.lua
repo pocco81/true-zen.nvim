@@ -135,28 +135,11 @@ function ataraxis_false()		-- hide
 	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
 
 	-- hide statusline color
-	-- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- hide horizontal fillchars' colors
 	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-
-	local hello = 1
-
-	if (hello == 1) then
-		cmd("echo 'I RANN'")
-		-- cmd("set statusline=-")
-		
-		vim.api.nvim_exec([[
-			set statuline=-
-		]], false)
-
-
-	else
-		-- nothing
-	end
-
-
-
+	cmd("set statusline=-")
 
 
 	-- leaves you in another place
