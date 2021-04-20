@@ -92,6 +92,17 @@ local function toggle()
 end
 
 
+function minimalist_true_local()
+
+	service.minimalist_true()
+end
+
+function minimalist_false_local()
+	
+	service.minimalist_false()
+end
+
+
 function main(option)
 
 	option = option or 0
@@ -102,6 +113,10 @@ function main(option)
 		minimalist_true()
 	elseif (option == 2) then
 		minimalist_false()
+	elseif (option == 3) then		-- hide everything but locally
+		minimalist_false_local()
+	elseif (option == 4) then		-- show everything but locally
+		minimalist_true_local()
 	else
 		-- not recognized
 	end
