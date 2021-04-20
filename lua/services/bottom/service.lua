@@ -3,7 +3,7 @@
 
 local opts = require("config").options
 local cmd_settings = require("utils.cmd_settings")
-local integration_galaxyline = require("services.mode-ataraxis.integrations.integration_galaxyline")
+local integration_galaxyline = require("services.bottom.integrations.integration_galaxyline")
 
 -- local cmd = vim.cmd
 
