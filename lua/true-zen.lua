@@ -42,6 +42,24 @@ local function setup_cursor()
 	end
 end
 
+
+function before_minimalist_mode_shown()
+	
+end
+
+function before_minimalist_mode_hidden()
+	
+end
+
+function after_minimalist_mode_shown()
+	
+end
+
+function after_minimalist_mode_hidden()
+	
+end
+
+
 function setup(custom_opts)
 	require("config").set_options(custom_opts)
 	setup_commands()
@@ -51,5 +69,9 @@ end
 
 
 return {
-	setup = setup
+	setup = setup,
+	before_minimalist_mode_shown = before_minimalist_mode_shown,
+	before_minimalist_mode_hidden = before_minimalist_mode_hidden,
+	after_minimalist_mode_shown = after_minimalist_mode_shown,
+	after_minimalist_mode_hidden = after_minimalist_mode_hidden
 }
