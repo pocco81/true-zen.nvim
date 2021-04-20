@@ -1,7 +1,7 @@
 # 🪶 TrueZen.nvim
 
 <p align="center">
-	Clean and elegant distraction free mode for NeoVim.
+	Clean and elegant distraction-free writing for NeoVim.
 </p>
 
 <p align="center">
