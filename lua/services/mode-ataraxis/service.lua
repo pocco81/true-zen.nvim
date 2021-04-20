@@ -3,27 +3,35 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
+local integration_galaxyline = require("services.mode-ataraxis.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
 
 
-	vim.api.nvim_exec([[
-		" Like bufdo but restore the current buffer.
-		function! BufDo(command)
-			let currBuff=bufnr("%")
-			execute 'bufdo ' . a:command
-			execute 'buffer ' . currBuff
-		endfunction
-		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 
-		" escape backward slash
-		" mental note: don't use simple quotation marks
-		" call BufDo("set fillchars+=vert:\\ ")
+-- integration test
+in_galaxyline = true
 
-		" since the function is global, it can be called outside of this nvim_exec statement like so:
-		" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
-		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
-	]], false)
+
+
+vim.api.nvim_exec([[
+	" Like bufdo but restore the current buffer.
+	function! BufDo(command)
+		let currBuff=bufnr("%")
+		execute 'bufdo ' . a:command
+		execute 'buffer ' . currBuff
+	endfunction
+	com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+
+	" escape backward slash
+	" mental note: don't use simple quotation marks
+	" call BufDo("set fillchars+=vert:\\ ")
+
+	" since the function is global, it can be called outside of this nvim_exec statement like so:
+	" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
+	" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
+]], false)
+
 
 local function fillchars()
 	cmd([[set fillchars+=vert:\ ]])
@@ -33,23 +41,58 @@ end
 
 function ataraxis_true()		-- show
 
+
+
 	amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
 		cmd("echo 'Can not exit Ataraxi Mode because you are currently not in it'")
-	elseif (amount_wins == 3) then
+	elseif (amount_wins > 1) then
 		cmd("wincmd h")
 		cmd("q")
 		cmd("wincmd l")
 		cmd("q")
+
+
+		if (opts["ataraxis"]["top_padding"] > 0) then
+			cmd("wincmd k")
+			cmd("q")
+		else
+			-- nothing
+		end
+
+		if (opts["ataraxis"]["bottom_padding"] > 0) then
+			cmd("wincmd j")
+			cmd("q")
+		else
+			-- do nothing
+		end
+
 		mode_minimalist.main(1)
 		cmd("set fillchars=")
 		cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 	end
 
+
+	if (in_galaxyline == true) then
+		integration_galaxyline.enable_statusline()
+	else
+		-- nothing
+	end
+
+
+	-- working for anabling galaxyline
+	-- require('galaxyline').load_galaxyline()
 end
 
-function ataraxis_false()		-- don't show
+function ataraxis_false()		-- hide
+
+	if (in_galaxyline == true) then
+		integration_galaxyline.disable_statusline()
+	else
+		-- nothing
+	end
+
 
 	-- padding
 	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
@@ -60,7 +103,7 @@ function ataraxis_false()		-- don't show
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 	fillchars()
 
-	-- middle buffer
+	-- return to middle buffer
 	cmd("wincmd l")
 
 	-- right buffer
@@ -71,8 +114,43 @@ function ataraxis_false()		-- don't show
 
 
 
-	-- middle buffer
+	-- return to middle buffer
 	cmd("wincmd h")
+
+	
+	if (opts["ataraxis"]["top_padding"] > 0) then
+		top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+		cmd("leftabove new")
+		cmd(top_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd j")
+	elseif (opts["ataraxis"]["top_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+	if (opts["ataraxis"]["bottom_padding"] > 0) then
+		bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+		cmd("rightbelow new")
+		cmd(bottom_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd k")
+	elseif (opts["ataraxis"]["bottom_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+
+
+
 	fillchars()
 	mode_minimalist.main(2)
 
@@ -82,7 +160,15 @@ function ataraxis_false()		-- don't show
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
 
+	-- hide statusline color
+	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
+	-- hide horizontal fillchars' colors
+	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+
+	-- doens't work
+	-- require('galaxyline').disable_galaxyline()
+	cmd("setlocal statusline=-")
 
 
 	-- leaves you in another place

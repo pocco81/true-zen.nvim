@@ -58,8 +58,27 @@ how centering text works:
 	6. avoid buffers from being modifiable (https://github.com/junegunn/goyo.vim/blob/master/autoload/goyo.vim#L51)
 	7. `:vertical resize 80` will set your current vsplit to 80 characters wide
 	8. after untoggled quit all buffers
-hide everything:
 
+
+after left and right splits are set, check if bottom split setting = 0, if so, do nothing, else create split on top with that margin set:
+	1. leftabove new.
+	2. resize #
+	2. do settings stuff
+	3. :wincmd j to return to main screen
+
+
+
+IMPORTANT:
+
+how to hide statusline for onces and for all:
+	:set statusline=-        " hide file name in statusline
+	Hide its colors if any after being removed:
+		:highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg 
+hide horizontal fillchars:
+	:highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg
+
+
+refer to this thread: https://vi.stackexchange.com/questions/14217/how-to-hide-horizontal-line-between-windows
 
 		
 
