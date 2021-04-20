@@ -3,7 +3,7 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
-local integration_galaxyline = require("lua.services.mode-ataraxis.integrations.integration_galaxyline")
+local integration_galaxyline = require("services.mode-ataraxis.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
 
