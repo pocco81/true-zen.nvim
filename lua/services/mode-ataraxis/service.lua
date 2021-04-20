@@ -64,6 +64,7 @@ function ataraxis_true()		-- show
 		cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
 	end
 
+	require('galaxyline').load_galaxyline()
 end
 
 function ataraxis_false()		-- hide
