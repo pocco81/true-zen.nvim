@@ -6,19 +6,19 @@ local cmd = vim.cmd
 local function test_bool(final_opt, var)
 	
 	if (var == true) then
-		return "set "..final_opt..""
+		return "setlocal "..final_opt..""
 	elseif (var == false) then
-		return "set no"..final_opt..""
+		return "setlocal no"..final_opt..""
 	end
 
 end
 
 local function test_num(final_opt, num)
-	return "set "..final_opt.."="..num..""
+	return "setlocal "..final_opt.."="..num..""
 end
 
 local function test_str(final_opt, str)
-	return "set "..final_opt.."="..str..""
+	return "setlocal "..final_opt.."="..str..""
 end
 
 local function clean_and_exec(opt, table_opt, remove_str)
