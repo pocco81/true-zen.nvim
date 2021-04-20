@@ -113,6 +113,7 @@ function ataraxis_false()		-- hide
 		cmd(bottom_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 		fillchars()
+		cmd("set statusline=-")
 
 		-- return to middle buffer
 		cmd("wincmd k")
