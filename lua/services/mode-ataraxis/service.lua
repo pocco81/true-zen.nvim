@@ -139,7 +139,8 @@ function ataraxis_false()		-- hide
 
 	-- hide horizontal fillchars' colors
 	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-	cmd("set statusline=-")
+	require('galaxyline').disable_galaxyline()
+	-- cmd("set statusline=-")
 
 
 	-- leaves you in another place
