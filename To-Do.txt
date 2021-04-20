@@ -58,7 +58,13 @@ how centering text works:
 	6. avoid buffers from being modifiable (https://github.com/junegunn/goyo.vim/blob/master/autoload/goyo.vim#L51)
 	7. `:vertical resize 80` will set your current vsplit to 80 characters wide
 	8. after untoggled quit all buffers
-hide everything:
+
+
+after left and right splits are set, check if bottom split setting = 0, if so, do nothing, else create split on top with that margin set:
+	1. leftabove new.
+	2. resize #
+	2. do settings stuff
+	3. :wincmd j to return to main screen
 
 
 		

@@ -7,23 +7,24 @@ local mode_minimalist = require("services.mode-minimalist.init")
 local cmd = vim.cmd
 
 
-	vim.api.nvim_exec([[
-		" Like bufdo but restore the current buffer.
-		function! BufDo(command)
-			let currBuff=bufnr("%")
-			execute 'bufdo ' . a:command
-			execute 'buffer ' . currBuff
-		endfunction
-		com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
+vim.api.nvim_exec([[
+	" Like bufdo but restore the current buffer.
+	function! BufDo(command)
+		let currBuff=bufnr("%")
+		execute 'bufdo ' . a:command
+		execute 'buffer ' . currBuff
+	endfunction
+	com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 
-		" escape backward slash
-		" mental note: don't use simple quotation marks
-		" call BufDo("set fillchars+=vert:\\ ")
+	" escape backward slash
+	" mental note: don't use simple quotation marks
+	" call BufDo("set fillchars+=vert:\\ ")
 
-		" since the function is global, it can be called outside of this nvim_exec statement like so:
-		" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
-		" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
-	]], false)
+	" since the function is global, it can be called outside of this nvim_exec statement like so:
+	" vim.cmd([[call BufDo("set fillchars+=vert:\\ "
+	" don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
+]], false)
+
 
 local function fillchars()
 	cmd([[set fillchars+=vert:\ ]])
@@ -49,7 +50,7 @@ function ataraxis_true()		-- show
 
 end
 
-function ataraxis_false()		-- don't show
+function ataraxis_false()		-- hide
 
 	-- padding
 	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
@@ -60,7 +61,7 @@ function ataraxis_false()		-- don't show
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 	fillchars()
 
-	-- middle buffer
+	-- return to middle buffer
 	cmd("wincmd l")
 
 	-- right buffer
@@ -71,8 +72,43 @@ function ataraxis_false()		-- don't show
 
 
 
-	-- middle buffer
+	-- return to middle buffer
 	cmd("wincmd h")
+
+	
+	if (opts["ataraxis"]["top_padding"] > 0) then
+		top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+		cmd("leftabove new")
+		cmd(top_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd j")
+	elseif (opts["ataraxis"]["top_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+	if (opts["ataraxis"]["bottom_padding"] > 0) then
+		bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+		cmd("rightbelow new")
+		cmd(bottom_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd k")
+	elseif (opts["ataraxis"]["top_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+
+
+
 	fillchars()
 	mode_minimalist.main(2)
 
