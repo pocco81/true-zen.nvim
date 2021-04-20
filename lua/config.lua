@@ -35,7 +35,9 @@ config.options = {
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
-		left_right_padding = 40
+		left_right_padding = 40,
+		top_padding = 0,
+		bottom_padding = 0
 	}
 }
 
