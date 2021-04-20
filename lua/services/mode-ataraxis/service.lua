@@ -126,7 +126,7 @@ function ataraxis_false()		-- hide
 
 
 	fillchars()
-	-- mode_minimalist.main(2)
+	mode_minimalist.main(2)
 
 	-- remove the border lines on every buffer
 	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
@@ -134,9 +134,21 @@ function ataraxis_false()		-- hide
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
 
+	-- hide statusline color
 	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+
+	-- hide horizontal fillchars' colors
 	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-	cmd("set statusline=-")
+
+	local hello = 1
+
+	if (hello == 1) then
+		cmd("echo 'I RANN'")
+	else
+		-- nothing
+	end
+
+	-- cmd("set statusline=-")
 
 
 
