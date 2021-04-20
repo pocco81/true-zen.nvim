@@ -5,7 +5,7 @@ local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local left = require("services.left.init")
-local tz_main = require("lua.tz_main")
+local tz_main = require("tz_main")
 
 local cmd = vim.cmd
 local api = vim.api
