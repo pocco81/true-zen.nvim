@@ -43,6 +43,22 @@ function ataraxis_true()		-- show
 		cmd("q")
 		cmd("wincmd l")
 		cmd("q")
+
+
+		if (opts["ataraxis"]["top_padding"] > 0) then
+			cmd("wincmd k")
+			cmd("q")
+		else
+			-- nothing
+		end
+
+		if (opts["ataraxis"]["bottom_padding"] > 0) then
+			cmd("wincmd j")
+			cmd("q")
+		else
+			-- do nothing
+		end
+
 		mode_minimalist.main(1)
 		cmd("set fillchars=")
 		cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
