@@ -1,23 +1,48 @@
 
 
 local service = require("services.mode-minimalist.service")
-
+local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local left = require("services.left.init")
+local tz_main = require("lua.tz_main")
 
 local cmd = vim.cmd
 local api = vim.api
 
 -- show and hide minimalist funcs
-local function minimalist_true()
+local function minimalist_true()		-- show everything
+	if (opts["before_minimalist_mode_shown"] == true) then
+		tz_main.before_minimalist_mode_shown()
+	else
+		-- nothing
+	end
+
 	minimalist_show = 1
 	service.minimalist_true()
+
+	if (opts["after_minimalist_mode_shown"] == true) then
+		tz_main.after_minimalist_mode_shown()
+	else
+		-- nothing
+	end
 end
 
-local function minimalist_false()
+local function minimalist_false()		-- hide everything
+	if (opts["before_minimalist_mode_hidden"] == true) then
+		tz_main.before_minimalist_mode_hidden()
+	else
+		-- nothing
+	end
+
 	minimalist_show = 0
 	service.minimalist_false()
+
+	if (opts["after_minimalist_mode_hidden"] == true) then
+		tz_main.after_minimalist_mode_hidden()
+	else
+		-- nothing
+	end
 end
 
 -- 1 if being shown
