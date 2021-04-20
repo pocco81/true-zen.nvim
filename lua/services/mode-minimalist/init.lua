@@ -5,7 +5,7 @@ local opts = require("config").options
 local bottom = require("services.bottom.init")
 local top = require("services.top.init")
 local left = require("services.left.init")
-local tz_main = require("tz_main")
+local true_zen = require("true-zen")
 
 local cmd = vim.cmd
 local api = vim.api
@@ -13,7 +13,7 @@ local api = vim.api
 -- show and hide minimalist funcs
 local function minimalist_true()		-- show everything
 	if (opts["before_minimalist_mode_shown"] == true) then
-		tz_main.before_minimalist_mode_shown()
+		true_zen.before_minimalist_mode_shown()
 	else
 		-- nothing
 	end
@@ -22,7 +22,7 @@ local function minimalist_true()		-- show everything
 	service.minimalist_true()
 
 	if (opts["after_minimalist_mode_shown"] == true) then
-		tz_main.after_minimalist_mode_shown()
+		true_zen.after_minimalist_mode_shown()
 	else
 		-- nothing
 	end
@@ -30,7 +30,7 @@ end
 
 local function minimalist_false()		-- hide everything
 	if (opts["before_minimalist_mode_hidden"] == true) then
-		tz_main.before_minimalist_mode_hidden()
+		true_zen.before_minimalist_mode_hidden()
 	else
 		-- nothing
 	end
@@ -39,7 +39,7 @@ local function minimalist_false()		-- hide everything
 	service.minimalist_false()
 
 	if (opts["after_minimalist_mode_hidden"] == true) then
-		tz_main.after_minimalist_mode_hidden()
+		true_zen.after_minimalist_mode_hidden()
 	else
 		-- nothing
 	end
