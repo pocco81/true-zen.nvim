@@ -142,7 +142,7 @@ function ataraxis_false()		-- hide
 
 	-- doens't work
 	-- require('galaxyline').disable_galaxyline()
-	cmd("set statusline=-")
+	cmd("setlocal statusline=-")
 
 
 	-- leaves you in another place
