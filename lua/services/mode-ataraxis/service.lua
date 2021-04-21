@@ -72,19 +72,6 @@ function ataraxis_true()		-- show
 
 
 	for opt, _ in pairs(opts["integrations"]) do
-		if (opts["integrations"][opt] == false) then
-			if (opt == "integration_galaxyline") then
-				require("services.bottom.integrations.integration_galaxyline").enable_element()
-			else
-				-- do nothing... for now
-			end
-		else
-			-- ignore it
-		end
-	end
-
-
-	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
 				require("services.bottom.integrations.integration_galaxyline").enable_element()
@@ -96,14 +83,24 @@ function ataraxis_true()		-- show
 			
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
-				if (is_tmux_running ~= "") then
+				if (is_tmux_running ~= "") then		-- is running
 					require("services.bottom.integrations.integration_tmux").enable_element()
 				else
 					-- tmux wasn't running
 				end
 
 			elseif (opt == "integration_vim_airline") then
-				require("services.bottom.integrations.integration_vim_airline").enable_element()
+
+				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
+
+				if (is_vim_airline_running == 1) then		-- is running
+					require("services.bottom.integrations.integration_vim_airline").enable_element()
+				elseif (is_vim_airline_running == 0) then		-- is not running
+					-- nothing
+				else
+					-- nothing either
+				end
+
 			elseif (opt == "integration_vim_powerline") then
 				require("services.bottom.integrations.integration_vim_powerline").enable_element()
 
@@ -144,7 +141,19 @@ function ataraxis_false()		-- hide
 
 
 			elseif (opt == "integration_vim_airline") then
-				require("services.bottom.integrations.integration_vim_airline").disable_element()
+
+
+				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
+
+				if (is_vim_airline_running == 1) then		-- is running
+					require("services.bottom.integrations.integration_vim_airline").disable_element()
+				elseif (is_vim_airline_running == 0) then		-- is not running
+					-- nothing
+				else
+					-- nothing either
+				end
+
+
 			elseif (opt == "integration_vim_powerline") then
 				require("services.bottom.integrations.integration_vim_powerline").disable_element()
 
