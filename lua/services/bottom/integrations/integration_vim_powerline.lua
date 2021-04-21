@@ -16,6 +16,7 @@ function disable_element()
 	cmd("autocmd!")
 	cmd("augroup END")
 	cmd("augroup! PowerlineMain")
+	cmd("doautocmd Powerline ColorScheme")
 end
 
 
