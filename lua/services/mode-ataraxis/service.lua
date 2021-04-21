@@ -250,17 +250,37 @@ function ataraxis_false()		-- hide
 	end
 
 
-	-------------------- left buffer
 	local left_padding_cmd = ""
+	local right_padding_cmd = ""
 
 	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-		-- padding
-		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+		-- calculate padding
+		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 8")
+		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 8")
+
+		-- set padding
 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
+		right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
 	else
-		-- padding
+		-- stuff
 		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 	end
+
+
+
+	-------------------- left buffer
+	-- local left_padding_cmd = ""
+
+	-- if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+	-- 	-- padding
+	-- 	local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+	-- 	left_padding_cmd = "vertical resize "..calculated_left_padding..""
+	-- else
+	-- 	-- padding
+	-- 	left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+	-- end
 
 
 	-- left buffer
@@ -287,16 +307,16 @@ function ataraxis_false()		-- hide
 
 	-------------------- right buffer
 
-	local right_padding_cmd = ""
+	-- local right_padding_cmd = ""
 
-	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-		-- padding
-		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
-		right_padding_cmd = "vertical resize "..calculated_right_padding..""
-	else
-		-- padding
-		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
-	end
+	-- if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+	-- 	-- padding
+	-- 	local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+	-- 	right_padding_cmd = "vertical resize "..calculated_right_padding..""
+	-- else
+	-- 	-- padding
+	-- 	right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+	-- end
 
 
 
