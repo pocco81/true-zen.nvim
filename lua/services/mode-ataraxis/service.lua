@@ -79,7 +79,18 @@ function ataraxis_true()		-- show
 			elseif (opt == "integration_gitgutter") then
 				require("services.bottom.integrations.integration_gitgutter").enable_element()
 			elseif (opt == "integration_vim_signify") then
-				require("services.bottom.integrations.integration_vim_signify").enable_element()
+
+
+				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
+
+				if (is_vim_signify_running == 0) then		-- is not running
+					require("services.bottom.integrations.integration_vim_signify").enable_element()
+				elseif (is_vim_signify_running == 1) then		-- is running
+					-- nothing
+				else
+					-- nothing either
+				end
+
 			elseif (opt == "integration_tmux") then
 			
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
@@ -140,7 +151,19 @@ function ataraxis_false()		-- hide
 			elseif (opt == "integration_gitgutter") then
 				require("services.bottom.integrations.integration_gitgutter").disable_element()
 			elseif (opt == "integration_vim_signify") then
-				require("services.bottom.integrations.integration_vim_signify").disable_element()
+
+				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
+
+				if (is_vim_signify_running == 1) then		-- is running
+					cmd("echo 'vim signify was running'")
+					require("services.bottom.integrations.integration_vim_signify").disable_element()
+				elseif (is_vim_signify_running == 0) then		-- is not running
+					cmd("echo 'vim signify was not running'")
+					-- nothing
+				else
+					-- nothing either
+				end
+
 			elseif (opt == "integration_tmux") then
 
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
@@ -176,10 +199,6 @@ function ataraxis_false()		-- hide
 				else
 					-- nothing either
 				end
-
-
-
-
 
 			-- under dev
 			-- elseif (opt == "integration_lualine") then
