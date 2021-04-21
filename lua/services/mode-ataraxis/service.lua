@@ -155,10 +155,8 @@ function ataraxis_false()		-- hide
 				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
 
 				if (is_vim_signify_running == 1) then		-- is running
-					cmd("echo 'vim signify was running'")
 					require("services.bottom.integrations.integration_vim_signify").disable_element()
 				elseif (is_vim_signify_running == 0) then		-- is not running
-					cmd("echo 'vim signify was not running'")
 					-- nothing
 				else
 					-- nothing either
