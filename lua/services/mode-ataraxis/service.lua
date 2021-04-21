@@ -77,7 +77,17 @@ function ataraxis_true()		-- show
 			if (opt == "integration_galaxyline") then
 				require("services.bottom.integrations.integration_galaxyline").enable_element()
 			elseif (opt == "integration_gitgutter") then
-				require("services.bottom.integrations.integration_gitgutter").enable_element()
+
+				local is_gitgutter_running = vim.api.nvim_eval("get(g:, 'gitgutter_enabled', 0)")
+
+				if (is_gitgutter_running == 0) then		-- is not running
+					require("services.bottom.integrations.integration_gitgutter").enable_element()
+				elseif (is_gitgutter_running == 1) then		-- is not running
+					-- nothing
+				else
+					-- nothing either
+				end
+
 			elseif (opt == "integration_vim_signify") then
 
 
@@ -147,9 +157,23 @@ function ataraxis_false()		-- hide
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
+
 				require("services.bottom.integrations.integration_galaxyline").disable_element()
+
 			elseif (opt == "integration_gitgutter") then
-				require("services.bottom.integrations.integration_gitgutter").disable_element()
+
+				local is_gitgutter_running = vim.api.nvim_eval("get(g:, 'gitgutter_enabled', 0)")
+
+				if (is_gitgutter_running == 1) then		-- is running
+					cmd("echo 'gitgutter was running'")
+					require("services.bottom.integrations.integration_gitgutter").disable_element()
+				elseif (is_gitgutter_running == 0) then		-- is not running
+					cmd("echo 'gitgutter was not running'")
+					-- nothing
+				else
+					-- nothing either
+				end
+
 			elseif (opt == "integration_vim_signify") then
 
 				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
