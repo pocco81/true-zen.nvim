@@ -3,7 +3,6 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
--- local integration_galaxyline = require("services.bottom.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
 
@@ -41,8 +40,6 @@ end
 
 function ataraxis_true()		-- show
 
-
-
 	amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
@@ -74,24 +71,78 @@ function ataraxis_true()		-- show
 	end
 
 
-	-- if (in_galaxyline == true) then
-	-- 	integration_galaxyline.enable_statusline()
-	-- else
-	-- 	-- nothing
-	-- end
+	for opt, _ in pairs(opts["integrations"]) do
+		if (opts["integrations"][opt] == false) then
+			if (opt == "integration_galaxyline") then
+				require("services.bottom.integrations.integration_galaxyline").enable_element()
+			else
+				-- do nothing... for now
+			end
+		else
+			-- ignore it
+		end
+	end
 
 
-	-- working for anabling galaxyline
-	-- require('galaxyline').load_galaxyline()
+	for opt, _ in pairs(opts["integrations"]) do
+		if (opts["integrations"][opt] == true) then
+			if (opt == "integration_galaxyline") then
+				require("services.bottom.integrations.integration_galaxyline").enable_element()
+			elseif (opt == "integration_gitgutter") then
+				require("services.bottom.integrations.integration_gitgutter").enable_element()
+			elseif (opt == "integration_vim_signify") then
+				require("services.bottom.integrations.integration_vim_signify").enable_element()
+			elseif (opt == "integration_tmux") then
+				require("services.bottom.integrations.integration_tmux").enable_element()
+			elseif (opt == "integration_vim_airline") then
+				require("services.bottom.integrations.integration_vim_airline").enable_element()
+			elseif (opt == "integration_vim_powerline") then
+				require("services.bottom.integrations.integration_vim_powerline").enable_element()
+
+			-- under dev
+			-- elseif (opt == "integration_lualine") then
+			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
+			-- elseif (opt == "integration_express_line") then
+			-- 	require("services.bottom.integrations.integration_express_line").disable_element()
+			else
+				-- integration not recognized
+			end
+		else
+			-- ignore it
+		end
+	end
 end
 
 function ataraxis_false()		-- hide
 
-	-- if (in_galaxyline == true) then
-	-- 	integration_galaxyline.disable_statusline()
-	-- else
-	-- 	-- nothing
-	-- end
+
+	for opt, _ in pairs(opts["integrations"]) do
+		if (opts["integrations"][opt] == true) then
+			if (opt == "integration_galaxyline") then
+				require("services.bottom.integrations.integration_galaxyline").disable_element()
+			elseif (opt == "integration_gitgutter") then
+				require("services.bottom.integrations.integration_gitgutter").disable_element()
+			elseif (opt == "integration_vim_signify") then
+				require("services.bottom.integrations.integration_vim_signify").disable_element()
+			elseif (opt == "integration_tmux") then
+				require("services.bottom.integrations.integration_tmux").disable_element()
+			elseif (opt == "integration_vim_airline") then
+				require("services.bottom.integrations.integration_vim_airline").disable_element()
+			elseif (opt == "integration_vim_powerline") then
+				require("services.bottom.integrations.integration_vim_powerline").disable_element()
+
+			-- under dev
+			-- elseif (opt == "integration_lualine") then
+			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
+			-- elseif (opt == "integration_express_line") then
+			-- 	require("services.bottom.integrations.integration_express_line").disable_element()
+			else
+				-- integration not recognized
+			end
+		else
+			-- ignore it
+		end
+	end
 
 
 	-- padding
