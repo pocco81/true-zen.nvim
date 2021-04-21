@@ -154,7 +154,7 @@ function ataraxis_false()		-- hide
 
 			elseif (opt == "integration_vim_airline") then
 
-				local is_vim_airline_running = vim.api.nvim_eval("exists('#PowerlineMain')")
+				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
 
 				if (is_vim_airline_running == 1) then		-- is running
 					require("services.bottom.integrations.integration_vim_airline").disable_element()
@@ -167,7 +167,7 @@ function ataraxis_false()		-- hide
 
 			elseif (opt == "integration_vim_powerline") then
 
-				local is_vim_powerline_running = vim.api.nvim_eval("exists('#airline')")
+				local is_vim_powerline_running = vim.api.nvim_eval("exists('#PowerlineMain')")
 
 				if (is_vim_powerline_running == 1) then		-- is running
 					cmd("echo 'vim powerline was running'")
