@@ -142,7 +142,6 @@ function ataraxis_true()		-- show
 			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
 			elseif (opt == "integration_express_line") then
 
-				cmd("echo 'express line was toggled'")
 				require("services.bottom.integrations.integration_express_line").enable_element()
 
 			else
@@ -227,8 +226,9 @@ function ataraxis_false()		-- hide
 			-- elseif (opt == "integration_lualine") then
 			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
 			elseif (opt == "integration_express_line") then
-				cmd("echo 'express line was untoggled'")
+
 				require("services.bottom.integrations.integration_express_line").disable_element()
+
 			else
 				-- integration not recognized
 			end
