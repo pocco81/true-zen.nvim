@@ -97,10 +97,9 @@ function ataraxis_true()		-- show
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
 				if (is_tmux_running ~= "") then
-					cmd("echo 'tmux is running'")
 					require("services.bottom.integrations.integration_tmux").enable_element()
 				else
-					cmd("echo 'tmux wasn't running'")
+					-- tmux wasn't running
 				end
 
 			elseif (opt == "integration_vim_airline") then
@@ -138,10 +137,9 @@ function ataraxis_false()		-- hide
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
 				if (is_tmux_running ~= "") then
-					cmd("echo 'Tmux is running'")
 					require("services.bottom.integrations.integration_tmux").disable_element()
 				else
-					cmd("echo 'tmux wasn't running'")
+					-- tmux wasn't running
 				end
 
 
