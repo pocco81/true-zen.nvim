@@ -255,8 +255,8 @@ function ataraxis_false()		-- hide
 
 	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
 		-- calculate padding
-		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 8")
-		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 8")
+		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
 
 		-- set padding
 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
