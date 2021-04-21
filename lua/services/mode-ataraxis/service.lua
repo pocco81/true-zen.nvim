@@ -4,6 +4,7 @@ local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
 
+
 local cmd = vim.cmd
 
 
@@ -230,8 +231,6 @@ function ataraxis_false()		-- hide
 	end
 
 
-
-
 	fillchars()
 	mode_minimalist.main(2)
 
@@ -252,6 +251,7 @@ function ataraxis_false()		-- hide
 
 	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")
+
 
 
 	-- leaves you in another place
