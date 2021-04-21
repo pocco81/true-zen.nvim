@@ -91,6 +91,7 @@ function ataraxis_true()		-- show
 
 			elseif (opt == "integration_vim_airline") then
 
+
 				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
 
 				if (is_vim_airline_running == 0) then		-- is not running
