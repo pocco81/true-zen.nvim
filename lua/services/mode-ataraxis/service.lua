@@ -74,7 +74,7 @@ function ataraxis_true()		-- show
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == false) then
 			if (opt == "integration_galaxyline") then
-				require("services.bottom.integrations.integration_galaxyline").enable_statusline()
+				require("services.bottom.integrations.integration_galaxyline").enable_element()
 			else
 				-- do nothing... for now
 			end
@@ -97,19 +97,15 @@ end
 
 function ataraxis_false()		-- hide
 
-	-- if (in_galaxyline == true) then
-	-- 	integration_galaxyline.disable_statusline()
-	-- else
-	-- 	-- nothing
-	-- end
-	
 
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
-				require("services.bottom.integrations.integration_galaxyline").disable_statusline()
-			else
-				-- do nothing... for now
+				require("services.bottom.integrations.integration_galaxyline").disable_element()
+			elseif (opt == "integration_gitgutter") then
+				require("services.bottom.integrations.integration_gitgutter").disable_element()
+			elseif (opt == "integration_vim_signify") then
+				require("services.bottom.integrations.integration_vim_signify").disable_element()
 			end
 		else
 			-- ignore it
