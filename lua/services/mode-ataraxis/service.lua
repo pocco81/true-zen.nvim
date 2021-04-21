@@ -271,19 +271,6 @@ function ataraxis_false()		-- hide
 
 
 	-------------------- left buffer
-	-- local left_padding_cmd = ""
-
-	-- if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-	-- 	-- padding
-	-- 	local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
-	-- 	left_padding_cmd = "vertical resize "..calculated_left_padding..""
-	-- else
-	-- 	-- padding
-	-- 	left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-	-- end
-
-
-	-- left buffer
 	cmd("leftabove vnew")
 	cmd(left_padding_cmd)
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
@@ -291,37 +278,15 @@ function ataraxis_false()		-- hide
 	-------------------- left buffer
 
 
-	-- -- padding
-	-- local left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-
-	-- cmd("leftabove vnew")
-	-- cmd(left_padding_cmd)
-	-- cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	-- fillchars()
-
 
 
 	-- return to middle buffer
 	cmd("wincmd l")
 
 
+
+
 	-------------------- right buffer
-
-	-- local right_padding_cmd = ""
-
-	-- if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-	-- 	-- padding
-	-- 	local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
-	-- 	right_padding_cmd = "vertical resize "..calculated_right_padding..""
-	-- else
-	-- 	-- padding
-	-- 	right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
-	-- end
-
-
-
-
-	-- local right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 	cmd("vnew")
 	cmd(right_padding_cmd)
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
