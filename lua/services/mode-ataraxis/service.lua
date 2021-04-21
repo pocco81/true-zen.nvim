@@ -3,7 +3,6 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
--- local integration_galaxyline = require("services.bottom.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
 
@@ -41,8 +40,6 @@ end
 
 function ataraxis_true()		-- show
 
-
-
 	amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
@@ -74,6 +71,19 @@ function ataraxis_true()		-- show
 	end
 
 
+	for opt, _ in pairs(opts["integrations"]) do
+		if (opts["integrations"][opt] == false) then
+			if (opt == "integration_galaxyline") then
+				require("services.bottom.integrations.integration_galaxyline").enable_statusline()
+			else
+				-- do nothing... for now
+			end
+		else
+			-- ignore it
+		end
+	end
+
+
 	-- if (in_galaxyline == true) then
 	-- 	integration_galaxyline.enable_statusline()
 	-- else
@@ -92,6 +102,19 @@ function ataraxis_false()		-- hide
 	-- else
 	-- 	-- nothing
 	-- end
+	
+
+	for opt, _ in pairs(opts["integrations"]) do
+		if (opts["integrations"][opt] == true) then
+			if (opt == "integration_galaxyline") then
+				require("services.bottom.integrations.integration_galaxyline").disable_statusline()
+			else
+				-- do nothing... for now
+			end
+		else
+			-- ignore it
+		end
+	end
 
 
 	-- padding

@@ -39,6 +39,14 @@ config.options = {
 		right_padding = 40,
 		top_padding = 0,
 		bottom_padding = 0
+	},
+	integrations = {
+		integration_galaxyline = false,
+		integration_vim_airline = false,
+		integration_vim_powerline = false,
+		integration_tmux = false,
+		integration_lualine = false,
+		integration_express_line = false
 	}
 }
 
