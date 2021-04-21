@@ -170,10 +170,8 @@ function ataraxis_false()		-- hide
 				local is_vim_powerline_running = vim.api.nvim_eval("exists('#PowerlineMain')")
 
 				if (is_vim_powerline_running == 1) then		-- is running
-					cmd("echo 'vim powerline was running'")
 					require("services.bottom.integrations.integration_vim_powerline").disable_element()
 				elseif (is_vim_powerline_running == 0) then		-- is not running
-					cmd("echo 'vim powerline was not running'")
 					-- nothing
 				else
 					-- nothing either
