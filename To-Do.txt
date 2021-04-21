@@ -83,37 +83,12 @@ refer to this thread: https://vi.stackexchange.com/questions/14217/how-to-hide-h
 		
 
 
+if I want to make add a do_it_for_me_setting for the paddings, in order of exection I'll have to:
 
-
-¿En qué eje se encuentra ubicado los vértices de una elipse?
-R) Se encuentran en el eje mayor.
-
-¿En qué eje se encuentra ubicado los focos de una elipse?
-R) en F2 y F1
-
-¿Con qué letra se identifica la distancia del centro a un foco?
-R) c
-
-¿Con qué letra se identifica la distancia del centro a un vértice?
-R) a, b
-
-¿Con qué letra se identifica la distancia del centro a un punto de intersección de la elipse con el eje menor? 
-R) b
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	0. check if mode is enabled
+	1. get current window width
+	2. get current window height
+	3. vertical resize #
 
 
 

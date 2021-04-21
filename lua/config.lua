@@ -39,6 +39,7 @@ config.options = {
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
+		just_do_it_for_me = false,
 		left_padding = 40,
 		right_padding = 40,
 		top_padding = 0,
