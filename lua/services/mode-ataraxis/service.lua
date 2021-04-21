@@ -156,6 +156,16 @@ end
 function ataraxis_false()		-- hide
 
 
+	local amount_wins = vim.api.nvim_eval("winnr('$')")
+
+	if (amount_wins > 1) then
+		cmd("echo 'TZAtaraxis can not be toggled if there is more than one window open'")
+		goto there_was_more_tan_one_window
+	else
+		-- nothing
+	end
+
+
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
@@ -316,6 +326,8 @@ function ataraxis_false()		-- hide
 	cmd("setlocal statusline=-")
 
 
+	-- everything will be skipped if there was more than one window open
+	::there_was_more_tan_one_window::
 
 	-- leaves you in another place
 	-- cmd([[bufdo set fillchars+=vert:\ ]])
