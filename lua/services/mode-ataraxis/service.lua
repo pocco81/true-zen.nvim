@@ -93,7 +93,16 @@ function ataraxis_true()		-- show
 			elseif (opt == "integration_vim_signify") then
 				require("services.bottom.integrations.integration_vim_signify").enable_element()
 			elseif (opt == "integration_tmux") then
-				require("services.bottom.integrations.integration_tmux").enable_element()
+			
+				local is_tmux_running = vim.api.nvim_eval("$TMUX")
+
+				if (is_tmux_running ~= "") then
+					cmd("echo 'tmux is running'")
+					require("services.bottom.integrations.integration_tmux").enable_element()
+				else
+					cmd("echo 'tmux wasn't running'")
+				end
+
 			elseif (opt == "integration_vim_airline") then
 				require("services.bottom.integrations.integration_vim_airline").enable_element()
 			elseif (opt == "integration_vim_powerline") then
@@ -125,7 +134,17 @@ function ataraxis_false()		-- hide
 			elseif (opt == "integration_vim_signify") then
 				require("services.bottom.integrations.integration_vim_signify").disable_element()
 			elseif (opt == "integration_tmux") then
-				require("services.bottom.integrations.integration_tmux").disable_element()
+
+				local is_tmux_running = vim.api.nvim_eval("$TMUX")
+
+				if (is_tmux_running ~= "") then
+					cmd("echo 'Tmux is running'")
+					require("services.bottom.integrations.integration_tmux").disable_element()
+				else
+					cmd("echo 'tmux wasn't running'")
+				end
+
+
 			elseif (opt == "integration_vim_airline") then
 				require("services.bottom.integrations.integration_vim_airline").disable_element()
 			elseif (opt == "integration_vim_powerline") then
