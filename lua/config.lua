@@ -41,7 +41,7 @@ config.options = {
 		bottom_padding = 0
 	},
 	integrations = {
-		integration_galaxyline = true,
+		integration_galaxyline = false,
 		integration_vim_airline = false,
 		integration_vim_powerline = false,
 		integration_tmux = false,
