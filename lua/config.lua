@@ -49,7 +49,6 @@ config.options = {
 		integration_vim_airline = false,
 		integration_vim_powerline = false,
 		integration_tmux = false,
-		integration_lualine = false,
 		integration_express_line = false,
 		integration_gitgutter = false,
 		integration_vim_signify = false
