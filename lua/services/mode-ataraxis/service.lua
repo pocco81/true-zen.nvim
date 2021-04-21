@@ -241,7 +241,7 @@ function ataraxis_false()		-- hide
 				require("services.bottom.integrations.integration_express_line").disable_element()
 
 			elseif (opt == "integration_limelight") then
-
+				cmd("echo 'I WAS TRUE!!'")
 				require("services.bottom.integrations.integration_limelight").enable_element()
 
 			else
