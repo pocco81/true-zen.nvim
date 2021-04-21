@@ -3,7 +3,7 @@
 local opts = require("config").options
 local left_service = require("services.left.service")
 local mode_minimalist = require("services.mode-minimalist.init")
-local integration_galaxyline = require("services.bottom.integrations.integration_galaxyline")
+-- local integration_galaxyline = require("services.bottom.integrations.integration_galaxyline")
 
 local cmd = vim.cmd
 
@@ -74,11 +74,11 @@ function ataraxis_true()		-- show
 	end
 
 
-	if (in_galaxyline == true) then
-		integration_galaxyline.enable_statusline()
-	else
-		-- nothing
-	end
+	-- if (in_galaxyline == true) then
+	-- 	integration_galaxyline.enable_statusline()
+	-- else
+	-- 	-- nothing
+	-- end
 
 
 	-- working for anabling galaxyline
@@ -87,19 +87,19 @@ end
 
 function ataraxis_false()		-- hide
 
-	if (in_galaxyline == true) then
-		integration_galaxyline.disable_statusline()
-	else
-		-- nothing
-	end
+	-- if (in_galaxyline == true) then
+	-- 	integration_galaxyline.disable_statusline()
+	-- else
+	-- 	-- nothing
+	-- end
 
 
 	-- padding
-	local padding_cmd = "vertical resize "..opts["ataraxis"]["left_right_padding"]..""
+	local left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
 
 	-- left buffer
 	cmd("leftabove vnew")
-	cmd(padding_cmd)
+	cmd(left_padding_cmd)
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 	fillchars()
 
@@ -107,8 +107,9 @@ function ataraxis_false()		-- hide
 	cmd("wincmd l")
 
 	-- right buffer
+	local right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 	cmd("vnew")
-	cmd(padding_cmd)
+	cmd(right_padding_cmd)
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 	fillchars()
 
@@ -119,7 +120,7 @@ function ataraxis_false()		-- hide
 
 	
 	if (opts["ataraxis"]["top_padding"] > 0) then
-		top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+		local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
 		cmd("leftabove new")
 		cmd(top_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
@@ -134,7 +135,7 @@ function ataraxis_false()		-- hide
 	end
 
 	if (opts["ataraxis"]["bottom_padding"] > 0) then
-		bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+		local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
 		cmd("rightbelow new")
 		cmd(bottom_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
@@ -168,6 +169,8 @@ function ataraxis_false()		-- hide
 
 	-- doens't work
 	-- require('galaxyline').disable_galaxyline()
+
+	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")
 
 
