@@ -51,7 +51,8 @@ config.options = {
 		integration_tmux = false,
 		integration_express_line = false,
 		integration_gitgutter = false,
-		integration_vim_signify = false
+		integration_vim_signify = false,
+		integration_limelight = false
 	}
 }
 

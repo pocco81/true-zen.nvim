@@ -144,6 +144,10 @@ function ataraxis_true()		-- show
 
 				require("services.bottom.integrations.integration_express_line").enable_element()
 
+			elseif (opt == "integration_limelight") then
+
+				require("services.bottom.integrations.integration_limelight").disable_element()
+
 			else
 				-- integration not recognized
 			end
@@ -159,7 +163,7 @@ function ataraxis_false()		-- hide
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins > 1) then
-		cmd("echo 'TZAtaraxis can not be toggled if there is more than one window open'")
+		cmd("echo 'TZAtaraxis can not be toggled if there is more than one window open.'")
 		goto there_was_more_tan_one_window
 	else
 		-- nothing
@@ -232,12 +236,13 @@ function ataraxis_false()		-- hide
 					-- nothing either
 				end
 
-			-- under dev
-			-- elseif (opt == "integration_lualine") then
-			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
 			elseif (opt == "integration_express_line") then
 
 				require("services.bottom.integrations.integration_express_line").disable_element()
+
+			elseif (opt == "integration_limelight") then
+
+				require("services.bottom.integrations.integration_limelight").enable_element()
 
 			else
 				-- integration not recognized
