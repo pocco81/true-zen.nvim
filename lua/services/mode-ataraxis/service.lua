@@ -137,9 +137,6 @@ function ataraxis_true()		-- show
 					-- nothing either
 				end
 
-			-- under dev
-			-- elseif (opt == "integration_lualine") then
-			-- 	require("services.bottom.integrations.integration_vim_lualine").disable_element()
 			elseif (opt == "integration_express_line") then
 
 				require("services.bottom.integrations.integration_express_line").enable_element()
