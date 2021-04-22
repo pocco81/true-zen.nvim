@@ -160,6 +160,7 @@ before_minimalist_mode_shown = false,
 before_minimalist_mode_hidden = false,
 after_minimalist_mode_shown = false,
 after_minimalist_mode_hidden = false,
+unknown_bkg_color_fix = false,
 bottom = {
 	hidden_laststatus = 0,
 	hidden_ruler = false,
@@ -218,6 +219,7 @@ true_zen.setup({
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false,
+	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -276,6 +278,7 @@ require("true-zen").setup({
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false,
+	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -338,6 +341,7 @@ true_zen.setup({
 	before_minimalist_mode_hidden = true,
 	after_minimalist_mode_shown = true,
 	after_minimalist_mode_hidden = true,
+	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -461,6 +465,7 @@ Almost every setting that makes part of a UI component (Left, Top, Bottom) has a
 This settings are unrelated to any group and are independent.
 - `true_false_commands`: (Boolean) if true, enables true/false extra commands.
 - `cursor_by_mode`: (Boolean) if true, changes cursor according to current Vi mode. Useful for when the statuline and showmode are hidden so that one can easily identify the current mode.
+- `unknown_bkg_color_fix`: (Boolean) if true, fixes the `E420: BG color unknown` issue when entering Ataraxis mode. Note: before setting this to true check the FAQ about this bug, and if that didn't help, set this to true.
 
 ### Events
 - `before_minimalist_mode_shown`: (Boolean) allows code to be executed before Minimalist mode shows UI components
@@ -554,6 +559,9 @@ However, as of now, there is an small bug that causes the cursor to appear in th
 
 - Q: ***"How can view the docs from NeoVim?"***
 - A: Use `:help TrueZen.nvim`
+
+- Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
+- A: This issue occurs because you don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, put this in your TrueZen config: `unknown_bkg_color_fix = true`.
 
 # 💭 Inspirations
 
