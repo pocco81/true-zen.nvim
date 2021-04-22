@@ -341,19 +341,26 @@ function ataraxis_false()		-- hide
 
 
 
-	-- local current_bkg = vim.api.nvim_eval("&bg")
-	-- local cmd_for_statusline = "highlight StatusLine ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
-	-- local cmd_for_fillchars = "highlight StatusLineNC ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
 
 
-	-- hide statusline color
-	-- cmd(cmd_for_statusline)
-	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-	-- highlight StatusLine ctermfg=dark ctermbg=dark guibg=dark guifg=dark
+	if (opts["unknown_bkg_color_fix"] == true) then
 
-	-- hide horizontal fillchars' colors
-	-- cmd(cmd_for_fillchars)
-	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- hide statusline color
+		cmd("highlight StatusLine ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
+		-- hide horizontal fillchars' colors
+		cmd("highlight StatusLineNC ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
+
+	elseif (optsp["unknown_bkg_color_fix"] == false) then
+
+		-- hide statusline color
+		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- hide horizontal fillchars' colors
+		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+
+	else
+		cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
+	end
+
 
 	-- doens't work
 	-- require('galaxyline').disable_galaxyline()

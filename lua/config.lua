@@ -11,6 +11,7 @@ config.options = {
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false,
+	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
