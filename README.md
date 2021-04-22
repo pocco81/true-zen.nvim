@@ -495,7 +495,7 @@ Integrations are a way for providing support for certain (Neo)Vim plugins/stuff 
 
 
 ### General integrations
-- `integration_tmux = false`: (Boolean) if set to true, hides Tmux tab bar when Ataraxis mode is toggled.
+- `integration_tmux`: (Boolean) if set to true, hides Tmux tab bar when Ataraxis mode is toggled.
 - `integration_gitgutter`: (Boolean) if set to true, disables Gitgutter when Ataraxis mode is toggled.
 - `integration_vim_signify`: (Boolean) if set to true, disables Vim Signify when Ataraxis mode is toggled.
 - `integration_limelight`: (Boolean) if set to true, enables Limelight when Ataraxis mode is toggled.
