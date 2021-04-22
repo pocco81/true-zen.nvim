@@ -341,18 +341,19 @@ function ataraxis_false()		-- hide
 
 
 
-	local current_bkg = vim.api.nvim_eval("&bg")
-	local cmd_for_statusline = "highlight StatusLine ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
-	local cmd_for_fillchars = "highlight StatusLineNC ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
+	-- local current_bkg = vim.api.nvim_eval("&bg")
+	-- local cmd_for_statusline = "highlight StatusLine ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
+	-- local cmd_for_fillchars = "highlight StatusLineNC ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
 
 
 	-- hide statusline color
-	cmd(cmd_for_statusline)
-	-- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	-- cmd(cmd_for_statusline)
+	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	-- highlight StatusLine ctermfg=dark ctermbg=dark guibg=dark guifg=dark
 
 	-- hide horizontal fillchars' colors
-	cmd(cmd_for_fillchars)
-	-- cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	-- cmd(cmd_for_fillchars)
+	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- doens't work
 	-- require('galaxyline').disable_galaxyline()
