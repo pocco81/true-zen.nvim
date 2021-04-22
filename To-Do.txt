@@ -90,5 +90,23 @@ if I want to make add a do_it_for_me_setting for the paddings, in order of exect
 	2. get current window height
 	3. vertical resize #
 
+For the zoom (focus?) mode:
+
+Focus the window:
+	1. vert resize | resize
+	2. normal! ze
+
+Unfocus the window:
+	1. wincmd =
+	2. normal! ze
+
+
+
+
+
+
+
+
+
 
 
