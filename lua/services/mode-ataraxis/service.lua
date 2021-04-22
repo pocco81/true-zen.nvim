@@ -152,6 +152,23 @@ function ataraxis_true()		-- show
 			-- ignore it
 		end
 	end
+		
+	-- return splitbelow and splitright to user settings:
+	if (is_splitbelow_set == 1) then
+		-- it's already set
+		-- cmd("set splitbelow")
+	elseif (is_splitbelow_set == 0) then
+		cmd("set nosplitbelow")
+	end
+
+
+	if (is_splitright_set == 1) then
+		-- it's already set
+		-- cmd("set splitright")
+	elseif (is_splitright_set == 0) then
+		cmd("set nosplitright")
+	end
+
 end
 
 function ataraxis_false()		-- hide
@@ -161,10 +178,22 @@ function ataraxis_false()		-- hide
 
 	if (amount_wins > 1) then
 		cmd("echo 'TZAtaraxis can not be toggled if there is more than one window open.'")
-		goto there_was_more_tan_one_window
+		goto there_was_more_than_one_window
 	else
 		-- nothing
 	end
+
+	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
+	is_splitbelow_set = vim.api.nvim_eval("&splitbelow")
+	is_splitright_set = vim.api.nvim_eval("&splitright")
+
+	if (is_splitbelow_set == 0 or is_splitright_set == 0) then
+		cmd("set splitbelow")
+		cmd("set splitright")
+	else
+		-- continue
+	end
+	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
 	for opt, _ in pairs(opts["integrations"]) do
@@ -367,7 +396,7 @@ function ataraxis_false()		-- hide
 
 
 	-- everything will be skipped if there was more than one window open
-	::there_was_more_tan_one_window::
+	::there_was_more_than_one_window::
 
 	-- leaves you in another place
 	-- cmd([[bufdo set fillchars+=vert:\ ]])
