@@ -153,9 +153,11 @@ local function toggle()
 						-- comparte with height
 						if (difference == i) then
 							-- since difference is small, it's assumable that window is focused
+							cmd("echo 'It was too small'")
 							focus_false()
 						elseif (i == 3) then
 							-- difference is too big, it's assumable that window is not focused
+							cmd("echo 'It was too big'")
 							focus_true()
 						end
 					end
