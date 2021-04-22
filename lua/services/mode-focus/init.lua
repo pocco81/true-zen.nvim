@@ -45,7 +45,7 @@ end
 
 windows_dimensions = {}
 
-local function check_win_size()
+function check_win_size()
 
 	local win_height = vim.api.nvim_eval("winheight('%')")
 	local win_width = vim.api.nvim_eval("winheight('%')")
