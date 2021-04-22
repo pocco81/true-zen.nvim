@@ -1,6 +1,6 @@
 
 
-local opts = require("config").options
+local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
 
@@ -11,18 +11,18 @@ local function setup_commands()
 	if (opts.true_false_commands == true) then
 
 		-- UI components
-		cmd("command! TZTopT lua require'tz_main'.main(1, 1)")
-		cmd("command! TZTopF lua require'tz_main'.main(1, 2)")
-		cmd("command! TZLeftT lua require'tz_main'.main(2, 1)")
-		cmd("command! TZLeftF lua require'tz_main'.main(2, 2)")
-		cmd("command! TZBottomT lua require'tz_main'.main(0, 1)")
-		cmd("command! TZBottomF lua require'tz_main'.main(0, 2)")
+		cmd("command! TZTopT lua require'true-zen.main'.main(1, 1)")
+		cmd("command! TZTopF lua require'true-zen.main'.main(1, 2)")
+		cmd("command! TZLeftT lua require'true-zen.main'.main(2, 1)")
+		cmd("command! TZLeftF lua require'true-zen.main'.main(2, 2)")
+		cmd("command! TZBottomT lua require'true-zen.main'.main(0, 1)")
+		cmd("command! TZBottomF lua require'true-zen.main'.main(0, 2)")
 
 		-- Modes
-		cmd("command! TZMinimalistT lua require'tz_main'.main(3, 1)")
-		cmd("command! TZMinimalistF lua require'tz_main'.main(3, 2)")
-		cmd("command! TZAtaraxisT lua require'tz_main'.main(4, 1)")
-		cmd("command! TZAtaraxisF lua require'tz_main'.main(4, 2)")
+		cmd("command! TZMinimalistT lua require'true-zen.main'.main(3, 1)")
+		cmd("command! TZMinimalistF lua require'true-zen.main'.main(3, 2)")
+		cmd("command! TZAtaraxisT lua require'true-zen.main'.main(4, 1)")
+		cmd("command! TZAtaraxisF lua require'true-zen.main'.main(4, 2)")
 
 	elseif (opts.true_false_commands == false) then
 		-- nothing
@@ -61,7 +61,7 @@ end
 
 
 function setup(custom_opts)
-	require("config").set_options(custom_opts)
+	require("true-zen.config").set_options(custom_opts)
 	setup_commands()
 	setup_cursor()
 end

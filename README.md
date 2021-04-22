@@ -546,13 +546,13 @@ map <F12> :TZAtaraxis<CR>
 
 For **init.lua**:
 ```lua
-require("tz_main").main(4, 3)
+require("true-zen.main").main(4, 3)
 ```
 
 For **init.vim**:
 ```vimscript
 lua << EOF
-require("tz_main").main(4, 3)
+require("true-zen.main").main(4, 3)
 EOF
 ```
 However, as of now, there is an small bug that causes the cursor to appear in the wrong place. After this is solved, you'd be able to enjoy this feature, but for now, it's better not trying it out.

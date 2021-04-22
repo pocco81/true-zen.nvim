@@ -1,10 +1,10 @@
 
 
-local service = require("services.mode-minimalist.service")
-local opts = require("config").options
-local bottom = require("services.bottom.init")
-local top = require("services.top.init")
-local left = require("services.left.init")
+local service = require("true-zen.services.mode-minimalist.service")
+local opts = require("true-zen.config").options
+local bottom = require("true-zen.services.bottom.init")
+local top = require("true-zen.services.top.init")
+local left = require("true-zen.services.left.init")
 local true_zen = require("true-zen")
 
 local cmd = vim.cmd

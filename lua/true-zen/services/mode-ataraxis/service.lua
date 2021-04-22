@@ -1,8 +1,8 @@
 
 
-local opts = require("config").options
-local left_service = require("services.left.service")
-local mode_minimalist = require("services.mode-minimalist.init")
+local opts = require("true-zen.config").options
+local left_service = require("true-zen.services.left.service")
+local mode_minimalist = require("true-zen.services.mode-minimalist.init")
 
 
 local cmd = vim.cmd
@@ -68,20 +68,20 @@ function ataraxis_true()		-- show
 
 		mode_minimalist.main(1)
 		cmd("set fillchars=")
-		cmd([[call BufDo("lua require'services.left.init'.main(1)")]])
+		cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
 	end
 
 
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
-				require("services.bottom.integrations.integration_galaxyline").enable_element()
+				require("true-zen.services.bottom.integrations.integration_galaxyline").enable_element()
 			elseif (opt == "integration_gitgutter") then
 
 				local is_gitgutter_running = vim.api.nvim_eval("get(g:, 'gitgutter_enabled', 0)")
 
 				if (is_gitgutter_running == 0) then		-- is not running
-					require("services.bottom.integrations.integration_gitgutter").enable_element()
+					require("true-zen.services.bottom.integrations.integration_gitgutter").enable_element()
 				elseif (is_gitgutter_running == 1) then		-- is not running
 					-- nothing
 				else
@@ -94,7 +94,7 @@ function ataraxis_true()		-- show
 				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
 
 				if (is_vim_signify_running == 0) then		-- is not running
-					require("services.bottom.integrations.integration_vim_signify").enable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_signify").enable_element()
 				elseif (is_vim_signify_running == 1) then		-- is running
 					-- nothing
 				else
@@ -106,7 +106,7 @@ function ataraxis_true()		-- show
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
 				if (is_tmux_running ~= "") then		-- is running
-					require("services.bottom.integrations.integration_tmux").enable_element()
+					require("true-zen.services.bottom.integrations.integration_tmux").enable_element()
 				else
 					-- tmux wasn't running
 				end
@@ -117,7 +117,7 @@ function ataraxis_true()		-- show
 				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
 
 				if (is_vim_airline_running == 0) then		-- is not running
-					require("services.bottom.integrations.integration_vim_airline").enable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_airline").enable_element()
 				elseif (is_vim_airline_running == 1) then		-- is running
 					-- nothing
 				else
@@ -130,7 +130,7 @@ function ataraxis_true()		-- show
 				local is_vim_airline_running = vim.api.nvim_eval("exists('#PowerlineMain')")
 
 				if (is_vim_airline_running == 0) then		-- is not running
-					require("services.bottom.integrations.integration_vim_powerline").enable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_powerline").enable_element()
 				elseif (is_vim_airline_running == 1) then		-- is running
 					-- nothing
 				else
@@ -139,11 +139,11 @@ function ataraxis_true()		-- show
 
 			elseif (opt == "integration_express_line") then
 
-				require("services.bottom.integrations.integration_express_line").enable_element()
+				require("true-zen.services.bottom.integrations.integration_express_line").enable_element()
 
 			elseif (opt == "integration_limelight") then
 
-				require("services.bottom.integrations.integration_limelight").disable_element()
+				require("true-zen.services.bottom.integrations.integration_limelight").disable_element()
 
 			else
 				-- integration not recognized
@@ -200,14 +200,14 @@ function ataraxis_false()		-- hide
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
 
-				require("services.bottom.integrations.integration_galaxyline").disable_element()
+				require("true-zen.services.bottom.integrations.integration_galaxyline").disable_element()
 
 			elseif (opt == "integration_gitgutter") then
 
 				local is_gitgutter_running = vim.api.nvim_eval("get(g:, 'gitgutter_enabled', 0)")
 
 				if (is_gitgutter_running == 1) then		-- is running
-					require("services.bottom.integrations.integration_gitgutter").disable_element()
+					require("true-zen.services.bottom.integrations.integration_gitgutter").disable_element()
 				elseif (is_gitgutter_running == 0) then		-- is not running
 					-- nothing
 				else
@@ -219,7 +219,7 @@ function ataraxis_false()		-- hide
 				local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
 
 				if (is_vim_signify_running == 1) then		-- is running
-					require("services.bottom.integrations.integration_vim_signify").disable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_signify").disable_element()
 				elseif (is_vim_signify_running == 0) then		-- is not running
 					-- nothing
 				else
@@ -231,7 +231,7 @@ function ataraxis_false()		-- hide
 				local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
 				if (is_tmux_running ~= "") then
-					require("services.bottom.integrations.integration_tmux").disable_element()
+					require("true-zen.services.bottom.integrations.integration_tmux").disable_element()
 				else
 					-- tmux wasn't running
 				end
@@ -242,7 +242,7 @@ function ataraxis_false()		-- hide
 				local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
 
 				if (is_vim_airline_running == 1) then		-- is running
-					require("services.bottom.integrations.integration_vim_airline").disable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_airline").disable_element()
 				elseif (is_vim_airline_running == 0) then		-- is not running
 					-- nothing
 				else
@@ -255,7 +255,7 @@ function ataraxis_false()		-- hide
 				local is_vim_powerline_running = vim.api.nvim_eval("exists('#PowerlineMain')")
 
 				if (is_vim_powerline_running == 1) then		-- is running
-					require("services.bottom.integrations.integration_vim_powerline").disable_element()
+					require("true-zen.services.bottom.integrations.integration_vim_powerline").disable_element()
 				elseif (is_vim_powerline_running == 0) then		-- is not running
 					-- nothing
 				else
@@ -264,11 +264,11 @@ function ataraxis_false()		-- hide
 
 			elseif (opt == "integration_express_line") then
 
-				require("services.bottom.integrations.integration_express_line").disable_element()
+				require("true-zen.services.bottom.integrations.integration_express_line").disable_element()
 
 			elseif (opt == "integration_limelight") then
 
-				require("services.bottom.integrations.integration_limelight").enable_element()
+				require("true-zen.services.bottom.integrations.integration_limelight").enable_element()
 
 			else
 				-- integration not recognized
@@ -366,7 +366,7 @@ function ataraxis_false()		-- hide
 	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 
 	-- hide whatever the user set to be hidden on the left hand side of vim
-	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
+	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
 
 

@@ -10,13 +10,13 @@ set cpo&vim " reset them to defaults
 
 " mapping {{{
 " modes
-command! TZAtaraxis lua require'tz_main'.main(4, 0)
-command! TZMinimalist lua require'tz_main'.main(3, 0)
+command! TZAtaraxis lua require'true-zen.main'.main(4, 0)
+command! TZMinimalist lua require'true-zen.main'.main(3, 0)
 
 " general options
-command! TZBottom lua require'tz_main'.main(0, 0)
-command! TZTop lua require'tz_main'.main(1, 0)
-command! TZLeft lua require'tz_main'.main(2, 0)
+command! TZBottom lua require'true-zen.main'.main(0, 0)
+command! TZTop lua require'true-zen.main'.main(1, 0)
+command! TZLeft lua require'true-zen.main'.main(2, 0)
 " }}}
 
 let &cpo = s:save_cpo " and restore after
