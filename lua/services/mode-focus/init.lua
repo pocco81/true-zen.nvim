@@ -16,7 +16,7 @@ local function focus_true()		-- focus window
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
-		cmd("echo 'You can not focus this window because there is currently only one.'")
+		cmd("echo 'You can not focus this window because focusing a window only works when there are more than one.'")
 		focus_show = 0
 	elseif (amount_wins > 1) then
 		focus_show = 1
@@ -32,7 +32,7 @@ local function focus_false()		-- unfocus window
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins == 1) then
-		cmd("echo 'You can not unfocus this window because there is currently only one.'")
+		cmd("echo 'You can not unfocus this window because focusing a window only works when there are more than one.'")
 		focus_show = 0
 	elseif (amount_wins > 1) then
 		focus_show = 0
