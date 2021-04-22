@@ -149,13 +149,13 @@ local function toggle()
 				if (difference == 0) then
 					focus_false()
 				else
-					for i = 1, 3, 1 do
+					for i = 1, 10, 1 do
 						-- comparte with height
 						if (difference == i) then
 							-- since difference is small, it's assumable that window is focused
 							cmd("echo 'It was too small'")
 							focus_false()
-						elseif (i == 3) then
+						elseif (i == 10) then
 							-- difference is too big, it's assumable that window is not focused
 							cmd("echo 'It was too big'")
 							focus_true()
