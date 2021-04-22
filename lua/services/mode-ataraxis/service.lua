@@ -339,11 +339,20 @@ function ataraxis_false()		-- hide
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'services.left.init'.main(2)")]])
 
+
+
+	local current_bkg = vim.api.nvim_eval("&bg")
+	local cmd_for_statusline = "highlight StatusLine ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
+	local cmd_for_fillchars = "highlight StatusLineNC ctermfg="..current_bkg.." ctermbg="..current_bkg.." guibg="..current_bkg.." guifg="..current_bkg..""
+
+
 	-- hide statusline color
-	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	cmd(cmd_for_statusline)
+	-- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- hide horizontal fillchars' colors
-	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	cmd(cmd_for_fillchars)
+	-- cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- doens't work
 	-- require('galaxyline').disable_galaxyline()
