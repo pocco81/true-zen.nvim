@@ -488,7 +488,7 @@ However, as of now, there is an small bug that causes the cursor to appear in th
 - A: Use `:help TrueZen.nvim`
 
 - Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
-- A: This issue occurs because you don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, put this in your TrueZen config: `unknown_bkg_color_fix = true`.
+- A: This issue occurs because 1. you don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, put this in your TrueZen config: `unknown_bkg_color_fix = true`, and/or 2. Your current colorscheme doesn't provide a background (bg) color. To test the latter, run this command: `highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg`. If you get an error then it's because of your colorscheme and not a TrueZen.nvim bug/issue.
 
 ------------------------------------------------------------------------------
 
