@@ -5,6 +5,7 @@ local top = require("services.top.init")
 local left = require("services.left.init")
 local minimalist_mode = require("services.mode-minimalist.init")
 local ataraxis_mode = require("services.mode-ataraxis.init")
+local focus_mode = require("services.mode-focus.init")
 
 -- must have, don't remove
 local resume = require("services.resume.init")
@@ -26,6 +27,8 @@ function main(option, command_option)
 		minimalist_mode.main(command_option)
 	elseif (option == 4) then
 		ataraxis_mode.main(command_option)
+	elseif (option == 5) then
+		focus_mode.main(command_option)
 	else
 		cmd("echo 'command was not recognized for TrueZen.nvim'")
 		-- command not recognized, raise an error

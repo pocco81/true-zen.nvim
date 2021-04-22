@@ -12,6 +12,7 @@ set cpo&vim " reset them to defaults
 " modes
 command! TZAtaraxis lua require'tz_main'.main(4, 0)
 command! TZMinimalist lua require'tz_main'.main(3, 0)
+command! TZFocus lua require'tz_main'.main(5, 0)
 
 " general options
 command! TZBottom lua require'tz_main'.main(0, 0)

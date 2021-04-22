@@ -101,6 +101,10 @@ Unfocus the window:
 	2. normal! ze
 
 
+To get current win size:
+	1. winrestcmd()
+
+
 
 
 
