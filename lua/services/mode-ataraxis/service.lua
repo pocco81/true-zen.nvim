@@ -350,7 +350,7 @@ function ataraxis_false()		-- hide
 		-- hide horizontal fillchars' colors
 		cmd("highlight StatusLineNC ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
 
-	elseif (optsp["unknown_bkg_color_fix"] == false) then
+	elseif (opts["unknown_bkg_color_fix"] == false) then
 
 		-- hide statusline color
 		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
