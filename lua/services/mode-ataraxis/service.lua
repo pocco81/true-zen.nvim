@@ -362,9 +362,6 @@ function ataraxis_false()		-- hide
 	end
 
 
-	-- doens't work
-	-- require('galaxyline').disable_galaxyline()
-
 	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")
 
