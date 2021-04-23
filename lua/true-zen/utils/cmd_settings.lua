@@ -108,16 +108,6 @@ function map_settings(table, bool)
 				-- skip the option
 			end
 		end
-	elseif (bool == "false_but_in_mode") then
-		cmd("echo 'I WAS THREE'")
-
-		for opt, _ in pairs(table) do
-			if string.find(opt, "hidden_") then
-				clean_and_exec(opt, table[opt], "hidden_", 0)
-			else
-				-- skip the option
-			end
-		end
 	end
 end
 
