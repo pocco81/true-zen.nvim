@@ -22,6 +22,7 @@ function bottom_false()		-- don't show
 end
 
 function bottom_false_still_in_mode()		-- don't show
+	vim.cmd("echo 'I RANNNNNNNNNNNNNNN'")
 	cmd_settings.map_settings(opts["bottom"], "false_but_in_mode")
 end
 
