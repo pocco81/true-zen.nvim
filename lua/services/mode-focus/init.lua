@@ -113,11 +113,11 @@ local function toggle()
 
 			local current_session_height = vim.api.nvim_eval("&co")
 			local current_session_width = vim.api.nvim_eval("&lines")
-			local total_current_session = current_session_width + current_session_height
+			local total_current_session = tonumber(current_session_width) + tonumber(current_session_height)
 			
 			local current_window_height = vim.api.nvim_eval("winheight('%')")
 			local current_window_width = vim.api.nvim_eval("winwidth('%')")
-			local total_current_window = current_session_width + current_window_height
+			local total_current_window = tonumber(current_session_width) + tonumber(current_window_height)
 
 			difference = total_current_session - total_current_window
 
