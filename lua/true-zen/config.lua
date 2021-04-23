@@ -49,6 +49,9 @@ config.options = {
 	focus = {
 		margin_of_error = 5
 	},
+	minimalist = {
+		save_and_restore_settings_when_untoggled = false,
+	},
 	integrations = {
 		integration_galaxyline = false,
 		integration_vim_airline = false,
