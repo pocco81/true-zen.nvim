@@ -95,6 +95,7 @@ function map_settings(table, bool)
 			user_wants_his_config = 1
 			user_opts = {}
 		end
+			cmd("echo 'I KIND of RAN!!'")
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "hidden_") then
