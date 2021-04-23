@@ -15,7 +15,7 @@ local function bottom_false()
 end
 
 local function toggle()
-	bottom_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+	bottom_show = vim.api.nvim_eval("&laststatus > 0")
 	if (bottom_show == 1) then				-- bottom true, shown; thus, hide
 		bottom_false()
 	elseif (bottom_show == 0) then			-- bottom false, hidden; thus, show
@@ -32,7 +32,7 @@ function resume()
 	elseif (bottom_show == 0) then			-- status line false; hidden
 		bottom_false()
 	elseif (bottom_show == nil) then			-- show var is nil
-		bottom_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+		bottom_show = vim.api.nvim_eval("&laststatus > 0")
 		-- bottom_true()
 	else
 		cmd("echo 'none of the above'")
