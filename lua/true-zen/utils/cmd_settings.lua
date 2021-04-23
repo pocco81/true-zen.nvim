@@ -50,7 +50,7 @@ local function clean_and_exec(opt, table_opt, remove_str, user_wants_conf)
 		cmd(to_cmd)
 	elseif (type(table_opt) == "number") then
 		to_cmd = test_num(final_opt, table_opt)
-		cmd("echo 'command was = "..to_cmd.."")
+		cmd("echo 'command was = "..to_cmd.."'")
 		cmd(to_cmd)
 	elseif (type(table_opt) == "string") then
 		to_cmd = test_str(final_opt, table_opt)
