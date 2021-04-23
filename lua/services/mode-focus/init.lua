@@ -1,6 +1,7 @@
 
 
 local service = require("services.mode-focus.service")
+local opts = require("config").options
 
 local cmd = vim.cmd
 local api = vim.api
@@ -71,13 +72,13 @@ local function toggle()
 			difference = total_current_session - total_current_window
 
 			
-			for i = 1, 7, 1 do
+			for i = 1, tonumber(opts["focus"]["margin_of_error"]), 1 do
 
 				if (difference == i) then
 					-- since difference is small, it's assumable that window is focused
 					focus_false()
 					break
-				elseif (i == 7) then
+				elseif (i == tonumber(opts["focus"]["margin_of_error"])) then
 					-- difference is too big, it's assumable that window is not focused
 					focus_true()
 					break
