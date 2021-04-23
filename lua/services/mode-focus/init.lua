@@ -129,13 +129,13 @@ local function toggle()
 					cmd("echo 'Vim size = "..tostring(total_current_session).."; win size = "..tostring(total_current_window).."; difference = "..difference.."'")
 					focus_false()
 					goto it_was_small
-				-- elseif (i == 5) then
-				-- 	-- difference is too big, it's assumable that window is not focused
-				-- 	cmd("echo 'It was too big'")
-				-- 	focus_true()
-				-- 	break
 				elseif (i == 5) then
+					-- difference is too big, it's assumable that window is not focused
+					cmd("echo 'It was too big'")
+					focus_true()
 					break
+				-- elseif (i == 5) then
+				-- 	break
 				end
 			end
 
