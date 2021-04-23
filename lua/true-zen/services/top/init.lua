@@ -1,5 +1,5 @@
 
-local service = require("services.top.service")
+local service = require("true-zen.services.top.service")
 local cmd = vim.cmd
 
 -- show and hide top funcs

@@ -1,9 +1,8 @@
 
 
-
-local bottom = require("services.bottom.init")
-local top = require("services.top.init")
-local left = require("services.left.init")
+local bottom = require("true-zen.services.bottom.init")
+local top = require("true-zen.services.top.init")
+local left = require("true-zen.services.left.init")
 
 -- bottom specific options
 

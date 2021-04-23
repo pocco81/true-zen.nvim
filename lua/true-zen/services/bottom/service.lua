@@ -1,8 +1,8 @@
 
 
 
-local opts = require("config").options
-local cmd_settings = require("utils.cmd_settings")
+local opts = require("true-zen.config").options
+local cmd_settings = require("true-zen.utils.cmd_settings")
 
 -- local cmd = vim.cmd
 

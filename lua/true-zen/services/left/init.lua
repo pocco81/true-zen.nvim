@@ -1,6 +1,6 @@
 
 
-local service = require("services.left.service")
+local service = require("true-zen.services.left.service")
 local cmd = vim.cmd
 
 -- show and hide left funcs

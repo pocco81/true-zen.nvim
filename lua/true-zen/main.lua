@@ -1,14 +1,15 @@
 
 
-local bottom = require("services.bottom.init")
-local top = require("services.top.init")
-local left = require("services.left.init")
-local minimalist_mode = require("services.mode-minimalist.init")
-local ataraxis_mode = require("services.mode-ataraxis.init")
-local focus_mode = require("services.mode-focus.init")
+local bottom = require("true-zen.services.bottom.init")
+local top = require("true-zen.services.top.init")
+local left = require("true-zen.services.left.init")
+
+local minimalist_mode = require("true-zen.services.mode-minimalist.init")
+local ataraxis_mode = require("true-zen.services.mode-ataraxis.init")
+local focus_mode = require("true-zen.services.mode-focus.init")
 
 -- must have, don't remove
-local resume = require("services.resume.init")
+local resume = require("true-zen.services.resume.init")
 local cmd  = vim.cmd
 
 

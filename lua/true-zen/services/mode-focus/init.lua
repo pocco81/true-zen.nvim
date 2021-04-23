@@ -1,7 +1,7 @@
 
 
-local service = require("services.mode-focus.service")
-local opts = require("config").options
+local service = require("true-zen.services.mode-focus.service")
+local opts = require("true-zen.config").options
 
 local cmd = vim.cmd
 local api = vim.api
