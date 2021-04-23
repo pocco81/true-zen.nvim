@@ -24,7 +24,7 @@ end
 
 local function clean_and_exec(opt, table_opt, remove_str, user_wants_conf)
 	user_wants_conf = user_wants_conf or 0
-	final_opt = opt:gsub(remove_str, "")
+	final_opt = tostring(opt:gsub(remove_str, ""))
 
 	if (user_wants_conf == 1) then
 		-- user_opts[final_opt] = vim.api.nvim_eval("&"..final_opt.."")
