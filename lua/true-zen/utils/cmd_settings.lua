@@ -74,8 +74,8 @@ function map_settings(table, bool)
 				if (#user_opts > 0) then		-- table not empty
 					cmd("echo 'I RAN 5'")
 					for opt, _ in pairs(user_opts) do
-						cmd("echo 'opt = "..opt.."'")
-						-- cmd(opt)
+						-- cmd("echo 'opt = "..opt.."'")
+						cmd(user_opts[opt])
 					end
 					goto done_with_showing
 				end
