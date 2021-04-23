@@ -29,6 +29,7 @@ end
 
 return {
 	bottom_true = bottom_true,
-	bottom_false = bottom_false
+	bottom_false = bottom_false,
+	bottom_false_still_in_mode = bottom_false_still_in_mode
 }
 
