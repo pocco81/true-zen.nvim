@@ -63,12 +63,14 @@ function map_settings(table, bool)
 
 	if (bool == true) then
 		if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-
+			cmd("echo 'I RAN 1'")
 			if (user_opts == nil) then
+				cmd("echo 'I RAN 2'")
 				-- can't restore because there is nothing to be restored
 				cmd("echo 'Unfortunately there was nothing to restore from your settings. Session will remain as it was before executing this command.'")
 				goto done_with_showing
 			else
+				cmd("echo 'I RAN 3'")
 				if (#user_opts > 0) then		-- table not empty
 					for opt, _ in pairs(user_opts) do
 						cmd(opt)
@@ -78,6 +80,7 @@ function map_settings(table, bool)
 			end
 
 		end
+		cmd("echo 'I RAN 4'")
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "shown_") then
