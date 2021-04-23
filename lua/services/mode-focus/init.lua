@@ -134,6 +134,8 @@ local function toggle()
 				-- 	cmd("echo 'It was too big'")
 				-- 	focus_true()
 				-- 	break
+				elseif (i == 5) then
+					break
 				end
 			end
 
