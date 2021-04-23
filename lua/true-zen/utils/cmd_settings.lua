@@ -33,15 +33,15 @@ local function clean_and_exec(opt, table_opt, remove_str, user_wants_conf)
 		if (type(table_opt) == "boolean") then
 			-- to_cmd = test_bool(final_opt, table_opt)
 			if (current_state == 1) then
-				user_opts.insert("setlocal "..final_opt)
+				table.insert(user_opts, "setlocal "..final_opt)
 			elseif (current_state == 0) then
-				user_opts.insert("setlocal no"..final_opt)
+				table.insert(user_opts, "setlocal no"..final_opt)
 			end
 
 		elseif (type(table_opt) == "number") then
-			user_opts.insert("setlocal "..final_opt.."="..current_state.."")
+			table.insert(user_opts, "setlocal "..final_opt.."="..current_state.."")
 		elseif (type(table_opt) == "string") then
-			user_opts.insert("setlocal "..final_opt.."="..current_state.."")
+			table.insert(user_opts, "setlocal "..final_opt.."="..current_state.."")
 		end
 	end
 
@@ -95,7 +95,6 @@ function map_settings(table, bool)
 			user_wants_his_config = 1
 			user_opts = {}
 		end
-			cmd("echo 'I KIND of RAN!!'")
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "hidden_") then
