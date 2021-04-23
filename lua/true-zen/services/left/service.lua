@@ -2,6 +2,7 @@
 
 local opts = require("true-zen.config").options
 local cmd_settings = require("true-zen.utils.cmd_settings")
+local cmd = vim.cmd
 
 -- left specific options
 -- set number
@@ -9,10 +10,12 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set signcolumn=no
 
 function left_true()		-- show
+	cmd("echo 'I was true'")
 	cmd_settings.map_settings(opts["left"], true)
 end
 
-function left_false()		-- don't show
+function left_false()		-- hide
+	cmd("echo 'I was false'")
 	cmd_settings.map_settings(opts["left"], false)
 end
 
