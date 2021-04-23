@@ -46,6 +46,9 @@ config.options = {
 		top_padding = 0,
 		bottom_padding = 0
 	},
+	focus = {
+		margin_of_error = 5
+	},
 	integrations = {
 		integration_galaxyline = false,
 		integration_vim_airline = false,
