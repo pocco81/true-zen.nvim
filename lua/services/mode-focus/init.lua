@@ -127,12 +127,12 @@ local function toggle()
 				if (difference == i) then
 					-- since difference is small, it's assumable that window is focused
 					cmd("echo 'It was too small'")
-					focus_true()
+					focus_false()
 					break
 				elseif (i == 5) then
 					-- difference is too big, it's assumable that window is not focused
 					cmd("echo 'It was too big'")
-					focus_false()
+					focus_true()
 					break
 				end
 			end
