@@ -21,6 +21,10 @@ function bottom_false()		-- don't show
 	cmd_settings.map_settings(opts["bottom"], false)
 end
 
+function bottom_false_still_in_mode()		-- don't show
+	cmd_settings.map_settings(opts["bottom"], "false_but_in_mode")
+end
+
 
 
 return {

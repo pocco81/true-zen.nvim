@@ -108,6 +108,15 @@ function map_settings(table, bool)
 				-- skip the option
 			end
 		end
+	elseif (bool == "false_but_in_mode") then
+
+		for opt, _ in pairs(table) do
+			if string.find(opt, "hidden_") then
+				clean_and_exec(opt, table[opt], "hidden_", user_wants_his_config)
+			else
+				-- skip the option
+			end
+		end
 	end
 end
 

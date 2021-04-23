@@ -32,8 +32,7 @@ function resume()
 		bottom_true()
 	elseif (bottom_show == 0) then			-- status line false; hidden
 		cmd("echo 'I WAS TWO'")
-		cmd("setlocal laststatus=0")
-		-- bottom_false()
+		service.bottom_false_still_in_mode()
 
 	elseif (bottom_show == nil) then			-- show var is nil
 		bottom_show = vim.api.nvim_eval("&laststatus > 0")
