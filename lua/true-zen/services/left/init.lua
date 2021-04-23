@@ -27,10 +27,10 @@ local function toggle()
 	-- 	-- nothing
 	-- end
 
-	if (left_show == 1) then				-- left true; shown
-		left_true()
-	elseif (left_show == 0) then			-- left false; hidden
+	if (left_show == 1) then				-- left true; being shown
 		left_false()
+	elseif (left_show == 0) then			-- left false; being hidden
+		left_true()
 	elseif (left_show == nil) then			-- show var is nil
 		left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
 		if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
