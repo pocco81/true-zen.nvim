@@ -10,12 +10,10 @@ local cmd = vim.cmd
 -- set signcolumn=no
 
 function left_true()		-- show
-	cmd("echo 'I was true'")
 	cmd_settings.map_settings(opts["left"], true)
 end
 
 function left_false()		-- hide
-	cmd("echo 'I was false'")
 	cmd_settings.map_settings(opts["left"], false)
 end
 
