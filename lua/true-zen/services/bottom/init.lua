@@ -28,14 +28,12 @@ end
 function resume()
 
 	if (bottom_show == 1) then				-- bottm true; shown
-		-- cmd("echo 'I was set to true so I am turning bottom on'")
 		bottom_true()
 	elseif (bottom_show == 0) then			-- status line false; hidden
-		-- cmd("echo 'I was set to false so I am turning bottom off'")
 		bottom_false()
 	elseif (bottom_show == nil) then			-- show var is nil
-		-- cmd("echo 'I was not set to anything so I am nil'")
 		bottom_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
+		bottom_true()
 	else
 		cmd("echo 'none of the above'")
 		-- nothing
