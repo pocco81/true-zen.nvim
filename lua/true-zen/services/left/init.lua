@@ -33,6 +33,7 @@ function resume()
 		left_false()
 	elseif (left_show == nil) then			-- show var is nil
 		left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
+		resume()
 	else
 		cmd("echo 'none of the above'")
 		-- nothing
