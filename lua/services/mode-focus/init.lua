@@ -128,7 +128,7 @@ local function toggle()
 					-- since difference is small, it's assumable that window is focused
 					cmd("echo 'Vim size = "..tostring(total_current_session).."; win size = "..tostring(total_current_window).."; difference = "..difference.."'")
 					focus_false()
-					goto it_was_small
+					-- goto it_was_small
 				elseif (i == 5) then
 					-- difference is too big, it's assumable that window is not focused
 					cmd("echo 'It was too big'")
@@ -139,10 +139,10 @@ local function toggle()
 				end
 			end
 
-			cmd("echo 'It was too big'")
-			focus_true()
+			-- cmd("echo 'It was too big'")
+			-- focus_true()
 
-			::it_was_small::
+			-- ::it_was_small::
 			-- vim.api.nvim_exec([[
 			-- 	" Like windo but restore the current window.
 			-- 	function! WinDo(command)
