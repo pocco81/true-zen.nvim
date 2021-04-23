@@ -33,7 +33,8 @@ function resume()
 		bottom_false()
 	elseif (bottom_show == nil) then			-- show var is nil
 		bottom_show = vim.api.nvim_eval("&laststatus > 0 || &showtabline > 0")
-		bottom_true()
+		-- bottom_true()
+		resume()
 	else
 		cmd("echo 'none of the above'")
 		-- nothing
