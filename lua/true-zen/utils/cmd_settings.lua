@@ -91,6 +91,7 @@ function map_settings(table, bool)
 
 	elseif (bool == false) then
 		if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+			cmd("echo 'I RAN!!'")
 			user_wants_his_config = 1
 			user_opts = {}
 		end
