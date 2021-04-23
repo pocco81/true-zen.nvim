@@ -126,7 +126,7 @@ local function toggle()
 				-- comparte with height
 				if (difference == i) then
 					-- since difference is small, it's assumable that window is focused
-					cmd("echo 'It was too small'")
+					cmd("echo 'Vim size = "..tostring(total_current_session).."; win size = "..tostring(total_current_window).."'")
 					focus_false()
 					goto it_was_small
 				-- elseif (i == 5) then
