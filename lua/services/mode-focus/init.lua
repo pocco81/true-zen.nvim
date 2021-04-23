@@ -122,10 +122,11 @@ local function toggle()
 			difference = total_current_session - total_current_window
 
 			
+			cmd("echo 'difference = "..difference.."'")
 			for i = 1, 7, 1 do
 				cmd("echo 'i = "..i.."'")
 				-- comparte with height
-				if (difference == i) then
+				if (tonumber(difference) == i) then
 					-- since difference is small, it's assumable that window is focused
 					cmd("echo 'Vim size = "..tostring(total_current_session).."; win size = "..tostring(total_current_window).."; difference = "..difference.."'")
 					focus_false()
@@ -138,6 +139,8 @@ local function toggle()
 					break
 				-- elseif (i == 5) then
 				-- 	break
+				else
+					-- nothing
 				end
 			end
 
