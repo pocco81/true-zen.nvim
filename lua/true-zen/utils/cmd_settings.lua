@@ -50,6 +50,7 @@ local function clean_and_exec(opt, table_opt, remove_str, user_wants_conf)
 		cmd(to_cmd)
 	elseif (type(table_opt) == "number") then
 		to_cmd = test_num(final_opt, table_opt)
+		cmd("echo 'command was = "..to_cmd.."")
 		cmd(to_cmd)
 	elseif (type(table_opt) == "string") then
 		to_cmd = test_str(final_opt, table_opt)
@@ -109,10 +110,11 @@ function map_settings(table, bool)
 			end
 		end
 	elseif (bool == "false_but_in_mode") then
+		cmd("echo 'I WAS THREE'")
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "hidden_") then
-				clean_and_exec(opt, table[opt], "hidden_", user_wants_his_config)
+				clean_and_exec(opt, table[opt], "hidden_", 0)
 			else
 				-- skip the option
 			end
