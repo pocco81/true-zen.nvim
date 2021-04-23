@@ -72,6 +72,7 @@ function map_settings(table, bool)
 			else
 				cmd("echo 'I RAN 3'")
 				if (#user_opts > 0) then		-- table not empty
+					cmd("echo 'I RAN 5'")
 					for opt, _ in pairs(user_opts) do
 						cmd(opt)
 					end
@@ -80,7 +81,7 @@ function map_settings(table, bool)
 			end
 
 		end
-		cmd("echo 'I RAN 4'")
+		cmd("echo 'I RAN 6'")
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "shown_") then
