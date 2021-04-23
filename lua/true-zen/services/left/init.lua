@@ -15,17 +15,6 @@ local function left_false()
 end
 
 local function toggle()
-	-- left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
-	-- if (left_show == 1) then				-- left true, shown; thus, hide
-	-- 	left_false()
-	-- elseif (left_show == 0) then			-- left false, hidden; thus, show
-	-- 	left_true()
-	-- elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-	-- 	left_show = 1
-
-	-- else
-	-- 	-- nothing
-	-- end
 
 	if (left_show == 1) then				-- left true; being shown
 		left_false()
@@ -34,15 +23,12 @@ local function toggle()
 	elseif (left_show == nil) then			-- show var is nil
 		left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
 		if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
-			cmd("echo 'I THREW IT 1'")
 			left_show = 1
 			toggle()
 		elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-			cmd("echo 'I THREW IT 2'")
 			left_show = 1
 			toggle()
 		else
-			cmd("echo 'I THREW IT 3'")
 			left_show = 0
 			toggle()
 		end
