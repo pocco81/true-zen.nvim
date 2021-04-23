@@ -33,15 +33,15 @@ local function clean_and_exec(opt, table_opt, remove_str, user_wants_conf)
 		if (type(table_opt) == "boolean") then
 			-- to_cmd = test_bool(final_opt, table_opt)
 			if (current_state == 1) then
-				table.insert(user_opts, "setlocal "..final_opt)
+				table.insert(user_opts, "set "..final_opt)
 			elseif (current_state == 0) then
-				table.insert(user_opts, "setlocal no"..final_opt)
+				table.insert(user_opts, "set no"..final_opt)
 			end
 
 		elseif (type(table_opt) == "number") then
-			table.insert(user_opts, "setlocal "..final_opt.."="..current_state.."")
+			table.insert(user_opts, "set "..final_opt.."="..current_state.."")
 		elseif (type(table_opt) == "string") then
-			table.insert(user_opts, "setlocal "..final_opt.."="..current_state.."")
+			table.insert(user_opts, "set "..final_opt.."="..current_state.."")
 		end
 	end
 
