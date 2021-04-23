@@ -123,6 +123,7 @@ local function toggle()
 
 			
 			for i = 1, 7, 1 do
+				cmd("echo 'i = "..i.."'")
 				-- comparte with height
 				if (difference == i) then
 					-- since difference is small, it's assumable that window is focused
