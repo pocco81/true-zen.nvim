@@ -86,11 +86,12 @@
 * [To-Do](#-to-do)
 
 # 🎁 Features
-- Hide UI components (e.g. statusline, numbers, buffer list)
+- Hide UI components (e.g. statusline, numbers, buffer list).
 - Two different modes!
 	- Minimalist mode: hides UI components.
-	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff
-		- Padding can be set manually or automatically
+	- Focus mode: maximizes current window.
+	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff.
+		- Padding can be set manually or automatically.
 - Highly customizable
 - Can deactivate UI components separately
 	- Left: (relative)numbers, signcolumn
@@ -195,6 +196,9 @@ ataraxis = {
 	top_padding = 0,
 	bottom_padding = 0
 },
+focus = {
+	margin_of_error = 5
+},
 integrations = {
 	integration_galaxyline = false,
 	integration_vim_airline = false,
@@ -254,6 +258,9 @@ true_zen.setup({
 		top_padding = 0,
 		bottom_padding = 0
 	},
+	focus = {
+		margin_of_error = 5
+	},
 	integrations = {
 		integration_galaxyline = false,
 		integration_vim_airline = false,
@@ -312,6 +319,9 @@ require("true-zen").setup({
 		right_padding = 40,
 		top_padding = 0,
 		bottom_padding = 0
+	},
+	focus = {
+		margin_of_error = 5
 	},
 	integrations = {
 		integration_galaxyline = false,
@@ -376,6 +386,9 @@ true_zen.setup({
 		top_padding = 1,
 		bottom_padding = 1
 	},
+	focus = {
+		margin_of_error = 5
+	},
 	integrations = {
 		integration_galaxyline = true,
 		integration_vim_airline = false,
@@ -419,6 +432,7 @@ All the commands follow the *camel casing* naming convention and have the `TZ` p
 
 ## Default
 - `:TZMinimalist` toggles Minimalist mode. Activates/deactivates NeoVim's UI components from the left, bottom and top of NeoVim on all the buffers you enter in the current session.
+- `:TZFocus` toggle focus mode. Focus mode maximizes the current window. Due to the fact that there is no way to check whether a window is maximized or not, it compares different factors in order to determine it; that's why it has the `margin_of_error` setting.
 - `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all bffers in the current session + makes use of the different integrations. Note: it won't allow you to toggle it if there is more than one window.
 - `:TZBottom` toggles the bottom part of NeoVim's UI. It toggles: laststatus, ruler, showmode, showcmd, and cmdheight.
 - `:TZTop` toggles the top part of NeoVim's UI. It toggles: tabline.
@@ -437,6 +451,8 @@ These are the commands that can be enabled if `true_false_commands` is set to `t
 - `:TZTopF` hide top UI parts.
 - `:TZLeftT` show left UI parts.
 - `:TZLeftF` hide left UI parts
+- `:TZFocusT` focuses current window
+- `:TZFocusF` unfocuses current window
 
 # 🍉 Configuration
 Although settings already have self-explanatory names, here is where you can find info about each one of them and their classifications! There are individual settings and settings that are tables. Settings that are tables are simply *settings with subsettings*.
@@ -524,6 +540,9 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `right_padding`: (Integer) sets padding for the right.
 - `top_padding`: (Integer) sets padding for the top.
 - `bottom_padding`: (Integer) sets padding for the bottom.
+
+## Focus
+- `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2.
 
 
 # 🧻 Key-bindings
