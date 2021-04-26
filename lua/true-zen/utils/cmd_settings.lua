@@ -3,7 +3,7 @@
 local cmd = vim.cmd
 -- local before_after_cmd = require("true-zen.utils.before_after_cmd")
 -- local bottom = require("true-zen.services.bottom.init")
-local left = require("true-zen.services.left.init")
+-- local left = require("true-zen.services.left.init")
 
 
 local function test_bool(final_opt, var)
