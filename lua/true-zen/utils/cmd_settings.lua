@@ -61,7 +61,7 @@ function map_settings(table, bool, ui_element, is_toggled)
 			end
 		end
 		
-		-- ::skip_truezen_config::
+		::skip_truezen_config::
 	elseif (bool == false) then
 
 		for opt, _ in pairs(table) do
