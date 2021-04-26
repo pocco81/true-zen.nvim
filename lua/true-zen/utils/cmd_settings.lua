@@ -1,6 +1,7 @@
 
 
 local cmd = vim.cmd
+local opts = require("true-zen.config").options
 local before_after_cmd = require("true-zen.utils.before_after_cmd")
 
 
