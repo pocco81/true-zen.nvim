@@ -101,15 +101,15 @@ function restore_settings(ui_element, is_toggled)
 		-- skip it
 	else
 		if (ui_element == "TOP") then
-			if (top.top_show == 1) then
+			if (is_toggled == 1) then
 				iterate_and_run(user_top_opts)
 			end
 		elseif (ui_element == "BOTTOM") then
-			if (bottom.bottom_show == 1) then
+			if (is_toggled == 1) then
 				iterate_and_run(user_bottom_opts)
 			end
 		elseif (ui_element == "LEFT") then
-			if (left.left_show == 1) then
+			if (is_toggled == 1) then
 				iterate_and_run(user_left_opts)
 			end
 		else
