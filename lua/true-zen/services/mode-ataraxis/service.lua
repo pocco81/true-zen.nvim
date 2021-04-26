@@ -69,7 +69,7 @@ function ataraxis_true()		-- show
 
 		mode_minimalist.main(1)
 		cmd("set fillchars=")
-		-- cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
+		cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
 	end
 
 
