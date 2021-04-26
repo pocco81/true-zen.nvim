@@ -64,7 +64,7 @@ function ataraxis_true()		-- show
 			cmd("wincmd j")
 			cmd("q")
 		else
-			-- do nothing
+			-- nothing
 		end
 
 		mode_minimalist.main(1)
