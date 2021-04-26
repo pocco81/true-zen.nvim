@@ -7,11 +7,11 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set showtabline=<num>
 
 function top_true()		-- show
-	cmd_settings.map_settings(opts["top"], true)
+	cmd_settings.map_settings(opts["top"], true, "TOP")
 end
 
 function top_false()		-- don't show
-	cmd_settings.map_settings(opts["top"], false)
+	cmd_settings.map_settings(opts["top"], false, "TOP")
 end
 
 

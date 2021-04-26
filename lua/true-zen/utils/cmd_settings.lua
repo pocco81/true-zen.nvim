@@ -1,6 +1,7 @@
 
 
 local cmd = vim.cmd
+local before_after_cmd = require("lua.true-zen.utils.before_after_cmd")
 
 
 local function test_bool(final_opt, var)
@@ -36,10 +37,20 @@ local function clean_and_exec(opt, table_opt, remove_str)
 end
 
 
-function map_settings(table, bool)
 
+
+function map_settings(table, bool, ui_element)
+
+	ui_element = ui_element or "NONE"
 
 	if (bool == true) then
+
+		if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+			before_after_cmd.restore_settings(ui_element)
+			goto skip_truezen_config
+		end
+
+
 		for opt, _ in pairs(table) do
 			if string.find(opt, "shown_") then
 				clean_and_exec(opt, table[opt], "shown_")
@@ -47,8 +58,16 @@ function map_settings(table, bool)
 				-- skip the option
 			end
 		end
+		
+		::skip_truezen_config::
 	elseif (bool == false) then
+
 		for opt, _ in pairs(table) do
+			if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+				before_after_cmd.save_settings(opt, table[opt], "hidden_", ui_element)
+			end
+
+
 			if string.find(opt, "hidden_") then
 				clean_and_exec(opt, table[opt], "hidden_")
 			else

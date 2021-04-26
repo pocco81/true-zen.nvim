@@ -10,11 +10,11 @@ local cmd = vim.cmd
 -- set signcolumn=no
 
 function left_true()		-- show
-	cmd_settings.map_settings(opts["left"], true)
+	cmd_settings.map_settings(opts["left"], true, "LEFT")
 end
 
 function left_false()		-- hide
-	cmd_settings.map_settings(opts["left"], false)
+	cmd_settings.map_settings(opts["left"], false, "LEFT")
 end
 
 
