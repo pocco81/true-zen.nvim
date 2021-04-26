@@ -3,9 +3,9 @@
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
-local bottom = require("true-zen.services.bottom.init")
-local top = require("true-zen.services.top.init")
-local left = require("true-zen.services.left.init")
+-- local bottom = require("true-zen.services.bottom.init")
+-- local top = require("true-zen.services.top.init")
+-- local left = require("true-zen.services.left.init")
 
 
 user_left_opts = {}
@@ -92,8 +92,10 @@ function save_settings(opt_index, opt_value, remove_str, ui_element)
 	
 end
 
-function restore_settings(ui_element)
+function restore_settings(ui_element, is_toggled)
+
 	ui_element = ui_element or "NONE"
+	is_toggled = is_toggled or 0
 
 	if (ui_element == "NONE") then
 		-- skip it

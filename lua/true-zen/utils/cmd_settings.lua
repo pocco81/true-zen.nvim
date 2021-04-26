@@ -1,7 +1,7 @@
 
 
 local cmd = vim.cmd
--- local before_after_cmd = require("true-zen.utils.before_after_cmd")
+local before_after_cmd = require("true-zen.utils.before_after_cmd")
 -- local bottom = require("true-zen.services.bottom.init")
 -- local left = require("true-zen.services.left.init").left_show
 
@@ -49,7 +49,7 @@ function map_settings(table, bool, ui_element, is_toggled)
 	if (bool == true) then
 
 		-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-		-- 	before_after_cmd.restore_settings(ui_element)
+		-- 	before_after_cmd.restore_settings(ui_element, is_toggled)
 		-- 	goto skip_truezen_config
 		-- end
 
