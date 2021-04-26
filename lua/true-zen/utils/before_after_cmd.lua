@@ -1,6 +1,6 @@
 
 
-local opts = require("true-zen.config").options
+-- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
 local bottom = require("true-zen.services.bottom.init")
