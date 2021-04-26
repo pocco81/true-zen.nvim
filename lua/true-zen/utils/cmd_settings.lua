@@ -3,7 +3,7 @@
 local cmd = vim.cmd
 -- local before_after_cmd = require("true-zen.utils.before_after_cmd")
 -- local bottom = require("true-zen.services.bottom.init")
-local left = require("true-zen.services.left.init").left_show
+-- local left = require("true-zen.services.left.init").left_show
 
 
 local function test_bool(final_opt, var)
@@ -41,9 +41,10 @@ end
 
 
 
-function map_settings(table, bool, ui_element)
+function map_settings(table, bool, ui_element, is_toggled)
 
 	ui_element = ui_element or "NONE"
+	is_toggled = is_toggled or 0
 
 	if (bool == true) then
 

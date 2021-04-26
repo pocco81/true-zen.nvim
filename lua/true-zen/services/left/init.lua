@@ -6,12 +6,12 @@ local cmd = vim.cmd
 -- show and hide left funcs
 local function left_true()
 	left_show = 1
-	service.left_true()
+	service.left_true(left_show)
 end
 
 local function left_false()
 	left_show = 0
-	service.left_false()
+	service.left_false(left_show)
 end
 
 local function toggle()
