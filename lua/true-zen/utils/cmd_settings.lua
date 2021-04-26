@@ -1,7 +1,7 @@
 
 
 local cmd = vim.cmd
-local before_after_cmd = require("true-zen.utils.before_after_cmd")
+-- local before_after_cmd = require("true-zen.utils.before_after_cmd")
 
 
 local function test_bool(final_opt, var)
@@ -45,10 +45,10 @@ function map_settings(table, bool, ui_element)
 
 	if (bool == true) then
 
-		if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-			before_after_cmd.restore_settings(ui_element)
-			goto skip_truezen_config
-		end
+		-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+		-- 	before_after_cmd.restore_settings(ui_element)
+		-- 	goto skip_truezen_config
+		-- end
 
 
 		for opt, _ in pairs(table) do
@@ -63,9 +63,9 @@ function map_settings(table, bool, ui_element)
 	elseif (bool == false) then
 
 		for opt, _ in pairs(table) do
-			if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-				before_after_cmd.save_settings(opt, table[opt], "hidden_", ui_element)
-			end
+			-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+			-- 	before_after_cmd.save_settings(opt, table[opt], "hidden_", ui_element)
+			-- end
 
 
 			if string.find(opt, "hidden_") then
