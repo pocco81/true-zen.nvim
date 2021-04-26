@@ -11,7 +11,7 @@ local function resume_all()
 			autocmd!
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top'.resume()" | endif
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.bottom'.resume()" | endif
-			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.left'.resume() | endif
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.left'.resume()" | endif
 		augroup END
 	]], false)
 
