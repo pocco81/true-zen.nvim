@@ -1,7 +1,7 @@
 
 
 local cmd = vim.cmd
-local before_after_cmd = require("lua.true-zen.utils.before_after_cmd")
+local before_after_cmd = require("true-zen.utils.before_after_cmd")
 
 
 local function test_bool(final_opt, var)
