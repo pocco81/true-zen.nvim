@@ -37,6 +37,7 @@ local function fillchars()
 	cmd([[set fillchars+=vert:\ ]])
 	cmd([[set fillchars+=stl:\ ]])
 	cmd([[set fillchars+=stlnc:\ ]])
+	cmd([[set fillchars+=eob:\ ]])
 end
 
 function ataraxis_true()		-- show
