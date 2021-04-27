@@ -419,7 +419,6 @@ function ataraxis_false()		-- hide
 		-- hide horizontal fillchars' colors
 		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 	else
-		cmd("echo 'I RAN'")
 		vim.api.nvim_exec([[
 			function! GetColor(group, attr)
 				return synIDattr(synIDtrans(hlID(a:group)), a:attr)
@@ -439,7 +438,7 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			function! Tranquilize(...)
 
-				let bg_color = get(a:, 1, 'red')
+				let bg_color = get(a:, 1, 'black')
 				let bg = GetColor('Normal', 'bg#')
 				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 					" -1 on Vim / '' on GVim
@@ -456,10 +455,13 @@ function ataraxis_false()		-- hide
 			endfunction
 
 
-			call Tranquilize()
+			" call Tranquilize()
 		]], false)
 
 		-- local to_cmd_tranq = 
+		local custome_bg = opts["ataraxis"]["custome_bg"]
+		local call_tran = "[[call Tranquilize('"..custome_bg.."')]]"
+		cmd(call_tran)
 		-- cmd([[call Tranquilize("lua require'true-zen.services.left.init'.main(1)")]])
 
 	end
