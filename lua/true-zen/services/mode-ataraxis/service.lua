@@ -371,46 +371,6 @@ function ataraxis_false()		-- hide
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
-
-	-- cmd("source tranq_bkg.vim")
-	
-	-- won't work because calling outside of script context
-	-- vim.api.nvim_exec([[
-
-	-- 	function! GetColor(group, attr)
-	-- 		return synIDattr(synIDtrans(hlID(a:group)), a:attr)
-	-- 	endfunction
-	-- 	com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
-
-
-	-- 	function! SetColor(group, attr, color)
-	-- 		let gui = has('gui_running') || has('termguicolors') && &termguicolors
-	-- 		execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
-	-- 	endfunction
-	-- 	com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
-
-
-	-- 	function! Tranquilize()
-	-- 		let bg = GetColor('Normal', 'bg#')
-	-- 		for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit',
-	-- 				\ 'StatusLine', 'StatusLineNC', 'SignColumn']
-	-- 			" -1 on Vim / '' on GVim
-	-- 			if bg == -1 || empty(bg)
-	-- 				call SetColor(grp, 'fg', 'black')
-	-- 				call SetColor(grp, 'bg', 'NONE')
-	-- 			else
-	-- 				call SetColor(grp, 'fg', bg)
-	-- 				call SetColor(grp, 'bg', bg)
-	-- 			endif
-
-	-- 			call SetColor(grp, '', 'NONE')
-	-- 		endfor
-	-- 	endfunction
-
-
-	-- 	call Tranquilize()
-
-	-- ]], false)
 	
 	
 	if (opts["ataraxis"]["custome_bg"] == "" or opts["ataraxis"]["custome_bg"] == '' or opts["ataraxis"]["custome_bg"] == nil) then
@@ -456,11 +416,9 @@ function ataraxis_false()		-- hide
 			endfunction
 		]], false)
 
-		-- local to_cmd_tranq = 
 		local custome_bg = opts["ataraxis"]["custome_bg"]
 		local call_tran = "call Tranquilize('"..custome_bg.."')"
 		cmd(call_tran)
-		-- cmd([[call Tranquilize("lua require'true-zen.services.left.init'.main(1)")]])
 
 	end
 
@@ -482,9 +440,9 @@ function ataraxis_false()		-- hide
 	-- elseif (opts["unknown_bkg_color_fix"] == false) then
 
 		-- hide statusline color
-		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 		-- hide horizontal fillchars' colors
-		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- else
 	-- 	cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
