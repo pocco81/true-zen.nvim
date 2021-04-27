@@ -8,12 +8,12 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set relativenumber
 -- set signcolumn=no
 
-function left_true(is_toggled)		-- show
-	cmd_settings.map_settings(opts["left"], true, "LEFT", is_toggled)
+function left_true()		-- show
+	cmd_settings.map_settings(opts["left"], true)
 end
 
-function left_false(is_toggled)		-- hide
-	cmd_settings.map_settings(opts["left"], false, "LEFT", is_toggled)
+function left_false()		-- hide
+	cmd_settings.map_settings(opts["left"], false)
 end
 
 

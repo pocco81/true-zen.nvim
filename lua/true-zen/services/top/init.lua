@@ -5,12 +5,12 @@ local cmd = vim.cmd
 -- show and hide top funcs
 local function top_true()
 	top_show = 1
-	service.top_true(top_show)
+	service.top_true()
 end
 
 local function top_false()
 	top_show = 0
-	service.top_false(top_show)
+	service.top_false()
 end
 
 local function toggle()

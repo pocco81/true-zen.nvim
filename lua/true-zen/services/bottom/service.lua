@@ -13,12 +13,12 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set noshowcmd
 -- set cmdheight=1
 
-function bottom_true(is_toggled)		-- show
-	cmd_settings.map_settings(opts["bottom"], true, "BOTTOM", is_toggled)
+function bottom_true()		-- show
+	cmd_settings.map_settings(opts["bottom"], true)
 end
 
-function bottom_false(is_toggled)		-- don't show
-	cmd_settings.map_settings(opts["bottom"], false, "BOTTOM", is_toggled)
+function bottom_false()		-- don't show
+	cmd_settings.map_settings(opts["bottom"], false)
 end
 
 

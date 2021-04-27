@@ -126,3 +126,15 @@ return {
 	restore_settings = restore_settings
 }
 
+		-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+		-- 	before_after_cmd.restore_settings(ui_element, is_toggled)
+		-- 	goto skip_truezen_config
+		-- end
+
+		-- ::skip_truezen_config::
+
+
+					-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
+				-- before_after_cmd.save_settings(opt, table[opt], "hidden_", ui_element)
+			-- end
+

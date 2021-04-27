@@ -6,12 +6,12 @@ local cmd = vim.cmd
 -- show and hide bottom funcs
 local function bottom_true()
 	bottom_show = 1
-	service.bottom_true(bottom_show)
+	service.bottom_true()
 end
 
 local function bottom_false()
 	bottom_show = 0
-	service.bottom_false(bottom_show)
+	service.bottom_false()
 end
 
 local function toggle()
