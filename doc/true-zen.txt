@@ -349,8 +349,6 @@ end
 For configuration instructions check out the [configuration](#configuration) section.
 
 
-
-
 ## Updating														*truezen-updating*
 This depends on your plugin manager. If, for example, you are using Packer.nvim, you can update it with this command:
 ```lua
@@ -362,6 +360,7 @@ This depends on your plugin manager. If, for example, you are using Packer.nvim,
 
 
 # USAGE (COMMANDS)												*truezen-usage-commands*
+
 All the commands follow the *camel casing* naming convention and have the `TZ` prefix so that it's easy to remember that they are part of the TrueZen.nvim plugin. These are all of them:
 
 ## Default
@@ -393,6 +392,7 @@ These are the commands that can be enabled if `true_false_commands` is set to `t
 
 
 # CONFIGURATION													*truezen-configuration*
+
 Although settings already have self-explanatory names, here is where you can find info about each one of them and their classifications! There are individual settings and settings that are tables. Settings that are tables are simply *settings with subsettings*.
 
 
@@ -485,6 +485,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 
 
 # KEY-BINDINGS													*truezen-keybindings*
+
 There are no default key-bindings. However you can set them on your own as you'd normally do! Here is an example mapping `<F12>` to toggle `Ataraxis` mode:
 
 **For init.lua**
@@ -497,6 +498,29 @@ vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], opt)
 map <F12> :TZAtaraxis<CR>
 ```
 However, as of now, there is an small bug that causes the cursor to appear in the wrong place. After this is solved, you'd be able to enjoy this feature, but for now, it's better not trying it out.
+
+
+------------------------------------------------------------------------------
+
+
+# FAQ															*truezen-faq*
+
+- Q: ***"How can I make it launch at startup?"***
+- A: Easy! Just copy and paste this:
+
+For **init.lua**:
+```lua
+vim.cmd("autocmd VimEnter * TZAtaraxis")
+```
+
+For **init.vim**:
+```vimscript
+autocmd VimEnter * TZAtaraxis
+```
+Keep in mind that there are some plugins, for instance, Galaxyline, that no matter what you do will load themselves only after everything else has been loaded. If this is your case, try playing around with the different **events** TrueZen.nvim offers to get your desired behaviour!
+
+- Q: ***"How can view the doc from NeoVim?"***
+- A: Use `:help TrueZen.nvim`
 
 - Q: ***"How can view the docs from NeoVim?"***
 - A: Use `:help TrueZen.nvim`

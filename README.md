@@ -565,18 +565,16 @@ map <F12> :TZAtaraxis<CR>
 
 For **init.lua**:
 ```lua
-require("tz_main").main(4, 3)
+vim.cmd("autocmd VimEnter * TZAtaraxis")
 ```
 
 For **init.vim**:
 ```vimscript
-lua << EOF
-require("tz_main").main(4, 3)
-EOF
+autocmd VimEnter * TZAtaraxis
 ```
-However, as of now, there is an small bug that causes the cursor to appear in the wrong place. After this is solved, you'd be able to enjoy this feature, but for now, it's better not trying it out.
+Keep in mind that there are some plugins, for instance, Galaxyline, that no matter what you do will load themselves only after everything else has been loaded. If this is your case, try playing around with the different **events** TrueZen.nvim offers to get your desired behaviour!
 
-- Q: ***"How can view the docs from NeoVim?"***
+- Q: ***"How can view the doc from NeoVim?"***
 - A: Use `:help TrueZen.nvim`
 
 - Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
