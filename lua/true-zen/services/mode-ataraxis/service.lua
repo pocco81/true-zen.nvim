@@ -372,26 +372,60 @@ function ataraxis_false()		-- hide
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
 
+	vim.api.nvim_exec([[
+		function! s:get_color(group, attr)
+			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
+		endfunction
+
+		function! s:set_color(group, attr, color)
+			let gui = has('gui_running') || has('termguicolors') && &termguicolors
+			execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
+		endfunction
 
 
 
-	if (opts["unknown_bkg_color_fix"] == true) then
+		function! s:tranquilize()
+			let bg = s:get_color('Normal', 'bg#')
+			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit',
+					\ 'StatusLine', 'StatusLineNC', 'SignColumn']
+				" -1 on Vim / '' on GVim
+				if bg == -1 || empty(bg)
+					call s:set_color(grp, 'fg', get(g:, 'goyo_bg', 'black'))
+					call s:set_color(grp, 'bg', 'NONE')
+				else
+					call s:set_color(grp, 'fg', bg)
+					call s:set_color(grp, 'bg', bg)
+				endif
 
-		-- hide statusline color
-		cmd("highlight StatusLine ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
-		-- hide horizontal fillchars' colors
-		cmd("highlight StatusLineNC ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
+				call s:set_color(grp, '', 'NONE')
+			endfor
+		endfunction
 
-	elseif (opts["unknown_bkg_color_fix"] == false) then
 
-		-- hide statusline color
-		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-		-- hide horizontal fillchars' colors
-		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		call s:tranquilize()
+	]], false)
 
-	else
-		cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
-	end
+
+
+
+
+	-- if (opts["unknown_bkg_color_fix"] == true) then
+
+	-- 	-- hide statusline color
+	-- 	cmd("highlight StatusLine ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
+	-- 	-- hide horizontal fillchars' colors
+	-- 	cmd("highlight StatusLineNC ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
+
+	-- elseif (opts["unknown_bkg_color_fix"] == false) then
+
+	-- 	-- hide statusline color
+	-- 	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	-- 	-- hide horizontal fillchars' colors
+	-- 	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+
+	-- else
+	-- 	cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
+	-- end
 
 
 	-- try to disable statuline regardless of which one is it
