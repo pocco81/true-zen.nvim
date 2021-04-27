@@ -411,43 +411,52 @@ function ataraxis_false()		-- hide
 	-- 	call Tranquilize()
 
 	-- ]], false)
+	
+	
+	if (opts["ataraxis"]["custome_bg"] == "" or opts["ataraxis"]["custome_bg"] == '' or opts["ataraxis"]["custome_bg"] == nil) then
+		-- hide statusline color
+		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- hide horizontal fillchars' colors
+		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+	else
+		vim.api.nvim_exec([[
+			function! GetColor(group, attr)
+				return synIDattr(synIDtrans(hlID(a:group)), a:attr)
+			endfunction
+			com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
 
-	vim.api.nvim_exec([[
-		function! GetColor(group, attr)
-			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
-		endfunction
-		com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
+		]], false)
 
-	]], false)
+		vim.api.nvim_exec([[
+			function! SetColor(group, attr, color)
+				let gui = has('gui_running') || has('termguicolors') && &termguicolors
+				execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
+			endfunction
+			com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
+		]], false)
 
-	vim.api.nvim_exec([[
-		function! SetColor(group, attr, color)
-			let gui = has('gui_running') || has('termguicolors') && &termguicolors
-			execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
-		endfunction
-		com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
-	]], false)
+		vim.api.nvim_exec([[
+			function! Tranquilize()
+				let bg = GetColor('Normal', 'bg#')
+				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
+					" -1 on Vim / '' on GVim
+					if bg == -1 || empty(bg)
+						call SetColor(grp, 'fg', 'black')
+						call SetColor(grp, 'bg', 'NONE')
+					else
+						call SetColor(grp, 'fg', bg)
+						call SetColor(grp, 'bg', bg)
+					endif
 
-	vim.api.nvim_exec([[
-		function! Tranquilize()
-			let bg = GetColor('Normal', 'bg#')
-			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
-				" -1 on Vim / '' on GVim
-				if bg == -1 || empty(bg)
-					call SetColor(grp, 'fg', 'black')
-					call SetColor(grp, 'bg', 'NONE')
-				else
-					call SetColor(grp, 'fg', bg)
-					call SetColor(grp, 'bg', bg)
-				endif
-
-				call SetColor(grp, '', 'NONE')
-			endfor
-		endfunction
+					call SetColor(grp, '', 'NONE')
+				endfor
+			endfunction
 
 
-		call Tranquilize()
-	]], false)
+			call Tranquilize()
+		]], false)
+	end
+
 
 
 
@@ -465,10 +474,10 @@ function ataraxis_false()		-- hide
 
 	-- elseif (opts["unknown_bkg_color_fix"] == false) then
 
-	-- 	-- hide statusline color
-	-- 	cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-	-- 	-- hide horizontal fillchars' colors
-	-- 	cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- hide statusline color
+		cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
+		-- hide horizontal fillchars' colors
+		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 
 	-- else
 	-- 	cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
