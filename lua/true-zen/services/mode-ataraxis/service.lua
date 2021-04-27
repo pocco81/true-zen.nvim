@@ -438,8 +438,8 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			function! Tranquilize(bg_color)
 
+				" make arg optional
 				" let bg_color = get(a:, 1, 'black')
-				" echo bg_color
 				let bg = GetColor('Normal', 'bg#')
 				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 					" -1 on Vim / '' on GVim
@@ -454,9 +454,6 @@ function ataraxis_false()		-- hide
 					call SetColor(grp, '', 'NONE')
 				endfor
 			endfunction
-
-
-			" call Tranquilize("something")
 		]], false)
 
 		-- local to_cmd_tranq = 
