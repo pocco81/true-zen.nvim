@@ -380,11 +380,14 @@ function ataraxis_false()		-- hide
 		function! GetColor(group, attr)
 			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 		endfunction
+		com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
 
-		function! GetColor(group, attr, color)
+
+		function! SetColor(group, attr, color)
 			let gui = has('gui_running') || has('termguicolors') && &termguicolors
 			execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
 		endfunction
+		com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
 
 
 
