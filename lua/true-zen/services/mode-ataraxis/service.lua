@@ -377,11 +377,11 @@ function ataraxis_false()		-- hide
 	-- won't work because calling outside of script context
 	vim.api.nvim_exec([[
 
-		function! Get_color(group, attr)
+		function! GetColor(group, attr)
 			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 		endfunction
 
-		function! Get_color(group, attr, color)
+		function! GetColor(group, attr, color)
 			let gui = has('gui_running') || has('termguicolors') && &termguicolors
 			execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
 		endfunction
@@ -389,19 +389,19 @@ function ataraxis_false()		-- hide
 
 
 		function! Tranquilize()
-			let bg = Get_color('Normal', 'bg#')
+			let bg = GetColor('Normal', 'bg#')
 			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit',
 					\ 'StatusLine', 'StatusLineNC', 'SignColumn']
 				" -1 on Vim / '' on GVim
 				if bg == -1 || empty(bg)
-					call Set_color(grp, 'fg', 'black')
-					call Set_color(grp, 'bg', 'NONE')
+					call SetColor(grp, 'fg', 'black')
+					call SetColor(grp, 'bg', 'NONE')
 				else
-					call Set_color(grp, 'fg', bg)
-					call Set_color(grp, 'bg', bg)
+					call SetColor(grp, 'fg', bg)
+					call SetColor(grp, 'bg', bg)
 				endif
 
-				call Set_color(grp, '', 'NONE')
+				call SetColor(grp, '', 'NONE')
 			endfor
 		endfunction
 
