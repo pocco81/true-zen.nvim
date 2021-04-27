@@ -161,7 +161,6 @@ before_minimalist_mode_shown = false,
 before_minimalist_mode_hidden = false,
 after_minimalist_mode_shown = false,
 after_minimalist_mode_hidden = false,
-unknown_bkg_color_fix = false,
 bottom = {
 	hidden_laststatus = 0,
 	hidden_ruler = false,
@@ -194,7 +193,8 @@ ataraxis = {
 	left_padding = 40,
 	right_padding = 40,
 	top_padding = 0,
-	bottom_padding = 0
+	bottom_padding = 0,
+	custome_bg = ""
 },
 focus = {
 	margin_of_error = 5
@@ -223,7 +223,6 @@ true_zen.setup({
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false,
-	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -256,7 +255,8 @@ true_zen.setup({
 		left_padding = 40,
 		right_padding = 40,
 		top_padding = 0,
-		bottom_padding = 0
+		bottom_padding = 0,
+		custome_bg = ""
 	},
 	focus = {
 		margin_of_error = 5
@@ -285,7 +285,6 @@ require("true-zen").setup({
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false,
-	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -318,7 +317,8 @@ require("true-zen").setup({
 		left_padding = 40,
 		right_padding = 40,
 		top_padding = 0,
-		bottom_padding = 0
+		bottom_padding = 0,
+		custome_bg = ""
 	},
 	focus = {
 		margin_of_error = 5
@@ -351,7 +351,6 @@ true_zen.setup({
 	before_minimalist_mode_hidden = true,
 	after_minimalist_mode_shown = true,
 	after_minimalist_mode_hidden = true,
-	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -384,7 +383,8 @@ true_zen.setup({
 		left_padding = 40,
 		right_padding = 40,
 		top_padding = 1,
-		bottom_padding = 1
+		bottom_padding = 1,
+		custome_bg = ""
 	},
 	focus = {
 		margin_of_error = 5
@@ -540,6 +540,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `right_padding`: (Integer) sets padding for the right.
 - `top_padding`: (Integer) sets padding for the top.
 - `bottom_padding`: (Integer) sets padding for the bottom.
+- `custome_bg = ""` (String) use
 
 ## Focus
 - `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2.
@@ -580,7 +581,19 @@ However, as of now, there is an small bug that causes the cursor to appear in th
 - A: Use `:help TrueZen.nvim`
 
 - Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
-- A: This issue occurs because 1. you don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, put this in your TrueZen config: `unknown_bkg_color_fix = true`, and/or 2. Your current colorscheme doesn't provide a background (bg) color. To test the latter, run this command: `highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg`. If you get an error then it's because of your colorscheme and not a TrueZen.nvim bug/issue.
+- A: This issue occurs because:
+1. You don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, use `custome_bg = "<hex_code>/<normal_color>"` to set a bg color for TrueZen. This will set a bg for TrueZen to use. If possible try to set it to match your normal Nvim background color
+
+and/or
+
+2. Your current colorscheme doesn't provide a background (bg) color. To test the latter, run this command: `highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg`. You can follow the above case's intructions to set it only for TrueZen or you could add the *hi* group so that it'll affect nvim as a whole:
+```
+hi NORMAL guibg=<color/hex_code>
+" e.g.:
+" hi NORMAL guibg=#1e222a
+```
+
+If you don't fit in either of the above cases/the fixes didn't for you, 
 
 # 💭 Inspirations
 
