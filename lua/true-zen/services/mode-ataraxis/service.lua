@@ -424,31 +424,6 @@ function ataraxis_false()		-- hide
 
 
 
-
-
-
-
-
-
-	-- if (opts["unknown_bkg_color_fix"] == true) then
-
-	-- 	-- hide statusline color
-	-- 	cmd("highlight StatusLine ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
-	-- 	-- hide horizontal fillchars' colors
-	-- 	cmd("highlight StatusLineNC ctermfg=NONE ctermbg=NONE guibg=NONE guifg=NONE")
-
-	-- elseif (opts["unknown_bkg_color_fix"] == false) then
-
-		-- hide statusline color
-		-- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-		-- hide horizontal fillchars' colors
-		-- cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
-
-	-- else
-	-- 	cmd("echo 'unknown_bkg_color_fix var receives a boolean as an argument for the TrueZen.nvim plugin'")
-	-- end
-
-
 	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")
 
