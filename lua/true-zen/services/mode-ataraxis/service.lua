@@ -438,7 +438,7 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			function! Tranquilize(...)
 
-				let bg_color = get(a:, 1, 'black')
+				let bg_color = get(a:, 1, 'red')
 				let bg = GetColor('Normal', 'bg#')
 				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 					" -1 on Vim / '' on GVim
