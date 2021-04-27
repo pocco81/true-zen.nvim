@@ -481,7 +481,6 @@ Almost every setting that makes part of a UI component (Left, Top, Bottom) has a
 This settings are unrelated to any group and are independent.
 - `true_false_commands`: (Boolean) if true, enables true/false extra commands.
 - `cursor_by_mode`: (Boolean) if true, changes cursor according to current Vi mode. Useful for when the statuline and showmode are hidden so that one can easily identify the current mode.
-- `unknown_bkg_color_fix`: (Boolean) if true, fixes the `E420: BG color unknown` issue when entering Ataraxis mode. Note: before setting this to true check the FAQ about this bug, and if that didn't help, set this to true.
 
 ### Events
 - `before_minimalist_mode_shown`: (Boolean) allows code to be executed before Minimalist mode shows UI components
@@ -540,7 +539,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `right_padding`: (Integer) sets padding for the right.
 - `top_padding`: (Integer) sets padding for the top.
 - `bottom_padding`: (Integer) sets padding for the bottom.
-- `custome_bg = ""` (String) use
+- `custome_bg = ""` (String) use setting to set a bg color if your coloscheme doesn't support one/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. Refer to the FAQ about this.
 
 ## Focus
 - `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2.
@@ -593,7 +592,7 @@ hi NORMAL guibg=<color/hex_code>
 " hi NORMAL guibg=#1e222a
 ```
 
-If you don't fit in either of the above cases/the fixes didn't for you, 
+If you don't fit in either of the above cases/the fixes didn't for you, then it's a bug with your settings/colorscheme, not a TrueZen.nvim bug.
 
 # 💭 Inspirations
 
