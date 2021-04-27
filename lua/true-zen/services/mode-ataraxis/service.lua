@@ -372,12 +372,14 @@ function ataraxis_false()		-- hide
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
 
-	-- cmd("source tranq_bkg.vim")
+	cmd("source tranq_bkg.vim")
+	
+	-- won't work because calling outside of script context
 	vim.api.nvim_exec([[
 
-		function! s:get_color(group, attr)
-			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
-		endfunction
+		" function! s:get_color(group, attr)
+		"	return synIDattr(synIDtrans(hlID(a:group)), a:attr)
+		" endfunction
 
 		function! s:set_color(group, attr, color)
 			let gui = has('gui_running') || has('termguicolors') && &termguicolors
@@ -387,7 +389,7 @@ function ataraxis_false()		-- hide
 
 
 		function! s:tranquilize()
-			let bg = s:get_color('Normal', 'bg#')
+			" let bg = s:get_color('Normal', 'bg#')
 			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit',
 					\ 'StatusLine', 'StatusLineNC', 'SignColumn']
 				" -1 on Vim / '' on GVim
@@ -404,9 +406,9 @@ function ataraxis_false()		-- hide
 		endfunction
 
 
-		call s:tranquilize()
+	-- 	call s:tranquilize()
 
-	]], false)
+	-- ]], false)
 
 
 
