@@ -436,12 +436,14 @@ function ataraxis_false()		-- hide
 		]], false)
 
 		vim.api.nvim_exec([[
-			function! Tranquilize()
+			function! Tranquilize(...)
+
+				let bg_color = get(a:, 1, 'black')
 				let bg = GetColor('Normal', 'bg#')
 				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 					" -1 on Vim / '' on GVim
 					if bg == -1 || empty(bg)
-						call SetColor(grp, 'fg', 'black')
+						call SetColor(grp, 'fg', a:bg_color)
 						call SetColor(grp, 'bg', 'NONE')
 					else
 						call SetColor(grp, 'fg', bg)
@@ -455,6 +457,10 @@ function ataraxis_false()		-- hide
 
 			call Tranquilize()
 		]], false)
+
+		-- local to_cmd_tranq = 
+		-- cmd([[call Tranquilize("lua require'true-zen.services.left.init'.main(1)")]])
+
 	end
 
 
