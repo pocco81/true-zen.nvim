@@ -460,7 +460,7 @@ function ataraxis_false()		-- hide
 
 		-- local to_cmd_tranq = 
 		local custome_bg = opts["ataraxis"]["custome_bg"]
-		local call_tran = "[[call Tranquilize('"..custome_bg.."')]]"
+		local call_tran = "call Tranquilize('"..custome_bg.."')"
 		cmd(call_tran)
 		-- cmd([[call Tranquilize("lua require'true-zen.services.left.init'.main(1)")]])
 
