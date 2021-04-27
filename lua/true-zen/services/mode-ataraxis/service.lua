@@ -444,7 +444,7 @@ function ataraxis_false()		-- hide
 				for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 					" -1 on Vim / '' on GVim
 					if bg == -1 || empty(bg)
-						call SetColor(grp, 'fg', a:bg_color)
+						call SetColor(grp, 'fg', bg_color)
 						call SetColor(grp, 'bg', 'NONE')
 					else
 						call SetColor(grp, 'fg', bg)
