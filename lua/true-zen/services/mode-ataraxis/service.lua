@@ -428,27 +428,26 @@ function ataraxis_false()		-- hide
 		com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
 	]], false)
 
-	-- vim.api.nvim_exec([[
-	-- 	function! Tranquilize()
-	-- 		let bg = GetColor('Normal', 'bg#')
-	-- 		for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit',
-	-- 				\ 'StatusLine', 'StatusLineNC', 'SignColumn']
-	-- 			" -1 on Vim / '' on GVim
-	-- 			if bg == -1 || empty(bg)
-	-- 				call SetColor(grp, 'fg', 'black')
-	-- 				call SetColor(grp, 'bg', 'NONE')
-	-- 			else
-	-- 				call SetColor(grp, 'fg', bg)
-	-- 				call SetColor(grp, 'bg', bg)
-	-- 			endif
+	vim.api.nvim_exec([[
+		function! Tranquilize()
+			let bg = GetColor('Normal', 'bg#')
+			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
+				" -1 on Vim / '' on GVim
+				if bg == -1 || empty(bg)
+					call SetColor(grp, 'fg', 'black')
+					call SetColor(grp, 'bg', 'NONE')
+				else
+					call SetColor(grp, 'fg', bg)
+					call SetColor(grp, 'bg', bg)
+				endif
 
-	-- 			call SetColor(grp, '', 'NONE')
-	-- 		endfor
-	-- 	endfunction
+				call SetColor(grp, '', 'NONE')
+			endfor
+		endfunction
 
 
-	-- 	call Tranquilize()
-	-- ]], false)
+		call Tranquilize()
+	]], false)
 
 
 
