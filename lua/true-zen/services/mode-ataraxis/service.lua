@@ -372,7 +372,7 @@ function ataraxis_false()		-- hide
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
 
-	cmd("runtime tranq_bkg.vim")
+	cmd("source tranq_bkg.vim")
 	-- vim.api.nvim_exec([[
 	-- 	function! s:get_color(group, attr)
 	-- 		return synIDattr(synIDtrans(hlID(a:group)), a:attr)
