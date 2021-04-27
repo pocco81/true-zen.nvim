@@ -419,6 +419,7 @@ function ataraxis_false()		-- hide
 		-- hide horizontal fillchars' colors
 		cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 	else
+		cmd("echo 'I RAN'")
 		vim.api.nvim_exec([[
 			function! GetColor(group, attr)
 				return synIDattr(synIDtrans(hlID(a:group)), a:attr)
