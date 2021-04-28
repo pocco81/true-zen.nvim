@@ -176,15 +176,20 @@ end
 
 function ataraxis_false()		-- hide
 
-
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 	if (amount_wins > 1) then
-		cmd("echo 'TZAtaraxis can not be toggled if there is more than one window open.'")
-		goto there_was_more_than_one_window
+		if (opts["ataraxis"]["force_when_plus_one_window"] == false) then
+			cmd("echo 'TrueZen: TZAtaraxis can not be toggled if there is more than one window open. However, you can force it with the force_when_plus_one_window setting'")
+			goto there_was_more_than_one_window
+		elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
+			cmd("only")
+		end
 	else
 		-- nothing
+
 	end
+
 
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 	is_splitbelow_set = vim.api.nvim_eval("&splitbelow")
