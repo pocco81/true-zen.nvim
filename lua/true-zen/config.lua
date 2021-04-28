@@ -45,7 +45,8 @@ config.options = {
 		right_padding = 40,
 		top_padding = 0,
 		bottom_padding = 0,
-		custome_bg = ""
+		custome_bg = "",
+		disable_bg_configuration = false
 	},
 	focus = {
 		margin_of_error = 5
