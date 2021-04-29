@@ -14,7 +14,6 @@ local function focus_true()		-- focus window
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 
-
 	if (focus_method == "native" or focus_method == "Native") then
 
 		if (amount_wins == 1) then
@@ -34,9 +33,8 @@ end
 
 local function focus_false()		-- unfocus window
 
-	local amount_wins = vim.api.nvim_eval("winnr('$')")
 	local focus_method = opts["focus"]["focus_method"]
-
+	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 
 	if (focus_method == "native" or focus_method == "Native") then
@@ -73,7 +71,9 @@ local function toggle()
 
 		if (amount_wins > 1) then
 
-			if (opts["focus"]["focus_method"] == "native" or opts["focus"]["focus_method"] == "Native") then
+			local focus_method = opts["focus"]["focus_method"]
+
+			if (focus_method == "native" or focus_method == "Native") then
 
 				local current_session_height = vim.api.nvim_eval("&co")
 				local current_session_width = vim.api.nvim_eval("&lines")
@@ -101,7 +101,7 @@ local function toggle()
 					end
 				end
 
-			elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
+			elseif (focus_method == "experimental" or focus_method == "Experimental") then
 				-- orig_win_id = vim.api.nvim_eval("win_getid()")
 				focus_true()
 			end
