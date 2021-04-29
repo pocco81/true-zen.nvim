@@ -19,10 +19,10 @@ local function setup_commands()
 		cmd("command! TZBottomF lua require'true-zen.main'.main(0, 2)")
 
 		-- Modes
-		cmd("command! TZMinimalistT lua require'tz_main'.main(3, 1)")
-		cmd("command! TZMinimalistF lua require'tz_main'.main(3, 2)")
-		cmd("command! TZAtaraxisT lua require'tz_main'.main(4, 1)")
-		cmd("command! TZAtaraxisF lua require'tz_main'.main(4, 2)")
+		cmd("command! TZMinimalistT lua require'true-zezn'.main(3, 1)")
+		cmd("command! TZMinimalistF lua require'true-zen'.main(3, 2)")
+		cmd("command! TZAtaraxisT lua require'true-zen'.main(4, 1)")
+		cmd("command! TZAtaraxisF lua require'true-zen'.main(4, 2)")
 
 		-- Modes
 		cmd("command! TZMinimalistT lua require'true-zen.main'.main(3, 1)")

@@ -446,7 +446,7 @@ function ataraxis_false()		-- hide
 			augroup ataraxisExit
 				autocmd!
 				"executes the command on quit
-				autocmd BufWinLeave * !TZAtaraxis
+				autocmd BufWinLeave * lua require'true-zen'.main(4, 2)
 
 				" execute the command on write
 				" autocmd BufWritePost,FileWritePost *.cpp !your_commad
