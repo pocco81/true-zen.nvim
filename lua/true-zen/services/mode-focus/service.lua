@@ -21,10 +21,14 @@ function native_focus_false()		-- don't show
 end
 
 function experimental_focus_true()
+
+	cmd("tabe %")
 	
 end
 
 function experimental_focus_false()
+
+	cmd("q")
 	
 end
 
