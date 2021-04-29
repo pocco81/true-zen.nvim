@@ -446,7 +446,7 @@ function ataraxis_false()		-- hide
 			augroup ataraxisExit
 				autocmd!
 				"executes the command on quit
-				autocmd ExitPre * !TZAtaraxis
+				autocmd BufWinLeave * !TZAtaraxis
 
 				" execute the command on write
 				" autocmd BufWritePost,FileWritePost *.cpp !your_commad
