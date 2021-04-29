@@ -2,7 +2,6 @@
 
 local service = require("true-zen.services.mode-focus.service")
 local opts = require("true-zen.config").options
-local ataraxis = require("true-zen.services.mode-ataraxis.init").ataraxis_show
 
 
 local cmd = vim.cmd
@@ -29,6 +28,17 @@ local function focus_true()		-- focus window
 	elseif (focus_method == "experimental" or focus_method == "Experimental") then
 		focus_show = 1
 		service.experimental_focus_true()
+
+		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+
+			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+	
+			if (ataraxis_is_toggled == 0) then
+				cmd("TZAtaraxis")
+			end
+
+		end
+
 	end
 
 end
@@ -51,6 +61,16 @@ local function focus_false()		-- unfocus window
 	elseif (focus_method == "experimental" or focus_method == "Experimental") then
 		focus_show = 0
 		service.experimental_focus_false()
+
+		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+
+			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+	
+			if (ataraxis_is_toggled == 1) then
+				cmd("TZAtaraxis")
+			end
+
+		end
 	end
 
 end
