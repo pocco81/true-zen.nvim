@@ -31,6 +31,14 @@ local function focus_true()		-- focus window
 
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
+			local clock = os.clock
+			function sleep(n)
+				local t0 = clock()
+				while clock() - t0 <= n do end
+			end
+			cmd("echo 'waiting 3 seconds'")
+			sleep(3)
+
 			-- nil if it hasn't been toggled
 			-- local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
 	
