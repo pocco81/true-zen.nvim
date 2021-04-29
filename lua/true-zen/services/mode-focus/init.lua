@@ -30,9 +30,6 @@ local function focus_true()		-- focus window
 		end
 	end
 
-		service.focus_true()
-
-
 end
 
 local function focus_false()		-- unfocus window
