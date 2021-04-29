@@ -50,7 +50,8 @@ config.options = {
 		force_when_plus_one_window = false
 	},
 	focus = {
-		margin_of_error = 5
+		margin_of_error = 5,
+		focus_method = "native"
 	},
 	minimalist = {
 		save_and_restore_settings_when_untoggled = false,
