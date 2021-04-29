@@ -440,22 +440,26 @@ function ataraxis_false()		-- hide
 
 
 
+	-- under dev
+	--[[
 	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
 
 		vim.api.nvim_exec([[
 			augroup ataraxisExit
 				autocmd!
 				"executes the command on quit
-				autocmd BufWinLeave * execute "lua require'true-zen.main'.main(4, 1)"
+				autocmd BufWinLeave * execute "lua ataraxis_true()"
 
 				" execute the command on write
 				" autocmd BufWritePost,FileWritePost *.cpp !your_commad
 			augroup END
-		]], false)
+		, false)
 
 	else
 		-- nothing
 	end
+	]]--
+
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
