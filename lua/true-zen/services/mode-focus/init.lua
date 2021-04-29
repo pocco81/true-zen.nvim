@@ -2,6 +2,8 @@
 
 local service = require("true-zen.services.mode-focus.service")
 local opts = require("true-zen.config").options
+local ataraxis = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+
 
 local cmd = vim.cmd
 local api = vim.api

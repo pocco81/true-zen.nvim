@@ -49,5 +49,6 @@ end
 
 
 return {
-	main = main
+	main = main,
+	ataraxis_show = ataraxis_show
 }
