@@ -64,7 +64,8 @@ config.options = {
 		integration_express_line = false,
 		integration_gitgutter = false,
 		integration_vim_signify = false,
-		integration_limelight = false
+		integration_limelight = false,
+		integration_tzataraxis_tzfocus = false
 	}
 }
 
