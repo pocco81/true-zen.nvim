@@ -31,8 +31,8 @@ local function focus_true()		-- focus window
 
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
-			cmd("echo 'I RAN'")
 			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+			cmd("echo 'Ataraxis status = "..ataraxis_is_toggled.."'")
 	
 			if (ataraxis_is_toggled == 0) then
 				cmd("TZAtaraxis")
