@@ -34,7 +34,7 @@ local function focus_true()		-- focus window
 			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
 			cmd("echo 'Ataraxis status = "..ataraxis_is_toggled.."'")
 	
-			if (ataraxis_is_toggled == 0) then
+			if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
 				cmd("TZAtaraxis")
 			end
 
