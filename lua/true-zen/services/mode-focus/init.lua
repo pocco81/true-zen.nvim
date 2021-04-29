@@ -36,6 +36,9 @@ local function focus_true()		-- focus window
 	
 			-- if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
 			cmd([[execute "lua require'true-zen.main'.main(4, 2)"]])
+
+			-- for some reason, the first time using this integration it fails to hide the statusline
+			cmd("setlocal statusline=-")
 			
 			-- end
 
