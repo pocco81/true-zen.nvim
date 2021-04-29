@@ -25,6 +25,7 @@ local function focus_true()		-- focus window
 
 	elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
 		-- focus experimental
+		focus_show = 1
 		service.experimental_focus_true()
 	end
 
@@ -69,6 +70,7 @@ local function focus_false()		-- unfocus window
 
 	elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
 		-- focus experimental
+		focus_show = 0
 		service.experimental_focus_false()
 	end
 
@@ -175,7 +177,7 @@ local function toggle()
 			end
 
 		elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
-			-- focus_show = 0
+			-- focus_show = 1
 			focus_true()
 		end
 
