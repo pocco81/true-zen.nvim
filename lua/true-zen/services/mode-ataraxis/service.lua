@@ -439,6 +439,24 @@ function ataraxis_false()		-- hide
 	cmd("setlocal statusline=-")
 
 
+
+	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
+
+		vim.api.nvim_exec([[
+			augroup ataraxisExit
+				autocmd!
+				"executes the command on quit
+				autocmd ExitPre * TZAtaraxis
+
+				" execute the command on write
+				" autocmd BufWritePost,FileWritePost *.cpp !your_commad
+			augroup END
+		]], false)
+
+	else
+		-- nothing
+	end
+
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
 
