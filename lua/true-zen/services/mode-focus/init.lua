@@ -13,19 +13,21 @@ local function focus_true()		-- focus window
 	local focus_method = opts["focus"]["focus_method"]
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
-	if (amount_wins == 1) then
-		cmd("echo 'You can not focus this window because focusing a window only works when there are more than one.'")
-		focus_show = 0
-	elseif (amount_wins > 1) then
-		focus_show = 1
-		if (focus_method == "native" or focus_method == "Native") then
-			-- focus natively
-			service.native_focus_true()
 
-		elseif (focus_method == "experimental" or focus_method == "Experimental") then
-			-- focus experimental
-			service.experimental_focus_true()
+
+	if (focus_method == "native" or focus_method == "Native") then
+
+		if (amount_wins == 1) then
+			cmd("echo 'You can not focus this window because focusing a window only works when there are more than one.'")
+			focus_show = 0
+		elseif (amount_wins > 1) then
+			focus_show = 1
+			service.native_focus_true()
 		end
+
+	elseif (focus_method == "experimental" or focus_method == "Experimental") then
+		focus_show = 1
+		service.experimental_focus_true()
 	end
 
 end
@@ -35,18 +37,20 @@ local function focus_false()		-- unfocus window
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 	local focus_method = opts["focus"]["focus_method"]
 
-	if (amount_wins == 1) then
-		cmd("echo 'You can not unfocus this window because focusing a window only works when there are more than one.'")
+
+
+	if (focus_method == "native" or focus_method == "Native") then
 		focus_show = 0
-	elseif (amount_wins > 1) then
-		focus_show = 0
-		if (focus_method == "native" or focus_method == "Native") then
-			-- focus natively
+
+		if (amount_wins == 1) then
+			cmd("echo 'You can not unfocus this window because focusing a window only works when there are more than one.'")
+		elseif (amount_wins > 1) then
 			service.native_focus_false()
-		elseif (focus_method == "experimental" or focus_method == "Experimental") then
-			-- focus experimental
-			service.experimental_focus_false()
 		end
+
+	elseif (focus_method == "experimental" or focus_method == "Experimental") then
+		focus_show = 0
+		service.experimental_focus_false()
 	end
 
 end
