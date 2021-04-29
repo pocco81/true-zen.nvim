@@ -19,7 +19,7 @@ local function focus_true()		-- focus window
 			cmd("echo 'You can not focus this window because focusing a window only works when there are more than one.'")
 			focus_show = 0
 		elseif (amount_wins > 1) then
-			focus_show = 0
+			focus_show = 1
 			service.native_focus_true()
 		end
 
