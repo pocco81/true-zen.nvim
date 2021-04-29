@@ -6,24 +6,35 @@ local cmd = vim.cmd
 
 -- bottom specific options
 
-function focus_true()		-- show
+function native_focus_true()		-- show
 
 	cmd("vert resize | resize")
 	cmd("normal! ze")
 
 end
 
-function focus_false()		-- don't show
+function native_focus_false()		-- don't show
 	
 	cmd("wincmd =")
 	cmd("normal! ze")
 
 end
 
+function experimental_focus_true()
+	
+end
+
+function experimental_focus_false()
+	
+end
+
+
 
 
 return {
-	focus_true = focus_true,
-	focus_false = focus_false
+	native_focus_true = native_focus_true,
+	native_focus_false = native_focus_false,
+	experimental_focus_true = experimental_focus_true,
+	experimental_focus_false = experimental_focus_false
 }
 

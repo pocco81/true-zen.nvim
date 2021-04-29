@@ -21,8 +21,17 @@ local function focus_true()		-- focus window
 		focus_show = 0
 	elseif (amount_wins > 1) then
 		focus_show = 1
-		service.focus_true()
+		if (opts["focus"]["focus_method"] == "native" or opts["focus"]["focus_method"] == "Native") then
+			-- focus natively
+			service.native_focus_true()
+		elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
+			-- focus experimental
+			service.experimental_focus_true()
+		end
 	end
+
+		service.focus_true()
+
 
 end
 
@@ -37,8 +46,31 @@ local function focus_false()		-- unfocus window
 		focus_show = 0
 	elseif (amount_wins > 1) then
 		focus_show = 0
+		if (opts["focus"]["focus_method"] == "native" or opts["focus"]["focus_method"] == "Native") then
+			-- focus natively
+			service.native_focus_false()
+		elseif (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
+			-- focus experimental
+			service.experimental_focus_false()
+		end
+	end
+
+
+
+
+	--[[
+		-- regardless of the window being focused or not, this will count the open windows
+	local amount_wins = vim.api.nvim_eval("winnr('$')")
+
+	if (amount_wins == 1) then
+		cmd("echo 'You can not unfocus this window because focusing a window only works when there are more than one.'")
+		focus_show = 0
+	elseif (amount_wins > 1) then
+		focus_show = 0
 		service.focus_false()
 	end
+	]]--
+
 
 
 end
@@ -60,6 +92,7 @@ local function toggle()
 		local amount_wins = vim.api.nvim_eval("winnr('$')")
 
 		if (amount_wins > 1) then
+
 
 			local current_session_height = vim.api.nvim_eval("&co")
 			local current_session_width = vim.api.nvim_eval("&lines")
