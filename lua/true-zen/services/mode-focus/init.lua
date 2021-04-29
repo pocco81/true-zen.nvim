@@ -35,6 +35,12 @@ end
 local function focus_false()		-- unfocus window
 
 
+	if (opts["focus"]["focus_method"] == "experimental" or opts["focus"]["focus_method"] == "Experimental") then
+		-- focus experimental
+		service.experimental_focus_false()
+		goto already_focused
+	end
+
 	-- regardless of the window being focused or not, this will count the open windows
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -52,7 +58,7 @@ local function focus_false()		-- unfocus window
 		end
 	end
 
-
+	::already_focused::
 
 
 	--[[
