@@ -377,6 +377,8 @@ function ataraxis_false()		-- hide
 	end
 
 
+	--------------------------=== Fill chars ===--------------------------
+	fillchar.store_fillchars()
 	fillchars()
 	mode_minimalist.main(2)
 
@@ -386,93 +388,19 @@ function ataraxis_false()		-- hide
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
+	--------------------------=== Hi Groups ===--------------------------
 
 	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
-		
 		hi_group.store_hi_groups()
 		hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
-
--- 		if (opts["ataraxis"]["custome_bg"] == "" or opts["ataraxis"]["custome_bg"] == '' or opts["ataraxis"]["custome_bg"] == nil) then
-
--- 			-- hide statusline color
--- 			cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
--- 			-- hide horizontal fillchars' colors
--- 			cmd("highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
--- 		else
--- 			vim.api.nvim_exec([[
--- 				function! GetColor(group, attr)
--- 					return synIDattr(synIDtrans(hlID(a:group)), a:attr)
--- 				endfunction
--- 				com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
-
--- 			]], false)
-
--- 			vim.api.nvim_exec([[
--- 				function! SetColor(group, attr, color)
--- 					let gui = has('gui_running') || has('termguicolors') && &termguicolors
--- 					execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
--- 				endfunction
--- 				com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
--- 			]], false)
-
--- 			vim.api.nvim_exec([[
--- 				function! Tranquilize(bg_color)
-
--- 					" make arg optional
--- 					" let l:bg_color = get(a:, 1, 'black')
--- 					let bg = GetColor('Normal', 'bg#')
--- 					for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
--- 						" -1 on Vim / '' on GVim
--- 						if bg == -1 || empty(bg)
--- 							call SetColor(grp, 'fg', a:bg_color)
--- 							call SetColor(grp, 'bg', 'NONE')
--- 						else
--- 							call SetColor(grp, 'fg', bg)
--- 							call SetColor(grp, 'bg', bg)
--- 						endif
-
--- 						call SetColor(grp, '', 'NONE')
--- 					endfor
--- 				endfunction
--- 			]], false)
-
--- 			local custome_bg = opts["ataraxis"]["custome_bg"]
--- 			local call_tran = "call Tranquilize('"..custome_bg.."')"
--- 			cmd(call_tran)
-
-		-- end
 	elseif (opts["ataraxis"]["disable_bg_configuration"] == true) then
 		-- do nothing
 	else
 		cmd("echo 'TrueZen: the disable_bg_configuration option was not set to a boolean'")
 	end
 
-
-
 	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")
-
-
-
-	-- under dev
-	--[[
-	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
-
-		vim.api.nvim_exec([[
-			augroup ataraxisExit
-				autocmd!
-				"executes the command on quit
-				autocmd BufWinLeave * execute "lua ataraxis_true()"
-
-				" execute the command on write
-				" autocmd BufWritePost,FileWritePost *.cpp !your_commad
-			augroup END
-		, false)
-
-	else
-		-- nothing
-	end
-	]]--
 
 
 	-- everything will be skipped if there was more than one window open
