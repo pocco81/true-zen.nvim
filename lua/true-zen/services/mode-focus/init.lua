@@ -33,7 +33,7 @@ local function focus_true()		-- focus window
 
 			-- nil if it hasn't been toggled
 			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
-			if (ataraxis_is_toggled == 0) then
+			if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
 				require'true-zen.main'.main(4, 2)
 			end
 

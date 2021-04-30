@@ -418,7 +418,7 @@ function ataraxis_false()		-- hide
 				function! Tranquilize(bg_color)
 
 					" make arg optional
-					" let bg_color = get(a:, 1, 'black')
+					" let l:bg_color = get(a:, 1, 'black')
 					let bg = GetColor('Normal', 'bg#')
 					for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
 						" -1 on Vim / '' on GVim
