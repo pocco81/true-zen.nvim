@@ -36,14 +36,6 @@ vim.api.nvim_exec([[
 ]], false)
 
 
-local function fillchars()
-	cmd([[set fillchars+=vert:\ ]])
-	cmd([[set fillchars+=stl:\ ]])
-	cmd([[set fillchars+=stlnc:\ ]])
-	cmd([[set fillchars+=eob:\ ]])
-end
-
-
 function ataraxis_true()		-- show
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
@@ -428,6 +420,9 @@ function ataraxis_false()		-- hide
 	--------------------------=== Hi Groups ===--------------------------
 
 	-- try to disable statuline regardless of which one is it
+	-- save statusline
+	current_statusline = vim.api.nvim_eval("&statusline")
+	cmd("echo 'Current st ="..current_statusline.."'")
 	cmd("setlocal statusline=-")
 
 
