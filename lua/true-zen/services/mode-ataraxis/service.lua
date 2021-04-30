@@ -446,12 +446,6 @@ function ataraxis_false()		-- hide
 
 	--------------------------=== Hi Groups ===--------------------------
 
-	-- try to disable statuline regardless of which one is it
-	-- save statusline
-
-	-- cmd("echo 'Current st ="..tostring(current_statusline).."'")
-	-- cmd("setlocal statusline="..current_statusline.."")
-	
 	if (has_statusline_with_integration == true) then
 		-- ignore
 	else
@@ -463,8 +457,6 @@ function ataraxis_false()		-- hide
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
 
-	-- leaves you in another place
-	-- cmd([[bufdo set fillchars+=vert:\ ]])
 end
 
 
