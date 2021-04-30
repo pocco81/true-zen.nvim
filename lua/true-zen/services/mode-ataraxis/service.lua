@@ -177,7 +177,26 @@ function ataraxis_true()		-- show
 	end
 
 
-	hi_group.restore_hi_groups()
+	--------------------------=== Fill chars ===--------------------------
+
+	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
+		fillchar.restore_fillchars()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Fill chars ===--------------------------
+
+
+	--------------------------=== Hi Groups ===--------------------------
+
+	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
+		hi_group.restore_hi_groups()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Hi Groups ===--------------------------
 
 end
 
@@ -378,8 +397,17 @@ function ataraxis_false()		-- hide
 
 
 	--------------------------=== Fill chars ===--------------------------
-	fillchar.store_fillchars()
-	fillchars()
+
+	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
+		fillchar.store_fillchars()
+		fillchar.set_fillchars()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Fill chars ===--------------------------
+
+
 	mode_minimalist.main(2)
 
 	-- remove the border lines on every buffer
@@ -393,11 +421,11 @@ function ataraxis_false()		-- hide
 	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
 		hi_group.store_hi_groups()
 		hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
-	elseif (opts["ataraxis"]["disable_bg_configuration"] == true) then
-		-- do nothing
 	else
-		cmd("echo 'TrueZen: the disable_bg_configuration option was not set to a boolean'")
+		-- nothing
 	end
+
+	--------------------------=== Hi Groups ===--------------------------
 
 	-- try to disable statuline regardless of which one is it
 	cmd("setlocal statusline=-")

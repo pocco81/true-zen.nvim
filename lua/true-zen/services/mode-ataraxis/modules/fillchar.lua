@@ -18,20 +18,23 @@ function store_fillchars()
 	local fillchars = vim.api.nvim_eval("&fillchars")
 
 	if (fillchars == "" or fillchars == '') then
-		-- nothing'
 		final_fillchars = fillchars
 	else
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
 	end
 
-	cmd("echo 'Fillchars = "..final_fillchars.."'")
-
+	fillchars_stored = true
 	
 end
 
 function restore_fillchars()
+
+	if (fillchars_stored == true) then
+		cmd("set fillchars="..final_fillchars.."")
+	end
 	
 end
+
 
 
 return {
