@@ -228,7 +228,7 @@ local function save_hi_groups()
 		cmd("echo '<Space>'")
 		for hi_index, hi_value in pairs(hi_groups) do
 			for inner_hi_index, inner_hi_value in pairs(hi_groups_stored[hi_index]) do
-				cmd("echo 'Index = "..inner_hi_index.."; Value = "..inner_hi_value.."'")
+				cmd("echo 'Index = "..tostring(inner_hi_index).."; Value = "..tostring(inner_hi_value).."'")
 			end
 		end
 
