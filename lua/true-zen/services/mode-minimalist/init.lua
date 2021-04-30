@@ -12,7 +12,7 @@ local api = vim.api
 
 -- show and hide minimalist funcs
 local function minimalist_true()		-- show everything
-	if (opts["before_minimalist_mode_shown"] == true) then
+	if (opts["events"]["before_minimalist_mode_shown"] == true) then
 		true_zen.before_minimalist_mode_shown()
 	else
 		-- nothing
@@ -21,7 +21,7 @@ local function minimalist_true()		-- show everything
 	minimalist_show = 1
 	service.minimalist_true()
 
-	if (opts["after_minimalist_mode_shown"] == true) then
+	if (opts["events"]["after_minimalist_mode_shown"] == true) then
 		true_zen.after_minimalist_mode_shown()
 	else
 		-- nothing
@@ -29,7 +29,7 @@ local function minimalist_true()		-- show everything
 end
 
 local function minimalist_false()		-- hide everything
-	if (opts["before_minimalist_mode_hidden"] == true) then
+	if (opts["events"]["before_minimalist_mode_hidden"] == true) then
 		true_zen.before_minimalist_mode_hidden()
 	else
 		-- nothing
@@ -38,7 +38,7 @@ local function minimalist_false()		-- hide everything
 	minimalist_show = 0
 	service.minimalist_false()
 
-	if (opts["after_minimalist_mode_hidden"] == true) then
+	if (opts["events"]["after_minimalist_mode_hidden"] == true) then
 		true_zen.after_minimalist_mode_hidden()
 	else
 		-- nothing

@@ -7,11 +7,6 @@ local config = {}
 config.options = {
     true_false_commands = false,
 	cursor_by_mode = false,
-	before_minimalist_mode_shown = false,
-	before_minimalist_mode_hidden = false,
-	after_minimalist_mode_shown = false,
-	after_minimalist_mode_hidden = false,
-	unknown_bkg_color_fix = false,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -55,6 +50,12 @@ config.options = {
 	},
 	minimalist = {
 		save_and_restore_settings_when_untoggled = false,
+	},
+	events = {
+		before_minimalist_mode_shown = false,
+		before_minimalist_mode_hidden = false,
+		after_minimalist_mode_shown = false,
+		after_minimalist_mode_hidden = false,
 	},
 	integrations = {
 		integration_galaxyline = false,
