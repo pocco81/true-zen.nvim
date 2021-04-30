@@ -75,6 +75,7 @@ function ataraxis_true()		-- show
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
 				require("true-zen.services.bottom.integrations.integration_galaxyline").enable_element()
+				has_statusline_with_integration = true
 			elseif (opt == "integration_gitgutter") then
 
 				local is_gitgutter_running = vim.api.nvim_eval("get(g:, 'gitgutter_enabled', 0)")
@@ -123,6 +124,8 @@ function ataraxis_true()		-- show
 					-- nothing either
 				end
 
+				has_statusline_with_integration = true
+
 			elseif (opt == "integration_vim_powerline") then
 
 
@@ -136,13 +139,19 @@ function ataraxis_true()		-- show
 					-- nothing either
 				end
 
+				has_statusline_with_integration = true
+
 			elseif (opt == "integration_express_line") then
 
 				require("true-zen.services.bottom.integrations.integration_express_line").enable_element()
 
+				has_statusline_with_integration = true
+
 			elseif (opt == "integration_limelight") then
 
 				require("true-zen.services.bottom.integrations.integration_limelight").disable_element()
+
+				has_statusline_with_integration = true
 
 			else
 				-- integration not recognized
@@ -190,7 +199,13 @@ function ataraxis_true()		-- show
 
 	--------------------------=== Hi Groups ===--------------------------
 
-	cmd("setlocal statusline="..current_statusline.."")
+
+	if (has_statusline_with_integration == true) then
+		-- ignore
+	else
+		cmd("setlocal statusline="..current_statusline.."")
+	end
+
 
 end
 
@@ -232,6 +247,8 @@ function ataraxis_false()		-- hide
 			if (opt == "integration_galaxyline") then
 
 				require("true-zen.services.bottom.integrations.integration_galaxyline").disable_element()
+
+				has_statusline_with_integration = true
 
 			elseif (opt == "integration_gitgutter") then
 
@@ -280,6 +297,7 @@ function ataraxis_false()		-- hide
 					-- nothing either
 				end
 
+				has_statusline_with_integration = true
 
 			elseif (opt == "integration_vim_powerline") then
 
@@ -293,13 +311,20 @@ function ataraxis_false()		-- hide
 					-- nothing either
 				end
 
+				has_statusline_with_integration = true
+
+
 			elseif (opt == "integration_express_line") then
 
 				require("true-zen.services.bottom.integrations.integration_express_line").disable_element()
 
+				has_statusline_with_integration = true
+
 			elseif (opt == "integration_limelight") then
 
 				require("true-zen.services.bottom.integrations.integration_limelight").enable_element()
+
+				has_statusline_with_integration = true
 
 			else
 				-- integration not recognized
@@ -424,10 +449,15 @@ function ataraxis_false()		-- hide
 	-- try to disable statuline regardless of which one is it
 	-- save statusline
 
-	current_statusline = vim.api.nvim_eval("&statusline")
 	-- cmd("echo 'Current st ="..tostring(current_statusline).."'")
 	-- cmd("setlocal statusline="..current_statusline.."")
-	cmd("setlocal statusline=-")
+	
+	if (has_statusline_with_integration == true) then
+		-- ignore
+	else
+		current_statusline = vim.api.nvim_eval("&statusline")
+		cmd("setlocal statusline=-")
+	end
 
 
 	-- everything will be skipped if there was more than one window open

@@ -27,13 +27,12 @@ function store_fillchars()
 
 	if (fillchars == "" or fillchars == '' or fillchars == " " or fillchars == ' ' or fillchars == nil) then
 		-- vim's default fillchars
-		cmd("echo 'I RAN'")
 		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
 	else
-		cmd("echo 'I RAN 2'")
 		fillchars_escaped_spaces = fillchars:gsub( ": ", ":\\ ")
-		fillchars_escaped_pipes = fillchars_escaped_spaces:gsub(":│", [[:\│]])
-		cmd("echo 'Fillchars scaped pipes = "..fillchars_escaped_pipes.."'")
+		fillchars_escaped_thicc_pipes = fillchars_escaped_spaces:gsub(":│", [[:\│]])
+		fillchars_escaped_thin_pipes = fillchars_escaped_thicc_pipes:gsub(":|", [[:\|]])
+		final_fillchars = fillchars_escaped_thin_pipes
 	end
 
 	fillchars_stored = true
