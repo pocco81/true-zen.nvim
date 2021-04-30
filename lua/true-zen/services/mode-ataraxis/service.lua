@@ -421,6 +421,7 @@ function ataraxis_false()		-- hide
 
 	-- try to disable statuline regardless of which one is it
 	-- save statusline
+	--
 	current_statusline = vim.api.nvim_eval("&statusline")
 	cmd("echo 'Current st ="..tostring(current_statusline).."'")
 	cmd("setlocal statusline=-")
