@@ -26,14 +26,10 @@ function store_fillchars()
 	local fillchars = vim.api.nvim_eval("&fillchars")
 
 	if (fillchars == "" or fillchars == '' or fillchars == " " or fillchars == ' ' or fillchars == nil) then
-
-		cmd("echo 'I RAN'")
+		-- vim's default fillchars
 		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
-		-- final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│]]
-		cmd("echo 'Final thing = "..final_fillchars.."'")
 	else
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
-		cmd("echo 'Final thing = "..final_fillchars.."'")
 	end
 
 	fillchars_stored = true
