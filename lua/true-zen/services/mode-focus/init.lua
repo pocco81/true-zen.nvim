@@ -64,6 +64,7 @@ local function focus_false()		-- unfocus window
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
 			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+			cmd("echo 'Ataraxis = "..ataraxis_is_toggled.."'")
 	
 			if (ataraxis_is_toggled == 1) then
 				require'true-zen.main'.main(4, 1)
