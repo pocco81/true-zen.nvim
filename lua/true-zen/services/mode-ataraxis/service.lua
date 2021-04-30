@@ -411,7 +411,7 @@ function ataraxis_false()		-- hide
 	mode_minimalist.main(2)
 
 	-- remove the border lines on every buffer
-	cmd([[call BufDo("set fillchars+=vert:\\ ")]])
+	-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 
 	-- hide whatever the user set to be hidden on the left hand side of vim
 	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
