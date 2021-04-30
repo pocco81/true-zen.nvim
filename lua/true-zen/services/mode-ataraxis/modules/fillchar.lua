@@ -28,7 +28,7 @@ function store_fillchars()
 	if (fillchars == "" or fillchars == '' or fillchars == " " or fillchars == ' ' or fillchars == nil) then
 
 		cmd("echo 'I RAN'")
-		final_fillchars = [[stl:\\ ,stlnc:\\ ,vert:\│,fold:·,foldopen:-,foldclose=+,foldsep=\|,diff=-,msgsep=\\ ,eob=~]]
+		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose=+,foldsep=\|,diff=-,msgsep=\ ,eob=~]]
 	else
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
 		cmd("echo 'Final thing = "..final_fillchars.."'")
