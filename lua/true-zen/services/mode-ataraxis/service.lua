@@ -188,13 +188,13 @@ local function save_hi_groups()
 	]], false)
 
 	hi_groups = {
-		'NonText',
-		'FoldColumn',
-		'ColorColumn',
-		'VertSplit',
-		'StatusLine',
-		'StatusLineNC',
-		'SignColumn'
+		NonText = {},
+		FoldColumn = {},
+		ColorColumn= {},
+		VertSplit = {},
+		StatusLine = {},
+		StatusLineNC = {},
+		SignColumn = {}
 	}
 
 	-- term != terminal; term = terminology
@@ -212,13 +212,15 @@ local function save_hi_groups()
 
 		for term_index, term_value in pairs(terms) do
 			-- local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
-			cmd("let b = ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')")
+			cmd("let b = ReturnHighlightTerm('"..hi_index.."', '"..term_value.."')")
 			local val = vim.api.nvim_eval("g:b")
 			-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 			cmd("echo 'Val = "..val.."'")
 		end
 
 	end
+
+	hi_gruops_stored = true
 	
 end
 
