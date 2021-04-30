@@ -230,7 +230,7 @@ local function save_hi_groups()
 		for hi_index, _ in pairs(hi_groups) do
 			-- cmd("echo 'Index = "..tostring(hi_index).."; Value = "..tostring(hi_value).."'")
 			for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
-				cmd("echo 'Index = "..tostring(inner_hi_index).."; Value = "..tostring(hi_groups[inner_hi_index]).."'")
+				cmd("echo 'Index = "..tostring(inner_hi_index).."; Value = "..tostring(hi_groups[hi_index][inner_hi_index]).."'")
 			end
 		end
 
