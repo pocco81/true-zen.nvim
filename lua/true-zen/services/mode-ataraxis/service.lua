@@ -451,8 +451,15 @@ function ataraxis_false()		-- hide
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
 		cmd("setlocal statusline=-")
+		goto no_need_to_force_hide_again
 	end
 
+	if (opts["ataraxis"]["force_hide_statusline"] == true) then
+		cmd("setlocal statusline=-")
+	end
+
+	-- if it was already forced
+	::no_need_to_force_hide_again::
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::

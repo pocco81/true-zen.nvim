@@ -43,7 +43,8 @@ config.options = {
 		custome_bg = "",
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
-		force_when_plus_one_window = false
+		force_when_plus_one_window = false,
+		force_hide_statusline = false
 	},
 	focus = {
 		margin_of_error = 5,
