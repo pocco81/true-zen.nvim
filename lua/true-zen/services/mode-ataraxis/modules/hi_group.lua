@@ -1,5 +1,9 @@
 
 
+
+local cmd = vim.cmd
+
+
 function store_hi_groups()
 
 	vim.api.nvim_exec([[
