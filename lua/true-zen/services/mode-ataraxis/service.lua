@@ -340,7 +340,7 @@ function ataraxis_false()		-- hide
 	cmd("leftabove vnew")
 	cmd(left_padding_cmd)
 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	fillchars()
+	-- fillchars()
 	-------------------- left buffer
 
 
