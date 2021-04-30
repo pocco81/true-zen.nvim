@@ -478,8 +478,6 @@ function ataraxis_false()		-- hide
 
 		if (opts["ataraxis"]["custome_bg"] == "" or opts["ataraxis"]["custome_bg"] == '' or opts["ataraxis"]["custome_bg"] == nil) then
 
-			save_hi_groups()
-
 			-- hide statusline color
 			cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 			-- hide horizontal fillchars' colors
