@@ -220,7 +220,19 @@ local function save_hi_groups()
 
 	end
 
-	hi_gruops_stored = true
+	hi_groups_stored = true
+
+	if (hi_groups_stored == false or hi_groups_stored == nil) then
+
+	elseif (hi_groups_stored == true) then
+		cmd("echo '<Space>'")
+		for hi_index, hi_value in pairs(hi_groups) do
+			for inner_hi_index, inner_hi_value in pairs(hi_groups_stored[hi_index]) do
+				cmd("echo 'Index = "..inner_hi_index.."; Value = "..inner_hi_value.."'")
+			end
+		end
+
+	end
 	
 end
 
