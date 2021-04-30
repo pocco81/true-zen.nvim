@@ -190,6 +190,8 @@ function ataraxis_true()		-- show
 
 	--------------------------=== Hi Groups ===--------------------------
 
+	cmd("setlocal statusline="..current_statusline.."")
+
 end
 
 
