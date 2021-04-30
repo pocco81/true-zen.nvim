@@ -216,6 +216,11 @@ local function save_hi_groups()
 			local term_val = vim.api.nvim_eval("g:term_val")
 			-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 			cmd("echo 'Val = "..term_val.."'")
+
+			if (term_val == "" or term_val == '') then
+				term_val = "NONE"
+			end
+
 			table.insert(hi_groups[hi_index], term_val)
 		end
 
