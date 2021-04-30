@@ -30,6 +30,7 @@ function store_fillchars()
 		cmd("echo 'I RAN'")
 		-- final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose=+,foldsep=\|,diff=-,msgsep=\ ,eob=~]]
 		final_fillchars = [[stl:\ ,stlnc:\ ]]
+		cmd("echo 'Final thing = "..final_fillchars.."'")
 	else
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
 		cmd("echo 'Final thing = "..final_fillchars.."'")
