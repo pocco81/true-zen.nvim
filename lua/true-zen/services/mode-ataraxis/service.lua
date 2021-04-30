@@ -190,7 +190,7 @@ function ataraxis_true()		-- show
 
 	--------------------------=== Hi Groups ===--------------------------
 
-	cmd("setlocal statusline="..current_statusline.."")
+	-- cmd("setlocal statusline="..current_statusline.."")
 
 end
 
@@ -424,10 +424,10 @@ function ataraxis_false()		-- hide
 	-- try to disable statuline regardless of which one is it
 	-- save statusline
 
-	current_statusline = vim.api.nvim_eval("&statusline")
+	-- current_statusline = vim.api.nvim_eval("&statusline")
 	-- cmd("echo 'Current st ="..tostring(current_statusline).."'")
 	-- cmd("setlocal statusline="..current_statusline.."")
-	cmd("setlocal statusline=-")
+	-- cmd("setlocal statusline=-")
 
 
 	-- everything will be skipped if there was more than one window open
