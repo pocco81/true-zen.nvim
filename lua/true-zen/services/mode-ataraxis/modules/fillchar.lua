@@ -6,10 +6,18 @@ local cmd = vim.cmd
 
 
 function set_fillchars()
-	cmd([[set fillchars+=vert:\ ]])
+
 	cmd([[set fillchars+=stl:\ ]])
 	cmd([[set fillchars+=stlnc:\ ]])
+	cmd([[set fillchars+=vert:\ ]])
+	cmd([[set fillchars+=fold:\ ]])
+	cmd([[set fillchars+=foldopen:\ ]])
+	cmd([[set fillchars+=foldclose:\ ]])
+	cmd([[set fillchars+=foldsep:\ ]])
+	cmd([[set fillchars+=diff:\ ]])
+	cmd([[set fillchars+=msgsep:\ ]])
 	cmd([[set fillchars+=eob:\ ]])
+
 end
 
 
