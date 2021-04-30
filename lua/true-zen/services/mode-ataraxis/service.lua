@@ -210,9 +210,9 @@ local function save_hi_groups()
 
 	for hi_index, _ in pairs(hi_groups) do
 
-		for term_index, term_value in pairs(terms) do
+		for term_index, _ in pairs(terms) do
 			-- local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
-			cmd("let term_val = ReturnHighlightTerm('"..hi_index.."', '"..term_value.."')")
+			cmd("let term_val = ReturnHighlightTerm('"..hi_index.."', '"..terms[term_index].."')")
 			local term_val = vim.api.nvim_eval("g:term_val")
 			-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 			cmd("echo 'Val = "..term_val.."'")
