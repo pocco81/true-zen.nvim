@@ -40,13 +40,19 @@
 
 <kbd><img src ="https://i.imgur.com/vvq4CLr.png"></kbd>
 <p align="center">
-	Ataraxis Mode on
+	Ataraxis Mode
 </p><hr>
 
 <kbd><img src ="https://i.imgur.com/qYf0nE1.png"></kbd>
 <p align="center">
-	Minimalist Mode on
+	Minimalist Mode
 </p>
+
+<kbd><img src ="https://i.imgur.com/ALDtKie.gif"></kbd>
+<p align="center">
+	Ataraxis Mode
+</p>
+
 
 # TL;DR
 
