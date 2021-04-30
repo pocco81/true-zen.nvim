@@ -27,8 +27,10 @@ function store_fillchars()
 
 	if (fillchars == "" or fillchars == '' or fillchars == " " or fillchars == ' ' or fillchars == nil) then
 		-- vim's default fillchars
+		cmd("echo 'I RAN'")
 		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
 	else
+		cmd("echo 'I RAN 2'")
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
 	end
 
