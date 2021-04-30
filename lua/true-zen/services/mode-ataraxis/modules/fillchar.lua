@@ -31,7 +31,9 @@ function store_fillchars()
 		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
 	else
 		cmd("echo 'I RAN 2'")
-		final_fillchars = fillchars:gsub( ": ", ":\\ ")
+		fillchars_escaped_spaces = fillchars:gsub( ": ", ":\\ ")
+		fillchars_escaped_pipes = fillchars_escaped_spaces:gsub(":│", [[:\│]])
+		cmd("echo 'Fillchars scaped pipes = "..fillchars_escaped_pipes.."'")
 	end
 
 	fillchars_stored = true
