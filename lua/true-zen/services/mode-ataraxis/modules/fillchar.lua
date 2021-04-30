@@ -26,6 +26,7 @@ function store_fillchars()
 	local fillchars = vim.api.nvim_eval("&fillchars")
 
 	if (fillchars == "" or fillchars == '' or fillchars == " " or fillchars == ' ') then
+		cmd("echo 'I RAN'")
 		final_fillchars = 'stl:\\ ,stlnc:\\ ,vert:|,fold:·,foldopen:-,foldclose=+,foldsep=|,diff=-,msgsep=\\ ,eob=~'
 	else
 		final_fillchars = fillchars:gsub( ": ", ":\\ ")
