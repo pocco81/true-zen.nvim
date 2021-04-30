@@ -32,9 +32,10 @@ local function focus_true()		-- focus window
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
 			-- nil if it hasn't been toggled
-			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+			ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
 			if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
 				require'true-zen.main'.main(4, 2)
+				ataraxis_is_toggled = 1
 			end
 
 		end
@@ -63,8 +64,8 @@ local function focus_false()		-- unfocus window
 
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
-			local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
-			cmd("echo 'Ataraxis = "..ataraxis_is_toggled.."'")
+			-- local ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+			-- cmd("echo 'Ataraxis = "..ataraxis_is_toggled.."'")
 			-- test
 	
 			if (ataraxis_is_toggled == 1) then
