@@ -211,8 +211,9 @@ local function save_hi_groups()
 	for hi_index, hi_value in pairs(hi_groups) do
 
 		for term_index, term_value in pairs(terms) do
-			local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
-			local val = cmd(to_call)
+			-- local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
+			local val = cmd("call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')")
+			-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 			cmd("echo 'Val = "..val.."'")
 		end
 
