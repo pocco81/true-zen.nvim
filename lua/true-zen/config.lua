@@ -55,7 +55,7 @@ config.options = {
 		before_minimalist_mode_shown = false,
 		before_minimalist_mode_hidden = false,
 		after_minimalist_mode_shown = false,
-		after_minimalist_mode_hidden = false,
+		after_minimalist_mode_hidden = false
 	},
 	integrations = {
 		integration_galaxyline = false,
