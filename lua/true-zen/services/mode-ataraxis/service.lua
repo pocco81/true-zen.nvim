@@ -174,6 +174,54 @@ function ataraxis_true()		-- show
 
 end
 
+
+local function save_hi_groups()
+
+	vim.api.nvim_exec([[
+		function! ReturnHighlightTerm(group, term)
+			" Store output of group to variable
+			let output = execute('hi ' . a:group)
+
+			" Find the term we're looking for
+			return matchstr(output, a:term.'=\zs\S*')
+		endfunction
+	]], false)
+
+	hi_groups = {
+		'NonText',
+		'FoldColumn',
+		'ColorColumn',
+		'VertSplit',
+		'StatusLine',
+		'StatusLineNC',
+		'SignColumn'
+	}
+
+	-- term != terminal; term = terminology
+	terms = {
+		'cterm',
+		'ctermbg',
+		'ctermfg',
+		'guibg',
+		'guifg',
+		'gui'
+	}
+
+
+	for hi_index, hi_value in pairs(hi_groups) do
+
+		for term_index, term_value in pairs(terms) do
+			local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
+			local val = cmd(to_call)
+			cmd("echo 'Val = "..val.."'")
+		end
+
+	end
+	
+end
+
+
+
 function ataraxis_false()		-- hide
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
@@ -380,6 +428,9 @@ function ataraxis_false()		-- hide
 	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
 		
 		if (opts["ataraxis"]["custome_bg"] == "" or opts["ataraxis"]["custome_bg"] == '' or opts["ataraxis"]["custome_bg"] == nil) then
+
+			save_hi_groups()
+
 			-- hide statusline color
 			cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
 			-- hide horizontal fillchars' colors
