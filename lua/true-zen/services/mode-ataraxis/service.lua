@@ -424,8 +424,8 @@ function ataraxis_false()		-- hide
 
 	current_statusline = vim.api.nvim_eval("&statusline")
 	-- cmd("echo 'Current st ="..tostring(current_statusline).."'")
-	cmd("setlocal statusline="..current_statusline.."")
-	-- cmd("setlocal statusline=-")
+	-- cmd("setlocal statusline="..current_statusline.."")
+	cmd("setlocal statusline=-")
 
 
 	-- everything will be skipped if there was more than one window open
