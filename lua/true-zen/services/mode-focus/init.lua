@@ -60,7 +60,6 @@ local function focus_false()		-- unfocus window
 
 	elseif (focus_method == "experimental" or focus_method == "Experimental") then
 		focus_show = 0
-		service.experimental_focus_false()
 
 		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
 
@@ -71,6 +70,9 @@ local function focus_false()		-- unfocus window
 			end
 
 		end
+
+		service.experimental_focus_false()
+
 	end
 
 end
