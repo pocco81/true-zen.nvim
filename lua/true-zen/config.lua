@@ -3,7 +3,6 @@
 local config = {}
 
 
--- e.g.: when hidden show ruler
 config.options = {
     true_false_commands = false,
 	cursor_by_mode = false,
@@ -44,14 +43,11 @@ config.options = {
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
 		force_when_plus_one_window = false,
-		force_hide_statusline = false
+		force_hide_statusline = true
 	},
 	focus = {
 		margin_of_error = 5,
-		focus_method = "native"
-	},
-	minimalist = {
-		save_and_restore_settings_when_untoggled = false,
+		focus_method = "experimental"
 	},
 	events = {
 		before_minimalist_mode_shown = false,
