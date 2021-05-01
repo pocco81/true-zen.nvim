@@ -162,11 +162,17 @@ function ataraxis_true()		-- show
 
 				if (gs_config.current_line_blame == false) then
 					gs_integration.toggle_element(0)
-				elseif (gs_config.numhl == false) then
+				end
+
+				if (gs_config.numhl == false) then
 					gs_integration.toggle_element(1)
-				elseif (gs_config.linehl == false) then
+				end
+
+				if (gs_config.linehl == false) then
 					gs_integration.toggle_element(2)
-				elseif (gs_config.signs == false) then
+				end
+				
+				if (gs_config.signs == false) then
 					gs_integration.toggle_element(3)
 				end
 
@@ -351,11 +357,17 @@ function ataraxis_false()		-- hide
 
 				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
-				elseif (gs_config.numhl == true) then
+				end
+				
+				if (gs_config.numhl == true) then
 					gs_integration.toggle_element(1)
-				elseif (gs_config.linehl == true) then
+				end
+				
+				if (gs_config.linehl == true) then
 					gs_integration.toggle_element(2)
-				elseif (gs_config.signs == true) then
+				end
+
+				if (gs_config.signs == true) then
 					gs_integration.toggle_element(3)
 				end
 
