@@ -94,7 +94,7 @@
 - Three different modes!
 	- Minimalist mode: hides UI components.
 	- Focus mode: maximizes current window. (offers two different focusing methods)
-	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff.
+	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff (e.g. setting an ideal writing area width).
 		- Padding can be set manually or automatically.
 - Highly customizable
 - Can deactivate UI components separately
@@ -190,6 +190,7 @@ left = {
 	shown_signcolumn = "no"
 },
 ataraxis = {
+	ideal_writing_area_width = 0
 	just_do_it_for_me = false,
 	left_padding = 40,
 	right_padding = 40,
@@ -267,6 +268,7 @@ true_zen.setup({
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
+		ideal_writing_area_width = 0,
 		just_do_it_for_me = false,
 		left_padding = 40,
 		right_padding = 40,
@@ -346,6 +348,7 @@ true_zen.setup({
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
+		ideal_writing_area_width = 0,
 		just_do_it_for_me = false,
 		left_padding = 40,
 		right_padding = 40,
@@ -504,6 +507,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 
 
 ## Ataraxis
+- `ideal_writing_area_width`: (Integer) sets an ideal width for the writing area. Setting it to `0` disables it, any number greater than `0` does the opposite, which will then ignore the `just_do_it_for_me`, the `left_padding`, and the `right_padding` settings for obvious reasons. For example: if you set it to `20` you will always get a writing area or `20` and both the `left` and the `right` hand side paddings will be set automatically. This feature is useful for people with various monitors with different sizes.
 - `just_do_it_for_me`: (Boolean) if set to true, will ignore `left_padding` and `right_padding` and will set them for you.
 - `left_padding`: (Integer) sets padding for the left.
 - `right_padding`: (Integer) sets padding for the right.
