@@ -152,12 +152,13 @@ function ataraxis_true()		-- show
 				require("true-zen.services.bottom.integrations.integration_limelight").disable_element()
 
 				has_statusline_with_integration = true
+
 			elseif (opt == "integration_gitsigns") then
 
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo 'GS Linehl = "..tostring(gs_config.linehl).."'")
+				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
 
 				if (gs_config.current_line_blame == false) then
 					gs_integration.toggle_element(0)
@@ -346,7 +347,7 @@ function ataraxis_false()		-- hide
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo 'GS Linehl = "..tostring(gs_config.linehl).."'")
+				cmd("echo '(1) - GS Linehl = "..tostring(gs_config.linehl).."'")
 
 				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
