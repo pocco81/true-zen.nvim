@@ -71,6 +71,55 @@ function ataraxis_true()		-- show
 	end
 
 
+	--------------------------=== Splits stuff ===--------------------------
+		-- return splitbelow and splitright to user settings:
+	if (is_splitbelow_set == 1) then
+		-- it's already set
+		-- cmd("set splitbelow")
+	elseif (is_splitbelow_set == 0) then
+		cmd("set nosplitbelow")
+	end
+
+
+	if (is_splitright_set == 1) then
+		-- it's already set
+		-- cmd("set splitright")
+	elseif (is_splitright_set == 0) then
+		cmd("set nosplitright")
+	end
+	--------------------------=== Splits stuff ===--------------------------
+
+
+	--------------------------=== Fill chars ===--------------------------
+
+	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
+		fillchar.restore_fillchars()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Fill chars ===--------------------------
+
+
+	--------------------------=== Hi Groups ===--------------------------
+
+	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
+		hi_group.restore_hi_groups()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Hi Groups ===--------------------------
+
+
+	if (has_statusline_with_integration == true) then
+		-- ignore
+	else
+		cmd("setlocal statusline="..current_statusline.."")
+	end
+
+
+
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
@@ -153,61 +202,44 @@ function ataraxis_true()		-- show
 
 				has_statusline_with_integration = true
 
-			-- elseif (opt == "integration_gitsigns") then
+			elseif (opt == "integration_gitsigns") then
 
-			-- 	local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
-			-- 	local gs_config = require("gitsigns")._get_config()
+				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
+				local gs_config = require("gitsigns")._get_config()
 
-			-- 	cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
+				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
 
-			-- 	if (gs_ps_current_line_blame == nil) then
-			-- 		gs_integration.toggle_element(0)
-			-- 	else
-			-- 		if (gs_ps_current_line_blame == false) then
-			-- 			-- it's already false
-			-- 		end
-			-- 	end
+				if (gs_ps_current_line_blame == nil) then
+					gs_integration.toggle_element(0)
+				else
+					if (gs_ps_current_line_blame == false) then
+						-- it's already false
+					end
+				end
 
-			-- 	if (gs_ps_numhl == nil) then
-			-- 		gs_integration.toggle_element(1)
-			-- 	else
-			-- 		if (gs_ps_current_line_blame == false) then
-			-- 			-- it's already false
-			-- 		end
-			-- 	end
+				if (gs_ps_numhl == nil) then
+					gs_integration.toggle_element(1)
+				else
+					if (gs_ps_current_line_blame == false) then
+						-- it's already false
+					end
+				end
 
-			-- 	if (gs_ps_linehl == nil) then
-			-- 		gs_integration.toggle_element(2)
-			-- 	else
-			-- 		if (gs_ps_linehl == false) then
-			-- 			-- it's already false
-			-- 		end
-			-- 	end
+				if (gs_ps_linehl == nil) then
+					gs_integration.toggle_element(2)
+				else
+					if (gs_ps_linehl == false) then
+						-- it's already false
+					end
+				end
 
-			-- 	if (gs_ps_signs == nil) then
-			-- 		gs_integration.toggle_element(3)
-			-- 	else
-			-- 		if (gs_ps_signs == false) then
-			-- 			-- it's already false
-			-- 		end
-			-- 	end
-
-
-				-- if (gs_config.current_line_blame == false) then
-				-- 	gs_integration.toggle_element(0)
-				-- end
-
-				-- if (gs_config.numhl == false) then
-				-- 	gs_integration.toggle_element(1)
-				-- end
-
-				-- if (gs_config.linehl == false) then
-				-- 	gs_integration.toggle_element(2)
-				-- end
-				
-				-- if (gs_config.signs == false) then
-				-- 	gs_integration.toggle_element(3)
-				-- end
+				if (gs_ps_signs == nil) then
+					gs_integration.toggle_element(3)
+				else
+					if (gs_ps_signs == false) then
+						-- it's already false
+					end
+				end
 
 			else
 				-- integration not recognized
@@ -216,91 +248,6 @@ function ataraxis_true()		-- show
 			-- ignore it
 		end
 	end
-		
-	-- return splitbelow and splitright to user settings:
-	if (is_splitbelow_set == 1) then
-		-- it's already set
-		-- cmd("set splitbelow")
-	elseif (is_splitbelow_set == 0) then
-		cmd("set nosplitbelow")
-	end
-
-
-	if (is_splitright_set == 1) then
-		-- it's already set
-		-- cmd("set splitright")
-	elseif (is_splitright_set == 0) then
-		cmd("set nosplitright")
-	end
-
-
-	--------------------------=== Fill chars ===--------------------------
-
-	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
-		fillchar.restore_fillchars()
-	else
-		-- nothing
-	end
-
-	--------------------------=== Fill chars ===--------------------------
-
-
-	--------------------------=== Hi Groups ===--------------------------
-
-	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
-		hi_group.restore_hi_groups()
-	else
-		-- nothing
-	end
-
-	--------------------------=== Hi Groups ===--------------------------
-
-
-	if (has_statusline_with_integration == true) then
-		-- ignore
-	else
-		cmd("setlocal statusline="..current_statusline.."")
-	end
-
-
-
-	local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
-	local gs_config = require("gitsigns")._get_config()
-
-	cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
-
-	if (gs_ps_current_line_blame == nil) then
-		gs_integration.toggle_element(0)
-	else
-		if (gs_ps_current_line_blame == false) then
-			-- it's already false
-		end
-	end
-
-	if (gs_ps_numhl == nil) then
-		gs_integration.toggle_element(1)
-	else
-		if (gs_ps_current_line_blame == false) then
-			-- it's already false
-		end
-	end
-
-	if (gs_ps_linehl == nil) then
-		gs_integration.toggle_element(2)
-	else
-		if (gs_ps_linehl == false) then
-			-- it's already false
-		end
-	end
-
-	if (gs_ps_signs == nil) then
-		gs_integration.toggle_element(3)
-	else
-		if (gs_ps_signs == false) then
-			-- it's already false
-		end
-	end
-
 
 end
 
