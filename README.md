@@ -38,26 +38,26 @@
 </p>
 
 
-<kbd><img src ="https://i.imgur.com/vvq4CLr.png"></kbd>
+<kbd><img src ="https://i.imgur.com/n71fn6R.png"></kbd>
 <p align="center">
 	Ataraxis Mode
 </p><hr>
 
-<kbd><img src ="https://i.imgur.com/qYf0nE1.png"></kbd>
+<kbd><img src ="https://i.imgur.com/q0MoTfN.png"></kbd>
 <p align="center">
 	Minimalist Mode
 </p>
 
 <kbd><img src ="https://i.imgur.com/ALDtKie.gif"></kbd>
 <p align="center">
-	Ataraxis Mode
+	Focus Mode
 </p>
 
 
 # TL;DR
 
 <div style="text-align: justify">
-	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's two different modes (minimalist mode and ataraxis mode). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
+	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's three different modes (Ataraxis, Minimalist and Focus). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
 </div>
 
 
@@ -93,9 +93,9 @@
 
 # 🎁 Features
 - Hide UI components (e.g. statusline, numbers, buffer list).
-- Two different modes!
+- Three different modes!
 	- Minimalist mode: hides UI components.
-	- Focus mode: maximizes current window.
+	- Focus mode: maximizes current window. (offers two different focusing methods)
 	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff.
 		- Padding can be set manually or automatically.
 - Highly customizable
@@ -123,6 +123,7 @@
 	- Gitgutter integration
 	- Vim Signify integration
 	- Limelight integration
+	- TZFocus and TZAtaraxis integration
 
 
 # 📦 Installation
@@ -200,10 +201,15 @@ ataraxis = {
 	right_padding = 40,
 	top_padding = 0,
 	bottom_padding = 0,
-	custome_bg = ""
+	custome_bg = "",
+	disable_bg_configuration = false,
+	disable_fillchars_configuration = false,
+	force_when_plus_one_window = false,
+	force_hide_statusline = false
 },
 focus = {
-	margin_of_error = 5
+	margin_of_error = 5,
+	focus_method = "native"
 },
 integrations = {
 	integration_galaxyline = false,
@@ -218,6 +224,23 @@ integrations = {
 ```
 
 The way you setup the settings on your config varies on whether you are using vimL for this or Lua.
+
+
+
+<details>
+    <summary>For init.lua</summary>
+<p>
+
+```
+
+```
+<br />
+</details>
+
+
+
+
+
 
 ### For init.lua
 ```lua
@@ -263,6 +286,11 @@ true_zen.setup({
 		top_padding = 0,
 		bottom_padding = 0,
 		custome_bg = ""
+		custome_bg = "",
+		disable_bg_configuration = false,
+		disable_fillchars_configuration = false,
+		force_when_plus_one_window = false,
+		force_hide_statusline = false
 	},
 	focus = {
 		margin_of_error = 5
