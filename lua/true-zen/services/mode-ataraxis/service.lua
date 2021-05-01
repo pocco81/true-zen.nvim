@@ -153,44 +153,44 @@ function ataraxis_true()		-- show
 
 				has_statusline_with_integration = true
 
-			elseif (opt == "integration_gitsigns") then
+			-- elseif (opt == "integration_gitsigns") then
 
-				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
-				local gs_config = require("gitsigns")._get_config()
+			-- 	local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
+			-- 	local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
+			-- 	cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
 
-				if (gs_ps_current_line_blame == nil) then
-					gs_integration.toggle_element(0)
-				else
-					if (gs_ps_current_line_blame == false) then
-						-- it's already false
-					end
-				end
+			-- 	if (gs_ps_current_line_blame == nil) then
+			-- 		gs_integration.toggle_element(0)
+			-- 	else
+			-- 		if (gs_ps_current_line_blame == false) then
+			-- 			-- it's already false
+			-- 		end
+			-- 	end
 
-				if (gs_ps_numhl == nil) then
-					gs_integration.toggle_element(1)
-				else
-					if (gs_ps_current_line_blame == false) then
-						-- it's already false
-					end
-				end
+			-- 	if (gs_ps_numhl == nil) then
+			-- 		gs_integration.toggle_element(1)
+			-- 	else
+			-- 		if (gs_ps_current_line_blame == false) then
+			-- 			-- it's already false
+			-- 		end
+			-- 	end
 
-				if (gs_ps_linehl == nil) then
-					gs_integration.toggle_element(2)
-				else
-					if (gs_ps_linehl == false) then
-						-- it's already false
-					end
-				end
+			-- 	if (gs_ps_linehl == nil) then
+			-- 		gs_integration.toggle_element(2)
+			-- 	else
+			-- 		if (gs_ps_linehl == false) then
+			-- 			-- it's already false
+			-- 		end
+			-- 	end
 
-				if (gs_ps_signs == nil) then
-					gs_integration.toggle_element(3)
-				else
-					if (gs_ps_signs == false) then
-						-- it's already false
-					end
-				end
+			-- 	if (gs_ps_signs == nil) then
+			-- 		gs_integration.toggle_element(3)
+			-- 	else
+			-- 		if (gs_ps_signs == false) then
+			-- 			-- it's already false
+			-- 		end
+			-- 	end
 
 
 				-- if (gs_config.current_line_blame == false) then
@@ -260,6 +260,45 @@ function ataraxis_true()		-- show
 		-- ignore
 	else
 		cmd("setlocal statusline="..current_statusline.."")
+	end
+
+
+
+	local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
+	local gs_config = require("gitsigns")._get_config()
+
+	cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
+
+	if (gs_ps_current_line_blame == nil) then
+		gs_integration.toggle_element(0)
+	else
+		if (gs_ps_current_line_blame == false) then
+			-- it's already false
+		end
+	end
+
+	if (gs_ps_numhl == nil) then
+		gs_integration.toggle_element(1)
+	else
+		if (gs_ps_current_line_blame == false) then
+			-- it's already false
+		end
+	end
+
+	if (gs_ps_linehl == nil) then
+		gs_integration.toggle_element(2)
+	else
+		if (gs_ps_linehl == false) then
+			-- it's already false
+		end
+	end
+
+	if (gs_ps_signs == nil) then
+		gs_integration.toggle_element(3)
+	else
+		if (gs_ps_signs == false) then
+			-- it's already false
+		end
 	end
 
 
