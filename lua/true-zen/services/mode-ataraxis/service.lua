@@ -524,6 +524,9 @@ function ataraxis_false()		-- hide
 
 	--------------------------=== Hi Groups ===--------------------------
 
+
+
+	-- statusline stuff
 	if (has_statusline_with_integration == true) then
 		-- ignore
 	else
