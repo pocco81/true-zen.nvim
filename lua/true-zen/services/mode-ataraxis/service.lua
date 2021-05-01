@@ -416,21 +416,43 @@ function ataraxis_false()		-- hide
 	local left_padding_cmd = ""
 	local right_padding_cmd = ""
 
-	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-		-- calculate padding
-		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
-		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
-
-		-- set padding
-		left_padding_cmd = "vertical resize "..calculated_left_padding..""
-		right_padding_cmd = "vertical resize "..calculated_right_padding..""
-
-	else
+	if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
 		-- stuff
-		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
-	end
+		local window_width = vim.api.nvim_eval("winwidth('%')")
+		local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
 
+		if (ideal_writing_area_width == window_width) then
+			cmd("echo 'TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than "..window_width.."'")
+		else
+			total_left_right_width = window_width - ideal_writing_area_width
+			
+			if (total_left_right_width % 2 > 0) then
+				total_left_right_width = total_left_right_width + 1
+			end
+
+			local calculated_left_padding = total_left_right_width / 2
+			local calculated_right_padding = total_left_right_width / 2
+
+			left_padding_cmd = "vertical resize "..calculated_left_padding..""
+			right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+		end
+	else
+		if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+			-- calculate padding
+			local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+			local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+
+			-- set padding
+			left_padding_cmd = "vertical resize "..calculated_left_padding..""
+			right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+		else
+			-- stuff
+			left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+		end
+	end
 
 
 	-------------------- left buffer
