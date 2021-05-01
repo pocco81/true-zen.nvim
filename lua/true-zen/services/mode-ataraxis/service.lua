@@ -387,6 +387,10 @@ function ataraxis_false()		-- hide
 				local gs_config = require("gitsigns")._get_config()
 
 				cmd("echo '(1) GS Linehl = "..tostring(gs_config.linehl).."'")
+				gs_ps_current_line_blame = nil
+				gs_ps_numhl = nil
+				gs_ps_linehl = nil
+				gs_ps_signs = nil
 
 				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
