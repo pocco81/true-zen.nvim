@@ -160,21 +160,54 @@ function ataraxis_true()		-- show
 
 				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
 
-				if (gs_config.current_line_blame == false) then
+				if (gs_ps_current_line_blame == nil) then
 					gs_integration.toggle_element(0)
+				else
+					if (gs_ps_current_line_blame == false) then
+						-- it's already false
+					end
 				end
 
-				if (gs_config.numhl == false) then
+				if (gs_ps_numhl == nil) then
 					gs_integration.toggle_element(1)
+				else
+					if (gs_ps_current_line_blame == false) then
+						-- it's already false
+					end
 				end
 
-				if (gs_config.linehl == false) then
+				if (gs_ps_linehl == nil) then
 					gs_integration.toggle_element(2)
+				else
+					if (gs_ps_linehl == false) then
+						-- it's already false
+					end
 				end
-				
-				if (gs_config.signs == false) then
+
+				if (gs_ps_signs == nil) then
 					gs_integration.toggle_element(3)
+				else
+					if (gs_ps_signs == false) then
+						-- it's already false
+					end
 				end
+
+
+				-- if (gs_config.current_line_blame == false) then
+				-- 	gs_integration.toggle_element(0)
+				-- end
+
+				-- if (gs_config.numhl == false) then
+				-- 	gs_integration.toggle_element(1)
+				-- end
+
+				-- if (gs_config.linehl == false) then
+				-- 	gs_integration.toggle_element(2)
+				-- end
+				
+				-- if (gs_config.signs == false) then
+				-- 	gs_integration.toggle_element(3)
+				-- end
 
 			else
 				-- integration not recognized
@@ -357,18 +390,26 @@ function ataraxis_false()		-- hide
 
 				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
+				else
+					gs_ps_current_line_blame = false
 				end
 				
 				if (gs_config.numhl == true) then
 					gs_integration.toggle_element(1)
+				else
+					gs_ps_numhl = false
 				end
 				
 				if (gs_config.linehl == true) then
 					gs_integration.toggle_element(2)
+				else
+					gs_ps_linehl = false
 				end
 
 				if (gs_config.signs == true) then
 					gs_integration.toggle_element(3)
+				else
+					gs_ps_signs = false
 				end
 
 			else
