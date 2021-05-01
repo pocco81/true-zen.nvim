@@ -282,6 +282,148 @@ function ataraxis_false()		-- hide
 		-- continue
 	end
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
+	
+
+
+
+
+	local left_padding_cmd = ""
+	local right_padding_cmd = ""
+
+	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+		-- calculate padding
+		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+
+		-- set padding
+		left_padding_cmd = "vertical resize "..calculated_left_padding..""
+		right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+	else
+		-- stuff
+		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+	end
+
+
+
+	-------------------- left buffer
+	cmd("leftabove vnew")
+	cmd(left_padding_cmd)
+	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	-- fillchars()
+	-------------------- left buffer
+
+
+
+
+	-- return to middle buffer
+	cmd("wincmd l")
+
+
+
+
+	-------------------- right buffer
+	cmd("vnew")
+	cmd(right_padding_cmd)
+	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	-- fillchars()
+	-------------------- right buffer
+
+
+
+	-- return to middle buffer
+	cmd("wincmd h")
+
+	
+	if (opts["ataraxis"]["top_padding"] > 0) then
+		local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+		cmd("leftabove new")
+		cmd(top_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		-- fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd j")
+	elseif (opts["ataraxis"]["top_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+	if (opts["ataraxis"]["bottom_padding"] > 0) then
+		local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+		cmd("rightbelow new")
+		cmd(bottom_padding_cmd)
+		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+		-- fillchars()
+
+		-- return to middle buffer
+		cmd("wincmd k")
+	elseif (opts["ataraxis"]["bottom_padding"] == 0) then
+		-- do nothing
+	else
+		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	end
+
+
+	--------------------------=== Fill chars ===--------------------------
+
+	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
+		fillchar.store_fillchars()
+		fillchar.set_fillchars()
+	else
+		-- nothing
+	end
+
+	--------------------------=== Fill chars ===--------------------------
+
+
+	mode_minimalist.main(2)
+
+	-- remove the border lines on every buffer
+	-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
+
+	-- hide whatever the user set to be hidden on the left hand side of vim
+	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
+
+	--------------------------=== Hi Groups ===--------------------------
+
+	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
+		hi_group.store_hi_groups()
+		hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
+	else
+		-- nothing
+	end
+
+	--------------------------=== Hi Groups ===--------------------------
+
+	if (has_statusline_with_integration == true) then
+		-- ignore
+	else
+		current_statusline = vim.api.nvim_eval("&statusline")
+		cmd("setlocal statusline=-")
+		goto no_need_to_force_hide_again
+	end
+
+	if (opts["ataraxis"]["force_hide_statusline"] == true) then
+		cmd("setlocal statusline=-")
+	end
+
+	-- if it was already forced
+	::no_need_to_force_hide_again::
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	--------------------------=== Integrations ===--------------------------
@@ -412,131 +554,131 @@ function ataraxis_false()		-- hide
 	--------------------------=== Integrations ===--------------------------
 
 
-	local left_padding_cmd = ""
-	local right_padding_cmd = ""
+	--local left_padding_cmd = ""
+	--local right_padding_cmd = ""
 
-	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-		-- calculate padding
-		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
-		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+	--if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+	--	-- calculate padding
+	--	local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+	--	local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
 
-		-- set padding
-		left_padding_cmd = "vertical resize "..calculated_left_padding..""
-		right_padding_cmd = "vertical resize "..calculated_right_padding..""
+	--	-- set padding
+	--	left_padding_cmd = "vertical resize "..calculated_left_padding..""
+	--	right_padding_cmd = "vertical resize "..calculated_right_padding..""
 
-	else
-		-- stuff
-		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
-	end
-
-
-
-	-------------------- left buffer
-	cmd("leftabove vnew")
-	cmd(left_padding_cmd)
-	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	-- fillchars()
-	-------------------- left buffer
+	--else
+	--	-- stuff
+	--	left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+	--	right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+	--end
 
 
 
-
-	-- return to middle buffer
-	cmd("wincmd l")
+	---------------------- left buffer
+	--cmd("leftabove vnew")
+	--cmd(left_padding_cmd)
+	--cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	---- fillchars()
+	---------------------- left buffer
 
 
 
 
-	-------------------- right buffer
-	cmd("vnew")
-	cmd(right_padding_cmd)
-	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	-- fillchars()
-	-------------------- right buffer
+	---- return to middle buffer
+	--cmd("wincmd l")
 
 
 
-	-- return to middle buffer
-	cmd("wincmd h")
+
+	---------------------- right buffer
+	--cmd("vnew")
+	--cmd(right_padding_cmd)
+	--cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	---- fillchars()
+	---------------------- right buffer
+
+
+
+	---- return to middle buffer
+	--cmd("wincmd h")
 
 	
-	if (opts["ataraxis"]["top_padding"] > 0) then
-		local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
-		cmd("leftabove new")
-		cmd(top_padding_cmd)
-		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-		-- fillchars()
+	--if (opts["ataraxis"]["top_padding"] > 0) then
+	--	local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+	--	cmd("leftabove new")
+	--	cmd(top_padding_cmd)
+	--	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	--	-- fillchars()
 
-		-- return to middle buffer
-		cmd("wincmd j")
-	elseif (opts["ataraxis"]["top_padding"] == 0) then
-		-- do nothing
-	else
-		cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
-	end
+	--	-- return to middle buffer
+	--	cmd("wincmd j")
+	--elseif (opts["ataraxis"]["top_padding"] == 0) then
+	--	-- do nothing
+	--else
+	--	cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	--end
 
-	if (opts["ataraxis"]["bottom_padding"] > 0) then
-		local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
-		cmd("rightbelow new")
-		cmd(bottom_padding_cmd)
-		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-		-- fillchars()
+	--if (opts["ataraxis"]["bottom_padding"] > 0) then
+	--	local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+	--	cmd("rightbelow new")
+	--	cmd(bottom_padding_cmd)
+	--	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	--	-- fillchars()
 
-		-- return to middle buffer
-		cmd("wincmd k")
-	elseif (opts["ataraxis"]["bottom_padding"] == 0) then
-		-- do nothing
-	else
-		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
-	end
-
-
-	--------------------------=== Fill chars ===--------------------------
-
-	if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
-		fillchar.store_fillchars()
-		fillchar.set_fillchars()
-	else
-		-- nothing
-	end
-
-	--------------------------=== Fill chars ===--------------------------
+	--	-- return to middle buffer
+	--	cmd("wincmd k")
+	--elseif (opts["ataraxis"]["bottom_padding"] == 0) then
+	--	-- do nothing
+	--else
+	--	cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	--end
 
 
-	mode_minimalist.main(2)
+	----------------------------=== Fill chars ===--------------------------
 
-	-- remove the border lines on every buffer
-	-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
+	--if (opts["ataraxis"]["disable_fillchars_configuration"] == false) then
+	--	fillchar.store_fillchars()
+	--	fillchar.set_fillchars()
+	--else
+	--	-- nothing
+	--end
 
-	-- hide whatever the user set to be hidden on the left hand side of vim
-	cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
+	----------------------------=== Fill chars ===--------------------------
 
-	--------------------------=== Hi Groups ===--------------------------
 
-	if (opts["ataraxis"]["disable_bg_configuration"] == false) then
-		hi_group.store_hi_groups()
-		hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
-	else
-		-- nothing
-	end
+	--mode_minimalist.main(2)
 
-	--------------------------=== Hi Groups ===--------------------------
+	---- remove the border lines on every buffer
+	---- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
 
-	if (has_statusline_with_integration == true) then
-		-- ignore
-	else
-		current_statusline = vim.api.nvim_eval("&statusline")
-		cmd("setlocal statusline=-")
-		goto no_need_to_force_hide_again
-	end
+	---- hide whatever the user set to be hidden on the left hand side of vim
+	--cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
-	if (opts["ataraxis"]["force_hide_statusline"] == true) then
-		cmd("setlocal statusline=-")
-	end
+	----------------------------=== Hi Groups ===--------------------------
 
-	-- if it was already forced
-	::no_need_to_force_hide_again::
+	--if (opts["ataraxis"]["disable_bg_configuration"] == false) then
+	--	hi_group.store_hi_groups()
+	--	hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
+	--else
+	--	-- nothing
+	--end
+
+	----------------------------=== Hi Groups ===--------------------------
+
+	--if (has_statusline_with_integration == true) then
+	--	-- ignore
+	--else
+	--	current_statusline = vim.api.nvim_eval("&statusline")
+	--	cmd("setlocal statusline=-")
+	--	goto no_need_to_force_hide_again
+	--end
+
+	--if (opts["ataraxis"]["force_hide_statusline"] == true) then
+	--	cmd("setlocal statusline=-")
+	--end
+
+	---- if it was already forced
+	--::no_need_to_force_hide_again::
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
