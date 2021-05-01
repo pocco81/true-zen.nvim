@@ -152,6 +152,20 @@ function ataraxis_true()		-- show
 				require("true-zen.services.bottom.integrations.integration_limelight").disable_element()
 
 				has_statusline_with_integration = true
+			elseif (opt == "integration_gitsigns") then
+
+				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
+				local gs_config = require("gitsigns")._get_config()
+
+				if (gs_config.current_line_blame == false) then
+					gs_integration.toggle_element(0)
+				elseif (gs_config.numhl == false) then
+					gs_integration.toggle_element(1)
+				elseif (gs_config.linehl == false) then
+					gs_integration.toggle_element(2)
+				elseif (gs_config.signs == false) then
+					gs_integration.toggle_element(3)
+				end
 
 			else
 				-- integration not recognized
@@ -325,6 +339,20 @@ function ataraxis_false()		-- hide
 				require("true-zen.services.bottom.integrations.integration_limelight").enable_element()
 
 				has_statusline_with_integration = true
+	
+			elseif (opt == "integration_gitsigns") then
+				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
+				local gs_config = require("gitsigns")._get_config()
+
+				if (gs_config.current_line_blame == true) then
+					gs_integration.toggle_element(0)
+				elseif (gs_config.numhl == true) then
+					gs_integration.toggle_element(1)
+				elseif (gs_config.linehl == true) then
+					gs_integration.toggle_element(2)
+				elseif (gs_config.signs == true) then
+					gs_integration.toggle_element(3)
+				end
 
 			else
 				-- integration not recognized
