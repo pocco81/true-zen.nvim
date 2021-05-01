@@ -219,7 +219,8 @@ integrations = {
 	integration_gitgutter = false,
 	integration_vim_signify = false,
 	integration_limelight = false,
-	integration_tzfocus_tzataraxis = false
+	integration_tzfocus_tzataraxis = false,
+	integration_gitsigns = false
 }
 ```
 
@@ -295,7 +296,8 @@ true_zen.setup({
 		integration_gitgutter = false,
 		integration_vim_signify = false,
 		integration_limelight = false,
-		integration_tzfocus_tzataraxis = false
+		integration_tzfocus_tzataraxis = false,
+		integration_gitsigns = false
 	}
 })
 ```
@@ -373,7 +375,8 @@ true_zen.setup({
 		integration_gitgutter = false,
 		integration_vim_signify = false,
 		integration_limelight = false,
-		integration_tzfocus_tzataraxis = false
+		integration_tzfocus_tzataraxis = false,
+		integration_gitsigns = false
 	}
 })
 EOF
@@ -483,6 +486,7 @@ Integrations are a way for providing support for certain (Neo)Vim plugins/stuff 
 - `integration_vim_signify`: (Boolean) if set to true, disables Vim Signify when Ataraxis mode is toggled.
 - `integration_limelight`: (Boolean) if set to true, enables Limelight when Ataraxis mode is toggled.
 - `integration_tzfocus_tzataraxis`: (Boolean) if set to true, it will focus current window and then enter Ataraxis mode, and the opposite happens if you unfocus it. This integration only works if the `focus_method` setting under the `Focus` table is set to `"experimental"`.
+- `integration_gitsigns`: (Boolean) if set to true, it will deactive Gitsigns' elements and restore to their previous state once Ataraxis mode is untoggled.
 
 ### Statuslines integrations:
 Not all statuslines obey a simple `set statusline=-`, that's why this integrations are crucials for you to have nice experience when using Ataraxis mode. This will ensure that that specific statusline is hidden. If the statusline that you use does not have an integration, consider opening an issue in the GitHub repository and if possible mention how to toggle/untoggle your specific statusline. In the meantime, you have three options:
