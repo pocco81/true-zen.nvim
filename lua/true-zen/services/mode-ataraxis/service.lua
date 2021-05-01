@@ -158,15 +158,15 @@ function ataraxis_true()		-- show
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
+				-- cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
 
-				if (gs_config.current_line_blame == false) then
+				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
-				elseif (gs_config.numhl == false) then
+				elseif (gs_config.numhl == true) then
 					gs_integration.toggle_element(1)
-				elseif (gs_config.linehl == false) then
+				elseif (gs_config.linehl == true) then
 					gs_integration.toggle_element(2)
-				elseif (gs_config.signs == false) then
+				elseif (gs_config.signs == true) then
 					gs_integration.toggle_element(3)
 				end
 
@@ -347,7 +347,7 @@ function ataraxis_false()		-- hide
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo '(1) - GS Linehl = "..tostring(gs_config.linehl).."'")
+				-- cmd("echo '(1) - GS Linehl = "..tostring(gs_config.linehl).."'")
 
 				if (gs_config.current_line_blame == true) then
 					gs_integration.toggle_element(0)
