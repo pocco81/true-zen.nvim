@@ -121,6 +121,7 @@
 	- Vim Signify integration
 	- Limelight integration
 	- `TZFocus` and `TZAtaraxis` integration
+	- Gitsigns integration
 
 
 # 📦 Installation
