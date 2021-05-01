@@ -160,14 +160,10 @@ NeoBundleFetch 'kdav5758/TrueZen.nvim'
 ```
 
 ## Setup (configuration)
-As it's stated in the TL;DR, there are already some sane defaults that you may like, however you can change them to match your taste. This are the defaults:
+As it's stated in the TL;DR, there are already some sane defaults that you may like, however you can change them to match your taste. These are the defaults:
 ```lua
 true_false_commands = false,
 cursor_by_mode = false,
-before_minimalist_mode_shown = false,
-before_minimalist_mode_hidden = false,
-after_minimalist_mode_shown = false,
-after_minimalist_mode_hidden = false,
 bottom = {
 	hidden_laststatus = 0,
 	hidden_ruler = false,
@@ -205,11 +201,17 @@ ataraxis = {
 	disable_bg_configuration = false,
 	disable_fillchars_configuration = false,
 	force_when_plus_one_window = false,
-	force_hide_statusline = false
+	force_hide_statusline = true
 },
 focus = {
 	margin_of_error = 5,
-	focus_method = "native"
+	focus_method = "experimental"
+},
+events = {
+	before_minimalist_mode_shown = false,
+	before_minimalist_mode_hidden = false,
+	after_minimalist_mode_shown = false,
+	after_minimalist_mode_hidden = false
 },
 integrations = {
 	integration_galaxyline = false,
@@ -219,7 +221,8 @@ integrations = {
 	integration_express_line = false,
 	integration_gitgutter = false,
 	integration_vim_signify = false,
-	integration_limelight = false
+	integration_limelight = false,
+	integration_tzfocus_tzataraxis = false
 }
 ```
 
@@ -231,160 +234,91 @@ The way you setup the settings on your config varies on whether you are using vi
     <summary>For init.lua</summary>
 <p>
 
-```
+```lua
+local true_zen = require("true-zen")
 
+-- setup for TrueZen.nvim
+true_zen.setup({
+    true_false_commands = false,
+	cursor_by_mode = false,
+	bottom = {
+		hidden_laststatus = 0,
+		hidden_ruler = false,
+		hidden_showmode = false,
+		hidden_showcmd = false,
+		hidden_cmdheight = 1,
+
+		shown_laststatus = 2,
+		shown_ruler = true,
+		shown_showmode = false,
+		shown_showcmd = false,
+		shown_cmdheight = 1
+	},
+	top = {
+		hidden_showtabline = 0,
+
+		shown_showtabline = 2
+	},
+	left = {
+		hidden_number = false,
+		hidden_relativenumber = false,
+		hidden_signcolumn = "no",
+
+		shown_number = true,
+		shown_relativenumber = false,
+		shown_signcolumn = "no"
+	},
+	ataraxis = {
+		just_do_it_for_me = false,
+		left_padding = 40,
+		right_padding = 40,
+		top_padding = 0,
+		bottom_padding = 0,
+		custome_bg = "",
+		disable_bg_configuration = false,
+		disable_fillchars_configuration = false,
+		force_when_plus_one_window = false,
+		force_hide_statusline = true
+	},
+	focus = {
+		margin_of_error = 5,
+		focus_method = "experimental"
+	},
+	events = {
+		before_minimalist_mode_shown = false,
+		before_minimalist_mode_hidden = false,
+		after_minimalist_mode_shown = false,
+		after_minimalist_mode_hidden = false
+	},
+	integrations = {
+		integration_galaxyline = false,
+		integration_vim_airline = false,
+		integration_vim_powerline = false,
+		integration_tmux = false,
+		integration_express_line = false,
+		integration_gitgutter = false,
+		integration_vim_signify = false,
+		integration_limelight = false,
+		integration_tzfocus_tzataraxis = false
+	}
+})
 ```
 <br />
 </details>
 
 
+<details>
+    <summary>For init.vim</summary>
+<p>
 
-
-
-
-### For init.lua
 ```lua
--- setup for TrueZen.nvim
-true_zen.setup({
-    true_false_commands = false,
-	cursor_by_mode = false,
-	before_minimalist_mode_shown = false,
-	before_minimalist_mode_hidden = false,
-	after_minimalist_mode_shown = false,
-	after_minimalist_mode_hidden = false,
-	bottom = {
-		hidden_laststatus = 0,
-		hidden_ruler = false,
-		hidden_showmode = false,
-		hidden_showcmd = false,
-		hidden_cmdheight = 1,
-
-		shown_laststatus = 2,
-		shown_ruler = true,
-		shown_showmode = false,
-		shown_showcmd = false,
-		shown_cmdheight = 1
-	},
-	top = {
-		hidden_showtabline = 0,
-
-		shown_showtabline = 2
-	},
-	left = {
-		hidden_number = false,
-		hidden_relativenumber = false,
-		hidden_signcolumn = "no",
-
-		shown_number = true,
-		shown_relativenumber = false,
-		shown_signcolumn = "no"
-	},
-	ataraxis = {
-		just_do_it_for_me = false,
-		left_padding = 40,
-		right_padding = 40,
-		top_padding = 0,
-		bottom_padding = 0,
-		custome_bg = ""
-		custome_bg = "",
-		disable_bg_configuration = false,
-		disable_fillchars_configuration = false,
-		force_when_plus_one_window = false,
-		force_hide_statusline = false
-	},
-	focus = {
-		margin_of_error = 5
-	},
-	integrations = {
-		integration_galaxyline = false,
-		integration_vim_airline = false,
-		integration_vim_powerline = false,
-		integration_tmux = false,
-		integration_express_line = false,
-		integration_gitgutter = false,
-		integration_vim_signify = false,
-		integration_limelight = false
-	}
-})
-```
-
-### For init.vim
-```
 lua << EOF
--- setup for TrueZen.nvim
-require("true-zen").setup({
-    true_false_commands = false,
-	cursor_by_mode = false,
-	before_minimalist_mode_shown = false,
-	before_minimalist_mode_hidden = false,
-	after_minimalist_mode_shown = false,
-	after_minimalist_mode_hidden = false,
-	bottom = {
-		hidden_laststatus = 0,
-		hidden_ruler = false,
-		hidden_showmode = false,
-		hidden_showcmd = false,
-		hidden_cmdheight = 1,
-
-		shown_laststatus = 2,
-		shown_ruler = true,
-		shown_showmode = false,
-		shown_showcmd = false,
-		shown_cmdheight = 1
-	},
-	top = {
-		hidden_showtabline = 0,
-
-		shown_showtabline = 2
-	},
-	left = {
-		hidden_number = false,
-		hidden_relativenumber = false,
-		hidden_signcolumn = "no",
-
-		shown_number = true,
-		shown_relativenumber = false,
-		shown_signcolumn = "no"
-	},
-	ataraxis = {
-		just_do_it_for_me = false,
-		left_padding = 40,
-		right_padding = 40,
-		top_padding = 0,
-		bottom_padding = 0,
-		custome_bg = ""
-	},
-	focus = {
-		margin_of_error = 5
-	},
-	integrations = {
-		integration_galaxyline = false,
-		integration_vim_airline = false,
-		integration_vim_powerline = false,
-		integration_tmux = false,
-		integration_express_line = false,
-		integration_gitgutter = false,
-		integration_vim_signify = false,
-		integration_limelight = false
-	}
-})
-EOF
-```
-
-This is an example configuration for **init.lua** users:
-```lua
--- require it
 local true_zen = require("true-zen")
 
 -- setup for TrueZen.nvim
 true_zen.setup({
-
     true_false_commands = false,
 	cursor_by_mode = false,
-	before_minimalist_mode_shown = true,
-	before_minimalist_mode_hidden = true,
-	after_minimalist_mode_shown = true,
-	after_minimalist_mode_hidden = true,
 	bottom = {
 		hidden_laststatus = 0,
 		hidden_ruler = false,
@@ -413,47 +347,45 @@ true_zen.setup({
 		shown_signcolumn = "no"
 	},
 	ataraxis = {
-		just_do_it_for_me = true,
+		just_do_it_for_me = false,
 		left_padding = 40,
 		right_padding = 40,
-		top_padding = 1,
-		bottom_padding = 1,
-		custome_bg = ""
+		top_padding = 0,
+		bottom_padding = 0,
+		custome_bg = "",
+		disable_bg_configuration = false,
+		disable_fillchars_configuration = false,
+		force_when_plus_one_window = false,
+		force_hide_statusline = true
 	},
 	focus = {
-		margin_of_error = 5
+		margin_of_error = 5,
+		focus_method = "experimental"
+	},
+	events = {
+		before_minimalist_mode_shown = false,
+		before_minimalist_mode_hidden = false,
+		after_minimalist_mode_shown = false,
+		after_minimalist_mode_hidden = false
 	},
 	integrations = {
-		integration_galaxyline = true,
+		integration_galaxyline = false,
 		integration_vim_airline = false,
 		integration_vim_powerline = false,
 		integration_tmux = false,
 		integration_express_line = false,
 		integration_gitgutter = false,
 		integration_vim_signify = false,
-		integration_limelight = true
+		integration_limelight = false,
+		integration_tzfocus_tzataraxis = false
 	}
 })
-
-
-true_zen.after_minimalist_mode_hidden = function ()
-	vim.cmd("echo 'I ran after minimalist mode hid everything :)'")
-end
-
-true_zen.before_minimalist_mode_hidden = function ()
-	vim.cmd("echo 'I ran before minimalist mode hid everything :)'")
-end
-
-true_zen.after_minimalist_mode_shown = function ()
-	vim.cmd("echo 'I ran after minimalist mode showed everything :)'")
-end
-
-true_zen.before_minimalist_mode_shown = function ()
-	vim.cmd("echo 'I ran before minimalist mode showed everything :)'")
-end
+EOF
 ```
+<br />
+</details>
 
-For configuration instructions check out the [configuration](#configuration) section.
+For instructions on how to configure the plugin, check out the [configuration](#configuration) section.
 
 ## Updating
 This depends on your plugin manager. If, for example, you are using Packer.nvim, you can update it with this command:
@@ -467,7 +399,7 @@ All the commands follow the *camel casing* naming convention and have the `TZ` p
 ## Default
 - `:TZMinimalist` toggles Minimalist mode. Activates/deactivates NeoVim's UI components from the left, bottom and top of NeoVim on all the buffers you enter in the current session.
 - `:TZFocus` toggle focus mode. Focus mode maximizes the current window. Due to the fact that there is no way to check whether a window is maximized or not, it compares different factors in order to determine it; that's why it has the `margin_of_error` setting.
-- `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all bffers in the current session + makes use of the different integrations. Note: it won't allow you to toggle it if there is more than one window.
+- `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all buffers in the current session + makes use of the different integrations.
 - `:TZBottom` toggles the bottom part of NeoVim's UI. It toggles: laststatus, ruler, showmode, showcmd, and cmdheight.
 - `:TZTop` toggles the top part of NeoVim's UI. It toggles: tabline.
 - `:TZLeft` toggles the left part of NeoVim's UI. It toggles: numbers, relative numbers, and signcolumn.
@@ -485,8 +417,8 @@ These are the commands that can be enabled if `true_false_commands` is set to `t
 - `:TZTopF` hide top UI parts.
 - `:TZLeftT` show left UI parts.
 - `:TZLeftF` hide left UI parts
-- `:TZFocusT` focuses current window
-- `:TZFocusF` unfocuses current window
+- `:TZFocusT` focus current window
+- `:TZFocusF` unfocus current window
 
 # 🍉 Configuration
 Although settings already have self-explanatory names, here is where you can find info about each one of them and their classifications! There are individual settings and settings that are tables. Settings that are tables are simply *settings with subsettings*.
@@ -545,7 +477,7 @@ end
 ```
 
 ## Integrations
-Integrations are a way for providing support for certain (Neo)Vim plugins/stuff in order for it to integrate nicely with them. Needless to say, this settings can be set in the `integrations = {}` table. For obvious reasons, integrations only work if you have the specific plugin/thing installed. Enabling any of them in the case you don't have that specific element installed will result in an error.
+Integrations are a way for providing support for certain (Neo)Vim plugins/stuff in order for it to integrate nicely with them. Needless to say, this settings can be set in the `integrations = {}` table. For obvious reasons, integrations only work if you have the specific plugin/thing installed. Enabling any of them in the case you don't have that specific element installed will result in an error. In this case, `true` will *enable* the extension, and `false` will *disable* it; this **does not mean** that if you set *x* integration to `false` you'll get the exact opposite behaviour as if it was `true`.
 
 
 ### General integrations
@@ -555,14 +487,16 @@ Integrations are a way for providing support for certain (Neo)Vim plugins/stuff 
 - `integration_limelight`: (Boolean) if set to true, enables Limelight when Ataraxis mode is toggled.
 
 ### Statuslines integrations:
-Not all statuslines obey a simple `set statusline=-`, that's why this integrations are crucials for you to have nice experience when using Ataraxis mode. This will ensure that that specific statusline is hidden. If the statusline that you use does not have an integration, consider opening an issue in the GitHub repository and if possible mention how to toggle/untoggle your specific statusline. In the meantime, you have two options:
+Not all statuslines obey a simple `set statusline=-`, that's why this integrations are crucials for you to have nice experience when using Ataraxis mode. This will ensure that that specific statusline is hidden. If the statusline that you use does not have an integration, consider opening an issue in the GitHub repository and if possible mention how to toggle/untoggle your specific statusline. In the meantime, you have three options:
 1. Let Ataraxis mode try to hide it.
-2. Use the `after_minimalist_mode_hidden` and the `after_minimalist_mode_shown` events to hide/show it yourself.
+2. Set the `force_hide_statusline` setting on the `Ataraxis` table to `true`.
+3. Use the `after_minimalist_mode_hidden` and the `after_minimalist_mode_shown` events to hide/show it yourself.
 
 - `integration_galaxyline`: (Boolean) if set to true, hides galaxyline when Ataraxis mode hides everything.
 - `integration_vim_airline`: (Boolean) if set to true, hides vim airline when Ataraxis mode hides everythinge.
 - `integration_vim_powerline`: (Boolean) if set to true, hides vim powerline when Ataraxis mode hides everything.
 - `integration_express_line`: (Boolean) if set to true, hides expressline when Ataraxis mode hides everything.
+- `integration_tzfocus_tzataraxis`: (Boolean)
 
 Note for Vim Powerline users: toggling/untoggling your statusline is a little bit slow, but since you are using it then you must know that already.
 
