@@ -120,6 +120,7 @@ function ataraxis_true()		-- show
 
 
 
+	--------------------------=== Integrations ===--------------------------
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
@@ -207,8 +208,6 @@ function ataraxis_true()		-- show
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo '(2) GS Linehl = "..tostring(gs_config.linehl).."'")
-
 				if (gs_ps_current_line_blame == nil) then
 					gs_integration.toggle_element(0)
 				else
@@ -248,6 +247,7 @@ function ataraxis_true()		-- show
 			-- ignore it
 		end
 	end
+	--------------------------=== Integrations ===--------------------------
 
 end
 
@@ -284,6 +284,7 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
+	--------------------------=== Integrations ===--------------------------
 	for opt, _ in pairs(opts["integrations"]) do
 		if (opts["integrations"][opt] == true) then
 			if (opt == "integration_galaxyline") then
@@ -372,7 +373,6 @@ function ataraxis_false()		-- hide
 				local gs_integration = require("true-zen.services.bottom.integrations.integration_gitsigns")
 				local gs_config = require("gitsigns")._get_config()
 
-				cmd("echo '(1) GS Linehl = "..tostring(gs_config.linehl).."'")
 				gs_ps_current_line_blame = nil
 				gs_ps_numhl = nil
 				gs_ps_linehl = nil
@@ -409,6 +409,7 @@ function ataraxis_false()		-- hide
 			-- ignore it
 		end
 	end
+	--------------------------=== Integrations ===--------------------------
 
 
 	local left_padding_cmd = ""
