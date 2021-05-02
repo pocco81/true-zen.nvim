@@ -415,7 +415,7 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	-- integration.load_integrations(false)
+	integration.load_integrations(false)
 
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
