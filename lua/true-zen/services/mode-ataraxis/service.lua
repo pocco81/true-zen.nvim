@@ -6,7 +6,6 @@ local mode_minimalist = require("true-zen.services.mode-minimalist.init")
 
 local hi_group = require("true-zen.services.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.mode-ataraxis.modules.fillchar")
-local integration = require("true-zen.services.mode-ataraxis.modules.integration")
 
 
 local cmd = vim.cmd
@@ -376,7 +375,6 @@ function ataraxis_true()		-- show
 	--------------------------=== Hi Groups ===--------------------------
 
 
-	-- if (integration.has_statusline_with_integration == true) then
 	if (has_statusline_with_integration == true) then
 		-- ignore
 	else
@@ -385,8 +383,7 @@ function ataraxis_true()		-- show
 
 
 
-	-- integration.load_integrations(true)
-	
+	-------------------------=== Integrations ===------------------------
 	vim.api.nvim_exec([[
 		augroup false_integrations
 			autocmd!
@@ -403,6 +400,8 @@ function ataraxis_true()		-- show
 			autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
 		augroup END
 	]], false)
+	-------------------------=== Integrations ===------------------------
+
 
 
 end
@@ -438,7 +437,7 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	-- integration.load_integrations(false)
+	-------------------------=== Integrations ===------------------------
 	vim.api.nvim_exec([[
 		augroup true_integrations
 			autocmd!
@@ -446,6 +445,7 @@ function ataraxis_false()		-- hide
 	]], false)
 
 	load_integrations(false)
+	-------------------------=== Integrations ===------------------------
 
 
 	local left_padding_cmd = ""
@@ -582,12 +582,9 @@ function ataraxis_false()		-- hide
 	--------------------------=== Hi Groups ===--------------------------
 
 
-
 	-- statusline stuff
-	-- if (integration.has_statusline_with_integration == true) then
 	if (has_statusline_with_integration == true) then
 		-- ignore
-		-- cmd("echo 'I RANNNNNNNNNN'")
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
 		cmd("setlocal statusline=-")
@@ -602,12 +599,15 @@ function ataraxis_false()		-- hide
 	::no_need_to_force_hide_again::
 
 
+
+	-------------------------=== Integrations ===------------------------
 	vim.api.nvim_exec([[
 		augroup false_integrations
 			autocmd!
 			autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
 		augroup END
 	]], false)
+	-------------------------=== Integrations ===------------------------
 
 
 	-- everything will be skipped if there was more than one window open
