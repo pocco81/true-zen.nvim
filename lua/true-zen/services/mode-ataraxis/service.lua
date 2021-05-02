@@ -683,6 +683,7 @@ function ataraxis_false()		-- hide
 	-- statusline stuff
 	if (integration.has_statusline_with_integration == true) then
 		-- ignore
+		cmd("echo 'I RANNNNNNNNNN'")
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
 		cmd("setlocal statusline=-")
