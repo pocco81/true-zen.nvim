@@ -376,7 +376,8 @@ function ataraxis_true()		-- show
 	--------------------------=== Hi Groups ===--------------------------
 
 
-	if (integration.has_statusline_with_integration == true) then
+	-- if (integration.has_statusline_with_integration == true) then
+	if (has_statusline_with_integration == true) then
 		-- ignore
 	else
 		cmd("setlocal statusline="..current_statusline.."")
@@ -386,6 +387,15 @@ function ataraxis_true()		-- show
 
 	-- integration.load_integrations(true)
 	load_integrations(true)
+
+
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
+		augroup END
+	]], false)
+
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
 	--	if (opts["integrations"][opt] == true) then
@@ -951,7 +961,8 @@ function ataraxis_false()		-- hide
 
 
 	-- statusline stuff
-	if (integration.has_statusline_with_integration == true) then
+	-- if (integration.has_statusline_with_integration == true) then
+	if (has_statusline_with_integration == true) then
 		-- ignore
 		cmd("echo 'I RANNNNNNNNNN'")
 	else
@@ -976,10 +987,10 @@ function ataraxis_false()		-- hide
 	-- ]], false)
 
 	vim.api.nvim_exec([[
-	augroup false_integrations
-		autocmd!
-		autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
-	augroup END
+		augroup false_integrations
+			autocmd!
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
+		augroup END
 	]], false)
 
 
