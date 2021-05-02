@@ -18,12 +18,12 @@ function disable_element()
 	-- api.nvim_command('augroup galaxyline')
 	-- api.nvim_command('autocmd!')
 	-- api.nvim_command('augroup END!')
-	-- gl.disable_galaxyline()
+	require("galaxyline").disable_galaxyline()
 	-- cmd("setlocal statusline=-")
 	
-	api.nvim_command('augroup galaxyline')
-	api.nvim_command('autocmd!')
-	api.nvim_command('augroup END!')
+	-- api.nvim_command('augroup galaxyline')
+	-- api.nvim_command('autocmd!')
+	-- api.nvim_command('augroup END!')
 
 end
 
