@@ -386,15 +386,18 @@ function ataraxis_true()		-- show
 
 
 	-- integration.load_integrations(true)
+	
+	vim.api.nvim_exec([[
+		augroup false_integrations
+			autocmd!
+		augroup END
+	]], false)
+
+
 	load_integrations(true)
 
 
 	vim.api.nvim_exec([[
-
-		augroup false_integrations
-			autocmd!
-		augroup END
-
 		augroup true_integrations
 			autocmd!
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
@@ -703,6 +706,12 @@ function ataraxis_false()		-- hide
 
 
 	-- integration.load_integrations(false)
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+		augroup END
+	]], false)
+
 	load_integrations(false)
 
 	----------------------------=== Integrations ===--------------------------
@@ -987,18 +996,7 @@ function ataraxis_false()		-- hide
 	::no_need_to_force_hide_again::
 
 
-	-- vim.api.nvim_exec([[
-	-- 	augroup true_integrations
-	-- 		autocmd!
-	-- 		autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require("true-zen.services.mode-ataraxis.modules.integration").load_integrations(false)" | endif
-	-- 	augroup END
-	-- ]], false)
-
 	vim.api.nvim_exec([[
-		augroup true_integrations
-			autocmd!
-		augroup END
-
 		augroup false_integrations
 			autocmd!
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
