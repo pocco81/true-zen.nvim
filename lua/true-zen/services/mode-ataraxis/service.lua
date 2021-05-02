@@ -975,6 +975,13 @@ function ataraxis_false()		-- hide
 	-- 	augroup END
 	-- ]], false)
 
+	vim.api.nvim_exec([[
+	augroup false_integrations
+		autocmd!
+		autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
+	augroup END
+	]], false)
+
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
