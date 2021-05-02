@@ -390,11 +390,19 @@ function ataraxis_true()		-- show
 
 
 	vim.api.nvim_exec([[
+
+		augroup false_integrations
+			autocmd!
+		augroup END
+
 		augroup true_integrations
 			autocmd!
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
 		augroup END
 	]], false)
+
+
+
 
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
@@ -964,7 +972,7 @@ function ataraxis_false()		-- hide
 	-- if (integration.has_statusline_with_integration == true) then
 	if (has_statusline_with_integration == true) then
 		-- ignore
-		cmd("echo 'I RANNNNNNNNNN'")
+		-- cmd("echo 'I RANNNNNNNNNN'")
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
 		cmd("setlocal statusline=-")
@@ -987,6 +995,10 @@ function ataraxis_false()		-- hide
 	-- ]], false)
 
 	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+		augroup END
+
 		augroup false_integrations
 			autocmd!
 			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
