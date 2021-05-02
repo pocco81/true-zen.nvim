@@ -6,6 +6,7 @@ local mode_minimalist = require("true-zen.services.mode-minimalist.init")
 
 local hi_group = require("true-zen.services.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.mode-ataraxis.modules.fillchar")
+local integration = require("true-zen.services.mode-ataraxis.modules.integration")
 
 
 local cmd = vim.cmd
@@ -413,7 +414,7 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	load_integrations()
+	integration.load_integrations(false)
 
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
@@ -679,7 +680,7 @@ function ataraxis_false()		-- hide
 
 
 	-- statusline stuff
-	if (has_statusline_with_integration == true) then
+	if (integration.has_statusline_with_integration == true) then
 		-- ignore
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
@@ -698,7 +699,7 @@ function ataraxis_false()		-- hide
 	vim.api.nvim_exec([[
 		augroup true_integrations
 			autocmd!
-			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations()" | endif
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua integration.load_integrations(false)" | endif
 		augroup END
 	]], false)
 
