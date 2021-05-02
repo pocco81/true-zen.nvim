@@ -249,7 +249,7 @@ end
 
 
 
-local function load_integrations()
+function load_integrations()
 
 	--------------------------=== Integrations ===--------------------------
 	for opt, _ in pairs(opts["integrations"]) do
@@ -693,6 +693,15 @@ function ataraxis_false()		-- hide
 
 	-- if it was already forced
 	::no_need_to_force_hide_again::
+
+
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations()" | endif
+		augroup END
+	]], false)
+
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
