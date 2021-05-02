@@ -701,7 +701,7 @@ function ataraxis_false()		-- hide
 	vim.api.nvim_exec([[
 		augroup true_integrations
 			autocmd!
-			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua integration.load_integrations(false)" | endif
+			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require("true-zen.services.mode-ataraxis.modules.integration").load_integrations(false)" | endif
 		augroup END
 	]], false)
 
