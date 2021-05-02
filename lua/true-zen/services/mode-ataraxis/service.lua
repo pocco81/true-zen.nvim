@@ -12,11 +12,6 @@ local cmd = vim.cmd
 
 
 
--- integration test
-in_galaxyline = true
-
-
-
 vim.api.nvim_exec([[
 	" Like bufdo but restore the current buffer.
 	function! BufDo(command)

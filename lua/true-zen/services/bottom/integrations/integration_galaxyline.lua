@@ -1,6 +1,7 @@
 
 
 local api = vim.api
+local cmd = vim.cmd
 local gl = require("galaxyline")
 
 
@@ -17,6 +18,7 @@ function disable_element()
 	-- api.nvim_command('autocmd!')
 	-- api.nvim_command('augroup END!')
 	gl.disable_galaxyline()
+	cmd("setlocal statusline=-")
 	
 end
 
