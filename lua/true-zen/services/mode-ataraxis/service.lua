@@ -397,12 +397,12 @@ function ataraxis_true()		-- show
 	load_integrations(true)
 
 
-	-- vim.api.nvim_exec([[
-	-- 	augroup true_integrations
-	-- 		autocmd!
-	-- 		autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
-	-- 	augroup END
-	-- ]], false)
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+			autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
+		augroup END
+	]], false)
 
 
 
@@ -996,12 +996,12 @@ function ataraxis_false()		-- hide
 	::no_need_to_force_hide_again::
 
 
-	-- vim.api.nvim_exec([[
-	-- 	augroup false_integrations
-	-- 		autocmd!
-	-- 		autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
-	-- 	augroup END
-	-- ]], false)
+	vim.api.nvim_exec([[
+		augroup false_integrations
+			autocmd!
+			autocmd BufWinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
+		augroup END
+	]], false)
 
 
 	-- everything will be skipped if there was more than one window open
