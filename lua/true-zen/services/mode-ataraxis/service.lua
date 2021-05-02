@@ -116,7 +116,7 @@ function ataraxis_true()		-- show
 
 
 
-	integration.load_integrations(true)
+	-- integration.load_integrations(true)
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
 	--	if (opts["integrations"][opt] == true) then
@@ -415,7 +415,7 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	integration.load_integrations(false)
+	-- integration.load_integrations(false)
 
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
@@ -697,12 +697,12 @@ function ataraxis_false()		-- hide
 	::no_need_to_force_hide_again::
 
 
-	vim.api.nvim_exec([[
-		augroup true_integrations
-			autocmd!
-			autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua integration.load_integrations(false)" | endif
-		augroup END
-	]], false)
+	-- vim.api.nvim_exec([[
+	-- 	augroup true_integrations
+	-- 		autocmd!
+	-- 		autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua integration.load_integrations(false)" | endif
+	-- 	augroup END
+	-- ]], false)
 
 
 	-- everything will be skipped if there was more than one window open
