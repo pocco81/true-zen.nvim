@@ -12,7 +12,7 @@ function enable_element()
 	-- gl.galaxyline_augroup()
 	-- gl.load_galaxyline()
 	require('galaxyline').load_galaxyline()
-	-- require('galaxyline').galaxyline_augroup()
+	require('galaxyline').galaxyline_augroup()
 end
 
 function disable_element()
