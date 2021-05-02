@@ -400,7 +400,7 @@ function ataraxis_true()		-- show
 	vim.api.nvim_exec([[
 		augroup true_integrations
 			autocmd!
-			autocmd VimResume,FocusGained,WinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
+			autocmd WinEnter * if (&modifiable == 1) | execute "lua load_integrations(true)" | endif
 		augroup END
 	]], false)
 
@@ -999,7 +999,7 @@ function ataraxis_false()		-- hide
 	vim.api.nvim_exec([[
 		augroup false_integrations
 			autocmd!
-			autocmd VimResume,FocusGained,WinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
+			autocmd WinEnter * if (&modifiable == 1) | execute "lua load_integrations(false)" | endif
 		augroup END
 	]], false)
 
