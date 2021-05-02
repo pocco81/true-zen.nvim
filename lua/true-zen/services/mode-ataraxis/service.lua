@@ -116,7 +116,7 @@ function ataraxis_true()		-- show
 
 
 
-	-- integration.load_integrations(true)
+	integration.load_integrations(true)
 	----------------------------=== Integrations ===--------------------------
 	--for opt, _ in pairs(opts["integrations"]) do
 	--	if (opts["integrations"][opt] == true) then
