@@ -1,5 +1,8 @@
 
 
+local opts = require("true-zen.config").options
+local cmd = vim.cmd
+
 
 
 function load_integrations(state)
