@@ -8,7 +8,8 @@ local gl = require("galaxyline")
 function enable_element()
 	-- require('galaxyline').load_galaxyline()
 	-- require("galaxyline")
-	gl.galaxyline_augroup()
+	-- gl.galaxyline_augroup()
+	gl.load_galaxyline()
 end
 
 function disable_element()
