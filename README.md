@@ -20,7 +20,7 @@
             src="https://img.shields.io/github/license/kdav5758/TrueZen.nvim"
             alt="License"
     /><br />
-    <a href="https://saythanks.io/to/kdav5758"
+    <a href="https://saythanks.io/to/kdav5758%40gmail.com"
         ><img
             src="https://img.shields.io/badge/say-thanks-modal.svg"
             alt="Say thanks"/></a
