@@ -612,3 +612,7 @@ The current To-Do's can be found in [this public Trello.com board](https://trell
 Note: If you are part of the colorblind spectrum enable "Color blind friendly mode".
 
 
+<hr>
+<p align="center">
+	Enjoy!
+</p>
