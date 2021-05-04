@@ -87,6 +87,8 @@ end
 
 function restore_settings()
 	
+	cmd("echo 'I RAN'")
+
 	for opt, _ in pairs(user_bottom_opts) do
 		cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 	end
