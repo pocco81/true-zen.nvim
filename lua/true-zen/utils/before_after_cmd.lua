@@ -82,10 +82,10 @@ function store_settings(table, ui_element)
 	
 end
 
-function restore_settings(table)
+function restore_settings()
 	
-	for opt, _ in pairs(table) do
-		cmd("echo 'this'")
+	for opt, _ in pairs(user_bottom_opts) do
+		cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 	end
 
 end
