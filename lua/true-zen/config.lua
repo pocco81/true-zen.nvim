@@ -50,6 +50,9 @@ config.options = {
 		margin_of_error = 5,
 		focus_method = "experimental"
 	},
+	minimalist = {
+		store_and_restore_settings = false
+	},
 	events = {
 		before_minimalist_mode_shown = false,
 		before_minimalist_mode_hidden = false,

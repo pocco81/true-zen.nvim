@@ -1,6 +1,8 @@
 
 
 local cmd = vim.cmd
+local opts = require("true-zen.config").options
+local before_after_cmds = require("lua.true-zen.utils.before_after_cmd")
 
 
 local function test_bool(final_opt, var)
@@ -36,7 +38,9 @@ local function clean_and_exec(opt, table_opt, remove_str)
 end
 
 
-function map_settings(table, bool)
+function map_settings(table, bool, ui_element)
+
+	ui_element = ui_element or "NONE"
 
 
 	if (bool == true) then
@@ -48,6 +52,11 @@ function map_settings(table, bool)
 			end
 		end
 	elseif (bool == false) then
+
+		if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			before_after_cmds.store_settings(table, ui_element)
+		end
+
 		for opt, _ in pairs(table) do
 			if string.find(opt, "hidden_") then
 				clean_and_exec(opt, table[opt], "hidden_")

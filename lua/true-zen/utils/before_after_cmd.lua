@@ -12,6 +12,84 @@ user_left_opts = {}
 user_bottom_opts = {}
 user_top_opts = {}
 
+local function test_bool(final_opt, var)
+	
+	if (var == true) then
+		return "setlocal "..final_opt..""
+	elseif (var == false) then
+		return "setlocal no"..final_opt..""
+	end
+
+end
+
+local function test_num(final_opt, num)
+	return "setlocal "..final_opt.."="..num..""
+end
+
+local function test_str(final_opt, str)
+	return "setlocal "..final_opt.."="..str..""
+end
+
+
+
+local function clean_and_append(opt, table_opt, remove_str)
+	final_opt = opt:gsub(remove_str, "")
+	current_state = vim.api.nvim_eval("&"..final_opt.."")
+
+	if (type(table_opt) == "boolean") then
+		to_cmd = test_bool(final_opt, table_opt)
+		return to_cmd
+	elseif (type(table_opt) == "number") then
+		to_cmd = test_num(final_opt, table_opt)
+		return to_cmd
+	elseif (type(table_opt) == "string") then
+		to_cmd = test_str(final_opt, table_opt)
+		return to_cmd
+	end
+end
+
+
+local function read_call(opt, value_opt)
+
+	if string.find(opt, "shown_") then
+		clean_and_append(opt, value_opt, "shown_")
+	else
+		-- skip the option
+	end
+	
+end
+
+function store_settings(table, ui_element)
+
+	if (ui_element == "TOP") then
+		for opt, _ in pairs(table) do
+			local final_cmd = read_call(opt, table[opt])
+			table.insert(user_top_opts, final_cmd)
+		end
+	elseif (ui_element == "BOTTOM") then
+		for opt, _ in pairs(table) do
+			local final_cmd = read_call(opt, table[opt])
+			table.insert(user_bottom_opts, final_cmd)
+		end
+	elseif (ui_element == "LEFT") then
+		for opt, _ in pairs(table) do
+			local final_cmd = read_call(opt, table[opt])
+			table.insert(user_left_opts, final_cmd)
+		end
+	end
+
+
+	
+end
+
+function restore_settings(table)
+	
+	for opt, _ in pairs(table) do
+		cmd("echo 'this'")
+	end
+
+end
+
 
 --[[
 
@@ -28,7 +106,6 @@ restore_settings
 3. skip the other stuff at cmd_settings
 
 
-]]--
 
 
 local function iterate_and_run(table)
@@ -62,7 +139,7 @@ end
 
 
 
-function save_settings(opt_index, opt_value, remove_str, ui_element)
+function store_settings(opt_index, opt_value, remove_str, ui_element)
 
 	ui_element = ui_element or "NONE"
 
@@ -119,22 +196,11 @@ function restore_settings(ui_element, is_toggled)
 	
 end
 
+]]--
 
 
 return {
-	save_settings = save_settings,
+	store_settings = store_settings,
 	restore_settings = restore_settings
 }
-
-		-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-		-- 	before_after_cmd.restore_settings(ui_element, is_toggled)
-		-- 	goto skip_truezen_config
-		-- end
-
-		-- ::skip_truezen_config::
-
-
-					-- if (opts["minimalist"]["save_and_restore_settings_when_untoggled"] == true) then
-				-- before_after_cmd.save_settings(opt, table[opt], "hidden_", ui_element)
-			-- end
 

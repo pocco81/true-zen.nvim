@@ -14,11 +14,11 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set cmdheight=1
 
 function bottom_true()		-- show
-	cmd_settings.map_settings(opts["bottom"], true)
+	cmd_settings.map_settings(opts["bottom"], true, "BOTTOM")
 end
 
 function bottom_false()		-- don't show
-	cmd_settings.map_settings(opts["bottom"], false)
+	cmd_settings.map_settings(opts["bottom"], false, "BOTTOM")
 end
 
 
