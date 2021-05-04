@@ -2,7 +2,7 @@
 
 local cmd = vim.cmd
 local opts = require("true-zen.config").options
-local before_after_cmds = require("lua.true-zen.utils.before_after_cmd")
+local before_after_cmds = require("true-zen.utils.before_after_cmd")
 
 
 local function test_bool(final_opt, var)
