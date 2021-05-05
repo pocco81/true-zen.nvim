@@ -71,7 +71,7 @@ function map_settings(table, bool, ui_element)
 				cmd("echo 'TrueZen: UI Element was not recognized'")
 			end
 
-			before_after_cmds.restore_settings(ui_element)
+			-- before_after_cmds.restore_settings(ui_element)
 		else
 			for opt, _ in pairs(table) do
 				if string.find(opt, "shown_") then
