@@ -27,6 +27,7 @@ end
 local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
 	local current_state = vim.api.nvim_eval("&"..final_opt.."")
+	cmd("echo 'Table opt ="..table_opt.."'")
 
 	if (type(current_state) == "boolean") then
 		local to_cmd = test_bool(final_opt, current_state)
@@ -119,7 +120,7 @@ function restore_settings(ui_element)
 		else
 			for opt, _ in pairs(user_bottom_opts) do
 				-- cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-				cmd(user_bottom_opts[opt])
+				-- cmd(user_bottom_opts[opt])
 			end
 		end
 	elseif (ui_element == "TOP") then
@@ -128,7 +129,7 @@ function restore_settings(ui_element)
 		else
 			for opt, _ in pairs(user_top_opts) do
 				-- cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
-				cmd(user_top_opts[opt])
+				-- cmd(user_top_opts[opt])
 			end
 		end
 	elseif (ui_element == "LEFT") then
@@ -137,7 +138,7 @@ function restore_settings(ui_element)
 		else
 			for opt, _ in pairs(user_left_opts) do
 				-- cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-				cmd(user_left_opts[opt])
+				-- cmd(user_left_opts[opt])
 			end
 		end
 
