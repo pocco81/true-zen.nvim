@@ -75,7 +75,7 @@ function map_settings(table, bool, ui_element)
 				cmd("echo 'HBR = "..tostring(has_been_restored).."'")
 			elseif (has_been_restored == true or has_been_restored == nil) then
 				has_been_restored = before_after_cmds.store_settings(table, ui_element)
-				cmd("echo 'HBR = "..tostring(has_been_restored).."'")
+				cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
 			end
 		end
 
