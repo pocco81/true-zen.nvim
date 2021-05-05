@@ -74,9 +74,14 @@ function map_settings(table, bool, ui_element)
 			if (has_been_restored == false) then
 				has_been_restored = false
 				cmd("echo 'here!!! HBR = "..tostring(has_been_restored).."'")
+				only_here = false
 			elseif (has_been_restored == true or has_been_restored == nil) then
-				has_been_restored = before_after_cmds.store_settings(table, ui_element)
-				cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
+				if (only_here == false) then
+					-- ignore
+				else
+					has_been_restored = before_after_cmds.store_settings(table, ui_element)
+					cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
+				end
 			end
 		end
 
