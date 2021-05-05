@@ -3,7 +3,7 @@
 local opts = require("true-zen.config").options
 local left_service = require("true-zen.services.left.service")
 local mode_minimalist = require("true-zen.services.mode-minimalist.init")
-local before_after_cmds = require("true-zen.utils.before_after_cmd1")
+local before_after_cmds = require("true-zen.utils.before_after_cmd")
 
 local hi_group = require("true-zen.services.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.mode-ataraxis.modules.fillchar")
@@ -411,10 +411,6 @@ end
 
 
 function ataraxis_false()		-- hide
-	cmd("echo 'HEREEEE'")
-	before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
-	cmd("echo 'HEREEEE'")
-	cmd("echo ' '")
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -442,6 +438,17 @@ function ataraxis_false()		-- hide
 		-- continue
 	end
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
+
+	cmd("echo 'HEREEEE'")
+	if (before_after_cmds.get_has_been_stored() == true) then
+		-- ignore
+	else
+		before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
+		before_after_cmds.store_settings(opts["top"],"TOP")
+		before_after_cmds.store_settings(opts["left"],"LEFT")
+	end
+	cmd("echo 'HEREEEE'")
+	cmd("echo ' '")
 
 
 	---------------------------=== Integrations ===------------------------

@@ -3,6 +3,13 @@
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
+function get_has_been_stored()
+	return has_been_stored
+end
+
+function get_has_been_restored()
+	return has_been_restored
+end
 
 local function test_bool(final_opt, var)
 	
@@ -58,20 +65,6 @@ local function clean_and_append(opt, table_opt, remove_str)
 		return to_cmd
 	end
 
-
-
-	-- if (type(current_state) == "boolean") then
-	-- 	local to_cmd = test_bool(final_opt, current_state)
-	-- 	-- cmd("echo 'To CMD = "..to_cmd.."'")
-	-- elseif (type(current_state) == "number") then
-	-- 	local to_cmd = test_num(final_opt, current_state)
-	-- 	-- cmd("echo 'To CMD = "..to_cmd.."'")
-	-- 	return to_cmd
-	-- elseif (type(current_state) == "string") then
-	-- 	local to_cmd = test_str(final_opt, current_state)
-	-- 	-- cmd("echo 'To CMD = "..to_cmd.."'")
-	-- 	return to_cmd
-	-- end
 end
 
 
@@ -134,7 +127,7 @@ function store_settings(table_local, ui_element)
 		end
 	end
 
-	return false
+	has_been_stored = true
 	
 end
 
@@ -181,7 +174,7 @@ function restore_settings(ui_element)
 
 	end
 
-	return true
+	has_been_restored = true
 
 end
 
@@ -296,6 +289,8 @@ end
 
 return {
 	store_settings = store_settings,
-	restore_settings = restore_settings
+	restore_settings = restore_settings,
+	get_has_been_stored = get_has_been_stored,
+	get_has_been_restored = get_has_been_restored
 }
 
