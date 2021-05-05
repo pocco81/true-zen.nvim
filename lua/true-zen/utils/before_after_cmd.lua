@@ -130,9 +130,13 @@ function restore_settings(ui_element)
 		-- cmd("echo 'Bottom = "..tostring(bottom_show).."'")
 
 		-- if (bottom_show == 1) then
+		if (user_bottom_opts == nil) then
+			-- nothing
+		else
 			for opt, _ in pairs(user_bottom_opts) do
 				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 			end
+		end
 		-- end
 
 		-- local bottom_size = #user_bottom_opts
