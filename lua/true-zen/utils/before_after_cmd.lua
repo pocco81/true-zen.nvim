@@ -121,7 +121,7 @@ function restore_settings(ui_element)
 	-- end
 
 	if (ui_element == "BOTTOM") then
-		local bottom_show = require("true-zen.services.bottom.init").bottom_show
+		-- local bottom_show = require("true-zen.services.bottom.init").bottom_show
 
 		-- local bottom_size = #user_bottom_opts
 		-- if (bottom_size == 0 or bottom_size == nil) then
