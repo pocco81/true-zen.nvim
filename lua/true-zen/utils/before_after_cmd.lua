@@ -136,6 +136,7 @@ function restore_settings(ui_element)
 
 
 	elseif (ui_element == "LEFT") then
+		cmd("echo 'Left size = "..tostring(#user_left_opts).."'")
 		if (next(user_left_opts) == nil) then
 			-- ignore
 		else
