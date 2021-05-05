@@ -41,20 +41,20 @@ end
 
 local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
-	cmd("echo 'Opt ("..final_opt.."):"..tostring(table_opt).."'")
+	-- cmd("echo 'Opt ("..final_opt.."):"..tostring(table_opt).."'")
 
 
 	if (type(table_opt) == "boolean") then
 		to_cmd = test_bool(final_opt, table_opt)
-		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		-- cmd("echo 'To cmd = "..tostring(to_cmd).."'")
 		return to_cmd
 	elseif (type(table_opt) == "number") then
 		to_cmd = test_num(final_opt, table_opt)
-		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		-- cmd("echo 'To cmd = "..tostring(to_cmd).."'")
 		return to_cmd
 	elseif (type(table_opt) == "string") then
 		to_cmd = test_str(final_opt, table_opt)
-		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		-- cmd("echo 'To cmd = "..tostring(to_cmd).."'")
 		return to_cmd
 	end
 
@@ -152,28 +152,32 @@ function restore_settings(ui_element)
 			-- nothing
 		else
 			for opt, _ in pairs(user_bottom_opts) do
-				-- cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 				cmd(user_bottom_opts[opt])
 			end
+			cmd("echo ' '")
 		end
 	elseif (ui_element == "TOP") then
 		if (user_top_opts == nil) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_top_opts) do
-				-- cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+				cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
 				cmd(user_top_opts[opt])
 			end
+			cmd("echo ' '")
 		end
 	elseif (ui_element == "LEFT") then
 		if (user_left_opts == nil) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_left_opts) do
-				-- cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+				cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
 				cmd(user_left_opts[opt])
 			end
+			cmd("echo ' '")
 		end
+
 
 	end
 
