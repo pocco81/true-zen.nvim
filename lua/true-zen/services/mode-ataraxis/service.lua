@@ -411,6 +411,7 @@ end
 
 
 function ataraxis_false()		-- hide
+	before_after_cmds.store_settings()
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -440,7 +441,6 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	before_after_cmds.store_settings()
 	---------------------------=== Integrations ===------------------------
 	--vim.api.nvim_exec([[
 	--	augroup true_integrations
