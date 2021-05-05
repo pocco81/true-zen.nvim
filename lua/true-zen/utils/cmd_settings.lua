@@ -78,40 +78,40 @@ function map_settings(table, bool, ui_element)
 
 				if (bottom_has_been_restored == false) then
 					bottom_has_been_restored = false
-					cmd("echo 'here!!! HBR = "..tostring(bottom_has_been_restored).."'")
+					-- cmd("echo 'here!!! HBR = "..tostring(bottom_has_been_restored).."'")
 					bottom_only_here = false
 				elseif (bottom_has_been_restored == true or bottom_has_been_restored == nil) then
 					if (bottom_only_here == false) then
 						-- ignore
 					else
 						bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
-						cmd("echo '(0) I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
+						-- cmd("echo '(0) I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
 					end
 				end
 			elseif (ui_element == "TOP") then
 				if (top_has_been_restored == false) then
 					top_has_been_restored = false
-					cmd("echo 'here!!! HBR = "..tostring(top_has_been_restored).."'")
-					top_only_here = false
+					-- cmd("echo 'here!!! HBR = "..tostring(top_has_been_restored).."'")
+					-- top_only_here = false
 				elseif (top_has_been_restored == true or top_has_been_restored == nil) then
 					if (top_only_here == false) then
 						-- ignore
 					else
 						top_has_been_restored = before_after_cmds.store_settings(table, ui_element)
-						cmd("echo '(1) I ran btw HBR = "..tostring(top_has_been_restored).."'")
+						-- cmd("echo '(1) I ran btw HBR = "..tostring(top_has_been_restored).."'")
 					end
 				end
 			elseif (ui_element == "LEFT") then
 				if (left_has_been_restored == false) then
 					left_has_been_restored = false
-					cmd("echo 'here!!! HBR = "..tostring(left_has_been_restored).."'")
+					-- cmd("echo 'here!!! HBR = "..tostring(left_has_been_restored).."'")
 					left_only_here = false
 				elseif (left_has_been_restored == true or left_has_been_restored == nil) then
 					if (left_only_here == false) then
 						-- ignore
 					else
 						left_has_been_restored = before_after_cmds.store_settings(table, ui_element)
-						cmd("echo '(2) I ran btw HBR = "..tostring(left_has_been_restored).."'")
+						-- cmd("echo '(2) I ran btw HBR = "..tostring(left_has_been_restored).."'")
 					end
 				end
 

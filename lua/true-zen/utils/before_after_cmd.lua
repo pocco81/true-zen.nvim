@@ -141,6 +141,7 @@ end
 function restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
+
 	user_bottom_opts = user_bottom_opts or nil
 	user_left_opts = user_left_opts or nil
 	user_top_opts = user_top_opts or nil
