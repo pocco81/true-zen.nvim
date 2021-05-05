@@ -55,7 +55,7 @@ end
 local function read_call(opt, value_opt)
 
 	if string.find(opt, "shown_") then
-		clean_and_append(opt, value_opt, "shown_")
+		return clean_and_append(opt, value_opt, "shown_")
 	else
 		-- skip the option
 	end
