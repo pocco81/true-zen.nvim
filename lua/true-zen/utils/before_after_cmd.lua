@@ -63,6 +63,8 @@ function store_settings(table_local, ui_element)
 
 
 	if (ui_element == "TOP") then
+	
+		cmd("echo 'I RANNNNNNN'")
 
 		user_top_opts = {}
 		for opt, _ in pairs(table_local) do
