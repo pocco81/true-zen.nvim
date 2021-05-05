@@ -82,7 +82,8 @@ function store_settings(table, ui_element)
 				-- ignore
 			else
 				cmd("echo 'Final CMD = "..final_cmd.."'")
-				user_bottom_opts[#user_bottom_opts+1]=final_cmd
+				-- user_bottom_opts[#user_bottom_opts+1]=final_cmd
+				table.insert(user_bottom_opts, final_cmd)
 				cmd("echo ' '")
 			end
 		end
