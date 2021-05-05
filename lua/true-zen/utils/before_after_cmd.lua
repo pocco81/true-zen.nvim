@@ -115,23 +115,23 @@ end
 
 function restore_settings(ui_element)
 
-		-- for opt, _ in pairs(user_bottom_opts) do
-		-- 	cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-		-- end
-
-	if (ui_element == "TOP") then
-		for opt, _ in pairs(user_top_opts) do
-			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
-		end
-	elseif (ui_element == "BOTTOM") then
 		for opt, _ in pairs(user_bottom_opts) do
 			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 		end
-	-- elseif (ui_element == "LEFT") then
-	-- 	for opt, _ in pairs(user_left_opts) do
-	-- 		cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-	-- 	end
-	end
+
+-- 	if (ui_element == "TOP") then
+-- 		for opt, _ in pairs(user_top_opts) do
+-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+-- 		end
+-- 	elseif (ui_element == "BOTTOM") then
+-- 		for opt, _ in pairs(user_bottom_opts) do
+-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+-- 		end
+-- 	-- elseif (ui_element == "LEFT") then
+-- 	-- 	for opt, _ in pairs(user_left_opts) do
+-- 	-- 		cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+-- 	-- 	end
+-- 	end
 
 end
 
