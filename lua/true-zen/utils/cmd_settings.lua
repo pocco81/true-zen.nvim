@@ -75,16 +75,16 @@ function map_settings(table, bool, ui_element)
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 
 
-			if (ui_element == "BOTTOM") then
+			-- if (ui_element == "BOTTOM") then
 
-				if (amount_times_ran == nil) then
-					amount_times_ran = 1
-				elseif (amount_times_ran == 0) then
-					amount_times_ran = amount_times_ran + 1
-				else
-					bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
-					amount_times_ran = amount_times_ran + 1
-				end
+			-- 	if (amount_times_ran == nil) then
+			-- 		amount_times_ran = 1
+			-- 	elseif (amount_times_ran == 0) then
+			-- 		amount_times_ran = amount_times_ran + 1
+			-- 	else
+			-- 		bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
+			-- 		amount_times_ran = amount_times_ran + 1
+			-- 	end
 
 				--[[
 				if (bottom_has_been_restored == false) then
@@ -100,7 +100,7 @@ function map_settings(table, bool, ui_element)
 					end
 				end
 				]]--
-			elseif (ui_element == "TOP") then
+			if (ui_element == "TOP") then
 				if (top_has_been_restored == false) then
 					top_has_been_restored = false
 					-- cmd("echo 'here!!! HBR = "..tostring(top_has_been_restored).."'")
