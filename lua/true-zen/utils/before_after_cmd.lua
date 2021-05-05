@@ -152,7 +152,7 @@ function restore_settings(ui_element)
 			-- nothing
 		else
 			for opt, _ in pairs(user_bottom_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 				cmd(user_bottom_opts[opt])
 			end
 		end
@@ -161,7 +161,7 @@ function restore_settings(ui_element)
 			-- ignore
 		else
 			for opt, _ in pairs(user_top_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
 				cmd(user_top_opts[opt])
 			end
 		end
@@ -170,7 +170,7 @@ function restore_settings(ui_element)
 			-- ignore
 		else
 			for opt, _ in pairs(user_left_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
 				cmd(user_left_opts[opt])
 			end
 		end
