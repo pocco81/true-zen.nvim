@@ -117,7 +117,7 @@ function restore_settings(ui_element)
 	ui_element = ui_element or "NONE"
 
 	if (ui_element == "TOP") then
-		if (next(user_top_opts) == nil) then
+		if not next(user_top_opts) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_top_opts) do
@@ -126,7 +126,7 @@ function restore_settings(ui_element)
 		end
 	elseif (ui_element == "BOTTOM") then
 
-		if (next(user_bottom_opts) == nil) then
+		if not next(user_bottom_opts) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_bottom_opts) do
@@ -137,7 +137,7 @@ function restore_settings(ui_element)
 
 	elseif (ui_element == "LEFT") then
 		cmd("echo 'Left size = "..tostring(#user_left_opts).."'")
-		if (next(user_left_opts) == nil) then
+		if not next(user_left_opts) then	-- empty
 			-- ignore
 		else
 			for opt, _ in pairs(user_left_opts) do
