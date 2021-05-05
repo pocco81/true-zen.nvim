@@ -63,8 +63,6 @@ function store_settings(table_local, ui_element)
 
 
 	if (ui_element == "TOP") then
-	
-		cmd("echo 'I RANNNNNNN'")
 
 		user_top_opts = {}
 		for opt, _ in pairs(table_local) do
@@ -74,7 +72,6 @@ function store_settings(table_local, ui_element)
 			if (final_cmd == nil) then
 				-- ignore
 			else
-
 				cmd("echo 'Final CMD = "..final_cmd.."'")
 				table.insert(user_top_opts, final_cmd)
 				cmd("echo ' '")
@@ -120,19 +117,19 @@ function restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
 
-	-- if (ui_element == "TOP") then
-	-- 	for opt, _ in pairs(user_top_opts) do
-	-- 		cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
-	-- 	end
-	-- elseif (ui_element == "BOTTOM") then
-	-- 	for opt, _ in pairs(user_bottom_opts) do
-	-- 		cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-	-- 	end
-	-- elseif (ui_element == "LEFT") then
-	-- 	for opt, _ in pairs(user_left_opts) do
-	-- 		cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-	-- 	end
-	-- end
+	if (ui_element == "TOP") then
+		for opt, _ in pairs(user_top_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+		end
+	elseif (ui_element == "BOTTOM") then
+		for opt, _ in pairs(user_bottom_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+		end
+	elseif (ui_element == "LEFT") then
+		for opt, _ in pairs(user_left_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+		end
+	end
 
 end
 
