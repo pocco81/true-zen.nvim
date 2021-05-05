@@ -27,7 +27,7 @@ end
 local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
 	local current_state = vim.api.nvim_eval("&"..final_opt.."")
-	cmd("echo 'Table opt ="..table_opt.."'")
+	cmd("echo 'Table opt ="..tostring(table_opt).."'")
 
 	if (type(current_state) == "boolean") then
 		local to_cmd = test_bool(final_opt, current_state)
