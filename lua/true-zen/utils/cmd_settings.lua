@@ -74,6 +74,7 @@ function map_settings(table, bool, ui_element)
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 
+
 			if (ui_element == "TOP") then
 				if (top_has_been_restored == false) then
 					top_has_been_restored = false
