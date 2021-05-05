@@ -47,31 +47,8 @@ function map_settings(table, bool, ui_element)
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 
-			if (ui_element == "BOTTOM") then
 
-				if (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
-					before_after_cmds.restore_settings(ui_element)
-				end
-
-				before_after_cmds.set_has_been_stored("BOTTOM", false)
-			elseif (ui_element == "TOP") then
-				if (before_after_cmds.get_has_been_stored("TOP") == true) then
-					before_after_cmds.restore_settings(ui_element)
-				end
-
-				before_after_cmds.set_has_been_stored("TOP", false)
-			elseif (ui_element == "LEFT") then
-				before_after_cmds.set_has_been_stored("LEFT", false)
-
-				if (before_after_cmds.get_has_been_stored("LEFT") == true) then
-					before_after_cmds.restore_settings(ui_element)
-				end
-				before_after_cmds.set_has_been_stored("LEFT", false)
-			else
-				cmd("echo 'TrueZen: UI Element was not recognized'")
-			end
-
-			-- before_after_cmds.restore_settings(ui_element)
+			before_after_cmds.restore_settings(ui_element)
 		else
 			for opt, _ in pairs(table) do
 				if string.find(opt, "shown_") then
