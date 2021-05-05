@@ -49,7 +49,18 @@ function map_settings(table, bool, ui_element)
 			cmd("echo 'ummmmmmm HBR = "..tostring(has_been_restored).."'")
 
 			-- if (only_here == false or only_here == nil) then
-			before_after_cmds.restore_settings(ui_element)
+			-- before_after_cmds.restore_settings(ui_element)
+
+			if (amount_times_ran == nil) then
+				amount_times_ran = 1
+			elseif (amount_times_ran == 0) then
+				amount_times_ran = amount_times_ran + 1
+			else
+				before_after_cmds.restore_settings(ui_element)
+				amount_times_ran = amount_times_ran + 1
+			end
+
+
 			-- end
 			-- if (has_been_restored == false or has_been_restored == nil) then
 			-- 	has_been_restored = before_after_cmds.restore_settings(ui_element)
