@@ -3,11 +3,6 @@
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
--- local bottom = require("true-zen.services.bottom.init")
--- local top = require("true-zen.services.top.init")
--- local left = require("true-zen.services.left.init")
-
-
 
 local function test_bool(final_opt, var)
 	
