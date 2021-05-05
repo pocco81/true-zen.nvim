@@ -41,7 +41,7 @@ end
 
 local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
-	cmd("echo 'Table opt ="..tostring(table_opt).."'")
+	cmd("echo 'Opt ("..final_opt.."):"..tostring(table_opt).."'")
 
 
 	if (type(table_opt) == "boolean") then
