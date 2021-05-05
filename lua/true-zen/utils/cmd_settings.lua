@@ -102,6 +102,7 @@ function map_settings(table, bool, ui_element)
 
 			if (ui_element == "BOTTOM") then
 
+				--[[
 				if (amount_times_ran == nil) then
 					amount_times_ran = 1
 				elseif (amount_times_ran == 0) then
@@ -110,8 +111,8 @@ function map_settings(table, bool, ui_element)
 					bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
 					amount_times_ran = amount_times_ran + 1
 				end
+				]]--
 
-				--[[
 				if (bottom_has_been_restored == false) then
 					bottom_has_been_restored = false
 					-- cmd("echo 'here!!! HBR = "..tostring(bottom_has_been_restored).."'")
@@ -124,7 +125,6 @@ function map_settings(table, bool, ui_element)
 						-- cmd("echo '(0) I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
 					end
 				end
-				]]--
 			elseif (ui_element == "TOP") then
 				if (top_has_been_restored == false) then
 					top_has_been_restored = false
