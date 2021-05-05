@@ -54,7 +54,7 @@ function map_settings(table, bool, ui_element)
 
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			before_after_cmds.restore_settings()
+			before_after_cmds.restore_settings(ui_element)
 		end
 	elseif (bool == false) then
 

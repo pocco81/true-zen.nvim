@@ -113,7 +113,7 @@ function store_settings(table_local, ui_element)
 	
 end
 
-function restore_settings()
+function restore_settings(ui_element)
 
 	if (ui_element == "TOP") then
 		for opt, _ in pairs(user_top_opts) do
