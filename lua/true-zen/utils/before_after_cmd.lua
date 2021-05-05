@@ -34,15 +34,15 @@ local function clean_and_append(opt, table_opt, remove_str)
 	current_state = vim.api.nvim_eval("&"..final_opt.."")
 
 	if (type(current_state) == "boolean") then
-		to_cmd = test_bool(final_opt, current_state)
+		local to_cmd = test_bool(final_opt, current_state)
 		cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	elseif (type(current_state) == "number") then
-		to_cmd = test_num(final_opt, current_state)
+		local to_cmd = test_num(final_opt, current_state)
 		cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	elseif (type(current_state) == "string") then
-		to_cmd = test_str(final_opt, current_state)
+		local to_cmd = test_str(final_opt, current_state)
 		cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	end
@@ -67,6 +67,7 @@ function store_settings(table_local, ui_element)
 		user_top_opts = {}
 		for opt, _ in pairs(table_local) do
 			local final_cmd = read_call(opt, table_local[opt])
+			cmd("echo 'On top final_cmd = "..tostring(final_cmd).."'")
 
 			if (final_cmd == nil) then
 				-- ignore
