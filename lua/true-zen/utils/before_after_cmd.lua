@@ -122,6 +122,7 @@ function restore_settings(ui_element)
 
 	if (ui_element == "BOTTOM") then
 		local bottom_show = require("true-zen.services.bottom.init").bottom_show
+		cmd("echo 'Bottom = "..tostring(bottom_show).."'")
 
 		-- if (bottom_show == 1) then
 			for opt, _ in pairs(user_bottom_opts) do
