@@ -46,13 +46,16 @@ local function clean_and_append(opt, table_opt, remove_str)
 
 	if (type(table_opt) == "boolean") then
 		to_cmd = test_bool(final_opt, table_opt)
-		cmd(to_cmd)
+		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		return to_cmd
 	elseif (type(table_opt) == "number") then
 		to_cmd = test_num(final_opt, table_opt)
-		cmd(to_cmd)
+		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		return to_cmd
 	elseif (type(table_opt) == "string") then
 		to_cmd = test_str(final_opt, table_opt)
-		cmd(to_cmd)
+		cmd("echo 'To cmd = "..tostring(to_cmd).."'")
+		return to_cmd
 	end
 
 
@@ -60,7 +63,6 @@ local function clean_and_append(opt, table_opt, remove_str)
 	-- if (type(current_state) == "boolean") then
 	-- 	local to_cmd = test_bool(final_opt, current_state)
 	-- 	-- cmd("echo 'To CMD = "..to_cmd.."'")
-	-- 	return to_cmd
 	-- elseif (type(current_state) == "number") then
 	-- 	local to_cmd = test_num(final_opt, current_state)
 	-- 	-- cmd("echo 'To CMD = "..to_cmd.."'")
