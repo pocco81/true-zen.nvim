@@ -148,16 +148,19 @@ function restore_settings(ui_element)
 			end
 		end
 		-- end
+	elseif (ui_element == "BOTTOM") then
+		-- local bottom_size = #user_bottom_opts
+		-- if (bottom_size == 0 or bottom_size == nil) then
+		-- 	-- ignore
+		-- else
+		if (user_bottom_opts == nil) then
+			-- ignore
+		else
+			for opt, _ in pairs(user_bottom_opts) do
+				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+			end
+		end
 	end
-	-- elseif (ui_element == "BOTTOM") then
-	-- 	local bottom_size = #user_bottom_opts
-	-- 	if (bottom_size == 0 or bottom_size == nil) then
-	-- 		-- ignore
-	-- 	else
-	-- 		for opt, _ in pairs(user_bottom_opts) do
-	-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-	-- 		end
-	-- 	end
 
 
 	-- elseif (ui_element == "LEFT") then
