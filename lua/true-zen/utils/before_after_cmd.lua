@@ -119,6 +119,7 @@ end
 function restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
+	user_bottom_opts = user_bottom_opts or nil
 
 	-- for opt, _ in pairs(user_bottom_opts) do
 	-- 	cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
