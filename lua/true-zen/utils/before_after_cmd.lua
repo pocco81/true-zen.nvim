@@ -9,7 +9,6 @@ local cmd = vim.cmd
 
 
 user_left_opts = {}
-user_bottom_opts = {}
 user_top_opts = {}
 
 local function test_bool(final_opt, var)
@@ -67,6 +66,7 @@ end
 
 function store_settings(table, ui_element)
 
+
 	if (ui_element == "TOP") then
 		for opt, _ in pairs(table) do
 			local final_cmd = read_call(opt, table[opt])
@@ -75,6 +75,8 @@ function store_settings(table, ui_element)
 			user_top_opts[#user_top_opts+1]=final_cmd
 		end
 	elseif (ui_element == "BOTTOM") then
+
+		user_bottom_opts = {}
 		for opt, _ in pairs(table) do
 			local final_cmd = read_call(opt, table[opt])
 			-- table.insert(user_bottom_opts, final_cmd)
