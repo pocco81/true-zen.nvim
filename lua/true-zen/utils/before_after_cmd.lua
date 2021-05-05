@@ -139,18 +139,18 @@ function restore_settings(ui_element)
 		-- 	-- ignore
 		-- else
 		-- end
-	elseif (ui_element == "TOP") then
-		-- local top_size = #user_top_opts
-		-- if (top_size == 0 or top_size == nil) then
-		-- 	-- ignore
-		-- else
-		if (user_top_opts == nil) then
-			-- ignore
-		else
-			for opt, _ in pairs(user_top_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
-			end
-		end
+	-- elseif (ui_element == "TOP") then
+	-- 	-- local top_size = #user_top_opts
+	-- 	-- if (top_size == 0 or top_size == nil) then
+	-- 	-- 	-- ignore
+	-- 	-- else
+	-- 	if (user_top_opts == nil) then
+	-- 		-- ignore
+	-- 	else
+	-- 		for opt, _ in pairs(user_top_opts) do
+	-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+	-- 		end
+	-- 	end
 	-- elseif (ui_element == "LEFT") then
 	-- 	-- local left_size = #user_left_opts
 	-- 	-- if (left_size == 0 or left_size == nil) then	-- empty
