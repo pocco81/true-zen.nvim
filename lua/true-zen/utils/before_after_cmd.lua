@@ -120,6 +120,7 @@ function restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
 	user_bottom_opts = user_bottom_opts or nil
+	user_left_opts = user_left_opts or nil
 
 	-- for opt, _ in pairs(user_bottom_opts) do
 	-- 	cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
@@ -156,26 +157,18 @@ function restore_settings(ui_element)
 	-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
 	-- 		end
 	-- 	end
-	-- elseif (ui_element == "LEFT") then
-	-- 	-- local left_size = #user_left_opts
-	-- 	-- if (left_size == 0 or left_size == nil) then	-- empty
-	-- 	-- 	-- ignore
-	-- 	-- else
-	-- 	if (user_left_opts == nil) then
-	-- 		-- ignore
-	-- 		cmd("echo 'O RAN'")
-	-- 	else
-
-	-- 		cmd("echo '1 RAN'")
-	-- 		if (#user_left_opts > 0) then
-	-- 			for opt, _ in pairs(user_left_opts) do
-	-- 				cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-	-- 			end
-	-- 		else
-	-- 			-- ignore
-	-- 		end
-	-- 	end
-		-- end
+	elseif (ui_element == "LEFT") then
+		-- local left_size = #user_left_opts
+		-- if (left_size == 0 or left_size == nil) then	-- empty
+		-- 	-- ignore
+		-- else
+		if (user_left_opts == nil) then
+			-- ignore
+		else
+			for opt, _ in pairs(user_left_opts) do
+				cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+			end
+		end
 
 		-- end
 	-- elseif (ui_element == "BOTTOM") then
