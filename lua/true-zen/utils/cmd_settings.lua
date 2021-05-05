@@ -44,18 +44,21 @@ function map_settings(table, bool, ui_element)
 
 
 	if (bool == true) then
-		for opt, _ in pairs(table) do
-			if string.find(opt, "shown_") then
-				clean_and_exec(opt, table[opt], "shown_")
-			else
-				-- skip the option
+
+		if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			before_after_cmds.restore_settings(ui_element)
+		else
+			for opt, _ in pairs(table) do
+				if string.find(opt, "shown_") then
+					clean_and_exec(opt, table[opt], "shown_")
+				else
+					-- skip the option
+				end
 			end
 		end
 
 
-		if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			before_after_cmds.restore_settings(ui_element)
-		end
+
 	elseif (bool == false) then
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then

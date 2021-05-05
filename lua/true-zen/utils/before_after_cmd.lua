@@ -30,15 +30,15 @@ local function clean_and_append(opt, table_opt, remove_str)
 
 	if (type(current_state) == "boolean") then
 		local to_cmd = test_bool(final_opt, current_state)
-		cmd("echo 'To CMD = "..to_cmd.."'")
+		-- cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	elseif (type(current_state) == "number") then
 		local to_cmd = test_num(final_opt, current_state)
-		cmd("echo 'To CMD = "..to_cmd.."'")
+		-- cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	elseif (type(current_state) == "string") then
 		local to_cmd = test_str(final_opt, current_state)
-		cmd("echo 'To CMD = "..to_cmd.."'")
+		-- cmd("echo 'To CMD = "..to_cmd.."'")
 		return to_cmd
 	end
 end
@@ -66,9 +66,9 @@ function store_settings(table_local, ui_element)
 			if (final_cmd == nil) then
 				-- ignore
 			else
-				cmd("echo 'Final CMD = "..final_cmd.."'")
+				-- cmd("echo 'Final CMD = "..final_cmd.."'")
 				table.insert(user_top_opts, final_cmd)
-				cmd("echo ' '")
+				-- cmd("echo ' '")
 			end
 
 
@@ -82,9 +82,9 @@ function store_settings(table_local, ui_element)
 			if (final_cmd == nil) then
 				-- ignore
 			else
-				cmd("echo 'Final CMD = "..final_cmd.."'")
+				-- cmd("echo 'Final CMD = "..final_cmd.."'")
 				table.insert(user_bottom_opts, final_cmd)
-				cmd("echo ' '")
+				-- cmd("echo ' '")
 			end
 		end
 	elseif (ui_element == "LEFT") then
@@ -96,9 +96,9 @@ function store_settings(table_local, ui_element)
 			if (final_cmd == nil) then
 				-- ignore
 			else
-				cmd("echo 'Final CMD = "..final_cmd.."'")
+				-- cmd("echo 'Final CMD = "..final_cmd.."'")
 				table.insert(user_left_opts, final_cmd)
-				cmd("echo ' '")
+				-- cmd("echo ' '")
 			end
 		end
 	end
@@ -118,7 +118,8 @@ function restore_settings(ui_element)
 			-- nothing
 		else
 			for opt, _ in pairs(user_bottom_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+				cmd(user_bottom_opts[opt])
 			end
 		end
 	elseif (ui_element == "TOP") then
@@ -126,7 +127,8 @@ function restore_settings(ui_element)
 			-- ignore
 		else
 			for opt, _ in pairs(user_top_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+				cmd(user_top_opts[opt])
 			end
 		end
 	elseif (ui_element == "LEFT") then
@@ -134,7 +136,8 @@ function restore_settings(ui_element)
 			-- ignore
 		else
 			for opt, _ in pairs(user_left_opts) do
-				cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+				-- cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+				cmd(user_left_opts[opt])
 			end
 		end
 
