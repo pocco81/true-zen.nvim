@@ -83,6 +83,7 @@ function store_settings(table, ui_element)
 			else
 				cmd("echo 'Final CMD = "..final_cmd.."'")
 				user_bottom_opts[#user_bottom_opts+1]=final_cmd
+				cmd("echo ' '")
 			end
 		end
 	elseif (ui_element == "LEFT") then
