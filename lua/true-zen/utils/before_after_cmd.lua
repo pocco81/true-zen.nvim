@@ -142,9 +142,13 @@ function restore_settings(ui_element)
 		-- if (top_size == 0 or top_size == nil) then
 		-- 	-- ignore
 		-- else
+		if (user_top_opts == nil) then
+			-- ignore
+		else
 			for opt, _ in pairs(user_top_opts) do
 				cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
 			end
+		end
 		-- end
 	end
 	-- elseif (ui_element == "BOTTOM") then
