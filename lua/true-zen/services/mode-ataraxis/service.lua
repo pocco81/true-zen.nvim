@@ -437,15 +437,15 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 
-	-------------------------=== Integrations ===------------------------
-	vim.api.nvim_exec([[
-		augroup true_integrations
-			autocmd!
-		augroup END
-	]], false)
+	---------------------------=== Integrations ===------------------------
+	--vim.api.nvim_exec([[
+	--	augroup true_integrations
+	--		autocmd!
+	--	augroup END
+	--]], false)
 
-	load_integrations(false)
-	-------------------------=== Integrations ===------------------------
+	--load_integrations(false)
+	---------------------------=== Integrations ===------------------------
 
 
 	local left_padding_cmd = ""
@@ -563,6 +563,16 @@ function ataraxis_false()		-- hide
 
 
 	mode_minimalist.main(2)
+
+	-------------------------=== Integrations ===------------------------
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+		augroup END
+	]], false)
+
+	load_integrations(false)
+	-------------------------=== Integrations ===------------------------
 
 	-- remove the border lines on every buffer
 	-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
