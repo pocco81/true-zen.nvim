@@ -48,12 +48,14 @@ function map_settings(table, bool, ui_element)
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			cmd("echo 'ummmmmmm HBR = "..tostring(has_been_restored).."'")
 
-			-- has_been_restored = before_after_cmds.restore_settings(ui_element)
-			if (has_been_restored == false or has_been_restored == nil) then
+			if (only_here == false or only_here == nil) then
 				has_been_restored = before_after_cmds.restore_settings(ui_element)
-			elseif (has_been_restored == true) then
-				has_been_restored = true
 			end
+			-- if (has_been_restored == false or has_been_restored == nil) then
+			-- 	has_been_restored = before_after_cmds.restore_settings(ui_element)
+			-- elseif (has_been_restored == true) then
+			-- 	has_been_restored = true
+			-- end
 		else
 			for opt, _ in pairs(table) do
 				if string.find(opt, "shown_") then
