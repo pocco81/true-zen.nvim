@@ -412,7 +412,7 @@ end
 
 function ataraxis_false()		-- hide
 	cmd("echo 'HEREEEE'")
-	before_after_cmds.store_settings("BOTTOM")
+	before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
 	cmd("echo 'HEREEEE'")
 	cmd("echo ' '")
 
