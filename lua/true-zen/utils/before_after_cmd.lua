@@ -60,7 +60,7 @@ local function read_call(opt, value_opt)
 	if string.find(opt, "shown_") then
 		return clean_and_append(opt, value_opt, "shown_")
 	else
-		return "NONE"
+		return nil
 	end
 	
 end
@@ -78,8 +78,12 @@ function store_settings(table, ui_element)
 		for opt, _ in pairs(table) do
 			local final_cmd = read_call(opt, table[opt])
 			-- table.insert(user_bottom_opts, final_cmd)
-			cmd("echo 'Final CMD = "..final_cmd.."'")
-			user_bottom_opts[#user_bottom_opts+1]=final_cmd
+			if (final_cmd == nil) then
+				-- ignore
+			else
+				cmd("echo 'Final CMD = "..final_cmd.."'")
+				user_bottom_opts[#user_bottom_opts+1]=final_cmd
+			end
 		end
 	elseif (ui_element == "LEFT") then
 		for opt, _ in pairs(table) do
