@@ -8,8 +8,6 @@ local cmd = vim.cmd
 -- local left = require("true-zen.services.left.init")
 
 
-user_left_opts = {}
-user_top_opts = {}
 
 local function test_bool(final_opt, var)
 	
@@ -33,9 +31,6 @@ end
 
 local function clean_and_append(opt, table_opt, remove_str)
 	final_opt = opt:gsub(remove_str, "")
-
-	cmd("echo 'Final opt = "..final_opt.."'")
-
 	current_state = vim.api.nvim_eval("&"..final_opt.."")
 
 	if (type(table_opt) == "boolean") then
@@ -68,34 +63,49 @@ function store_settings(table_local, ui_element)
 
 
 	if (ui_element == "TOP") then
+
+		user_top_opts = {}
 		for opt, _ in pairs(table_local) do
 			local final_cmd = read_call(opt, table_local[opt])
-			-- table.insert(user_top_opts, final_cmd)
-			cmd("echo 'Final CMD = "..final_cmd.."'")
-			user_top_opts[#user_top_opts+1]=final_cmd
+
+			if (final_cmd == nil) then
+				-- ignore
+			else
+
+				cmd("echo 'Final CMD = "..final_cmd.."'")
+				table.insert(user_top_opts, final_cmd)
+				cmd("echo ' '")
+			end
+
+
 		end
 	elseif (ui_element == "BOTTOM") then
 
 		user_bottom_opts = {}
 		for opt, _ in pairs(table_local) do
 			local final_cmd = read_call(opt, table_local[opt])
-			-- table.insert(user_bottom_opts, final_cmd)
+
 			if (final_cmd == nil) then
 				-- ignore
 			else
 				cmd("echo 'Final CMD = "..final_cmd.."'")
-				-- user_bottom_opts[#user_bottom_opts+1]=final_cmd
 				table.insert(user_bottom_opts, final_cmd)
 				cmd("echo ' '")
 			end
 		end
 	elseif (ui_element == "LEFT") then
+
+		user_left_opts = {}
 		for opt, _ in pairs(table_local) do
 			local final_cmd = read_call(opt, table_local[opt])
-			-- table.insert(user_left_opts, final_cmd)
-	
-			cmd("echo 'Final CMD = "..final_cmd.."'")
-			user_left_opts[#user_left_opts+1]=final_cmd
+
+			if (final_cmd == nil) then
+				-- ignore
+			else
+				cmd("echo 'Final CMD = "..final_cmd.."'")
+				table.insert(user_left_opts, final_cmd)
+				cmd("echo ' '")
+			end
 		end
 	end
 
@@ -104,11 +114,19 @@ function store_settings(table_local, ui_element)
 end
 
 function restore_settings()
-	
-	cmd("echo 'I RAN'")
 
-	for opt, _ in pairs(user_bottom_opts) do
-		cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+	if (ui_element == "TOP") then
+		for opt, _ in pairs(user_top_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_top_opts[opt].."'")
+		end
+	elseif (ui_element == "BOTTOM") then
+		for opt, _ in pairs(user_bottom_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+		end
+	elseif (ui_element == "LEFT") then
+		for opt, _ in pairs(user_left_opts) do
+			cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
+		end
 	end
 
 end
