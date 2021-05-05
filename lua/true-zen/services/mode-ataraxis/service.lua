@@ -411,7 +411,10 @@ end
 
 
 function ataraxis_false()		-- hide
+	cmd("echo 'HEREEEE'")
 	before_after_cmds.store_settings("BOTTOM")
+	cmd("echo 'HEREEEE'")
+	cmd("echo ' '")
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
