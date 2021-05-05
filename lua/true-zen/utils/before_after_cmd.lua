@@ -117,7 +117,8 @@ function restore_settings(ui_element)
 	ui_element = ui_element or "NONE"
 
 	if (ui_element == "TOP") then
-		if (not next(user_top_opts) or next(user_top_opts) == nil) then
+		local top_size = #user_top_opts
+		if (top_size == 0 or top_size == nil) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_top_opts) do
@@ -125,8 +126,8 @@ function restore_settings(ui_element)
 			end
 		end
 	elseif (ui_element == "BOTTOM") then
-
-		if (not next(user_bottom_opts) or next(user_bottom_opts) == nil) then
+		local bottom_size = #user_bottom_opts
+		if (bottom_size == 0 or bottom_size == nil) then
 			-- ignore
 		else
 			for opt, _ in pairs(user_bottom_opts) do
@@ -136,8 +137,8 @@ function restore_settings(ui_element)
 
 
 	elseif (ui_element == "LEFT") then
-
-		if (not next(user_left_opts) or next(user_left_opts) == nil) then	-- empty
+		local left_size = #user_left_opts
+		if (left_size == 0 or left_size == nil) then	-- empty
 			-- ignore
 		else
 			for opt, _ in pairs(user_left_opts) do
