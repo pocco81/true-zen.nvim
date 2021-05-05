@@ -46,6 +46,7 @@ function map_settings(table, bool, ui_element)
 	if (bool == true) then
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			cmd("echo 'ummmmmmm HBR = "..tostring(has_been_restored).."'")
 
 			has_been_restored = before_after_cmds.restore_settings(ui_element)
 			-- if (has_been_restored == false or has_been_restored == nil) then
