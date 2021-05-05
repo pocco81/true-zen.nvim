@@ -440,13 +440,24 @@ function ataraxis_false()		-- hide
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
 	cmd("echo 'HEREEEE'")
-	if (before_after_cmds.get_has_been_stored() == true) then
+	if (before_after_cmds.get_has_been_stored("TOP") == true) then
+		-- ignore
+	else
+		before_after_cmds.store_settings(opts["top"],"TOP")
+	end
+
+	if (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
 		-- ignore
 	else
 		before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
-		before_after_cmds.store_settings(opts["top"],"TOP")
+	end
+
+	if (before_after_cmds.get_has_been_stored("LEFT") == true) then
+		-- ignore
+	else
 		before_after_cmds.store_settings(opts["left"],"LEFT")
 	end
+
 	cmd("echo 'HEREEEE'")
 	cmd("echo ' '")
 

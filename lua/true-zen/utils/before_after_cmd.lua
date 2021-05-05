@@ -3,12 +3,24 @@
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
-function get_has_been_stored()
-	return has_been_stored
+function get_has_been_stored(element)
+	if (element == "LEFT") then
+		return left_has_been_stored
+	elseif (element == "TOP") then
+		return top_has_been_stored
+	elseif (element == "BOTTOM") then
+		return bottom_has_been_stored
+	end
 end
 
-function get_has_been_restored()
-	return has_been_restored
+function get_has_been_restored(element)
+	if (element == "LEFT") then
+		return left_has_been_restored
+	elseif (element == "TOP") then
+		return top_has_been_restored
+	elseif (element == "BOTTOM") then
+		return bottom_has_been_restored
+	end
 end
 
 local function test_bool(final_opt, var)
@@ -97,6 +109,7 @@ function store_settings(table_local, ui_element)
 
 
 		end
+		top_has_been_stored = true
 	elseif (ui_element == "BOTTOM") then
 
 		user_bottom_opts = {}
@@ -111,6 +124,7 @@ function store_settings(table_local, ui_element)
 				-- cmd("echo ' '")
 			end
 		end
+		bottom_has_been_stored = true
 	elseif (ui_element == "LEFT") then
 
 		user_left_opts = {}
@@ -125,9 +139,9 @@ function store_settings(table_local, ui_element)
 				-- cmd("echo ' '")
 			end
 		end
+		left_has_been_stored = true
 	end
 
-	has_been_stored = true
 	
 end
 
@@ -149,6 +163,7 @@ function restore_settings(ui_element)
 				cmd(user_bottom_opts[opt])
 			end
 			cmd("echo ' '")
+			bottom_has_been_restored = true
 		end
 	elseif (ui_element == "TOP") then
 		if (user_top_opts == nil) then
@@ -159,6 +174,7 @@ function restore_settings(ui_element)
 				cmd(user_top_opts[opt])
 			end
 			cmd("echo ' '")
+			top_has_been_restored = true
 		end
 	elseif (ui_element == "LEFT") then
 		if (user_left_opts == nil) then
@@ -169,12 +185,13 @@ function restore_settings(ui_element)
 				cmd(user_left_opts[opt])
 			end
 			cmd("echo ' '")
+
+			left_has_been_restored = true
 		end
 
 
 	end
 
-	has_been_restored = true
 
 end
 
