@@ -155,13 +155,12 @@ function restore_settings(ui_element)
 		if (user_left_opts == nil) then
 			-- ignore
 		else
-
-			if (user_left_opts == nil) then
-				-- ignore
-			else
+			if (#user_left_opts > 0) then
 				for opt, _ in pairs(user_left_opts) do
 					cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
 				end
+			else
+				-- ignore
 			end
 		end
 		-- end
