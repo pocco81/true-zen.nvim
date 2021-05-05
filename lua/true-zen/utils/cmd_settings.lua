@@ -70,22 +70,59 @@ function map_settings(table, bool, ui_element)
 
 	elseif (bool == false) then
 
-		cmd("echo 'HBR = "..tostring(has_been_restored).."'")
+		-- cmd("echo 'HBR = "..tostring(has_been_restored).."'")
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			if (has_been_restored == false) then
-				has_been_restored = false
-				cmd("echo 'here!!! HBR = "..tostring(has_been_restored).."'")
-				only_here = false
-			elseif (has_been_restored == true or has_been_restored == nil) then
-				if (only_here == false) then
-					-- ignore
-				else
-					has_been_restored = before_after_cmds.store_settings(table, ui_element)
-					cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
+
+			if (ui_element == "BOTTOM") then
+
+				if (bottom_has_been_restored == false) then
+					bottom_has_been_restored = false
+					cmd("echo 'here!!! HBR = "..tostring(bottom_has_been_restored).."'")
+					bottom_only_here = false
+				elseif (bottom_has_been_restored == true or bottom_has_been_restored == nil) then
+					if (bottom_only_here == false) then
+						-- ignore
+					else
+						bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
+						cmd("echo ' I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
+					end
 				end
+			elseif (ui_element == "TOP") then
+			elseif (ui_element == "LEFT") then
+
 			end
+
+
+
+			-- if (has_been_restored == false) then
+			-- 	has_been_restored = false
+			-- 	cmd("echo 'here!!! HBR = "..tostring(has_been_restored).."'")
+			-- 	only_here = false
+			-- elseif (has_been_restored == true or has_been_restored == nil) then
+			-- 	if (only_here == false) then
+			-- 		-- ignore
+			-- 	else
+			-- 		has_been_restored = before_after_cmds.store_settings(table, ui_element)
+			-- 		cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
+			-- 	end
+			-- end
 		end
+
+		-- if (opts["minimalist"]["store_and_restore_settings"] == true) then
+		-- 	if (has_been_restored == false) then
+		-- 		has_been_restored = false
+		-- 		cmd("echo 'here!!! HBR = "..tostring(has_been_restored).."'")
+		-- 		only_here = false
+		-- 	elseif (has_been_restored == true or has_been_restored == nil) then
+		-- 		if (only_here == false) then
+		-- 			-- ignore
+		-- 		else
+		-- 			has_been_restored = before_after_cmds.store_settings(table, ui_element)
+		-- 			cmd("echo ' I ran btw HBR = "..tostring(has_been_restored).."'")
+		-- 		end
+		-- 	end
+		-- end
 
 		for opt, _ in pairs(table) do
 			if string.find(opt, "hidden_") then
