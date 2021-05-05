@@ -7,12 +7,12 @@ local cmd_settings = require("true-zen.utils.cmd_settings")
 -- set showtabline=<num>
 
 function top_true()		-- show
-	vim.cmd("echo 'I RAN TRUE'")
+	-- vim.cmd("echo 'I RAN TRUE'")
 	cmd_settings.map_settings(opts["top"], true, "TOP")
 end
 
 function top_false()		-- don't show
-	vim.cmd("echo 'I RAN FALSE'")
+	-- vim.cmd("echo 'I RAN FALSE'")
 	cmd_settings.map_settings(opts["top"], false, "TOP")
 end
 
