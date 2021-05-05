@@ -85,10 +85,22 @@ function map_settings(table, bool, ui_element)
 						-- ignore
 					else
 						bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
-						cmd("echo ' I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
+						cmd("echo '(0) I ran btw HBR = "..tostring(bottom_has_been_restored).."'")
 					end
 				end
 			elseif (ui_element == "TOP") then
+				if (top_has_been_restored == false) then
+					top_has_been_restored = false
+					cmd("echo 'here!!! HBR = "..tostring(top_has_been_restored).."'")
+					top_only_here = false
+				elseif (top_has_been_restored == true or top_has_been_restored == nil) then
+					if (top_only_here == false) then
+						-- ignore
+					else
+						top_has_been_restored = before_after_cmds.store_settings(table, ui_element)
+						cmd("echo '(1) I ran btw HBR = "..tostring(top_has_been_restored).."'")
+					end
+				end
 			elseif (ui_element == "LEFT") then
 
 			end
