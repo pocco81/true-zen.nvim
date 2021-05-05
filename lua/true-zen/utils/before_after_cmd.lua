@@ -106,13 +106,7 @@ function store_settings(table_local, ui_element)
 				cmd("echo ' '")
 			end
 		end
-
-				for opt, _ in pairs(user_left_opts) do
-					cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-				end
 	end
-
-
 	
 end
 
@@ -123,15 +117,8 @@ function restore_settings(ui_element)
 	user_left_opts = user_left_opts or nil
 	user_top_opts = user_top_opts or nil
 
-	-- for opt, _ in pairs(user_bottom_opts) do
-	-- 	cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-	-- end
 
 	if (ui_element == "BOTTOM") then
-		-- local bottom_show = require("true-zen.services.bottom.init").bottom_show
-		-- cmd("echo 'Bottom = "..tostring(bottom_show).."'")
-
-		-- if (bottom_show == 1) then
 		if (user_bottom_opts == nil) then
 			-- nothing
 		else
@@ -139,18 +126,7 @@ function restore_settings(ui_element)
 				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 			end
 		end
-		-- end
-
-		-- local bottom_size = #user_bottom_opts
-		-- if (bottom_size == 0 or bottom_size == nil) then
-		-- 	-- ignore
-		-- else
-		-- end
 	elseif (ui_element == "TOP") then
-		-- local top_size = #user_top_opts
-		-- if (top_size == 0 or top_size == nil) then
-		-- 	-- ignore
-		-- else
 		if (user_top_opts == nil) then
 			-- ignore
 		else
@@ -159,10 +135,6 @@ function restore_settings(ui_element)
 			end
 		end
 	elseif (ui_element == "LEFT") then
-		-- local left_size = #user_left_opts
-		-- if (left_size == 0 or left_size == nil) then	-- empty
-		-- 	-- ignore
-		-- else
 		if (user_left_opts == nil) then
 			-- ignore
 		else
@@ -171,32 +143,7 @@ function restore_settings(ui_element)
 			end
 		end
 
-		-- end
-	-- elseif (ui_element == "BOTTOM") then
-	-- 	-- local bottom_size = #user_bottom_opts
-	-- 	-- if (bottom_size == 0 or bottom_size == nil) then
-	-- 	-- 	-- ignore
-	-- 	-- else
-	-- 	if (user_bottom_opts == nil) then
-	-- 		-- ignore
-	-- 	else
-	-- 		for opt, _ in pairs(user_bottom_opts) do
-	-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
-	-- 		end
-	-- 	end
 	end
-
-
-	-- elseif (ui_element == "LEFT") then
-	-- 	local left_size = #user_left_opts
-	-- 	if (left_size == 0 or left_size == nil) then	-- empty
-	-- 		-- ignore
-	-- 	else
-	-- 		for opt, _ in pairs(user_left_opts) do
-	-- 			cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
-	-- 		end
-	-- 	end
-	-- end
 
 end
 
