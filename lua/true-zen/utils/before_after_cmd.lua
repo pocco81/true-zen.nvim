@@ -123,11 +123,11 @@ function restore_settings(ui_element)
 	if (ui_element == "BOTTOM") then
 		local bottom_show = require("true-zen.services.bottom.init").bottom_show
 
-		if (bottom_show == 1) then
+		-- if (bottom_show == 1) then
 			for opt, _ in pairs(user_bottom_opts) do
 				cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
 			end
-		end
+		-- end
 
 		-- local bottom_size = #user_bottom_opts
 		-- if (bottom_size == 0 or bottom_size == nil) then
