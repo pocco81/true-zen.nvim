@@ -44,7 +44,6 @@ function map_settings(table, bool, ui_element)
 
 
 	if (bool == true) then
-		vim.cmd("echo 'I RANnnnnnn'")
 		for opt, _ in pairs(table) do
 			if string.find(opt, "shown_") then
 				clean_and_exec(opt, table[opt], "shown_")
