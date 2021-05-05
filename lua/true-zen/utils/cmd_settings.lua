@@ -77,7 +77,9 @@ function map_settings(table, bool, ui_element)
 
 			if (ui_element == "BOTTOM") then
 
-				if (amount_times_ran == 0 or amount_times_ran == nil) then
+				if (amount_times_ran == nil) then
+					amount_times_ran = 1
+				elseif (amount_times_ran == 0) then
 					amount_times_ran = amount_times_ran + 1
 				else
 					bottom_has_been_restored = before_after_cmds.store_settings(table, ui_element)
