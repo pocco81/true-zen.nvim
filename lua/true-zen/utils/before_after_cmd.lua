@@ -64,12 +64,12 @@ local function read_call(opt, value_opt)
 	
 end
 
-function store_settings(table, ui_element)
+function store_settings(table_local, ui_element)
 
 
 	if (ui_element == "TOP") then
-		for opt, _ in pairs(table) do
-			local final_cmd = read_call(opt, table[opt])
+		for opt, _ in pairs(table_local) do
+			local final_cmd = read_call(opt, table_local[opt])
 			-- table.insert(user_top_opts, final_cmd)
 			cmd("echo 'Final CMD = "..final_cmd.."'")
 			user_top_opts[#user_top_opts+1]=final_cmd
@@ -77,8 +77,8 @@ function store_settings(table, ui_element)
 	elseif (ui_element == "BOTTOM") then
 
 		user_bottom_opts = {}
-		for opt, _ in pairs(table) do
-			local final_cmd = read_call(opt, table[opt])
+		for opt, _ in pairs(table_local) do
+			local final_cmd = read_call(opt, table_local[opt])
 			-- table.insert(user_bottom_opts, final_cmd)
 			if (final_cmd == nil) then
 				-- ignore
@@ -90,8 +90,8 @@ function store_settings(table, ui_element)
 			end
 		end
 	elseif (ui_element == "LEFT") then
-		for opt, _ in pairs(table) do
-			local final_cmd = read_call(opt, table[opt])
+		for opt, _ in pairs(table_local) do
+			local final_cmd = read_call(opt, table_local[opt])
 			-- table.insert(user_left_opts, final_cmd)
 	
 			cmd("echo 'Final CMD = "..final_cmd.."'")
