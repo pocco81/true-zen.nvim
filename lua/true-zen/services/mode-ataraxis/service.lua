@@ -3,7 +3,7 @@
 local opts = require("true-zen.config").options
 local left_service = require("true-zen.services.left.service")
 local mode_minimalist = require("true-zen.services.mode-minimalist.init")
-local before_after_cmds = require("true-zen.utils.before_after_cmd")
+local before_after_cmds = require("true-zen.utils.before_after_cmd1")
 
 local hi_group = require("true-zen.services.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.mode-ataraxis.modules.fillchar")
