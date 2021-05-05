@@ -34,6 +34,9 @@ end
 
 local function clean_and_append(opt, table_opt, remove_str)
 	final_opt = opt:gsub(remove_str, "")
+
+	cmd("echo 'Final opt = "..final_opt.."'")
+
 	current_state = vim.api.nvim_eval("&"..final_opt.."")
 
 	if (type(table_opt) == "boolean") then
