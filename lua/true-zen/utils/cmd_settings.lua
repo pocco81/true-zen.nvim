@@ -65,6 +65,8 @@ function map_settings(table, bool, ui_element)
 
 	elseif (bool == false) then
 
+		cmd("echo 'HBR = "..tostring(has_been_restored).."'")
+
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			if (has_been_restored == false) then
 				has_been_restored = false
