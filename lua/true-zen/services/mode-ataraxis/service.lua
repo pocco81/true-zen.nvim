@@ -326,7 +326,7 @@ function ataraxis_true()		-- show
 			-- nothing
 		end
 
-		mode_minimalist.main(1)
+		-- mode_minimalist.main(1)
 		cmd("set fillchars=")
 
 		-- if removed, it's likely that numberline and bottom will be removed
@@ -402,6 +402,8 @@ function ataraxis_true()		-- show
 	]], false)
 	-------------------------=== Integrations ===------------------------
 
+
+		mode_minimalist.main(1)
 
 
 end
