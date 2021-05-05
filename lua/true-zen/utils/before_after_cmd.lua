@@ -154,7 +154,9 @@ function restore_settings(ui_element)
 		-- else
 		if (user_left_opts == nil) then
 			-- ignore
+			cmd("echo 'O RAN'")
 		else
+			cmd("echo '1 RAN'")
 			if (#user_left_opts > 0) then
 				for opt, _ in pairs(user_left_opts) do
 					cmd("echo 'Opt = "..opt.."; Value = "..user_left_opts[opt].."'")
