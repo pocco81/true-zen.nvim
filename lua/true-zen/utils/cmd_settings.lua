@@ -46,7 +46,11 @@ function map_settings(table, bool, ui_element)
 	if (bool == true) then
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			before_after_cmds.restore_settings(ui_element)
+			if (has_been_restored == false or has_been_restored == nil) then
+				has_been_restored = before_after_cmds.restore_settings(ui_element)
+			elseif (has_been_restored == true) then
+				has_been_restored = true
+			end
 		else
 			for opt, _ in pairs(table) do
 				if string.find(opt, "shown_") then
@@ -62,7 +66,11 @@ function map_settings(table, bool, ui_element)
 	elseif (bool == false) then
 
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			before_after_cmds.store_settings(table, ui_element)
+			if (has_been_restored == false) then
+				has_been_restored = false
+			elseif (has_been_restored == true or has_been_restored == nil) then
+				has_been_restored = before_after_cmds.store_settings(table, ui_element)
+			end
 		end
 
 		for opt, _ in pairs(table) do

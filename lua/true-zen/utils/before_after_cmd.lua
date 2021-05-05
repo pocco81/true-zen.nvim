@@ -131,6 +131,8 @@ function store_settings(table_local, ui_element)
 			end
 		end
 	end
+
+	return false
 	
 end
 
@@ -171,6 +173,8 @@ function restore_settings(ui_element)
 		end
 
 	end
+
+	return true
 
 end
 
