@@ -65,23 +65,17 @@ function map_settings(table, bool, ui_element)
 
 			if (ui_element == "BOTTOM") then
 
-				if (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
-					-- ignore
-				else
+				if not (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
 					before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
 				end
 			elseif (ui_element == "TOP") then
 
-				if (before_after_cmds.get_has_been_stored("TOP") == true) then
-					-- ignore
-				else
+				if not (before_after_cmds.get_has_been_stored("TOP") == true) then
 					before_after_cmds.store_settings(opts["top"],"TOP")
 				end
 			elseif (ui_element == "LEFT") then
 
-				if (before_after_cmds.get_has_been_stored("LEFT") == true) then
-					-- ignore
-				else
+				if not (before_after_cmds.get_has_been_stored("LEFT") == true) then
 					before_after_cmds.store_settings(opts["left"],"LEFT")
 				end
 			else

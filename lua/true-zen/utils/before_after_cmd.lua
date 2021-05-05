@@ -156,7 +156,6 @@ function restore_settings(ui_element)
 			-- cmd("echo ' '")
 			bottom_has_been_restored = true
 		end
-		bottom_has_been_stored = false
 	elseif (ui_element == "TOP") then
 		if (user_top_opts == nil) then
 			-- ignore
@@ -168,7 +167,6 @@ function restore_settings(ui_element)
 			-- cmd("echo ' '")
 			top_has_been_restored = true
 		end
-		top_has_been_stored = false
 	elseif (ui_element == "LEFT") then
 		if (user_left_opts == nil) then
 			-- ignore
@@ -182,7 +180,6 @@ function restore_settings(ui_element)
 			left_has_been_restored = true
 		end
 
-		left_has_been_stored = false
 
 	end
 
