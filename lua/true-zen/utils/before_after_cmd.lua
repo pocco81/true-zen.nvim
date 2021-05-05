@@ -13,6 +13,16 @@ function get_has_been_stored(element)
 	end
 end
 
+function set_has_been_stored(element, val)
+	if (element == "LEFT") then
+		left_has_been_stored = val
+	elseif (element == "TOP") then
+		top_has_been_stored = val
+	elseif (element == "BOTTOM") then
+		bottom_has_been_stored = val
+	end
+end
+
 function get_has_been_restored(element)
 	if (element == "LEFT") then
 		return left_has_been_restored
@@ -192,6 +202,7 @@ return {
 	store_settings = store_settings,
 	restore_settings = restore_settings,
 	get_has_been_stored = get_has_been_stored,
-	get_has_been_restored = get_has_been_restored
+	get_has_been_restored = get_has_been_restored,
+	set_has_been_stored = set_has_been_stored
 }
 
