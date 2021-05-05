@@ -439,27 +439,27 @@ function ataraxis_false()		-- hide
 	end
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
-	cmd("echo 'HEREEEE'")
-	if (before_after_cmds.get_has_been_stored("TOP") == true) then
-		-- ignore
-	else
-		before_after_cmds.store_settings(opts["top"],"TOP")
+	if (opts["minimalist"]["store_and_restore_settings"] == true) then
+
+		top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+		bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+		left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+
+		if not (top_has_been_stored == true) then
+			before_after_cmds.store_settings(opts["top"],"TOP")
+		end
+
+		if not (bottom_has_been_stored == true) then
+			before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
+		end
+
+		if not (left_has_been_stored == true) then
+			before_after_cmds.store_settings(opts["left"],"LEFT")
+		end
+	
 	end
 
-	if (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
-		-- ignore
-	else
-		before_after_cmds.store_settings(opts["bottom"],"BOTTOM")
-	end
 
-	if (before_after_cmds.get_has_been_stored("LEFT") == true) then
-		-- ignore
-	else
-		before_after_cmds.store_settings(opts["left"],"LEFT")
-	end
-
-	cmd("echo 'HEREEEE'")
-	cmd("echo ' '")
 
 
 	---------------------------=== Integrations ===------------------------
