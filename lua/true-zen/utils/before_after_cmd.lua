@@ -113,7 +113,7 @@ function store_settings(table_local, ui_element)
 			if (final_cmd == nil) then
 				-- ignore
 			else
-				-- cmd("echo 'Final CMD = "..final_cmd.."'")
+				cmd("echo 'Final CMD = "..final_cmd.."'")
 				table.insert(user_bottom_opts, final_cmd)
 				-- cmd("echo ' '")
 			end

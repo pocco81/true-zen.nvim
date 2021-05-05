@@ -48,22 +48,23 @@ function map_settings(table, bool, ui_element)
 		if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			cmd("echo 'ummmmmmm HBR = "..tostring(has_been_restored).."'")
 
+			before_after_cmds.restore_settings(ui_element)
 
 
-			if (ui_element == "BOTTOM") then
-				if (amount_times_ran == nil) then
-					amount_times_ran = 1
-				elseif (amount_times_ran == 0) then
-					amount_times_ran = amount_times_ran + 1
-				else
-					before_after_cmds.restore_settings(ui_element)
-					amount_times_ran = amount_times_ran + 1
-				end
-			elseif (ui_element == "TOP") then
-				before_after_cmds.restore_settings(ui_element)
-			elseif (ui_element == "LEFT") then
-				before_after_cmds.restore_settings(ui_element)
-			end
+			-- if (ui_element == "BOTTOM") then
+			-- 	if (amount_times_ran == nil) then
+			-- 		amount_times_ran = 1
+			-- 	elseif (amount_times_ran == 0) then
+			-- 		amount_times_ran = amount_times_ran + 1
+			-- 	else
+			-- 		before_after_cmds.restore_settings(ui_element)
+			-- 		amount_times_ran = amount_times_ran + 1
+			-- 	end
+			-- elseif (ui_element == "TOP") then
+			-- 	before_after_cmds.restore_settings(ui_element)
+			-- elseif (ui_element == "LEFT") then
+			-- 	before_after_cmds.restore_settings(ui_element)
+			-- end
 
 
 
