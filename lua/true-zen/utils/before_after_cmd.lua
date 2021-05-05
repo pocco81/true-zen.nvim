@@ -135,9 +135,7 @@ function restore_settings(ui_element)
 		-- 	-- ignore
 		-- else
 		-- end
-	end
-
-	if (ui_element == "TOP") then
+	elseif (ui_element == "TOP") then
 		-- local top_size = #user_top_opts
 		-- if (top_size == 0 or top_size == nil) then
 		-- 	-- ignore
