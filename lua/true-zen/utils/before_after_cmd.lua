@@ -116,6 +116,10 @@ function restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
 
+	for opt, _ in pairs(user_bottom_opts) do
+		cmd("echo 'Opt = "..opt.."; Value = "..user_bottom_opts[opt].."'")
+	end
+
 	-- if (ui_element == "TOP") then
 	-- 	local top_size = #user_top_opts
 	-- 	if (top_size == 0 or top_size == nil) then
