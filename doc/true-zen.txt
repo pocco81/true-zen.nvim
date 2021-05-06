@@ -335,7 +335,15 @@ All the commands follow the *camel casing* naming convention and have the `TZ` p
 ## Default
 - `:TZMinimalist` toggles Minimalist mode. Activates/deactivates NeoVim's UI components from the left, bottom and top of NeoVim on all the buffers you enter in the current session.
 - `:TZFocus` toggle focus mode. Focus mode maximizes the current window. It has two defferent focusing methods too! Due to the fact that there is no way to check whether a window is maximized or not, it compares different factors in order to determine it; that's why it has the `margin_of_error` setting.
-- `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all buffers in the current session + makes use of the different integrations.
+- `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all buffers in the current session + makes use of the different integrations. Furthermore, you could also set values for the padding of the left (`l`), right (`r`), top (`t`), and bottom (`b`) of the Ataraxis instance you are about to spawn. This values are optional and when given their equivalent from the config is ignored. They should be separated by spaces and the format they should have is: `<(l)eft/(r)ight>/(t)op/(b)ottom<number_of_cells>`. Here is an example:
+
+```
+:TZAtaraxis l10 r10 t3 b1
+```
+Note: it's not mandatory to give all four of them.
+
+For obvious reasons, giving these params affects other settings. Like for example: passing a custome right (`r`) or left (`l`) padding makes TrueZen ignore the `ideal_writing_area_width` and the `just_do_it_for_me` settings. Also, notice that you *shouldn't* exit Ataraxis by giving params to the command, or else custome padding formats might not work when toggling it with params again.
+
 - `:TZBottom` toggles the bottom part of NeoVim's UI. It toggles: laststatus, ruler, showmode, showcmd, and cmdheight.
 - `:TZTop` toggles the top part of NeoVim's UI. It toggles: tabline.
 - `:TZLeft` toggles the left part of NeoVim's UI. It toggles: numbers, relative numbers, and signcolumn.

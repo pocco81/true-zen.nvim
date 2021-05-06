@@ -428,7 +428,6 @@ Note: it's not mandatory to give all four of them.
 
 For obvious reasons, giving these params affects other settings. Like for example: passing a custome right (`r`) or left (`l`) padding makes TrueZen ignore the `ideal_writing_area_width` and the `just_do_it_for_me` settings. Also, notice that you *shouldn't* exit Ataraxis by giving params to the command, or else custome padding formats might not work when toggling it with params again.
 
-
 - `:TZBottom` toggles the bottom part of NeoVim's UI. It toggles: laststatus, ruler, showmode, showcmd, and cmdheight.
 - `:TZTop` toggles the top part of NeoVim's UI. It toggles: tabline.
 - `:TZLeft` toggles the left part of NeoVim's UI. It toggles: numbers, relative numbers, and signcolumn.
