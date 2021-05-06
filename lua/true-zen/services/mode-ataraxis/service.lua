@@ -404,10 +404,10 @@ function ataraxis_true()		-- show
 	-------------------------=== Integrations ===------------------------
 
 
-	cmd("unlet g:tz_left_padding")
-	cmd("unlet g:tz_right_padding")
-	cmd("unlet g:tz_top_padding")
-	cmd("unlet g:tz_bottom_padding")
+	-- cmd("unlet g:tz_left_padding")
+	-- cmd("unlet g:tz_right_padding")
+	-- cmd("unlet g:tz_top_padding")
+	-- cmd("unlet g:tz_bottom_padding")
 
 	mode_minimalist.main(1)
 
@@ -535,18 +535,22 @@ function ataraxis_false()		-- hide
 
 	end
 
+
+
+
+
 	if not (tz_left_padding == "NONE" or tz_right_padding == "NONE") then
 		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
 		if not (tz_left_padding == "NONE") then
 			left_padding_cmd = "vertical resize "..tz_left_padding..""
-			cmd("unlet g:tz_left_padding")
+			-- cmd("unlet g:tz_left_padding")
 		else
 			left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
 		end
 
 		if not (tz_right_padding == "NONE") then
 			right_padding_cmd = "vertical resize "..tz_right_padding..""
-			cmd("unlet g:tz_right_padding")
+			-- cmd("unlet g:tz_right_padding")
 		else
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
