@@ -404,7 +404,12 @@ function ataraxis_true()		-- show
 	-------------------------=== Integrations ===------------------------
 
 
-		mode_minimalist.main(1)
+	cmd("unlet g:tz_left_padding")
+	cmd("unlet g:tz_right_padding")
+	cmd("unlet g:tz_top_padding")
+	cmd("unlet g:tz_bottom_padding")
+
+	mode_minimalist.main(1)
 
 
 end
