@@ -541,7 +541,7 @@ function ataraxis_false()		-- hide
 	cmd("echo 'Left = "..tostring(tz_left_padding).."'")
 	cmd("echo 'Right = "..tostring(tz_right_padding).."'")
 
-	if not (tz_left_padding == "NONE" or tz_right_padding == "NONE") then
+	if not (tz_left_padding == "NONE") then
 		cmd("echo 'I RAN (0)'")
 		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
 		if not (tz_left_padding == "NONE") then
