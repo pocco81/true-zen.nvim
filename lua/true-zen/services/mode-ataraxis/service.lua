@@ -540,6 +540,7 @@ function ataraxis_false()		-- hide
 
 
 	if not (tz_left_padding == "NONE" or tz_right_padding == "NONE") then
+		cmd("echo 'I RAN (0)'")
 		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
 		if not (tz_left_padding == "NONE") then
 			left_padding_cmd = "vertical resize "..tz_left_padding..""
@@ -555,6 +556,7 @@ function ataraxis_false()		-- hide
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
 	else
+		cmd("echo 'I RAN (1)'")
 		test_ideal_writing_and_just_me()
 	end
 
