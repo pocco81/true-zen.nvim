@@ -546,7 +546,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 
 ## Minimalist
 - `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the `shown_` prefix and stores the ones from the user config; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values only once, when any of the `UI` related commands, `:TZAtaraxis`, `:TZMinimalist` and/or variants are called. If, for example, were to `setlocal relativenumber` after already running any of the aforementioned commands, this won't be stored.
-- `show_vals_to_read`: (Table of strings) Depends on `store_and_restore_settings` being set to `true`. These strings must have the same name of their equivalent in the `UI` tables that have the `shown_` prefix (e.g: `"shown_showtabline"`) and must be separated by commas. A great application for this is, for example, if your plugin for showing the bufferline had enabled a setting for hiding it when there is only one buffer. If you were to enter Minimalist or Ataraxis mode, the plugin will store the settings that correspond for when the bufferline is hidden (`top` UI), and thus, if you opened new buffers the bufferline will not appear. For this you could simply add `"shown_showtabline"` to this table and set the value of `shown_showtabline` from the `top = {}` table! Here is what this example looks like
+- `show_vals_to_read`: (Table of strings) Receives strings of settings that **shouldn't be stores_and_restored** and instead, **read from TrueZen's settings**. These strings must have the same name of their equivalent in the `UI` tables that have the `shown_` prefix (e.g: `"shown_showtabline"`) and must be separated by commas. A great application for this is, for example, if your plugin for showing the bufferline had enabled a setting for hiding it when there is only one buffer. If you were to enter Minimalist or Ataraxis mode, the plugin will store the settings that correspond for when the bufferline is hidden (`top` UI), and thus, if you opened new buffers the bufferline will not appear. For this you could simply add `"shown_showtabline"` to this table and set the value of `shown_showtabline` from the `top = {}` table! Here is what this example looks like
 
 ```
 minimalist = {
@@ -556,6 +556,8 @@ minimalist = {
 	}
 }
 ```
+
+Note: This setting depends on `store_and_restore_settings` being set to `true`
 
 ## Focus
 - `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
