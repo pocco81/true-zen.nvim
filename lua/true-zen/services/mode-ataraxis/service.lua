@@ -543,8 +543,6 @@ function ataraxis_false()		-- hide
 		else
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
-	if not (tz_left_padding == "NONE") then
-
 	else
 		test_ideal_writing_and_just_me()
 	end
