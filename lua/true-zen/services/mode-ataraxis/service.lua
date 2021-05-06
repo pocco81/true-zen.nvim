@@ -472,47 +472,104 @@ function ataraxis_false()		-- hide
 	--load_integrations(false)
 	---------------------------=== Integrations ===------------------------
 
+	-- local tz_top_padding = vim.api.nvim_eval([[exists("g:tz_top_padding")]])
+	-- local tz_left_padding = vim.api.nvim_eval([[exists("g:tz_left_padding")]])
+	-- local tz_right_padding = vim.api.nvim_eval([[exists("g:tz_right_padding")]])
+	-- local tz_bottom_padding = vim.api.nvim_eval([[exists("g:tz_bottom_padding")]])
+
+	local tz_top_padding = vim.api.nvim_eval([[get(g:,"tz_top_padding", "NONE")]])
+	local tz_left_padding = vim.api.nvim_eval([[get(g:,"tz_left_padding", "NONE")]])
+	local tz_right_padding = vim.api.nvim_eval([[get(g:,"tz_right_padding", "NONE")]])
+	local tz_bottom_padding = vim.api.nvim_eval([[get(g:, "tz_bottom_padding", "NONE")]])
+
 
 	local left_padding_cmd = ""
 	local right_padding_cmd = ""
+	local top_padding_cmd = ""
+	local bottom_padding_cmd = ""
 
-	if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
-		-- stuff
-		local window_width = vim.api.nvim_eval("winwidth('%')")
-		local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
-
-		if (ideal_writing_area_width == window_width) then
-			cmd("echo 'TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than "..window_width.."'")
-		else
-			total_left_right_width = window_width - ideal_writing_area_width
-			
-			if (total_left_right_width % 2 > 0) then
-				total_left_right_width = total_left_right_width + 1
-			end
-
-			local calculated_left_padding = total_left_right_width / 2
-			local calculated_right_padding = total_left_right_width / 2
-
-			left_padding_cmd = "vertical resize "..calculated_left_padding..""
-			right_padding_cmd = "vertical resize "..calculated_right_padding..""
-
-		end
+	if not (tz_left_padding == "NONE" and tz_right_padding == "NONE") then
+		left_padding_cmd = "vertical resize "..tz_left_padding..""
+		right_padding_cmd = "vertical resize "..tz_right_padding..""
 	else
-		if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-			-- calculate padding
-			local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
-			local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
 
-			-- set padding
-			left_padding_cmd = "vertical resize "..calculated_left_padding..""
-			right_padding_cmd = "vertical resize "..calculated_right_padding..""
-
-		else
+		if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
 			-- stuff
-			left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+			local window_width = vim.api.nvim_eval("winwidth('%')")
+			local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
+
+			if (ideal_writing_area_width == window_width) then
+				cmd("echo 'TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than "..window_width.."'")
+			else
+				total_left_right_width = window_width - ideal_writing_area_width
+				
+				if (total_left_right_width % 2 > 0) then
+					total_left_right_width = total_left_right_width + 1
+				end
+
+				local calculated_left_padding = total_left_right_width / 2
+				local calculated_right_padding = total_left_right_width / 2
+
+				left_padding_cmd = "vertical resize "..calculated_left_padding..""
+				right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+			end
+		else
+			if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+				-- calculate padding
+				local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+				local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+
+				-- set padding
+				left_padding_cmd = "vertical resize "..calculated_left_padding..""
+				right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+			else
+				-- stuff
+				left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+				right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+			end
 		end
+
 	end
+
+	-- if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
+	-- 	-- stuff
+	-- 	local window_width = vim.api.nvim_eval("winwidth('%')")
+	-- 	local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
+
+	-- 	if (ideal_writing_area_width == window_width) then
+	-- 		cmd("echo 'TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than "..window_width.."'")
+	-- 	else
+	-- 		total_left_right_width = window_width - ideal_writing_area_width
+			
+	-- 		if (total_left_right_width % 2 > 0) then
+	-- 			total_left_right_width = total_left_right_width + 1
+	-- 		end
+
+	-- 		local calculated_left_padding = total_left_right_width / 2
+	-- 		local calculated_right_padding = total_left_right_width / 2
+
+	-- 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
+	-- 		right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+	-- 	end
+	-- else
+	-- 	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+	-- 		-- calculate padding
+	-- 		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
+	-- 		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
+
+	-- 		-- set padding
+	-- 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
+	-- 		right_padding_cmd = "vertical resize "..calculated_right_padding..""
+
+	-- 	else
+	-- 		-- stuff
+	-- 		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+	-- 		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+	-- 	end
+	-- end
 
 
 	-------------------- left buffer
@@ -543,36 +600,98 @@ function ataraxis_false()		-- hide
 	-- return to middle buffer
 	cmd("wincmd h")
 
-	
-	if (opts["ataraxis"]["top_padding"] > 0) then
-		local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+
+
+
+	if not (tz_top_padding == "NONE") then
+		top_padding_cmd = "resize "..tz_top_padding..""
 		cmd("leftabove new")
 		cmd(top_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-		-- fillchars()
+
+		cmd("unlet g:tz_top_padding")
 
 		-- return to middle buffer
 		cmd("wincmd j")
-	elseif (opts["ataraxis"]["top_padding"] == 0) then
-		-- do nothing
 	else
-		cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
-	end
+		if (opts["ataraxis"]["top_padding"] > 0) then
+			-- local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+			top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+			cmd("leftabove new")
+			cmd(top_padding_cmd)
+			cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+			-- fillchars()
 
-	if (opts["ataraxis"]["bottom_padding"] > 0) then
-		local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+			-- return to middle buffer
+			cmd("wincmd j")
+		elseif (opts["ataraxis"]["top_padding"] == 0) then
+			-- do nothing
+		else
+			cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+		end
+	end
+	
+	-- if (opts["ataraxis"]["top_padding"] > 0) then
+	-- 	-- local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+	-- 	top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
+	-- 	cmd("leftabove new")
+	-- 	cmd(top_padding_cmd)
+	-- 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	-- 	-- fillchars()
+
+	-- 	-- return to middle buffer
+	-- 	cmd("wincmd j")
+	-- elseif (opts["ataraxis"]["top_padding"] == 0) then
+	-- 	-- do nothing
+	-- else
+	-- 	cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	-- end
+
+
+
+	if not (tz_bottom_padding == "NONE") then
+
+		bottom_padding_cmd = "resize "..tz_bottom_padding..""
 		cmd("rightbelow new")
 		cmd(bottom_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-		-- fillchars()
 
 		-- return to middle buffer
 		cmd("wincmd k")
-	elseif (opts["ataraxis"]["bottom_padding"] == 0) then
-		-- do nothing
 	else
-		cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+		if (opts["ataraxis"]["bottom_padding"] > 0) then
+			-- local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+			bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+			cmd("rightbelow new")
+			cmd(bottom_padding_cmd)
+			cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+			-- fillchars()
+
+			-- return to middle buffer
+			cmd("wincmd k")
+		elseif (opts["ataraxis"]["bottom_padding"] == 0) then
+			-- do nothing
+		else
+			cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+		end
 	end
+
+
+	-- if (opts["ataraxis"]["bottom_padding"] > 0) then
+	-- 	-- local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+	-- 	bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
+	-- 	cmd("rightbelow new")
+	-- 	cmd(bottom_padding_cmd)
+	-- 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+	-- 	-- fillchars()
+
+	-- 	-- return to middle buffer
+	-- 	cmd("wincmd k")
+	-- elseif (opts["ataraxis"]["bottom_padding"] == 0) then
+	-- 	-- do nothing
+	-- else
+	-- 	cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
+	-- end
 
 
 	--------------------------=== Fill chars ===--------------------------
