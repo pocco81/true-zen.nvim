@@ -65,6 +65,7 @@
 # 🌲 Table of Contents
 
 * [Features](#-features)
+* [Notices](#-notices)
 * [Installation](#-installation)
 	* [Prerequisites](#prerequisites)
 	* [Adding the plugin](#adding-the-plugin)
@@ -124,6 +125,8 @@
 	- `TZFocus` and `TZAtaraxis` integration
 	- Gitsigns integration
 
+# 📺 Notices
+- **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
 
 # 📦 Installation
 
