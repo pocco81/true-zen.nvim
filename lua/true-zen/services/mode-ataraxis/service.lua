@@ -742,7 +742,7 @@ function ataraxis_false()		-- hide
 	else
 		current_statusline = vim.api.nvim_eval("&statusline")
 		cmd("setlocal statusline=-")
-		goto no_need_to_force_hide_again
+		-- goto no_need_to_force_hide_again
 	end
 
 	if (opts["ataraxis"]["force_hide_statusline"] == true) then
@@ -751,7 +751,7 @@ function ataraxis_false()		-- hide
 	end
 
 	-- if it was already forced
-	::no_need_to_force_hide_again::
+	-- ::no_need_to_force_hide_again::
 
 
 
