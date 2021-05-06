@@ -534,12 +534,14 @@ function ataraxis_false()		-- hide
 		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
 		if not (tz_left_padding == "NONE") then
 			left_padding_cmd = "vertical resize "..tz_left_padding..""
+			cmd("unlet g:tz_left_padding")
 		else
 			left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
 		end
 
 		if not (tz_right_padding == "NONE") then
 			right_padding_cmd = "vertical resize "..tz_right_padding..""
+			cmd("unlet g:tz_right_padding")
 		else
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
@@ -669,6 +671,9 @@ function ataraxis_false()		-- hide
 		cmd("rightbelow new")
 		cmd(bottom_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
+
+
+		cmd("unlet g:tz_bottom_padding")
 
 		-- return to middle buffer
 		cmd("wincmd k")
