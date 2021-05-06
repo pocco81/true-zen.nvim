@@ -29,6 +29,7 @@ Configuration						|truezen-configuration|
 		General integrations		|truezen-general-integrations|
 		Statuslines integrations	|truezen-statuslines-integrations|
 	Ataraxis						|truezen-ataraxis|
+	Minimalist						|truezen-minimalist|
 	Focus							|truezen-focus|
 Key Bindings						|truezen-keybindings|
 LICENSE								|truezen-license|
@@ -132,6 +133,10 @@ focus = {
 	margin_of_error = 5,
 	focus_method = "experimental"
 },
+minimalist = {
+	store_and_restore_settings = false,
+	show_vals_to_read = {}
+},
 events = {
 	before_minimalist_mode_shown = false,
 	before_minimalist_mode_hidden = false,
@@ -206,6 +211,10 @@ true_zen.setup({
 		margin_of_error = 5,
 		focus_method = "experimental"
 	},
+	minimalist = {
+		store_and_restore_settings = false,
+		show_vals_to_read = {}
+	},
 	events = {
 		before_minimalist_mode_shown = false,
 		before_minimalist_mode_hidden = false,
@@ -279,6 +288,10 @@ true_zen.setup({
 	focus = {
 		margin_of_error = 5,
 		focus_method = "experimental"
+	},
+	minimalist = {
+		store_and_restore_settings = false,
+		show_vals_to_read = {}
 	},
 	events = {
 		before_minimalist_mode_shown = false,
@@ -443,6 +456,18 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `force_when_plus_one_window`: (Boolean) by default you can't toggle Ataraxis if there is more than one window open, this is to prevent layout issues. If set to `true`, TrueZen will quits all the other windows (not buffers) before entering Ataraxis mode on the current window. As a workaround, check the `integration_tzfocus_tzataraxis` integration and the `"experimental"` `focus_method`.
 - `force_hide_statusline`: (Boolean) forcefully hide the statusline if it isn't being compliant.
 
+## Minimalist													*truezen-minimalist*
+- `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the `shown_` prefix and stores the ones from the user config; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values only once, when any of the `UI` related commands, `:TZAtaraxis`, `:TZMinimalist` and/or variants are called. If, for example, were to `setlocal relativenumber` after already running any of the aforementioned commands, this won't be stored.
+- `show_vals_to_read`: (Table of strings) Depends on `store_and_restore_settings` being set to `true`. These strings must have the same name of their equivalent in the `UI` tables that have the `shown_` prefix (e.g: `"shown_showtabline"`) and must be separated by commas. A great application for this is, for example, if your plugin for showing the bufferline had enabled a setting for hiding it when there is only one buffer. If you were to enter Minimalist or Ataraxis mode, the plugin will store the settings that correspond for when the bufferline is hidden (`top` UI), and thus, if you opened new buffers the bufferline will not appear. For this you could simply add `"shown_showtabline"` to this table and set the value of `shown_showtabline` from the `top = {}` table! Here is what this example looks like
+
+```
+minimalist = {
+	store_and_restore_settings = true,
+	show_vals_to_read = {
+		"shown_showtabline"
+	}
+}
+```
 
 ## Focus														*truezen-focus*
 - `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
