@@ -53,7 +53,9 @@ function map_settings(table, bool, ui_element)
 
 				for opt, _ in pairs(opts["minimalist"]["show_vals_to_read"])do
 					for inner_opt, _ in pairs(table) do
+						cmd("echo 'Opt ="..opt.."; Inner opt = "..inner_opt.."'")
 						if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
+							cmd("echo 'It matched!!'")
 							if string.find(opt, "shown_") then
 								clean_and_exec(opt, table[opt], "shown_")
 							else
