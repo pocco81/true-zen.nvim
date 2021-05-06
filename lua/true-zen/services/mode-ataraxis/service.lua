@@ -488,11 +488,8 @@ function ataraxis_false()		-- hide
 	local top_padding_cmd = ""
 	local bottom_padding_cmd = ""
 
-	if not (tz_left_padding == "NONE" and tz_right_padding == "NONE") then
-		left_padding_cmd = "vertical resize "..tz_left_padding..""
-		right_padding_cmd = "vertical resize "..tz_right_padding..""
-	else
-
+	test_ideal_writing_and_just_me = function()
+		
 		if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
 			-- stuff
 			local window_width = vim.api.nvim_eval("winwidth('%')")
@@ -531,6 +528,25 @@ function ataraxis_false()		-- hide
 			end
 		end
 
+	end
+
+	if not (tz_left_padding == "NONE" or tz_right_padding == "NONE") then
+		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
+		if not (tz_left_padding == "NONE") then
+			left_padding_cmd = "vertical resize "..tz_left_padding..""
+		else
+			left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
+		end
+
+		if not (tz_right_padding == "NONE") then
+			right_padding_cmd = "vertical resize "..tz_right_padding..""
+		else
+			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
+		end
+	if not (tz_left_padding == "NONE") then
+
+	else
+		test_ideal_writing_and_just_me()
 	end
 
 	-- if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
