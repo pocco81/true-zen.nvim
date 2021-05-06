@@ -557,7 +557,9 @@ minimalist = {
 }
 ```
 
-Note: This setting depends on `store_and_restore_settings` being set to `true`
+Important Notes:
+- This setting depends on `store_and_restore_settings` being set to `true`.
+- Becuase of the way the "saving and restoring" part of the plugin was coded, you ***must*** at least have all the settings (no matter their value, just put something in there with the corresponding data type) with the `shown_` prefix on their corresponding table so that TrueZen can match them with your current config's values instead of the ones that are set on TrueZen's config.
 
 ## Focus
 - `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
