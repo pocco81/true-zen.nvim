@@ -747,7 +747,6 @@ function ataraxis_false()		-- hide
 
 	if (opts["ataraxis"]["force_hide_statusline"] == true) then
 		cmd("setlocal statusline=-")
-		cmd("echo 'I RAN'")
 	end
 
 	-- if it was already forced

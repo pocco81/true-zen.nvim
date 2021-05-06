@@ -14,6 +14,7 @@ end
 function disable_element()
 	require("galaxyline").disable_galaxyline()
 	require("galaxyline").inactive_galaxyline()
+	cmd("setlocal statuline=-")
 end
 
 
