@@ -25,6 +25,7 @@ end
 
 local function clean_and_exec(opt, table_opt, remove_str)
 	final_opt = opt:gsub(remove_str, "")
+
 	if (type(table_opt) == "boolean") then
 		to_cmd = test_bool(final_opt, table_opt)
 		cmd(to_cmd)
@@ -56,11 +57,11 @@ function map_settings(table, bool, ui_element)
 						cmd("echo 'Opt ="..opt.."; Inner opt = "..inner_opt.."'")
 						if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
 							cmd("echo 'It matched!!'")
-							if string.find(opt, "shown_") then
+							-- if string.find(opt, "shown_") then
 								clean_and_exec(opt, table[opt], "shown_")
-							else
+							-- else
 								-- skip the option
-							end
+							-- end
 						end
 					end
 				end
