@@ -477,10 +477,6 @@ function ataraxis_false()		-- hide
 	load_integrations(false)
 	-------------------------=== Integrations ===------------------------
 
-	-- local tz_top_padding = vim.api.nvim_eval([[exists("g:tz_top_padding")]])
-	-- local tz_left_padding = vim.api.nvim_eval([[exists("g:tz_left_padding")]])
-	-- local tz_right_padding = vim.api.nvim_eval([[exists("g:tz_right_padding")]])
-	-- local tz_bottom_padding = vim.api.nvim_eval([[exists("g:tz_bottom_padding")]])
 
 	local tz_top_padding = vim.api.nvim_eval([[get(g:,"tz_top_padding", "NONE")]])
 	local tz_left_padding = vim.api.nvim_eval([[get(g:,"tz_left_padding", "NONE")]])
@@ -553,50 +549,9 @@ function ataraxis_false()		-- hide
 		else
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
-
-		cmd("echo 'Left cmd = "..left_padding_cmd.."'")
-		cmd("echo 'Right cmd = "..right_padding_cmd.."'")
 	else
 		test_ideal_writing_and_just_me()
 	end
-
-	-- if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
-	-- 	-- stuff
-	-- 	local window_width = vim.api.nvim_eval("winwidth('%')")
-	-- 	local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
-
-	-- 	if (ideal_writing_area_width == window_width) then
-	-- 		cmd("echo 'TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than "..window_width.."'")
-	-- 	else
-	-- 		total_left_right_width = window_width - ideal_writing_area_width
-			
-	-- 		if (total_left_right_width % 2 > 0) then
-	-- 			total_left_right_width = total_left_right_width + 1
-	-- 		end
-
-	-- 		local calculated_left_padding = total_left_right_width / 2
-	-- 		local calculated_right_padding = total_left_right_width / 2
-
-	-- 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
-	-- 		right_padding_cmd = "vertical resize "..calculated_right_padding..""
-
-	-- 	end
-	-- else
-	-- 	if (opts["ataraxis"]["just_do_it_for_me"] == true) then
-	-- 		-- calculate padding
-	-- 		local calculated_left_padding = vim.api.nvim_eval("winwidth('%') / 4")
-	-- 		local calculated_right_padding = vim.api.nvim_eval("winwidth('%') / 4")
-
-	-- 		-- set padding
-	-- 		left_padding_cmd = "vertical resize "..calculated_left_padding..""
-	-- 		right_padding_cmd = "vertical resize "..calculated_right_padding..""
-
-	-- 	else
-	-- 		-- stuff
-	-- 		left_padding_cmd = "vertical resize "..opts["ataraxis"]["left_padding"]..""
-	-- 		right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
-	-- 	end
-	-- end
 
 
 	-------------------- left buffer
@@ -763,8 +718,6 @@ function ataraxis_false()		-- hide
 	]], false)
 	-------------------------=== Integrations ===------------------------
 
-
-		-- cmd("setlocal statusline=-")
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
