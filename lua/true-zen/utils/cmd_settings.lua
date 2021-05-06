@@ -58,7 +58,7 @@ function map_settings(table, bool, ui_element)
 						if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
 							cmd("echo 'It matched!!'")
 							-- if string.find(opt, "shown_") then
-								clean_and_exec(opt, table[opt], "shown_")
+								clean_and_exec(inner_opt, table[inner_opt], "shown_")
 							-- else
 								-- skip the option
 							-- end
