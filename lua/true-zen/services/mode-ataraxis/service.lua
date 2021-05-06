@@ -538,11 +538,7 @@ function ataraxis_false()		-- hide
 
 
 
-	cmd("echo 'Left = "..tostring(tz_left_padding).."'")
-	cmd("echo 'Right = "..tostring(tz_right_padding).."'")
-
 	if (tz_left_padding ~= "NONE" or tz_right_padding ~= "NONE") then		-- not equal to NONE
-		cmd("echo 'I RAN (0)'")
 		-- right_padding_cmd = "vertical resize "..tz_right_padding..""
 		if not (tz_left_padding == "NONE") then
 			left_padding_cmd = "vertical resize "..tz_left_padding..""
@@ -561,7 +557,6 @@ function ataraxis_false()		-- hide
 		cmd("echo 'Left cmd = "..left_padding_cmd.."'")
 		cmd("echo 'Right cmd = "..right_padding_cmd.."'")
 	else
-		cmd("echo 'I RAN (1)'")
 		test_ideal_writing_and_just_me()
 	end
 
@@ -663,21 +658,6 @@ function ataraxis_false()		-- hide
 		end
 	end
 	
-	-- if (opts["ataraxis"]["top_padding"] > 0) then
-	-- 	-- local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
-	-- 	top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
-	-- 	cmd("leftabove new")
-	-- 	cmd(top_padding_cmd)
-	-- 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	-- 	-- fillchars()
-
-	-- 	-- return to middle buffer
-	-- 	cmd("wincmd j")
-	-- elseif (opts["ataraxis"]["top_padding"] == 0) then
-	-- 	-- do nothing
-	-- else
-	-- 	cmd("echo 'invalid option set for top_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
-	-- end
 
 
 
@@ -711,22 +691,6 @@ function ataraxis_false()		-- hide
 		end
 	end
 
-
-	-- if (opts["ataraxis"]["bottom_padding"] > 0) then
-	-- 	-- local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
-	-- 	bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
-	-- 	cmd("rightbelow new")
-	-- 	cmd(bottom_padding_cmd)
-	-- 	cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
-	-- 	-- fillchars()
-
-	-- 	-- return to middle buffer
-	-- 	cmd("wincmd k")
-	-- elseif (opts["ataraxis"]["bottom_padding"] == 0) then
-	-- 	-- do nothing
-	-- else
-	-- 	cmd("echo 'invalid option set for bottom_padding param for TrueZen.nvim plugin. It can only be a number >= 0'")
-	-- end
 
 
 	--------------------------=== Fill chars ===--------------------------
