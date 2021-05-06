@@ -462,15 +462,15 @@ function ataraxis_false()		-- hide
 
 
 
-	---------------------------=== Integrations ===------------------------
-	--vim.api.nvim_exec([[
-	--	augroup true_integrations
-	--		autocmd!
-	--	augroup END
-	--]], false)
+	-------------------------=== Integrations ===------------------------
+	vim.api.nvim_exec([[
+		augroup true_integrations
+			autocmd!
+		augroup END
+	]], false)
 
-	--load_integrations(false)
-	---------------------------=== Integrations ===------------------------
+	load_integrations(false)
+	-------------------------=== Integrations ===------------------------
 
 	-- local tz_top_padding = vim.api.nvim_eval([[exists("g:tz_top_padding")]])
 	-- local tz_left_padding = vim.api.nvim_eval([[exists("g:tz_left_padding")]])
@@ -708,15 +708,15 @@ function ataraxis_false()		-- hide
 
 	mode_minimalist.main(2)
 
-	-------------------------=== Integrations ===------------------------
-	vim.api.nvim_exec([[
-		augroup true_integrations
-			autocmd!
-		augroup END
-	]], false)
+	---------------------------=== Integrations ===------------------------
+	--vim.api.nvim_exec([[
+	--	augroup true_integrations
+	--		autocmd!
+	--	augroup END
+	--]], false)
 
-	load_integrations(false)
-	-------------------------=== Integrations ===------------------------
+	--load_integrations(false)
+	---------------------------=== Integrations ===------------------------
 
 	-- remove the border lines on every buffer
 	-- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
@@ -764,7 +764,7 @@ function ataraxis_false()		-- hide
 	-------------------------=== Integrations ===------------------------
 
 
-		cmd("setlocal statusline=-")
+		-- cmd("setlocal statusline=-")
 
 	-- everything will be skipped if there was more than one window open
 	::there_was_more_than_one_window::
