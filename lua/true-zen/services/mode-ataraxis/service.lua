@@ -557,6 +557,9 @@ function ataraxis_false()		-- hide
 		else
 			right_padding_cmd = "vertical resize "..opts["ataraxis"]["right_padding"]..""
 		end
+
+		cmd("echo 'Left cmd = "..left_padding_cmd.."'")
+		cmd("echo 'Right cmd = "..right_padding_cmd.."'")
 	else
 		cmd("echo 'I RAN (1)'")
 		test_ideal_writing_and_just_me()
