@@ -1,4 +1,4 @@
-
+local M = {}
 
 local bottom = require("true-zen.services.bottom.init")
 local top = require("true-zen.services.top.init")
@@ -13,7 +13,7 @@ local resume = require("true-zen.services.resume.init")
 local cmd  = vim.cmd
 
 
-function main(option, command_option)
+function M.main(option, command_option)
 
 	option = option or 0
 	command_option = command_option or 0
@@ -38,8 +38,4 @@ end
 
 
 -- export the functions
-return {
-	-- toggle_statusline = toggle_statusline, -- called with TZStatusline
-	main = main
-}
-
+return M
