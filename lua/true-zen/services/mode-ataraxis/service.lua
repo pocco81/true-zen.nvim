@@ -313,6 +313,9 @@ function ataraxis_true()		-- show
 		cmd("q")
 
 
+		cmd("echo 'Top = "..tz_top_padding.."'")
+		cmd("echo 'Bottom = "..tz_bottom_padding.."'")
+
 		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tz_top_padding > 0) then
 			cmd("wincmd k")
 			cmd("q")
