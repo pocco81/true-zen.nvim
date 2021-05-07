@@ -1,35 +1,35 @@
-
+local M = {}
 
 local service = require("true-zen.services.left.service")
 local cmd = vim.cmd
 
 -- show and hide left funcs
 local function left_true()
-	left_show = 1
+	M.left_show = 1
 	service.left_true()
 end
 
 local function left_false()
-	left_show = 0
+	M.left_show = 0
 	service.left_false()
 end
 
 local function toggle()
 
-	if (left_show == 1) then				-- left true; being shown
+	if (M.left_show == 1) then				-- left true; being shown
 		left_false()
-	elseif (left_show == 0) then			-- left false; being hidden
+	elseif (M.left_show == 0) then			-- left false; being hidden
 		left_true()
-	elseif (left_show == nil) then			-- show var is nil
-		left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
+	elseif (M.left_show == nil) then			-- show var is nil
+		M.left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
 		if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
-			left_show = 1
+			M.left_show = 1
 			toggle()
 		elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-			left_show = 1
+			M.left_show = 1
 			toggle()
 		else
-			left_show = 0
+			M.left_show = 0
 			toggle()
 		end
 	else
@@ -41,23 +41,23 @@ local function toggle()
 
 end
 
-function resume()
+function M.resume()
 
-	if (left_show == 1) then				-- left true; shown
+	if (M.left_show == 1) then				-- left true; shown
 		left_true()
-	elseif (left_show == 0) then			-- left false; hidden
+	elseif (M.left_show == 0) then			-- left false; hidden
 		left_false()
-	elseif (left_show == nil) then			-- show var is nil
-		left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
+	elseif (M.left_show == nil) then			-- show var is nil
+		M.left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
 		if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
-			left_show = 1
-			resume()
+			M.left_show = 1
+			M.resume()
 		elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-			left_show = 1
-			resume()
+			M.left_show = 1
+			M.resume()
 		else
-			left_show = 0
-			resume()
+			M.left_show = 0
+			M.resume()
 		end
 	else
 		cmd("echo 'none of the above'")
@@ -66,7 +66,7 @@ function resume()
 end
 
 
-function main(option)
+function M.main(option)
 
 	option = option or 0
 
@@ -82,8 +82,4 @@ function main(option)
 end
 
 
-return {
-	main = main,
-	resume = resume,
-	left_show = left_show
-}
+return M
