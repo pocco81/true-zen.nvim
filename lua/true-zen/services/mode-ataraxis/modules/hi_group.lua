@@ -1,10 +1,11 @@
-
+local M = {}
+local hi_groups_stored, hi_groups, terms
 
 
 local cmd = vim.cmd
 
 
-function set_hi_groups(custome_bg)
+function M.set_hi_groups(custome_bg)
 
 	custome_bg = custome_bg or ''
 
@@ -53,7 +54,7 @@ function set_hi_groups(custome_bg)
 	cmd(call_tran)
 end
 
-function store_hi_groups()
+function M.store_hi_groups()
 
 	vim.api.nvim_exec([[
 		function! ReturnHighlightTerm(group, term)
@@ -108,7 +109,7 @@ function store_hi_groups()
 end
 
 
-function restore_hi_groups()
+function M.restore_hi_groups()
 
 	if (hi_groups_stored == false or hi_groups_stored == nil) then
 
@@ -123,7 +124,7 @@ function restore_hi_groups()
 				-- cmd("echo 'Index = "..tostring(inner_hi_index).."; Value = "..tostring(hi_groups[hi_index][inner_hi_index]).."'")
 			
 				-- we need to construct the cmd like so:
-				current_term = terms[inner_hi_index]
+				local current_term = terms[inner_hi_index]
 				list_of_terms = list_of_terms.." "..current_term.."="..tostring(hi_groups[hi_index][inner_hi_index])..""
 
 			end
@@ -138,9 +139,5 @@ end
 
 
 
-return {
-	set_hi_groups = set_hi_groups,
-	store_hi_groups = store_hi_groups,
-	restore_hi_groups = restore_hi_groups
-}
+return M
 

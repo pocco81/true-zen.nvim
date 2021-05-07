@@ -1,4 +1,4 @@
-
+local M = {}
 
 local opts = require("true-zen.config").options
 local left_service = require("true-zen.services.left.service")
@@ -34,6 +34,7 @@ vim.api.nvim_exec([[
 
 
 
+-- TODO Refactor this
 function load_integrations(state)
 
 	state = state or false
@@ -300,7 +301,7 @@ function load_integrations(state)
 end
 
 
-function ataraxis_true()		-- show
+function M.ataraxis_true()		-- show
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -454,7 +455,7 @@ function ataraxis_true()		-- show
 end
 
 
-function ataraxis_false()		-- hide
+function M.ataraxis_false()		-- hide
 
 	local amount_wins = vim.api.nvim_eval("winnr('$')")
 
@@ -770,7 +771,4 @@ end
 
 
 
-return {
-	ataraxis_true = ataraxis_true,
-	ataraxis_false = ataraxis_false
-}
+return M
