@@ -313,8 +313,51 @@ function ataraxis_true()		-- show
 		cmd("q")
 
 
-		cmd("echo 'Top = "..tz_top_padding.."'")
-		cmd("echo 'Bottom = "..tz_bottom_padding.."'")
+		-- if (top_use_passed_params == true) then
+		-- 	cmd("unlet g:tz_top_padding")
+		-- 	top_use_passed_params = false
+		-- 	cmd("wincmd k")
+		-- 	cmd("q")
+		-- else
+		-- 	if (opts["ataraxis"]["top_padding"] > 0) then
+		-- 		cmd("wincmd k")
+		-- 		cmd("q")
+		-- 	else
+		-- 		-- nothing
+		-- 	end
+		-- end
+
+
+		-- if (bottom_use_passed_params == true) then
+		-- 	cmd("unlet g:tz_bottom_padding")
+		-- 	bottom_use_passed_params = false
+		-- end
+
+
+
+		-- cmd("echo 'Top = "..tz_top_padding.."'")
+		-- cmd("echo 'Bottom = "..tz_bottom_padding.."'")
+
+		-- if (opts["ataraxis"]["top_padding"] > 0) then
+		-- 	cmd("wincmd k")
+		-- 	cmd("q")
+
+
+		-- else
+		-- 	-- nothing
+		-- end
+
+		-- if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tz_bottom_padding > 0) then
+		-- 	cmd("wincmd j")
+		-- 	cmd("q")
+
+		-- 	if (bottom_use_passed_params == true) then
+		-- 		cmd("unlet g:tz_bottom_padding")
+		-- 		bottom_use_passed_params = false
+		-- 	end
+		-- else
+		-- 	-- nothing
+		-- end
 
 		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tz_top_padding > 0) then
 			cmd("wincmd k")
@@ -340,6 +383,34 @@ function ataraxis_true()		-- show
 		else
 			-- nothing
 		end
+
+
+
+		-- if (opts["ataraxis"]["top_padding"] > 0) then
+		-- 	cmd("wincmd k")
+		-- 	cmd("q")
+
+
+		-- else
+		-- 	-- nothing
+		-- end
+
+		-- if (opts["ataraxis"]["bottom_padding"] > 0) then
+		-- 	cmd("wincmd j")
+		-- 	cmd("q")
+
+		-- 	if (bottom_use_passed_params == true) then
+		-- 		cmd("unlet g:tz_bottom_padding")
+		-- 		bottom_use_passed_params = false
+		-- 	end
+		-- else
+		-- 	-- nothing
+		-- end
+
+
+
+
+
 
 		-- mode_minimalist.main(1)
 		cmd("set fillchars=")
@@ -492,10 +563,10 @@ function ataraxis_false()		-- hide
 	-------------------------=== Integrations ===------------------------
 
 
-	local tz_top_padding = vim.api.nvim_eval([[get(g:,"tz_top_padding", "NONE")]])
-	local tz_left_padding = vim.api.nvim_eval([[get(g:,"tz_left_padding", "NONE")]])
-	local tz_right_padding = vim.api.nvim_eval([[get(g:,"tz_right_padding", "NONE")]])
-	local tz_bottom_padding = vim.api.nvim_eval([[get(g:, "tz_bottom_padding", "NONE")]])
+	tz_top_padding = vim.api.nvim_eval([[get(g:,"tz_top_padding", "NONE")]])
+	tz_left_padding = vim.api.nvim_eval([[get(g:,"tz_left_padding", "NONE")]])
+	tz_right_padding = vim.api.nvim_eval([[get(g:,"tz_right_padding", "NONE")]])
+	tz_bottom_padding = vim.api.nvim_eval([[get(g:, "tz_bottom_padding", "NONE")]])
 
 
 	local left_padding_cmd = ""
