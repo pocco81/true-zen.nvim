@@ -316,6 +316,12 @@ function ataraxis_true()		-- show
 		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tz_top_padding > 0) then
 			cmd("wincmd k")
 			cmd("q")
+
+			if (top_use_passed_params == true) then
+				cmd("unlet g:tz_top_padding")
+				top_use_passed_params = false
+			end
+
 		else
 			-- nothing
 		end
@@ -323,6 +329,11 @@ function ataraxis_true()		-- show
 		if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tz_bottom_padding > 0) then
 			cmd("wincmd j")
 			cmd("q")
+
+			if (bottom_use_passed_params == true) then
+				cmd("unlet g:tz_bottom_padding")
+				bottom_use_passed_params = false
+			end
 		else
 			-- nothing
 		end
@@ -591,10 +602,12 @@ function ataraxis_false()		-- hide
 		cmd(top_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 
-		cmd("unlet g:tz_top_padding")
+		-- cmd("unlet g:tz_top_padding")
 
 		-- return to middle buffer
 		cmd("wincmd j")
+
+		top_use_passed_params = true
 	else
 		if (opts["ataraxis"]["top_padding"] > 0) then
 			-- local top_padding_cmd = "resize "..opts["ataraxis"]["top_padding"]..""
@@ -624,10 +637,11 @@ function ataraxis_false()		-- hide
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 
 
-		cmd("unlet g:tz_bottom_padding")
+		-- cmd("unlet g:tz_bottom_padding")
 
 		-- return to middle buffer
 		cmd("wincmd k")
+		bottom_use_passed_params = true
 	else
 		if (opts["ataraxis"]["bottom_padding"] > 0) then
 			-- local bottom_padding_cmd = "resize "..opts["ataraxis"]["bottom_padding"]..""
