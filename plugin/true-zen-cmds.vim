@@ -9,7 +9,7 @@ let s:save_cpo = &cpo " save user coptions
 set cpo&vim " reset them to defaults
 
 " command! -nargs=* Sub call MapArgs(<f-args>) | lua require("t2").parse_and_categorize("hehe")
-function! MapArgs(...)
+function! s:MapArgs(...)
 	if (a:0 > 4)
 		echom "TrueZen: you cannot pass more than 4 arguments to this command."
 	else
@@ -37,7 +37,7 @@ endfunction
 " mapping {{{
 " modes
 " command! TZAtaraxis lua require'true-zen.main'.main(4, 0)
-command! -nargs=* TZAtaraxis call MapArgs(<f-args>) | lua require'true-zen.main'.main(4, 0)
+command! -nargs=* TZAtaraxis call s:MapArgs(<f-args>) | lua require'true-zen.main'.main(4, 0)
 command! TZMinimalist lua require'true-zen.main'.main(3, 0)
 command! TZFocus lua require'true-zen.main'.main(5, 0)
 
