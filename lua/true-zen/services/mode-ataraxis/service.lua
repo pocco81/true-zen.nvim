@@ -358,8 +358,9 @@ function ataraxis_true()		-- show
 		-- else
 		-- 	-- nothing
 		-- end
+		
 
-		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tz_top_padding > 0) then
+		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tonumber(tz_top_padding) > 0) then
 			cmd("wincmd k")
 			cmd("q")
 
@@ -372,7 +373,7 @@ function ataraxis_true()		-- show
 			-- nothing
 		end
 
-		if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tz_bottom_padding > 0) then
+		if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tonumber(tz_bottom_padding) > 0) then
 			cmd("wincmd j")
 			cmd("q")
 
