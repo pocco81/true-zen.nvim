@@ -1,4 +1,4 @@
-
+local M = {}
 
 
 local api = vim.api
@@ -6,7 +6,7 @@ local cmd = vim.cmd
 
 
 
-function toggle_element(element)
+function M.toggle_element(element)
 
 	if (element == 0) then			-- current line blame
 		cmd("Gitsigns toggle_current_line_blame")
@@ -22,6 +22,4 @@ end
 
 
 
-return {
-	toggle_element = toggle_element,
-}
+return M

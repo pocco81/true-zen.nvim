@@ -1,4 +1,4 @@
-
+local M = {}
 
 local cmd = vim.cmd
 local opts = require("true-zen.config").options
@@ -39,7 +39,7 @@ local function clean_and_exec(opt, table_opt, remove_str)
 end
 
 
-function map_settings(table, bool, ui_element)
+function M.map_settings(table, bool, ui_element)
 
 	ui_element = ui_element or "NONE"
 
@@ -113,6 +113,4 @@ end
 
 
 
-return {
-	map_settings = map_settings
-}
+return M

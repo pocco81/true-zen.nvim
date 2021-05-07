@@ -1,4 +1,4 @@
-
+local M = {}
 
 local opts = require("true-zen.config").options
 local cmd = vim.cmd
@@ -51,24 +51,24 @@ local function setup_cursor()
 end
 
 
-function before_minimalist_mode_shown()
+function M.before_minimalist_mode_shown()
 	
 end
 
-function before_minimalist_mode_hidden()
+function M.before_minimalist_mode_hidden()
 	
 end
 
-function after_minimalist_mode_shown()
+function M.after_minimalist_mode_shown()
 	
 end
 
-function after_minimalist_mode_hidden()
+function M.after_minimalist_mode_hidden()
 	
 end
 
 
-function setup(custom_opts)
+function M.setup(custom_opts)
 	require("true-zen.config").set_options(custom_opts)
 	setup_commands()
 	setup_cursor()
@@ -76,10 +76,4 @@ end
 
 
 
-return {
-	setup = setup,
-	before_minimalist_mode_shown = before_minimalist_mode_shown,
-	before_minimalist_mode_hidden = before_minimalist_mode_hidden,
-	after_minimalist_mode_shown = after_minimalist_mode_shown,
-	after_minimalist_mode_hidden = after_minimalist_mode_hidden
-}
+return M

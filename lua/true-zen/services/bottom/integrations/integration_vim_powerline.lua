@@ -1,4 +1,4 @@
-
+local M = {}
 
 
 
@@ -6,12 +6,12 @@ local cmd = vim.cmd
 
 
 
-function enable_element()
+function M.enable_element()
 	cmd("doautocmd PowerlineStartup VimEnter")
 	cmd("silent! PowerlineReloadColorscheme")
 end
 
-function disable_element()
+function M.disable_element()
 	cmd("augroup PowerlineMain")
 	cmd("autocmd!")
 	cmd("augroup END")
@@ -20,7 +20,4 @@ end
 
 
 
-return {
-	enable_element = enable_element,
-	disable_element = disable_element
-}
+return M
