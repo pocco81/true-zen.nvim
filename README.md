@@ -195,7 +195,7 @@ left = {
 	shown_signcolumn = "no"
 },
 ataraxis = {
-	ideal_writing_area_width = 0
+	ideal_writing_area_width = 0,
 	just_do_it_for_me = false,
 	left_padding = 40,
 	right_padding = 40,
