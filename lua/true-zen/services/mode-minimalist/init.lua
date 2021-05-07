@@ -1,4 +1,5 @@
-
+local M = {}
+local minimalist_show
 
 local service = require("true-zen.services.mode-minimalist.service")
 local opts = require("true-zen.config").options
@@ -92,7 +93,7 @@ local function toggle()
 end
 
 
-function main(option)
+function M.main(option)
 
 	option = option or 0
 
@@ -108,6 +109,4 @@ function main(option)
 end
 
 
-return {
-	main = main
-}
+return M
