@@ -311,53 +311,6 @@ function ataraxis_true()		-- show
 		cmd("q")
 		cmd("wincmd l")
 		cmd("q")
-
-
-		-- if (top_use_passed_params == true) then
-		-- 	cmd("unlet g:tz_top_padding")
-		-- 	top_use_passed_params = false
-		-- 	cmd("wincmd k")
-		-- 	cmd("q")
-		-- else
-		-- 	if (opts["ataraxis"]["top_padding"] > 0) then
-		-- 		cmd("wincmd k")
-		-- 		cmd("q")
-		-- 	else
-		-- 		-- nothing
-		-- 	end
-		-- end
-
-
-		-- if (bottom_use_passed_params == true) then
-		-- 	cmd("unlet g:tz_bottom_padding")
-		-- 	bottom_use_passed_params = false
-		-- end
-
-
-
-		-- cmd("echo 'Top = "..tz_top_padding.."'")
-		-- cmd("echo 'Bottom = "..tz_bottom_padding.."'")
-
-		-- if (opts["ataraxis"]["top_padding"] > 0) then
-		-- 	cmd("wincmd k")
-		-- 	cmd("q")
-
-
-		-- else
-		-- 	-- nothing
-		-- end
-
-		-- if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tz_bottom_padding > 0) then
-		-- 	cmd("wincmd j")
-		-- 	cmd("q")
-
-		-- 	if (bottom_use_passed_params == true) then
-		-- 		cmd("unlet g:tz_bottom_padding")
-		-- 		bottom_use_passed_params = false
-		-- 	end
-		-- else
-		-- 	-- nothing
-		-- end
 		
 
 		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tonumber(tz_top_padding) > 0) then
