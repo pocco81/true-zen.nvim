@@ -1,4 +1,7 @@
 local M = {}
+local left_has_been_stored, left_has_been_restored, user_left_opts
+local top_has_been_stored, top_has_been_restored, user_top_opts
+local bottom_has_been_stored, bottom_has_been_restored, user_bottom_opts
 
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
@@ -64,6 +67,7 @@ local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
 
 
+	local to_cmd
 	if (type(table_opt) == "boolean") then
 		to_cmd = test_bool(final_opt, table_opt)
 		-- cmd("echo 'To cmd = "..tostring(to_cmd).."'")
