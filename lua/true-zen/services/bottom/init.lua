@@ -1,38 +1,38 @@
-
+local M = {}
 
 local service = require("true-zen.services.bottom.service")
 local cmd = vim.cmd
 
 -- show and hide bottom funcs
 local function bottom_true()
-	bottom_show = 1
+	M.bottom_show = 1
 	service.bottom_true()
 end
 
 local function bottom_false()
-	bottom_show = 0
+	M.bottom_show = 0
 	service.bottom_false()
 end
 
 local function toggle()
-	bottom_show = vim.api.nvim_eval("&laststatus > 0")
-	if (bottom_show == 1) then				-- bottom true, shown; thus, hide
+	M.bottom_show = vim.api.nvim_eval("&laststatus > 0")
+	if (M.bottom_show == 1) then				-- bottom true, shown; thus, hide
 		bottom_false()
-	elseif (bottom_show == 0) then			-- bottom false, hidden; thus, show
+	elseif (M.bottom_show == 0) then			-- bottom false, hidden; thus, show
 		bottom_true()
 	else
 		-- nothing
 	end
 end
 
-function resume()
+function M.resume()
 
-	if (bottom_show == 1) then				-- bottm true; shown
+	if (M.bottom_show == 1) then				-- bottm true; shown
 		bottom_true()
-	elseif (bottom_show == 0) then			-- status line false; hidden
+	elseif (M.bottom_show == 0) then			-- status line false; hidden
 		bottom_false()
-	elseif (bottom_show == nil) then			-- show var is nil
-		bottom_show = vim.api.nvim_eval("&laststatus > 0")
+	elseif (M.bottom_show == nil) then			-- show var is nil
+		M.bottom_show = vim.api.nvim_eval("&laststatus > 0")
 		-- bottom_true()
 	else
 		cmd("echo 'none of the above'")
@@ -41,7 +41,7 @@ function resume()
 end
 
 
-function main(option)
+function M.main(option)
 
 	option = option or 0
 
@@ -64,8 +64,4 @@ end
 -- 	augroup END
 -- ]], false)
 
-return {
-	main = main,
-	resume = resume,
-	bottom_show = bottom_show
-}
+return M

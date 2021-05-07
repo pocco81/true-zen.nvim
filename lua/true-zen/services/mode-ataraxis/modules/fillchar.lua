@@ -1,11 +1,11 @@
-
-
+local M = {}
+local fillchars_stored, final_fillchars
 
 local cmd = vim.cmd
 
 
 
-function set_fillchars()
+function M.set_fillchars()
 
 	cmd([[set fillchars+=stl:\ ]])
 	cmd([[set fillchars+=stlnc:\ ]])
@@ -21,7 +21,7 @@ function set_fillchars()
 end
 
 
-function store_fillchars()
+function M.store_fillchars()
 
 	local fillchars = vim.api.nvim_eval("&fillchars")
 
@@ -29,9 +29,9 @@ function store_fillchars()
 		-- vim's default fillchars
 		final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
 	else
-		fillchars_escaped_spaces = fillchars:gsub( ": ", ":\\ ")
-		fillchars_escaped_thicc_pipes = fillchars_escaped_spaces:gsub(":│", [[:\│]])
-		fillchars_escaped_thin_pipes = fillchars_escaped_thicc_pipes:gsub(":|", [[:\|]])
+		local fillchars_escaped_spaces = fillchars:gsub( ": ", ":\\ ")
+		local fillchars_escaped_thicc_pipes = fillchars_escaped_spaces:gsub(":│", [[:\│]])
+		local fillchars_escaped_thin_pipes = fillchars_escaped_thicc_pipes:gsub(":|", [[:\|]])
 		final_fillchars = fillchars_escaped_thin_pipes
 	end
 
@@ -39,7 +39,7 @@ function store_fillchars()
 	
 end
 
-function restore_fillchars()
+function M.restore_fillchars()
 
 	if (fillchars_stored == true) then
 		cmd("set fillchars="..final_fillchars.."")
@@ -49,10 +49,6 @@ end
 
 
 
-return {
-	set_fillchars = set_fillchars,
-	store_fillchars = store_fillchars,
-	restore_fillchars = restore_fillchars
-}
+return M
 
 

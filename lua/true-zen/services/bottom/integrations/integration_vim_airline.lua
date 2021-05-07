@@ -1,15 +1,15 @@
-
+local M = {}
 
 
 local cmd = vim.cmd
 
 
 
-function enable_element()
+function M.enable_element()
 	cmd("AirlineToggle")
 end
 
-function disable_element()
+function M.disable_element()
 	cmd("AirlineToggle")
 	cmd("silent! AirlineRefresh")
     cmd("silent! AirlineRefresh")
@@ -17,7 +17,4 @@ end
 
 
 
-return {
-	enable_element = enable_element,
-	disable_element = disable_element
-}
+return M

@@ -1,9 +1,12 @@
-
+local M = {}
+local left_has_been_stored, left_has_been_restored, user_left_opts
+local top_has_been_stored, top_has_been_restored, user_top_opts
+local bottom_has_been_stored, bottom_has_been_restored, user_bottom_opts
 
 -- local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
-function get_has_been_stored(element)
+function M.get_has_been_stored(element)
 	if (element == "LEFT") then
 		return left_has_been_stored
 	elseif (element == "TOP") then
@@ -13,7 +16,7 @@ function get_has_been_stored(element)
 	end
 end
 
-function set_has_been_stored(element, val)
+function M.set_has_been_stored(element, val)
 	if (element == "LEFT") then
 		left_has_been_stored = val
 	elseif (element == "TOP") then
@@ -23,7 +26,7 @@ function set_has_been_stored(element, val)
 	end
 end
 
-function get_has_been_restored(element)
+function M.get_has_been_restored(element)
 	if (element == "LEFT") then
 		return left_has_been_restored
 	elseif (element == "TOP") then
@@ -64,6 +67,7 @@ local function clean_and_append(opt, table_opt, remove_str)
 	local final_opt = opt:gsub(remove_str, "")
 
 
+	local to_cmd
 	if (type(table_opt) == "boolean") then
 		to_cmd = test_bool(final_opt, table_opt)
 		-- cmd("echo 'To cmd = "..tostring(to_cmd).."'")
@@ -91,7 +95,7 @@ local function read_call(opt, value_opt)
 	
 end
 
-function store_settings(table_local, ui_element)
+function M.store_settings(table_local, ui_element)
 
 
 	if (ui_element == "TOP") then
@@ -146,7 +150,7 @@ function store_settings(table_local, ui_element)
 	
 end
 
-function restore_settings(ui_element)
+function M.restore_settings(ui_element)
 
 	ui_element = ui_element or "NONE"
 
@@ -198,11 +202,4 @@ end
 
 
 
-return {
-	store_settings = store_settings,
-	restore_settings = restore_settings,
-	get_has_been_stored = get_has_been_stored,
-	get_has_been_restored = get_has_been_restored,
-	set_has_been_stored = set_has_been_stored
-}
-
+return M
