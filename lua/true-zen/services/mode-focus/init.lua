@@ -1,4 +1,5 @@
-
+local M = {}
+local focus_show, ataraxis_is_toggled
 
 local service = require("true-zen.services.mode-focus.service")
 local opts = require("true-zen.config").options
@@ -107,7 +108,7 @@ local function toggle()
 				local current_window_width = vim.api.nvim_eval("winwidth('%')")
 				local total_current_window = tonumber(current_window_width) + tonumber(current_window_height)
 
-				difference = total_current_session - total_current_window
+				local difference = total_current_session - total_current_window
 
 				
 				for i = 1, tonumber(opts["focus"]["margin_of_error"]), 1 do
@@ -141,7 +142,7 @@ local function toggle()
 end
 
 
-function main(option)
+function M.main(option)
 
 	option = option or 0
 
@@ -157,6 +158,4 @@ function main(option)
 end
 
 
-return {
-	main = main
-}
+return M
