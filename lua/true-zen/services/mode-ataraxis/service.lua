@@ -1,4 +1,12 @@
 local M = {}
+local has_statusline_with_integration
+local gs_ps_current_line_blame, gs_ps_numhl, gs_ps_linehl, gs_ps_signs
+local top_use_passed_params, bottom_use_passed_params
+local is_splitbelow_set, is_splitright_set
+local top_has_been_stored, bottom_has_been_stored, left_has_been_stored
+local tz_top_padding, tz_left_padding, tz_right_padding, tz_bottom_padding
+local current_statusline
+local total_left_right_width
 
 local opts = require("true-zen.config").options
 local left_service = require("true-zen.services.left.service")
@@ -529,7 +537,7 @@ function M.ataraxis_false()		-- hide
 	local top_padding_cmd = ""
 	local bottom_padding_cmd = ""
 
-	test_ideal_writing_and_just_me = function()
+	local test_ideal_writing_and_just_me = function()
 		
 		if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
 			-- stuff
