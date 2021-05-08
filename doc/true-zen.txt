@@ -127,7 +127,8 @@ ataraxis = {
 	disable_bg_configuration = false,
 	disable_fillchars_configuration = false,
 	force_when_plus_one_window = false,
-	force_hide_statusline = true
+	force_hide_statusline = true,
+	quit_untoggles_ataraxis = false
 },
 focus = {
 	margin_of_error = 5,
@@ -205,7 +206,8 @@ true_zen.setup({
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
 		force_when_plus_one_window = false,
-		force_hide_statusline = true
+		force_hide_statusline = true,
+		quit_untoggles_ataraxis = false
 	},
 	focus = {
 		margin_of_error = 5,
@@ -283,7 +285,8 @@ true_zen.setup({
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
 		force_when_plus_one_window = false,
-		force_hide_statusline = true
+		force_hide_statusline = true,
+		quit_untoggles_ataraxis = false
 	},
 	focus = {
 		margin_of_error = 5,
@@ -463,6 +466,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `disable_fillchars_configuration`: (Boolean) disables fillchars interactions. By default the plugin hides them all to give that "clean" look. If you are having issues with the fillchars try setting them on your config (`:help 'fillchars'`), but if that didn' help either, then set this option to `true`.
 - `force_when_plus_one_window`: (Boolean) by default you can't toggle Ataraxis if there is more than one window open, this is to prevent layout issues. If set to `true`, TrueZen will quits all the other windows (not buffers) before entering Ataraxis mode on the current window. As a workaround, check the `integration_tzfocus_tzataraxis` integration and the `"experimental"` `focus_method`.
 - `force_hide_statusline`: (Boolean) forcefully hide the statusline if it isn't being compliant.
+- `quit_untoggles_ataraxis`: (Boolean) if true, while on Ataraxis mode, you may use `:q`/`:quit` to untoggle from Ataraxis mode too. Notice that no matter if you enable this or not you will still be able to untoggle Ataraxis with its command.
 
 ## Minimalist													*truezen-minimalist*
 - `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the `shown_` prefix and stores the ones from the user config; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values only once, when any of the `UI` related commands, `:TZAtaraxis`, `:TZMinimalist` and/or variants are called. If, for example, were to `setlocal relativenumber` after already running any of the aforementioned commands, this won't be stored.
