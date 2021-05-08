@@ -321,6 +321,7 @@ function ataraxis_true()		-- show
 	end
 
 
+	cmd("echo 'Ataraxis was quitted = "..ataraxis_was_quitted.."'")
 	if (ataraxis_was_quitted == "true") then
 		goto skip_normal_quitting
 	end
