@@ -463,14 +463,13 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			augroup exit_ataraxis_too
 				autocmd!
-				" autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | execute "lua ataraxis_true()"
-				" autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | let g:ataraxis_was_quitted = "true" | execute "lua ataraxis_true()"
-				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | let g:ataraxis_was_quitted = "true" | execute "lua require("true-zen.services.mode-ataraxis.init").main(0)"
+				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | let g:ataraxis_was_quitted = "true" | execute "lua require('true-zen.services.mode-ataraxis.init').main(0)"
 			augroup END
 		]], false)
 
 	end
 
+	-- autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | let g:ataraxis_was_quitted = "true" | execute "lua ataraxis_true()"
 
 	---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 	is_splitbelow_set = vim.api.nvim_eval("&splitbelow")
