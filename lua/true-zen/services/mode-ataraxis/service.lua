@@ -307,6 +307,7 @@ function ataraxis_true()		-- show
 	-- if (amount_wins == 1) then
 	-- 	cmd("echo 'TrueZen: can not exit Ataraxi Mode because you are currently not in it'")
 	-- elseif (amount_wins > 1) then
+	local ataraxis_was_quitted = ""
 	
 	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
 
@@ -315,6 +316,13 @@ function ataraxis_true()		-- show
 				autocmd!
 			augroup END
 		]], false)
+
+		ataraxis_was_quitted = vim.api.nvim_eval([[get(g:,"ataraxis_was_quitted", "NONE")]])
+	end
+
+
+	if (ataraxis_was_quitted == "true") then
+		goto skip_normal_quitting
 	end
 
 
@@ -349,7 +357,8 @@ function ataraxis_true()		-- show
 			-- nothing
 		end
 
-
+		
+		::skip_normal_quitting::
 
 		-- if (opts["ataraxis"]["top_padding"] > 0) then
 		-- 	cmd("wincmd k")
@@ -487,7 +496,8 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			augroup exit_ataraxis_too
 				autocmd!
-				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | execute "lua ataraxis_true()"
+				" autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | execute "lua ataraxis_true()"
+				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | let g:ataraxis_was_quitted = "true"
 			augroup END
 		]], false)
 
