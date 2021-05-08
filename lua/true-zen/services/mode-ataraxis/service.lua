@@ -302,11 +302,6 @@ end
 
 function ataraxis_true()		-- show
 
-	-- local amount_wins = vim.api.nvim_eval("winnr('$')")
-
-	-- if (amount_wins == 1) then
-	-- 	cmd("echo 'TrueZen: can not exit Ataraxi Mode because you are currently not in it'")
-	-- elseif (amount_wins > 1) then
 	local ataraxis_was_quitted = ""
 	
 	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
@@ -327,72 +322,48 @@ function ataraxis_true()		-- show
 	end
 
 
-		cmd("wincmd h")
+	cmd("wincmd h")
+	cmd("q")
+	cmd("wincmd l")
+	cmd("q")
+	
+
+	if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tonumber(tz_top_padding) > 0) then
+		cmd("wincmd k")
 		cmd("q")
-		cmd("wincmd l")
-		cmd("q")
-		
 
-		if (opts["ataraxis"]["top_padding"] > 0 or tz_top_padding ~= "NONE" and tonumber(tz_top_padding) > 0) then
-			cmd("wincmd k")
-			cmd("q")
-
-			if (top_use_passed_params == true) then
-				cmd("unlet g:tz_top_padding")
-				top_use_passed_params = false
-			end
-
-		else
-			-- nothing
+		if (top_use_passed_params == true) then
+			cmd("unlet g:tz_top_padding")
+			top_use_passed_params = false
 		end
 
-		if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tonumber(tz_bottom_padding) > 0) then
-			cmd("wincmd j")
-			cmd("q")
+	else
+		-- nothing
+	end
 
-			if (bottom_use_passed_params == true) then
-				cmd("unlet g:tz_bottom_padding")
-				bottom_use_passed_params = false
-			end
-		else
-			-- nothing
+	if (opts["ataraxis"]["bottom_padding"] > 0 or tz_bottom_padding ~= "NONE" and tonumber(tz_bottom_padding) > 0) then
+		cmd("wincmd j")
+		cmd("q")
+
+		if (bottom_use_passed_params == true) then
+			cmd("unlet g:tz_bottom_padding")
+			bottom_use_passed_params = false
 		end
+	else
+		-- nothing
+	end
 
-		
-		::skip_normal_quitting::
-
-		-- if (opts["ataraxis"]["top_padding"] > 0) then
-		-- 	cmd("wincmd k")
-		-- 	cmd("q")
-
-
-		-- else
-		-- 	-- nothing
-		-- end
-
-		-- if (opts["ataraxis"]["bottom_padding"] > 0) then
-		-- 	cmd("wincmd j")
-		-- 	cmd("q")
-
-		-- 	if (bottom_use_passed_params == true) then
-		-- 		cmd("unlet g:tz_bottom_padding")
-		-- 		bottom_use_passed_params = false
-		-- 	end
-		-- else
-		-- 	-- nothing
-		-- end
+	
+	::skip_normal_quitting::
 
 
 
-
-
-
-		-- mode_minimalist.main(1)
+	------- general
 		cmd("set fillchars=")
 
 		-- if removed, it's likely that numberline and bottom will be removed
 		cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
-	-- end
+	------ general
 
 
 	--------------------------=== Splits stuff ===--------------------------
@@ -464,13 +435,8 @@ function ataraxis_true()		-- show
 	-------------------------=== Integrations ===------------------------
 
 
-	-- cmd("unlet g:tz_left_padding")
-	-- cmd("unlet g:tz_right_padding")
-	-- cmd("unlet g:tz_top_padding")
-	-- cmd("unlet g:tz_bottom_padding")
 
 	mode_minimalist.main(1)
-
 
 end
 
