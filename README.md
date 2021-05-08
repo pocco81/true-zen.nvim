@@ -84,6 +84,7 @@
 	* [Ataraxis](#ataraxis)
 	* [Focus](#focus)
 * [Key Bindings](#-key-bindings)
+* [Contribute](#-contribute)
 * [Inspirations](#-inspirations)
 * [License](#-license)
 * [FAQ](#-faq)
@@ -622,6 +623,10 @@ If you don't fit in either of the above cases/the fixes didn't for you, then dis
 
 
 If you already tried everything of the obove and *nothing worked* (which I doubt), then it's an issue with your Colorscheme, not a TrueZen.nvim one!
+
+# 🫂 Contribute
+
+Pull Requests are welcomed as long as they are properly justified and there are no conflicts. If your PR has something to do with the README or in general something related to the documentation, I'll gladly merge it!
 
 # 💭 Inspirations
 
