@@ -626,7 +626,7 @@ If you already tried everything of the obove and *nothing worked* (which I doubt
 
 # 🫂 Contribute
 
-Pull Requests are welcomed as long as they are properly justified and there are no conflicts. If your PR has something to do with the README or in general something related to the documentation, I'll gladly merge it!
+Pull Requests are welcomed as long as they are properly justified and there are no conflicts. If your PR has something to do with the README or in general related with the documentation, I'll gladly merge it!
 
 # 💭 Inspirations
 
