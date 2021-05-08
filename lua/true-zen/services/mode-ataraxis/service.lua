@@ -487,7 +487,7 @@ function ataraxis_false()		-- hide
 		vim.api.nvim_exec([[
 			augroup exit_ataraxis_too
 				autocmd!
-				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close
+				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close | execute "lua ataraxis_true()"
 			augroup END
 		]], false)
 
