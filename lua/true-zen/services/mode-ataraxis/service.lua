@@ -317,6 +317,7 @@ function ataraxis_true()		-- show
 
 
 	if (ataraxis_was_quitted == "true") then
+		cmd("unlet g:ataraxis_was_quitted")
 		goto skip_normal_quitting
 	end
 
@@ -629,7 +630,6 @@ function ataraxis_false()		-- hide
 		cmd(top_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 
-		cmd("echo 'Top = "..tz_top_padding.."'")
 		-- cmd("unlet g:tz_top_padding")
 
 		-- return to middle buffer
@@ -664,7 +664,6 @@ function ataraxis_false()		-- hide
 		cmd(bottom_padding_cmd)
 		cmd("setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0")
 
-		cmd("echo 'Bottom = "..tz_bottom_padding.."'")
 
 		-- cmd("unlet g:tz_bottom_padding")
 
