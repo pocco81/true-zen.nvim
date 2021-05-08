@@ -44,7 +44,8 @@ config.options = {
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
 		force_when_plus_one_window = false,
-		force_hide_statusline = true
+		force_hide_statusline = true,
+		quit_untoggles_ataraxis = false
 	},
 	focus = {
 		margin_of_error = 5,

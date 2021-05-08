@@ -302,11 +302,22 @@ end
 
 function ataraxis_true()		-- show
 
-	local amount_wins = vim.api.nvim_eval("winnr('$')")
+	-- local amount_wins = vim.api.nvim_eval("winnr('$')")
 
-	if (amount_wins == 1) then
-		cmd("echo 'TrueZen: can not exit Ataraxi Mode because you are currently not in it'")
-	elseif (amount_wins > 1) then
+	-- if (amount_wins == 1) then
+	-- 	cmd("echo 'TrueZen: can not exit Ataraxi Mode because you are currently not in it'")
+	-- elseif (amount_wins > 1) then
+	
+	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
+
+		vim.api.nvim_exec([[
+			augroup exit_ataraxis_too
+				autocmd!
+			augroup END
+		]], false)
+	end
+
+
 		cmd("wincmd h")
 		cmd("q")
 		cmd("wincmd l")
@@ -371,7 +382,7 @@ function ataraxis_true()		-- show
 
 		-- if removed, it's likely that numberline and bottom will be removed
 		cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
-	end
+	-- end
 
 
 	--------------------------=== Splits stuff ===--------------------------
@@ -467,6 +478,18 @@ function ataraxis_false()		-- hide
 		end
 	else
 		-- nothing
+
+	end
+
+
+	if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
+
+		vim.api.nvim_exec([[
+			augroup exit_ataraxis_too
+				autocmd!
+				autocmd QuitPre * only | let g:the_id = win_getid() | tabe % | call win_gotoid(g:the_id) | close
+			augroup END
+		]], false)
 
 	end
 
