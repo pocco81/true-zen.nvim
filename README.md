@@ -127,6 +127,7 @@
 	- Gitsigns integration
 
 # 📺 Notices
+- **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
 - **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
 - **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
 
