@@ -429,8 +429,7 @@ end
 ```
 
 ## Integrations													*truezen-integrations*
-Integrations are a way for providing support for certain (Neo)Vim plugins/stuff in order for TrueZen to integrate nicely with them. Needless to say, these settings can be set in the `integrations = {}` table. For obvious reasons, integrations only work if you have the specific plugin/thing installed. Enabling any of them in the case you don't have that specific element installed will result in an error. In this case, `true` will *enable* the extension, and `false` will *disable* it; this **does not mean** that if you set *x* integration to `false` you'll get the exact opposite behaviour as if it was `true`.
-
+Integrations are a way for providing support for certain (Neo)Vim plugins/stuff in order for TrueZen to integrate nicely with them. Needless to say, these settings can be set in the `integrations = {}` table. Integrations only work for Ataraxis mode and if you have the specific plugin/thing installed. Enabling any of them in the case you don't have that specific element installed will result in an error. In this case, `true` will *enable* the extension, and `false` will *disable* it; this **does not mean** that if you set *x* integration to `false` you'll get the exact opposite behaviour as if it was `true`.
 
 ### General integrations
 - `integration_tmux`: (Boolean) if set to true, hides Tmux tab bar when Ataraxis mode is toggled.
