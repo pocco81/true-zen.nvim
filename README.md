@@ -127,6 +127,7 @@
 	- Gitsigns integration
 
 # 📺 Notices
+- **28-05-21**: Added option to keep default fold fillchars.
 - **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
 - **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
 - **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
@@ -206,6 +207,7 @@ ataraxis = {
   custome_bg = "",
   disable_bg_configuration = false,
   disable_fillchars_configuration = false,
+  keep_default_fold_fillchars = true,
   force_when_plus_one_window = false,
   force_hide_statusline = true,
   quit_untoggles_ataraxis = false
@@ -289,6 +291,7 @@ true_zen.setup({
     custome_bg = "",
     disable_bg_configuration = false,
     disable_fillchars_configuration = false,
+	keep_default_fold_fillchars = true,
     force_when_plus_one_window = false,
     force_hide_statusline = true,
 	quit_untoggles_ataraxis = false
@@ -374,6 +377,7 @@ true_zen.setup({
     custome_bg = "",
     disable_bg_configuration = false,
     disable_fillchars_configuration = false,
+	keep_default_fold_fillchars = true,
     force_when_plus_one_window = false,
     force_hide_statusline = true,
 	quit_untoggles_ataraxis = false
@@ -546,6 +550,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `custome_bg` (String) used for setting a bg color if your coloscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
 - `disable_bg_configuration`: (Boolean) disable any background configuration/interaction. Use it only if you have issues with the backgrounds (although I strongly recommend checkgin the FAQ about this and/or using the `custome_bg` setting for this)
 - `disable_fillchars_configuration`: (Boolean) disables fillchars interactions. By default the plugin hides them all to give that "clean" look. If you are having issues with the fillchars try setting them on your config (`:help 'fillchars'`), but if that didn' help either, then set this option to `true`.
+- `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. This is for the mouse to keep working.
 - `force_when_plus_one_window`: (Boolean) by default you can't toggle Ataraxis if there is more than one window open, this is to prevent layout issues. If set to `true`, TrueZen will quits all the other windows (not buffers) before entering Ataraxis mode on the current window. As a workaround, check the `integration_tzfocus_tzataraxis` integration and the `"experimental"` `focus_method`.
 - `force_hide_statusline`: (Boolean) forcefully hide the statusline if it isn't being compliant.
 - `quit_untoggles_ataraxis`: (Boolean) if true, while on Ataraxis mode, you may use `:q`/`:quit` to untoggle from Ataraxis mode too. Notice that no matter if you enable this or not you will still be able to untoggle Ataraxis with its command.
