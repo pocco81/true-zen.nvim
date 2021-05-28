@@ -1,6 +1,9 @@
 
 
 
+local opts = require("true-zen.config").options
+
+
 local cmd = vim.cmd
 
 
@@ -10,13 +13,19 @@ function set_fillchars()
 	cmd([[set fillchars+=stl:\ ]])
 	cmd([[set fillchars+=stlnc:\ ]])
 	cmd([[set fillchars+=vert:\ ]])
-	cmd([[set fillchars+=fold:\ ]])
-	cmd([[set fillchars+=foldopen:\ ]])
-	cmd([[set fillchars+=foldclose:\ ]])
-	cmd([[set fillchars+=foldsep:\ ]])
 	cmd([[set fillchars+=diff:\ ]])
 	cmd([[set fillchars+=msgsep:\ ]])
 	cmd([[set fillchars+=eob:\ ]])
+
+	if (opts["ataraxis"]["keep_default_fold_fillchars"] == true) then
+		-- This is for the mouse to work
+		cmd([[set fillchars+=fold:·,foldopen:-,foldclose:+,foldsep:\|]])
+	else
+		cmd([[set fillchars+=fold:\ ]])
+		cmd([[set fillchars+=foldopen:\ ]])
+		cmd([[set fillchars+=foldclose:\ ]])
+		cmd([[set fillchars+=foldsep:\ ]])
+	end
 
 end
 
@@ -36,7 +45,7 @@ function store_fillchars()
 	end
 
 	fillchars_stored = true
-	
+
 end
 
 function restore_fillchars()
@@ -44,7 +53,7 @@ function restore_fillchars()
 	if (fillchars_stored == true) then
 		cmd("set fillchars="..final_fillchars.."")
 	end
-	
+
 end
 
 

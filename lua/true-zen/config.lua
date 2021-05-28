@@ -43,6 +43,7 @@ config.options = {
 		custome_bg = "",
 		disable_bg_configuration = false,
 		disable_fillchars_configuration = false,
+		keep_default_fold_fillchars = true,
 		force_when_plus_one_window = false,
 		force_hide_statusline = true,
 		quit_untoggles_ataraxis = false
@@ -103,7 +104,7 @@ function config.set_options(opts)
 			-- nothing
 		end
 	end
-		
+
 end
 
 
