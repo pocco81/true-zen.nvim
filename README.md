@@ -1,4 +1,4 @@
-# 🪶 TrueZen.nvim
+# 🦝 TrueZen.nvim
 
 <p align="center">
 	Clean and elegant distraction-free writing for NeoVim.
