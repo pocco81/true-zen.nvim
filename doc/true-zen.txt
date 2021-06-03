@@ -39,10 +39,6 @@ Do you...							|truezen-do-you|
 ==============================================================================
 
 
-
-
-
-
 # TL;DR                                         *truezen-tldr*
 
 	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's two different modes (minimalist mode and ataraxis mode). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
@@ -144,6 +140,11 @@ events = {
 	before_minimalist_mode_hidden = false,
 	after_minimalist_mode_shown = false,
 	after_minimalist_mode_hidden = false
+
+	before_focus_mode_focuses = false,
+	before_focus_mode_unfocuses = false,
+	after_focus_mode_focuses = false,
+	after_focus_mode_unfocuses = false
 },
 integrations = {
 	integration_galaxyline = false,
@@ -224,6 +225,11 @@ true_zen.setup({
 		before_minimalist_mode_hidden = false,
 		after_minimalist_mode_shown = false,
 		after_minimalist_mode_hidden = false
+
+		before_focus_mode_focuses = false,
+		before_focus_mode_unfocuses = false,
+		after_focus_mode_focuses = false,
+		after_focus_mode_unfocuses = false
 	},
 	integrations = {
 		integration_galaxyline = false,
@@ -304,6 +310,11 @@ true_zen.setup({
 		before_minimalist_mode_hidden = false,
 		after_minimalist_mode_shown = false,
 		after_minimalist_mode_hidden = false
+
+		before_focus_mode_focuses = false,
+		before_focus_mode_unfocuses = false,
+		after_focus_mode_focuses = false,
+		after_focus_mode_unfocuses = false
 	},
 	integrations = {
 		integration_galaxyline = false,
@@ -407,28 +418,50 @@ Use them to execute code at certain events [described by the name of each one of
 - `before_minimalist_mode_hidden`: (Boolean) allows code to be executed before Minimalist mode hides UI components
 - `after_minimalist_mode_shown`: (Boolean) allows code to be executed after Minimalist mode shows UI components
 - `after_minimalist_mode_hidden`: (Boolean) allows code to be executed after Minimalist mode hides UI components
+- `before_focus_mode_focuses`: (Boolean) allows code to be execute before Focus mode focuses the current window.
+- `before_focus_mode_unfocuses`: (Boolean) allows code to be executed before Focus mode unfocuses the current window.
+- `after_focus_mode_focuses`: (Boolean) allows code to be executed after Focus mode focuses the current window.
+- `after_focus_mode_unfocuses`: (Boolean) allows code to be executed after Focus mode unfocuses the current window.
 
 The code that executes in any of this circumstances is set by a function by the same name of the setting (e.g require('true-zen').after_minimalist_mode_hidden). This is are some examples for each one of this events:
 
 ```lua
+-- require TrueZen.nvim
 local true_zen = require("true-zen")
 
+-- Minimalist mode events
 true_zen.after_minimalist_mode_hidden = function ()
-	vim.cmd("echo 'I ran after minimalist mode hid everything :)'")
+  print("I ran after minimalist mode hid everything")
 end
 
 true_zen.before_minimalist_mode_hidden = function ()
-	vim.cmd("echo 'I ran before minimalist mode hid everything :)'")
+  print("I ran before minimalist mode hid everything")
 end
 
 true_zen.after_minimalist_mode_shown = function ()
-	vim.cmd("echo 'I ran after minimalist mode showed everything :)'")
+  print("I ran after minimalist mode showed everything")
 end
 
 true_zen.before_minimalist_mode_shown = function ()
-	vim.cmd("echo 'I ran before minimalist mode showed everything :)'")
+  print("I ran before minimalist mode showed everything")
 end
 
+-- Focus mode events
+true_zen.before_focus_mode_focuses = function ()
+  print("I ran before focus mode focused everything")
+end
+
+true_zen.before_focus_mode_unfocuses = function ()
+  print("I ran before focus mode unfocused everything")
+end
+
+true_zen.after_focus_mode_focuses = function ()
+  print("I ran after focus mode focused everything")
+end
+
+true_zen.after_focus_mode_unfocuses = function ()
+  print("I ran before focus mode unfocused everything")
+end
 ```
 
 ## Integrations													*truezen-integrations*

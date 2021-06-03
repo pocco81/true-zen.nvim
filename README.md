@@ -60,8 +60,6 @@
 	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's three different modes (Ataraxis, Minimalist and Focus). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
 </div>
 
-
-
 # 🌲 Table of Contents
 
 * [Features](#-features)
@@ -109,10 +107,10 @@
 - Non nonsensical
 - Can launch at startup if needed
 - Can execute code at certain events
-	- Before Minimalist mode hides everything
-	- Before Minimalist mode shows everything
-	- After Minimalist mode hides everything
-	- After Minimalist mode hides everything
+	- Before Minimalist mode shows/hides everything
+	- After Minimalist mode shows/hides everything
+	- Before Focus mode focuses/unfocuses everything
+	- After Focus mode focuses/unfocuses everything
 - Loads on demand, so it won't affect your startup time
 - Integrations with other plugins/stuff
 	- Vim Airline integration
@@ -127,6 +125,7 @@
 	- Gitsigns integration
 
 # 📺 Notices
+- **03-06-21**: Added events for the mode Focus.
 - **28-05-21**: Added option to keep default fold fillchars.
 - **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
 - **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
@@ -225,6 +224,11 @@ events = {
   before_minimalist_mode_hidden = false,
   after_minimalist_mode_shown = false,
   after_minimalist_mode_hidden = false
+
+  before_focus_mode_focuses = false,
+  before_focus_mode_unfocuses = false,
+  after_focus_mode_focuses = false,
+  after_focus_mode_unfocuses = false
 },
 integrations = {
   integration_galaxyline = false,
@@ -309,6 +313,11 @@ true_zen.setup({
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
     after_minimalist_mode_hidden = false
+
+	before_focus_mode_focuses = false,
+	before_focus_mode_unfocuses = false,
+	after_focus_mode_focuses = false,
+	after_focus_mode_unfocuses = false
   },
   integrations = {
     integration_galaxyline = false,
@@ -395,6 +404,11 @@ true_zen.setup({
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
     after_minimalist_mode_hidden = false
+
+	before_focus_mode_focuses = false,
+	before_focus_mode_unfocuses = false,
+	after_focus_mode_focuses = false,
+	after_focus_mode_unfocuses = false
   },
   integrations = {
     integration_galaxyline = false,
@@ -484,34 +498,56 @@ Every setting that makes part of a UI component (Left, Top, Bottom) has a prefix
 - `<prefix>_signcolumn`: (String: "yes"/"no") show sign column.
 
 ## Events
-Use them to execute code at certain events [described by the name of each one of them]. Needless to say, they belong on the `events = {}` table.
+Use them to execute code at certain events [described by the names they have]. Needless to say, they belong on the `events = {}` table.
 
 - `before_minimalist_mode_shown`: (Boolean) allows code to be executed before Minimalist mode shows UI components
 - `before_minimalist_mode_hidden`: (Boolean) allows code to be executed before Minimalist mode hides UI components
 - `after_minimalist_mode_shown`: (Boolean) allows code to be executed after Minimalist mode shows UI components
 - `after_minimalist_mode_hidden`: (Boolean) allows code to be executed after Minimalist mode hides UI components
+- `before_focus_mode_focuses`: (Boolean) allows code to be execute before Focus mode focuses the current window.
+- `before_focus_mode_unfocuses`: (Boolean) allows code to be executed before Focus mode unfocuses the current window.
+- `after_focus_mode_focuses`: (Boolean) allows code to be executed after Focus mode focuses the current window.
+- `after_focus_mode_unfocuses`: (Boolean) allows code to be executed after Focus mode unfocuses the current window.
 
 The code that executes in any of this circumstances is set by a function by the same name of the setting (e.g require('true-zen').after_minimalist_mode_hidden). This is are some examples for each one of this events:
 
 ```lua
+-- require TrueZen.nvim
 local true_zen = require("true-zen")
 
+-- Minimalist mode events
 true_zen.after_minimalist_mode_hidden = function ()
-  vim.cmd("echo 'I ran after minimalist mode hid everything :)'")
+  print("I ran after minimalist mode hid everything")
 end
 
 true_zen.before_minimalist_mode_hidden = function ()
-  vim.cmd("echo 'I ran before minimalist mode hid everything :)'")
+  print("I ran before minimalist mode hid everything")
 end
 
 true_zen.after_minimalist_mode_shown = function ()
-  vim.cmd("echo 'I ran after minimalist mode showed everything :)'")
+  print("I ran after minimalist mode showed everything")
 end
 
 true_zen.before_minimalist_mode_shown = function ()
-  vim.cmd("echo 'I ran before minimalist mode showed everything :)'")
+  print("I ran before minimalist mode showed everything")
 end
 
+-- Focus mode events
+true_zen.before_focus_mode_focuses = function ()
+  print("I ran before focus mode focused everything")
+end
+
+true_zen.before_focus_mode_unfocuses = function ()
+  print("I ran before focus mode unfocused everything")
+end
+
+true_zen.after_focus_mode_focuses = function ()
+  print("I ran after focus mode focused everything")
+end
+
+true_zen.after_focus_mode_unfocuses = function ()
+  print("I ran before focus mode unfocused everything")
+end
 ```
 
 ## Integrations
