@@ -60,7 +60,12 @@ config.options = {
 		before_minimalist_mode_shown = false,
 		before_minimalist_mode_hidden = false,
 		after_minimalist_mode_shown = false,
-		after_minimalist_mode_hidden = false
+		after_minimalist_mode_hidden = false,
+
+		before_focus_mode_focuses = false,
+		before_focus_mode_unfocuses = false,
+		after_focus_mode_focuses = false,
+		after_focus_mode_unfocuses = false
 	},
 	integrations = {
 		integration_galaxyline = false,
