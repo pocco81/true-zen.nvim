@@ -1,61 +1,55 @@
-
-
 local service = require("true-zen.services.bottom.service")
 local cmd = vim.cmd
 
 -- show and hide bottom funcs
 local function bottom_true()
-	bottom_show = 1
-	service.bottom_true()
+    bottom_show = 1
+    service.bottom_true()
 end
 
 local function bottom_false()
-	bottom_show = 0
-	service.bottom_false()
+    bottom_show = 0
+    service.bottom_false()
 end
 
 local function toggle()
-	bottom_show = vim.api.nvim_eval("&laststatus > 0")
-	if (bottom_show == 1) then				-- bottom true, shown; thus, hide
-		bottom_false()
-	elseif (bottom_show == 0) then			-- bottom false, hidden; thus, show
-		bottom_true()
-	else
-		-- nothing
-	end
+    bottom_show = vim.api.nvim_eval("&laststatus > 0")
+    if (bottom_show == 1) then -- bottom true, shown; thus, hide
+        bottom_false()
+    elseif (bottom_show == 0) then -- bottom false, hidden; thus, show
+        bottom_true()
+    else
+        -- nothing
+    end
 end
 
 function resume()
-
-	if (bottom_show == 1) then				-- bottm true; shown
-		bottom_true()
-	elseif (bottom_show == 0) then			-- status line false; hidden
-		bottom_false()
-	elseif (bottom_show == nil) then			-- show var is nil
-		bottom_show = vim.api.nvim_eval("&laststatus > 0")
-		-- bottom_true()
-	else
-		cmd("echo 'none of the above'")
-		-- nothing
-	end
+    if (bottom_show == 1) then -- bottm true; shown
+        bottom_true()
+    elseif (bottom_show == 0) then -- status line false; hidden
+        bottom_false()
+    elseif (bottom_show == nil) then -- show var is nil
+        -- bottom_true()
+        bottom_show = vim.api.nvim_eval("&laststatus > 0")
+    else
+        -- nothing
+        cmd("echo 'none of the above'")
+    end
 end
-
 
 function main(option)
+    option = option or 0
 
-	option = option or 0
-
-	if (option == 0) then			-- toggle statuline (on/off)
-		toggle()
-	elseif (option == 1) then		-- show status line
-		bottom_true()
-	elseif (option == 2) then
-		bottom_false()
-	else
-		-- not recognized
-	end
+    if (option == 0) then -- toggle statuline (on/off)
+        toggle()
+    elseif (option == 1) then -- show status line
+        bottom_true()
+    elseif (option == 2) then
+        bottom_false()
+    else
+        -- not recognized
+    end
 end
-
 
 -- vim.api.nvim_exec([[
 -- 	augroup toggle_statusline
@@ -65,7 +59,7 @@ end
 -- ]], false)
 
 return {
-	main = main,
-	resume = resume,
-	bottom_show = bottom_show
+    main = main,
+    resume = resume,
+    bottom_show = bottom_show
 }

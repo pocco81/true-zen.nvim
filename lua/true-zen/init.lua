@@ -28,7 +28,7 @@ local function setup_commands()
     elseif (opts.true_false_commands == false) then
         -- nothing
     else
-		print("'true_false_commands' option was not set properly for TrueZen.nvim plugin")
+        print("'true_false_commands' option was not set properly for TrueZen.nvim plugin")
     end
 end
 
@@ -38,7 +38,7 @@ local function setup_cursor()
     elseif (opts.cursor_by_mode == false) then
         -- nothing
     else
-		print("'cursor_by_mode' option was not set properly for TrueZen.nvim plugin")
+        print("'cursor_by_mode' option was not set properly for TrueZen.nvim plugin")
     end
 end
 

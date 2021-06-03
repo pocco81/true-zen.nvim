@@ -10,32 +10,29 @@ local focus_mode = require("true-zen.services.mode-focus.init")
 
 -- must have, don't remove
 local resume = require("true-zen.services.resume.init")
-local cmd  = vim.cmd
-
+local cmd = vim.cmd
 
 function M.main(option, command_option)
+    option = option or 0
+    command_option = command_option or 0
 
-	option = option or 0
-	command_option = command_option or 0
-
-	if (option == 0) then
-		bottom.main(command_option)
-	elseif (option == 1) then
-		top.main(command_option)
-	elseif (option == 2) then
-		left.main(command_option)
-	elseif (option == 3) then
-		minimalist_mode.main(command_option)
-	elseif (option == 4) then
-		ataraxis_mode.main(command_option)
-	elseif (option == 5) then
-		focus_mode.main(command_option)
-	else
-		cmd("echo 'command was not recognized for TrueZen.nvim'")
-		-- command not recognized, raise an error
-	end
+    if (option == 0) then
+        bottom.main(command_option)
+    elseif (option == 1) then
+        top.main(command_option)
+    elseif (option == 2) then
+        left.main(command_option)
+    elseif (option == 3) then
+        minimalist_mode.main(command_option)
+    elseif (option == 4) then
+        ataraxis_mode.main(command_option)
+    elseif (option == 5) then
+        focus_mode.main(command_option)
+    else
+        -- command not recognized, raise an error
+        cmd("echo 'command was not recognized for TrueZen.nvim'")
+    end
 end
-
 
 -- export the functions
 return M
