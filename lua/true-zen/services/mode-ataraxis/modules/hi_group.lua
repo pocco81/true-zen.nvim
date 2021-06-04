@@ -1,7 +1,20 @@
 local cmd = vim.cmd
+local g = vim.g
+local api = vim.api
 
-function set_hi_groups(custome_bg)
+function set_hi_groups(custome_bg, affected_higroups)
     custome_bg = custome_bg or ""
+    affected_higroups =
+        affected_higroups or
+        {"NonText", "FoldColumn", "ColorColumn", "VertSplit", "StatusLine", "StatusLineNC", "SignColumn"}
+
+    local concatenated_affected_higroups = "{"
+    for grp, _ in pairs(affected_higroups) do
+        concatenated_affected_higroups = concatenated_affected_higroups .. "'" .. grp .. "',"
+    end
+    concatenated_affected_higroups = concatenated_affected_higroups .. "}"
+
+    g.__truezen_viml_affected_higroup = api.nvim_eval([[luaeval("]] .. concatenated_affected_higroups .. [[")]])
 
     vim.api.nvim_exec(
         [[
@@ -27,9 +40,9 @@ function set_hi_groups(custome_bg)
 
     vim.api.nvim_exec(
         [[
-		function! Tranquilize(bg_color)
+		function! Tranquilize(bg_color, hi_groups)
 			let bg = GetColor('Normal', 'bg#')
-			for grp in ['NonText', 'FoldColumn', 'ColorColumn', 'VertSplit', 'StatusLine', 'StatusLineNC', 'SignColumn']
+			for grp in a:hi_groups
 				" -1 on Vim / '' on GVim
 				if bg == -1 || empty(bg)
 					call SetColor(grp, 'fg', a:bg_color)
@@ -49,15 +62,29 @@ function set_hi_groups(custome_bg)
     local call_tran = ""
 
     if (custome_bg == "" or custome_bg == "" or custome_bg == nil) then
-        call_tran = "call Tranquilize('black')"
+        call_tran = "call Tranquilize('black', g:__truezen_viml_affected_higroup)"
     else
-        call_tran = "call Tranquilize('" .. custome_bg .. "')"
+        call_tran = "call Tranquilize('" .. custome_bg .. "', g:__truezen_viml_affected_higroup)"
     end
 
     cmd(call_tran)
 end
 
-function store_hi_groups()
+function store_hi_groups(local_hi_groups)
+    local_hi_groups =
+        local_hi_groups or
+        {
+            NonText = {},
+            FoldColumn = {},
+            ColorColumn = {},
+            VertSplit = {},
+            StatusLine = {},
+            StatusLineNC = {},
+            SignColumn = {}
+        }
+
+    hi_groups = local_hi_groups
+
     vim.api.nvim_exec(
         [[
 		function! ReturnHighlightTerm(group, term)
@@ -71,16 +98,6 @@ function store_hi_groups()
         false
     )
 
-    hi_groups = {
-        NonText = {},
-        FoldColumn = {},
-        ColorColumn = {},
-        VertSplit = {},
-        StatusLine = {},
-        StatusLineNC = {},
-        SignColumn = {}
-    }
-
     -- term != terminal; term = terminology
     terms = {
         "cterm",
@@ -93,11 +110,8 @@ function store_hi_groups()
 
     for hi_index, _ in pairs(hi_groups) do
         for term_index, _ in pairs(terms) do
-            -- local to_call = "[[call ReturnHighlightTerm('"..hi_value.."', '"..term_value.."')]]"
             cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
             local term_val = vim.api.nvim_eval("g:term_val")
-            -- cmd("echo 'Val = "..term_val.."'")
-
             if (term_val == "" or term_val == "") then
                 term_val = "NONE"
             end

@@ -40,7 +40,8 @@ config.options = {
         keep_default_fold_fillchars = true,
         force_when_plus_one_window = false,
         force_hide_statusline = true,
-        quit_untoggles_ataraxis = false
+        quit_untoggles_ataraxis = false,
+		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
     },
     focus = {
         margin_of_error = 5,

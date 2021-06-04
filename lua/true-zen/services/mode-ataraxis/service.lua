@@ -637,8 +637,8 @@ function ataraxis_false() -- hide
     --------------------------=== Hi Groups ===--------------------------
 
     if (opts["ataraxis"]["disable_bg_configuration"] == false) then
-        hi_group.store_hi_groups()
-        hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"])
+        hi_group.store_hi_groups(opts["ataraxis"]["affected_higroups"])
+        hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"], opts["ataraxis"]["affected_higroups"])
     else
         -- nothing
     end
