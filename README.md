@@ -226,7 +226,7 @@ events = {
   before_minimalist_mode_shown = false,
   before_minimalist_mode_hidden = false,
   after_minimalist_mode_shown = false,
-  after_minimalist_mode_hidden = false
+  after_minimalist_mode_hidden = false,
 
   before_focus_mode_focuses = false,
   before_focus_mode_unfocuses = false,
@@ -317,7 +317,7 @@ true_zen.setup({
     before_minimalist_mode_shown = false,
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false
+    after_minimalist_mode_hidden = false,
 
 	before_focus_mode_focuses = false,
 	before_focus_mode_unfocuses = false,
@@ -410,7 +410,7 @@ true_zen.setup({
     before_minimalist_mode_shown = false,
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false
+    after_minimalist_mode_hidden = false,
 
 	before_focus_mode_focuses = false,
 	before_focus_mode_unfocuses = false,
