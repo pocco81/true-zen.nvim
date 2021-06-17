@@ -130,6 +130,8 @@ function restore_hi_groups()
             local final_cmd = "highlight " .. tostring(hi_index) .. ""
             local list_of_terms = ""
             for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
+				print("inner hi index = "..inner_hi_index)
+				print("term = "..terms[inner_hi_index])
                 current_term = terms[inner_hi_index]
 				-- print("Term = "..tostring(terms[inner_hi_index]))
                 list_of_terms =
