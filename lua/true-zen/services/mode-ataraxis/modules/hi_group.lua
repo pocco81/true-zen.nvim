@@ -115,7 +115,7 @@ function store_hi_groups(local_hi_groups)
     }
 
     for hi_index, _ in pairs(hi_groups) do
-		print("hi index = "..tostring(hi_index))
+		clear_table(hi_groups[hi_index])
         for term_index, _ in pairs(terms) do
             cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
             local term_val = vim.api.nvim_eval("g:term_val")
