@@ -40,6 +40,7 @@ function map_settings(table, bool, ui_element)
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("I ran true")
+			print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
             before_after_cmds.restore_settings(ui_element)
 
             if (#opts["minimalist"]["show_vals_to_read"] > 0) then
