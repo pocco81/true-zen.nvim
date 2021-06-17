@@ -72,23 +72,23 @@ function map_settings(table, bool, ui_element)
 			print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
 			if (minimalist_show == 0) then
 				if (ui_element == "BOTTOM") then
-						print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
-						before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
-						print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
+					print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
+					-- before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+					-- print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
 					-- if not (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
 					--     before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
 					-- end
 				elseif (ui_element == "TOP") then
-						print(tostring(before_after_cmds.get_has_been_stored("TOP")))
-						before_after_cmds.store_settings(opts["top"], "TOP")
-						print(tostring(before_after_cmds.get_has_been_stored("TOP")))
+					print(tostring(before_after_cmds.get_has_been_stored("TOP")))
+					-- before_after_cmds.store_settings(opts["top"], "TOP")
+					-- print(tostring(before_after_cmds.get_has_been_stored("TOP")))
 					-- if not (before_after_cmds.get_has_been_stored("TOP") == true) then
 					--     before_after_cmds.store_settings(opts["top"], "TOP")
 					-- end
 				elseif (ui_element == "LEFT") then
-						print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
-						before_after_cmds.store_settings(opts["left"], "LEFT")
-						print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
+					print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
+					-- before_after_cmds.store_settings(opts["left"], "LEFT")
+					-- print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
 					-- if not (before_after_cmds.get_has_been_stored("LEFT") == true) then
 					--     before_after_cmds.store_settings(opts["left"], "LEFT")
 					-- end
