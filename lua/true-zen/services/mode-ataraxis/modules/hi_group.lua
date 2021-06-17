@@ -70,6 +70,12 @@ function set_hi_groups(custome_bg, affected_higroups)
     cmd(call_tran)
 end
 
+local function clear_table(tbl)
+	for k in pairs (tbl) do
+		tbl[k] = nil
+	end
+end
+
 function store_hi_groups(local_hi_groups)
     local_hi_groups =
         local_hi_groups or
@@ -109,6 +115,7 @@ function store_hi_groups(local_hi_groups)
     }
 
     for hi_index, _ in pairs(hi_groups) do
+		print("hi index = "..tostring(hi_index))
         for term_index, _ in pairs(terms) do
             cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
             local term_val = vim.api.nvim_eval("g:term_val")
@@ -133,7 +140,7 @@ function restore_hi_groups()
 				print("inner hi index = "..inner_hi_index)
 				-- print("term = "..terms[inner_hi_index])
                 -- current_term = terms[inner_hi_index]
-				current_term="cterm"
+				current_term = "cterm"
 				-- print("Term = "..tostring(terms[inner_hi_index]))
                 list_of_terms =
                     list_of_terms .. " " .. tostring(current_term) .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
