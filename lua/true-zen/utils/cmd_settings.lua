@@ -73,25 +73,31 @@ function map_settings(table, bool, ui_element)
 			if (minimalist_show == 0) then
 				if (ui_element == "BOTTOM") then
 					print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
+					local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+
 					-- before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
 					-- print(tostring(before_after_cmds.get_has_been_stored("BOTTOM")))
-					-- if not (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
-					--     before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
-					-- end
+					if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+					end
 				elseif (ui_element == "TOP") then
 					print(tostring(before_after_cmds.get_has_been_stored("TOP")))
+					local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+
 					-- before_after_cmds.store_settings(opts["top"], "TOP")
 					-- print(tostring(before_after_cmds.get_has_been_stored("TOP")))
-					-- if not (before_after_cmds.get_has_been_stored("TOP") == true) then
-					--     before_after_cmds.store_settings(opts["top"], "TOP")
-					-- end
+					if (top_has_been_stored == true or top_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["top"], "TOP")
+					end
 				elseif (ui_element == "LEFT") then
 					print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
+					local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+
 					-- before_after_cmds.store_settings(opts["left"], "LEFT")
 					-- print(tostring(before_after_cmds.get_has_been_stored("LEFT")))
-					-- if not (before_after_cmds.get_has_been_stored("LEFT") == true) then
-					--     before_after_cmds.store_settings(opts["left"], "LEFT")
-					-- end
+					if (left_has_been_stored == true or left_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["left"], "LEFT")
+					end
 				else
 					cmd("echo 'TrueZen: UI Element was not recognized'")
 				end
