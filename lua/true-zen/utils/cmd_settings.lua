@@ -67,7 +67,7 @@ function map_settings(table, bool, ui_element)
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("I ran false")
 			local minimalist_show = require("true-zen.services.mode-minimalist.init").minimalist_show
-			print("minimalist_show = "..minimalist_show)
+			print("minimalist_show = "..tostring(minimalist_show))
 			if (minimalist_show == 0) then
 				if (ui_element == "BOTTOM") then
 						before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
