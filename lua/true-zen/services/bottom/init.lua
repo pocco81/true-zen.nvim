@@ -37,7 +37,7 @@ function resume()
     end
 end
 
-function main(option)
+function main(option, minimalist_show)
     option = option or 0
 
     if (option == 0) then -- toggle statuline (on/off)

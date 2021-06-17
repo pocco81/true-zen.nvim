@@ -33,6 +33,7 @@ local function clean_and_exec(opt, table_opt, remove_str)
     end
 end
 
+
 function map_settings(table, bool, ui_element)
     ui_element = ui_element or "NONE"
 
@@ -67,7 +68,7 @@ function map_settings(table, bool, ui_element)
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("I ran false")
 			local minimalist_show = require("true-zen.services.mode-minimalist.init").minimalist_show
-			print("minimalist_show = "..tostring(minimalist_show))
+			print("minimalist_show = "..tostring(require("lua.true-zen.services.mode-minimalist.init").get_minimalist_show()))
 			if (minimalist_show == 1 or minimalist_show == nil) then
 				if (ui_element == "BOTTOM") then
 						before_after_cmds.store_settings(opts["bottom"], "BOTTOM")

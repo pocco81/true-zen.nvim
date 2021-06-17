@@ -4,16 +4,16 @@ local left = require("true-zen.services.left.init")
 
 -- bottom specific options
 
-function minimalist_true() -- show
-    bottom.main(1)
-    top.main(1)
-    left.main(1)
+function minimalist_true(minimalist_show) -- show
+    bottom.main(1, minimalist_show)
+    top.main(1, minimalist_show)
+    left.main(1, minimalist_show)
 end
 
-function minimalist_false() -- don't show
-    bottom.main(2)
-    top.main(2)
-    left.main(2)
+function minimalist_false(minimalist_show) -- don't show
+    bottom.main(2, minimalist_show)
+    top.main(2, minimalist_show)
+    left.main(2, minimalist_show)
 end
 
 return {
