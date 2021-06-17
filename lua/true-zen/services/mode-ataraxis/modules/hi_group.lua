@@ -126,17 +126,12 @@ end
 function restore_hi_groups()
     if (hi_groups_stored == false or hi_groups_stored == nil) then
     elseif (hi_groups_stored == true) then
-        -- cmd("echo '<Space>'")
         for hi_index, _ in pairs(hi_groups) do
-            -- cmd("echo 'Index = "..tostring(hi_index).."; Value = "..tostring(hi_value).."'")
             local final_cmd = "highlight " .. tostring(hi_index) .. ""
             local list_of_terms = ""
-            -- cmd("highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg")
             for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
-                -- cmd("echo 'Index = "..tostring(inner_hi_index).."; Value = "..tostring(hi_groups[hi_index][inner_hi_index]).."'")
-
-                -- we need to construct the cmd like so:
                 current_term = terms[inner_hi_index]
+				print("Term = "..tostring(terms[inner_hi_index]))
                 list_of_terms =
                     list_of_terms .. " " .. current_term .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
             end
