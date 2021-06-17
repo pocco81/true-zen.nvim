@@ -302,7 +302,7 @@ function ataraxis_true() -- show
     cmd("set fillchars=")
 
     -- if removed, it's likely that numberline and bottom will be removed
-    cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
+    -- cmd([[call BufDo("lua require'true-zen.services.left.init'.main(1)")]])
     ------ general
 
     --------------------------=== Splits stuff ===--------------------------
