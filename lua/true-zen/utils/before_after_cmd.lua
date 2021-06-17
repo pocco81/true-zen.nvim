@@ -84,7 +84,7 @@ function store_settings(table_local, ui_element)
         user_top_opts = {}
         for opt, _ in pairs(table_local) do
             local final_cmd = read_call(opt, table_local[opt])
-			print("Final cmd = "..tostring(final_cmd))
+			-- print("Final cmd = "..tostring(final_cmd))
 
             if (final_cmd == nil) then
                 -- ignore
@@ -99,7 +99,7 @@ function store_settings(table_local, ui_element)
         user_bottom_opts = {}
         for opt, _ in pairs(table_local) do
             local final_cmd = read_call(opt, table_local[opt])
-			print("Final cmd = "..tostring(final_cmd))
+			-- print("Final cmd = "..tostring(final_cmd))
 
             if (final_cmd == nil) then
                 -- ignore
@@ -114,7 +114,7 @@ function store_settings(table_local, ui_element)
         user_left_opts = {}
         for opt, _ in pairs(table_local) do
             local final_cmd = read_call(opt, table_local[opt])
-			print("Final cmd = "..tostring(final_cmd))
+			-- print("Final cmd = "..tostring(final_cmd))
 
             if (final_cmd == nil) then
                 -- ignore
