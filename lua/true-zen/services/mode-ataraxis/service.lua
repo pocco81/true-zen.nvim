@@ -252,6 +252,9 @@ end
 function ataraxis_true() -- show
     local ataraxis_was_quitted = ""
 
+	print("Got here (true)")
+    mode_minimalist.main(1)
+
     if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
         vim.api.nvim_exec([[
 			augroup exit_ataraxis_too
@@ -368,8 +371,6 @@ function ataraxis_true() -- show
     )
     -------------------------=== Integrations ===------------------------
 
-	print("Got here (true)")
-    mode_minimalist.main(1)
 end
 
 function ataraxis_false() -- hide
@@ -384,9 +385,9 @@ function ataraxis_false() -- hide
         elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
             cmd("only")
         end
-    else
-        -- nothing
     end
+
+    mode_minimalist.main(2)
 
     if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
         vim.api.nvim_exec(
@@ -618,7 +619,7 @@ function ataraxis_false() -- hide
 
     --------------------------=== Fill chars ===--------------------------
 
-	print("Got here (false)")
+	-- print("Got here (false)")
     -- mode_minimalist.main(2)
     -- hide whatever the user set to be hidden on the left hand side of vim
     -- cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
