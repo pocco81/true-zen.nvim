@@ -39,6 +39,7 @@ function map_settings(table, bool, ui_element)
 
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			print("true")
 			-- print("I ran true")
 			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
 
@@ -96,6 +97,7 @@ function map_settings(table, bool, ui_element)
         end
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			print("false")
 			-- print("I ran false")
 			local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
 			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
