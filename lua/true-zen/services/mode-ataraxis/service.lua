@@ -368,6 +368,7 @@ function ataraxis_true() -- show
     )
     -------------------------=== Integrations ===------------------------
 
+	print("Got here (true)")
     mode_minimalist.main(1)
 end
 
@@ -617,7 +618,8 @@ function ataraxis_false() -- hide
 
     --------------------------=== Fill chars ===--------------------------
 
-    -- mode_minimalist.main(2)
+	print("Got here (false)")
+    mode_minimalist.main(2)
     -- hide whatever the user set to be hidden on the left hand side of vim
     -- cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
