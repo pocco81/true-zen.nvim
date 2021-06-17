@@ -38,6 +38,7 @@ function map_settings(table, bool, ui_element)
 
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			print("I ran true")
             before_after_cmds.restore_settings(ui_element)
 
             if (#opts["minimalist"]["show_vals_to_read"] > 0) then
@@ -64,6 +65,7 @@ function map_settings(table, bool, ui_element)
         end
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
+			print("I ran false")
             if (ui_element == "BOTTOM") then
                 if not (before_after_cmds.get_has_been_stored("BOTTOM") == true) then
                     before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
