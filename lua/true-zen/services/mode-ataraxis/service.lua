@@ -619,7 +619,7 @@ function ataraxis_false() -- hide
 
     -- mode_minimalist.main(2)
     -- hide whatever the user set to be hidden on the left hand side of vim
-    cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
+    -- cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
     --------------------------=== Hi Groups ===--------------------------
 
