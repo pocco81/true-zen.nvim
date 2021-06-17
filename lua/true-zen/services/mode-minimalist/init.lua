@@ -108,5 +108,6 @@ function main(option)
 end
 
 return {
-    main = main
+    main = main,
+	minimalist_show = minimalist_show
 }
