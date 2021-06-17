@@ -39,8 +39,8 @@ function map_settings(table, bool, ui_element)
 
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			print("I ran true")
-			print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
+			-- print("I ran true")
+			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
 
             before_after_cmds.restore_settings(ui_element)
 				if (ui_element == "BOTTOM") then
@@ -96,9 +96,9 @@ function map_settings(table, bool, ui_element)
         end
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
-			print("I ran false")
+			-- print("I ran false")
 			local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
-			print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
+			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
 			if (minimalist_show == 0) then
 				if (ui_element == "BOTTOM") then
 					local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
