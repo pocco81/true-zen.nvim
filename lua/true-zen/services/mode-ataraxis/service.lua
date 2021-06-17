@@ -413,23 +413,25 @@ function ataraxis_false() -- hide
     end
     ---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
-    if (opts["minimalist"]["store_and_restore_settings"] == true) then
-        top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
-        bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
-        left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+    mode_minimalist.main(2)
 
-        if not (top_has_been_stored == true) then
-            before_after_cmds.store_settings(opts["top"], "TOP")
-        end
-
-        if not (bottom_has_been_stored == true) then
-            before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
-        end
-
-        if not (left_has_been_stored == true) then
-            before_after_cmds.store_settings(opts["left"], "LEFT")
-        end
-    end
+--     if (opts["minimalist"]["store_and_restore_settings"] == true) then
+--         top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+--         bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+--         left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+--
+--         if not (top_has_been_stored == true) then
+--             before_after_cmds.store_settings(opts["top"], "TOP")
+--         end
+--
+--         if not (bottom_has_been_stored == true) then
+--             before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+--         end
+--
+--         if not (left_has_been_stored == true) then
+--             before_after_cmds.store_settings(opts["left"], "LEFT")
+--         end
+--     end
 
     -------------------------=== Integrations ===------------------------
     vim.api.nvim_exec([[
@@ -615,22 +617,7 @@ function ataraxis_false() -- hide
 
     --------------------------=== Fill chars ===--------------------------
 
-    mode_minimalist.main(2)
-
-    -- this, for some reason, breaks Galaxyline
-    ---------------------------=== Integrations ===------------------------
-    --vim.api.nvim_exec([[
-    --	augroup true_integrations
-    --		autocmd!
-    --	augroup END
-    --]], false)
-
-    --load_integrations(false)
-    ---------------------------=== Integrations ===------------------------
-
-    -- remove the border lines on every buffer
-    -- cmd([[call BufDo("set fillchars+=vert:\\ ")]])
-
+    -- mode_minimalist.main(2)
     -- hide whatever the user set to be hidden on the left hand side of vim
     cmd([[call BufDo("lua require'true-zen.services.left.init'.main(2)")]])
 
