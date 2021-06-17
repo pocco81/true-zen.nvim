@@ -413,7 +413,7 @@ function ataraxis_false() -- hide
     end
     ---------------- solves: Vim(Buffer): E86: Buffer 3 does not exist
 
-    mode_minimalist.main(2)
+    -- mode_minimalist.main(2)
 
 --     if (opts["minimalist"]["store_and_restore_settings"] == true) then
 --         top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")

@@ -66,21 +66,13 @@ function map_settings(table, bool, ui_element)
 					cmd("echo 'TrueZen: UI Element was not recognized'")
 				end
 
-
             before_after_cmds.restore_settings(ui_element)
--- 			if (require("true-zen.services.mode-minimalist.init").get_minimalist_show()) then
---
--- 			end
-
-
             if (#opts["minimalist"]["show_vals_to_read"] > 0) then
                 for opt, _ in pairs(opts["minimalist"]["show_vals_to_read"]) do
                     for inner_opt, _ in pairs(table) do
                         if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
                             if string.find(inner_opt, "shown_") then
                                 clean_and_exec(inner_opt, table[inner_opt], "shown_")
-                            else
-                                -- skip the option
                             end
                         end
                     end
@@ -90,8 +82,6 @@ function map_settings(table, bool, ui_element)
             for opt, _ in pairs(table) do
                 if string.find(opt, "shown_") then
                     clean_and_exec(opt, table[opt], "shown_")
-                else
-                    -- skip the option
                 end
             end
         end
@@ -129,8 +119,6 @@ function map_settings(table, bool, ui_element)
         for opt, _ in pairs(table) do
             if string.find(opt, "hidden_") then
                 clean_and_exec(opt, table[opt], "hidden_")
-            else
-                -- skip the option
             end
         end
     end
