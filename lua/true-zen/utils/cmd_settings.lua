@@ -43,6 +43,28 @@ function map_settings(table, bool, ui_element)
 			print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
             before_after_cmds.restore_settings(ui_element)
 
+				if (ui_element == "BOTTOM") then
+					local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+
+					if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+					end
+				elseif (ui_element == "TOP") then
+					local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+
+					if (top_has_been_stored == true or top_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["top"], "TOP")
+					end
+				elseif (ui_element == "LEFT") then
+					local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+
+					if (left_has_been_stored == true or left_has_been_stored == nil) then
+					    before_after_cmds.store_settings(opts["left"], "LEFT")
+					end
+				else
+					cmd("echo 'TrueZen: UI Element was not recognized'")
+				end
+
             if (#opts["minimalist"]["show_vals_to_read"] > 0) then
                 for opt, _ in pairs(opts["minimalist"]["show_vals_to_read"]) do
                     for inner_opt, _ in pairs(table) do
