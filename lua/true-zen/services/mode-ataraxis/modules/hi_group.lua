@@ -137,13 +137,13 @@ function restore_hi_groups()
             local final_cmd = "highlight " .. tostring(hi_index) .. ""
             local list_of_terms = ""
             for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
-				print("inner hi index = "..inner_hi_index)
+				-- print("inner hi index = "..inner_hi_index)
 				-- print("term = "..terms[inner_hi_index])
-                -- current_term = terms[inner_hi_index]
-				current_term = "cterm"
+                current_term = terms[inner_hi_index]
+				-- current_term = "cterm"
 				-- print("Term = "..tostring(terms[inner_hi_index]))
                 list_of_terms =
-                    list_of_terms .. " " .. tostring(current_term) .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
+                    list_of_terms .. " " .. current_term .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
             end
 
             final_cmd = final_cmd .. list_of_terms
