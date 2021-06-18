@@ -87,7 +87,8 @@ function map_settings(table, bool, ui_element)
 
 				print("got HERE!")
 
-				if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
+				if (vim.g.__truezen_minimalist_hiding == "false" or vim.g.__truezen_minimalist_hiding == nil) then
+					print("was false or nil")
 					analyze_ui_element(table, ui_element)
 				end
             end

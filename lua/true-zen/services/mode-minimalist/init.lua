@@ -26,6 +26,7 @@ local function minimalist_true() -- show everything
 
     set_minimalist_show(1)
     service.minimalist_true(get_minimalist_show())
+	vim.g.__truezen_minimalist_hiding = "true"
 
     if (opts["events"]["after_minimalist_mode_shown"] == true) then
         true_zen.after_minimalist_mode_shown()
@@ -43,6 +44,7 @@ local function minimalist_false() -- hide everything
 
     set_minimalist_show(0)
     service.minimalist_false(get_minimalist_show())
+	vim.g.__truezen_minimalist_hiding = "false"
 
     if (opts["events"]["after_minimalist_mode_hidden"] == true) then
         true_zen.after_minimalist_mode_hidden()
