@@ -127,7 +127,7 @@ function map_settings(table, bool, ui_element)
             -- local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
 
             -- if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
-			if (vim.g.__truezen_minimalist_hiding == "false" or vim.g.__truezen_minimalist_hiding == nil) then
+			if (vim.g.__truezen_minimalist_hiding == "true" or vim.g.__truezen_minimalist_hiding == nil) then
                 if (ui_element == "BOTTOM") then
                     local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
                     if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
