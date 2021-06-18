@@ -125,6 +125,7 @@
 	- Gitsigns integration
 
 # 📺 Notices
+- **18-06-21**: Fixed small bugs with various features (hi groups, storing settings, ...)
 - **04-06-21**: Added setting for controlling Hi Groups affected by TrueZen.
 - **03-06-21**: Added events for the mode Focus.
 - **28-05-21**: Added option to keep default fold fillchars.
@@ -185,7 +186,6 @@ ataraxis = {
   force_hide_statusline = true,
   quit_untoggles_ataraxis = false,
   affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
-
 },
 focus = {
   margin_of_error = 5,
@@ -199,8 +199,7 @@ events = {
   before_minimalist_mode_shown = false,
   before_minimalist_mode_hidden = false,
   after_minimalist_mode_shown = false,
-  after_minimalist_mode_hidden = false
-
+  after_minimalist_mode_hidden = false,
   before_focus_mode_focuses = false,
   before_focus_mode_unfocuses = false,
   after_focus_mode_focuses = false,
@@ -220,8 +219,8 @@ integrations = {
 }
 ```
 
+Additionally, there are some settings that you could use to control how the UI looks from TrueZen (They will only be available if `store_and_restore_settings` is set to `false` in the `minimalist = {}` table, however it's not recommended to do so):
 
-Additionally there are some settings that you could use to control how the UI looks from TrueZen (They will only be available if `store_and_restore_settings` is set to `false` in the `minimalits = {}` table, however it's not recommended to do so):
 ```
 bottom = {
   hidden_laststatus = 0,
@@ -276,12 +275,11 @@ true_zen.setup({
     custome_bg = "",
     disable_bg_configuration = false,
     disable_fillchars_configuration = false,
-	keep_default_fold_fillchars = true,
+    keep_default_fold_fillchars = true,
     force_when_plus_one_window = false,
     force_hide_statusline = true,
-	quit_untoggles_ataraxis = false,
-	affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
-
+    quit_untoggles_ataraxis = false,
+    affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
   },
   focus = {
     margin_of_error = 5,
@@ -295,12 +293,11 @@ true_zen.setup({
     before_minimalist_mode_shown = false,
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false
-
-	before_focus_mode_focuses = false,
-	before_focus_mode_unfocuses = false,
-	after_focus_mode_focuses = false,
-	after_focus_mode_unfocuses = false
+    after_minimalist_mode_hidden = false,
+    before_focus_mode_focuses = false,
+    before_focus_mode_unfocuses = false,
+    after_focus_mode_focuses = false,
+    after_focus_mode_unfocuses = false
   },
   integrations = {
     integration_galaxyline = false,
@@ -342,12 +339,11 @@ true_zen.setup({
     custome_bg = "",
     disable_bg_configuration = false,
     disable_fillchars_configuration = false,
-	keep_default_fold_fillchars = true,
+    keep_default_fold_fillchars = true,
     force_when_plus_one_window = false,
     force_hide_statusline = true,
-	quit_untoggles_ataraxis = false,
-	affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
-
+    quit_untoggles_ataraxis = false,
+    affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
   },
   focus = {
     margin_of_error = 5,
@@ -361,12 +357,11 @@ true_zen.setup({
     before_minimalist_mode_shown = false,
     before_minimalist_mode_hidden = false,
     after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false
-
-	before_focus_mode_focuses = false,
-	before_focus_mode_unfocuses = false,
-	after_focus_mode_focuses = false,
-	after_focus_mode_unfocuses = false
+    after_minimalist_mode_hidden = false,
+    before_focus_mode_focuses = false,
+    before_focus_mode_unfocuses = false,
+    after_focus_mode_focuses = false,
+    after_focus_mode_unfocuses = false
   },
   integrations = {
     integration_galaxyline = false,
