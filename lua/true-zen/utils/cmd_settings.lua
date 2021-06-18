@@ -78,7 +78,7 @@ function map_settings(table, bool, ui_element)
             -- print("I ran true")
             -- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
             print("true")
-            -- print("Focusing = "..tostring(vim.g.__truezen_focus_loaded))
+            print("Focusing = "..tostring(vim.g.__truezen_focus_loaded))
             if (vim.g.__truezen_focus_loaded == "false" or vim.g.__truezen_focus_loaded == nil) then
 				print("got here!")
                 before_after_cmds.restore_settings(ui_element)
