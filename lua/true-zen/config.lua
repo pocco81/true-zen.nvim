@@ -29,18 +29,18 @@ config.options = {
     },
     ataraxis = {
         ideal_writing_area_width = 0,
-        just_do_it_for_me = false,
-        left_padding = 40,
-        right_padding = 40,
-        top_padding = 0,
-        bottom_padding = 0,
+        just_do_it_for_me = true,
+        left_padding = 32,
+        right_padding = 32,
+        top_padding = 1,
+        bottom_padding = 1,
         custome_bg = "",
         disable_bg_configuration = false,
         disable_fillchars_configuration = false,
         keep_default_fold_fillchars = true,
-        force_when_plus_one_window = false,
+        force_when_plus_one_window = true,
         force_hide_statusline = true,
-        quit_untoggles_ataraxis = false,
+        quit_untoggles_ataraxis = true,
 		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
     },
     focus = {
@@ -49,7 +49,6 @@ config.options = {
     },
     minimalist = {
         store_and_restore_settings = false,
-		consistent_state = true,
         show_vals_to_read = {}
     },
     events = {
