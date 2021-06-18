@@ -400,24 +400,24 @@ function ataraxis_false() -- hide
         end
 	end
 
-	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
-
-    if (amount_wins > 1) then
-		require'true-zen.main'.main(5, 1)
-	end
-
-	end
-
-    if (amount_wins > 1) then
-        if (opts["ataraxis"]["force_when_plus_one_window"] == false) then
-            cmd(
-                "echo 'TrueZen: TZAtaraxis can not be toggled if there is more than one window open. However, you can force it with the force_when_plus_one_window setting'"
-            )
-            goto there_was_more_than_one_window
-        elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
-            cmd("only")
-        end
-    end
+-- 	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+--
+--     if (amount_wins > 1) then
+-- 		require'true-zen.main'.main(5, 1)
+-- 	end
+--
+-- 	end
+--
+--     if (amount_wins > 1) then
+--         if (opts["ataraxis"]["force_when_plus_one_window"] == false) then
+--             cmd(
+--                 "echo 'TrueZen: TZAtaraxis can not be toggled if there is more than one window open. However, you can force it with the force_when_plus_one_window setting'"
+--             )
+--             goto there_was_more_than_one_window
+--         elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
+--             cmd("only")
+--         end
+--     end
 
     mode_minimalist.main(2)
 	vim.g.__truezen_ataraxis_hiding = "true"
