@@ -123,7 +123,7 @@ function map_settings(table, bool, ui_element)
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
             print("false")
-            print("Ataraxis hiding = "..tostring(vim.g.__truezen_ataraxis_hiding))
+            print("Ataraxis hiding = "..tostring(vim.g.__truezen_minimalist_hiding))
             -- local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
 
             -- if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
