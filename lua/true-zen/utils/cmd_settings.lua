@@ -110,41 +110,23 @@ function map_settings(table, bool, ui_element)
 
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
-            -- print("I ran true")
-            -- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
-            print("true")
             local analyse = false
 
             if (vim.g.__truezen_focus_loaded == "false") then
-                print("Focus says it should not be analyzed")
                 analyse = false
             end
 
             if (vim.g.__truezen_minimalist_hiding == "false") then
-                print("Minimalist says it should be analyzed")
                 analyse = true
             elseif (vim.g.__truezen_minimalist_hiding == "true") then
                 analyse = false
             end
 
             if (analyse == true) then
-                print("RESTORING...")
                 before_after_cmds.restore_settings(ui_element)
                 analyse_ui_element(table, ui_element, true)
 			else
-                -- if (vim.g.__truezen_ataraxis_hiding == "true") then
-
                 before_after_cmds.restore_settings(ui_element)
-					-- for opt, _ in pairs(table) do
-					-- 	if string.find(opt, "shown_") then
-					-- 		clean_and_exec(opt, table[opt], "shown_")
-					-- 	end
-					-- end
-				-- else
-				-- 	if (vim.g.__truezen_ataraxis_hiding == "false") then
-				-- 		vim.g.__truezen_ataraxis_hiding = nil
-				-- 	end
-				-- end
             end
         else
             for opt, _ in pairs(table) do
@@ -155,15 +137,10 @@ function map_settings(table, bool, ui_element)
         end
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
-            print("false")
-            print("Ataraxis hiding = " .. tostring(vim.g.__truezen_minimalist_hiding))
 
-            -- if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
             if (vim.g.__truezen_minimalist_hiding == "true" or vim.g.__truezen_minimalist_hiding == nil) then
-                print("I WAS TRUE OR NIL")
                 analyse_ui_element(table, ui_element, false)
             else
-                print("I WAS FAAAALSE")
                 -- if (vim.g.__truezen_ataraxis_hiding == "true") then
                     for opt, _ in pairs(table) do
                         if string.find(opt, "hidden_") then
