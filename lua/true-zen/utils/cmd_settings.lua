@@ -40,8 +40,8 @@ function map_settings(table, bool, ui_element)
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("true")
-			print("Focusing = "..tostring(vim.g.__truezen_focus_focusing))
-			if (vim.g.__truezen_focus_focusing == "false" or vim.g.__truezen_focus_focusing == nil) then
+			print("Focusing = "..tostring(vim.g.__truezen_focus_loaded))
+			if (vim.g.__truezen_focus_loaded == "false" or vim.g.__truezen_focus_loaded == nil) then
 				before_after_cmds.restore_settings(ui_element)
 					if (ui_element == "BOTTOM") then
 						local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
