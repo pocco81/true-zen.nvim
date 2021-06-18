@@ -252,7 +252,6 @@ end
 function ataraxis_true() -- show
     local ataraxis_was_quitted = ""
 
-	print("Got here (true)")
     mode_minimalist.main(1)
 	vim.g.__truezen_ataraxis_hiding = "false"
 
