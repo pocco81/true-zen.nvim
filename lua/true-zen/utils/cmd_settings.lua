@@ -149,6 +149,12 @@ function map_settings(table, bool, ui_element)
                     end
                 -- end
             end
+		else
+			for opt, _ in pairs(table) do
+				if string.find(opt, "hidden_") then
+					clean_and_exec(opt, table[opt], "hidden_")
+				end
+			end
         end
     end
 end
