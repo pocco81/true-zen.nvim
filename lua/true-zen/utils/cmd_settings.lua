@@ -132,11 +132,15 @@ function map_settings(table, bool, ui_element)
                 before_after_cmds.restore_settings(ui_element)
                 analyse_ui_element(table, ui_element, true)
 			else
-                if (vim.g.__truezen_ataraxis_hiding == "true" or vim.g.__truezen_ataraxis_hiding == "false") then
+                if (vim.g.__truezen_ataraxis_hiding == "true") then
 					for opt, _ in pairs(table) do
 						if string.find(opt, "shown_") then
 							clean_and_exec(opt, table[opt], "shown_")
 						end
+					end
+				else
+					if (vim.g.__truezen_ataraxis_hiding == "false") then
+						vim.g.__truezen_ataraxis_hiding = nil
 					end
 				end
             end
