@@ -673,6 +673,12 @@ function ataraxis_false() -- hide
     )
     -------------------------=== Integrations ===------------------------
 
+	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+		if (opts["focus"]["focus_method"] == "experimental") then
+			require("true-zen.services.bottom.integrations.integration_galaxyline").disable_element()
+		end
+	end
+
     -- everything will be skipped if there was more than one window open
     ::there_was_more_than_one_window::
 end
