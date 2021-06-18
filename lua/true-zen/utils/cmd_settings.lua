@@ -162,13 +162,13 @@ function map_settings(table, bool, ui_element)
                 analyse_ui_element(table, ui_element, false)
             else
                 print("I WAS FAAAALSE")
-                if (vim.g.__truezen_ataraxis_hiding == "true") then
+                -- if (vim.g.__truezen_ataraxis_hiding == "true") then
                     for opt, _ in pairs(table) do
                         if string.find(opt, "hidden_") then
                             clean_and_exec(opt, table[opt], "hidden_")
                         end
                     end
-                end
+                -- end
             end
         end
     end
