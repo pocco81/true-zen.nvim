@@ -123,22 +123,6 @@ function map_settings(table, bool, ui_element)
 				before_after_cmds.restore_settings(ui_element)
 				analyse_ui_element(table, ui_element, true)
 			end
-
-
---             print("Focusing = "..tostring(vim.g.__truezen_focus_loaded))
---             if (vim.g.__truezen_focus_loaded == "false" or vim.g.__truezen_focus_loaded == nil) then
--- 				print("got here!")
--- 				-- before_after_cmds.restore_settings(ui_element)
--- 				analyse_ui_element(table, ui_element)
--- 			else
---
--- 				print("got HERE!")
---
--- 				if (vim.g.__truezen_minimalist_hiding == "false" or vim.g.__truezen_minimalist_hiding == nil) then
--- 					print("was false or nil")
--- 					analyse_ui_element(table, ui_element)
--- 				end
---             end
         else
             for opt, _ in pairs(table) do
                 if string.find(opt, "shown_") then
@@ -150,45 +134,23 @@ function map_settings(table, bool, ui_element)
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
             print("false")
             print("Ataraxis hiding = "..tostring(vim.g.__truezen_minimalist_hiding))
-            -- local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
 
             -- if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
 			if (vim.g.__truezen_minimalist_hiding == "true" or vim.g.__truezen_minimalist_hiding == nil) then
 				print("I WAS TRUE OR NIL")
 				analyse_ui_element(table, ui_element, false)
-				--                 if (ui_element == "BOTTOM") then
-				--                     local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
-				--                     if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
-				--                         before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
-				--                     end
-				--                 elseif (ui_element == "TOP") then
-				--                     local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
-				--                     if (top_has_been_stored == true or top_has_been_stored == nil) then
-				--                         before_after_cmds.store_settings(opts["top"], "TOP")
-				--                     end
-				--                 elseif (ui_element == "LEFT") then
-				--                     local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
-				--                     if (left_has_been_stored == true or left_has_been_stored == nil) then
-				--                         before_after_cmds.store_settings(opts["left"], "LEFT")
-				--                     end
-				--                 else
-				--                     cmd("echo 'TrueZen: UI Element was not recognized'")
-				--                 end
-				-- for opt, _ in pairs(table) do
-				-- 	if string.find(opt, "hidden_") then
-				-- 		clean_and_exec(opt, table[opt], "hidden_")
-				-- 	end
-				-- end
 			else
 				print("I WAS FAAAALSE")
+				if (vim.g.__truezen_ataraxis_hiding == "true") then
+					for opt, _ in pairs(table) do
+						if string.find(opt, "hidden_") then
+							clean_and_exec(opt, table[opt], "hidden_")
+						end
+					end
+				end
+
             end
         end
-
-        -- for opt, _ in pairs(table) do
-        --     if string.find(opt, "hidden_") then
-        --         clean_and_exec(opt, table[opt], "hidden_")
-        --     end
-        -- end
     end
 end
 

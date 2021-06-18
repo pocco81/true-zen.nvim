@@ -49,6 +49,7 @@ config.options = {
     },
     minimalist = {
         store_and_restore_settings = false,
+		consistent_state = true,
         show_vals_to_read = {}
     },
     events = {
