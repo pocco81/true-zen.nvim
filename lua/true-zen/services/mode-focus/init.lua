@@ -28,14 +28,14 @@ local function focus_true() -- focus window
         focus_show = 1
         service.experimental_focus_true()
 
-        if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
-            -- nil if it hasn't been toggled
-            ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
-            if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
-                require "true-zen.main".main(4, 2)
-                ataraxis_is_toggled = 1
-            end
-        end
+        -- if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+        --     -- nil if it hasn't been toggled
+        --     ataraxis_is_toggled = require("true-zen.services.mode-ataraxis.init").ataraxis_show
+        --     if (ataraxis_is_toggled == 0 or ataraxis_is_toggled == nil) then
+        --         require "true-zen.main".main(4, 2)
+        --         ataraxis_is_toggled = 1
+        --     end
+        -- end
     end
 	vim.g.__truezen_focus_loaded = "true"
 
