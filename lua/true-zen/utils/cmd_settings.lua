@@ -147,16 +147,24 @@ function map_settings(table, bool, ui_element)
                 else
                     cmd("echo 'TrueZen: UI Element was not recognized'")
                 end
+
+
+				for opt, _ in pairs(table) do
+					if string.find(opt, "hidden_") then
+						clean_and_exec(opt, table[opt], "hidden_")
+					end
+				end
+
 			else
 				print("I WAS FAAAALSE")
             end
         end
 
-        for opt, _ in pairs(table) do
-            if string.find(opt, "hidden_") then
-                clean_and_exec(opt, table[opt], "hidden_")
-            end
-        end
+        -- for opt, _ in pairs(table) do
+        --     if string.find(opt, "hidden_") then
+        --         clean_and_exec(opt, table[opt], "hidden_")
+        --     end
+        -- end
     end
 end
 
