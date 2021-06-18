@@ -35,22 +35,22 @@ local function test_bool(final_opt, var)
     local current_state = vim.api.nvim_eval("&" .. final_opt .. "")
 
     if (current_state == 1) then
-        return "setlocal " .. final_opt .. ""
+        return "set " .. final_opt .. ""
     elseif (current_state == 0) then
-        return "setlocal no" .. final_opt .. ""
+        return "set no" .. final_opt .. ""
     end
 end
 
 local function test_num(final_opt, num)
     local current_state = vim.api.nvim_eval("&" .. final_opt .. "")
 
-    return "setlocal " .. final_opt .. "=" .. current_state .. ""
+    return "set " .. final_opt .. "=" .. current_state .. ""
 end
 
 local function test_str(final_opt, str)
     local current_state = vim.api.nvim_eval("&" .. final_opt .. "")
 
-    return "setlocal " .. final_opt .. "=" .. current_state .. ""
+    return "set " .. final_opt .. "=" .. current_state .. ""
 end
 
 local function clean_and_append(opt, table_opt, remove_str)
