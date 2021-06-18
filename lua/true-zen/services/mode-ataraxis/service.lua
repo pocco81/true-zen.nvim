@@ -254,6 +254,7 @@ function ataraxis_true() -- show
 
 	print("Got here (true)")
     mode_minimalist.main(1)
+	vim.g.__truezen_ataraxis_hiding = "false"
 
     if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
         vim.api.nvim_exec([[
@@ -388,6 +389,8 @@ function ataraxis_false() -- hide
     end
 
     mode_minimalist.main(2)
+	vim.g.__truezen_ataraxis_hiding = "true"
+
 
     if (opts["ataraxis"]["quit_untoggles_ataraxis"] == true) then
         vim.api.nvim_exec(

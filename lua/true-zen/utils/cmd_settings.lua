@@ -88,25 +88,21 @@ function map_settings(table, bool, ui_element)
     elseif (bool == false) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("false")
-			-- print("I ran false")
-			local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
-			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
-			if (minimalist_show == 0) then
+			-- local minimalist_show = require("true-zen.services.mode-minimalist.init").get_minimalist_show()
+
+			if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
 				if (ui_element == "BOTTOM") then
 					local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
-
 					if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
 					    before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
 					end
 				elseif (ui_element == "TOP") then
 					local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
-
 					if (top_has_been_stored == true or top_has_been_stored == nil) then
 					    before_after_cmds.store_settings(opts["top"], "TOP")
 					end
 				elseif (ui_element == "LEFT") then
 					local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
-
 					if (left_has_been_stored == true or left_has_been_stored == nil) then
 					    before_after_cmds.store_settings(opts["left"], "LEFT")
 					end
@@ -114,6 +110,27 @@ function map_settings(table, bool, ui_element)
 					cmd("echo 'TrueZen: UI Element was not recognized'")
 				end
 			end
+
+			-- if (minimalist_show == 0) then
+			-- 	if (ui_element == "BOTTOM") then
+			-- 		local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+			-- 		if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
+			-- 		    before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+			-- 		end
+			-- 	elseif (ui_element == "TOP") then
+			-- 		local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+			-- 		if (top_has_been_stored == true or top_has_been_stored == nil) then
+			-- 		    before_after_cmds.store_settings(opts["top"], "TOP")
+			-- 		end
+			-- 	elseif (ui_element == "LEFT") then
+			-- 		local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+			-- 		if (left_has_been_stored == true or left_has_been_stored == nil) then
+			-- 		    before_after_cmds.store_settings(opts["left"], "LEFT")
+			-- 		end
+			-- 	else
+			-- 		cmd("echo 'TrueZen: UI Element was not recognized'")
+			-- 	end
+			-- end
         end
 
         for opt, _ in pairs(table) do
