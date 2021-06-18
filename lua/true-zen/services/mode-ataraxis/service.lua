@@ -396,7 +396,6 @@ function ataraxis_false() -- hide
             cmd("only")
 		else
 			print("TrueZen: TZAtaraxis can not be toggled if there is more than one window open. However, you can force it with the force_when_plus_one_window setting")
-
         end
 	end
 
@@ -696,6 +695,12 @@ function ataraxis_false() -- hide
         false
     )
     -------------------------=== Integrations ===------------------------
+
+	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+		if (opts["focus"]["focus_method"] == "experimental") then
+			cmd("set statusline=-")
+		end
+	end
 
     -- everything will be skipped if there was more than one window open
     ::there_was_more_than_one_window::
