@@ -87,9 +87,9 @@ function map_settings(table, bool, ui_element)
 
 				print("got HERE!")
 
+				if (vim.g.__truezen_ataraxis_hiding == "true") then
 					analyze_ui_element(table, ui_element)
-				-- if (vim.g.__truezen_ataraxis_hiding == "true") then
-				-- end
+				end
             end
         else
             for opt, _ in pairs(table) do
@@ -106,7 +106,7 @@ function map_settings(table, bool, ui_element)
 
             if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
                 -- if (vim.g.__truezen_minimalist_hiding == "false" or vim.g.__truezen_minimalist_hiding == nil) then
-                print("got here")
+                -- print("got here")
                 if (ui_element == "BOTTOM") then
                     local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
                     if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
