@@ -128,6 +128,7 @@ function map_settings(table, bool, ui_element)
 
             -- if (vim.g.__truezen_ataraxis_hiding == "false" or vim.g.__truezen_ataraxis_hiding == nil) then
 			if (vim.g.__truezen_minimalist_hiding == "true" or vim.g.__truezen_minimalist_hiding == nil) then
+				print("I WAS TRUE OR NIL")
                 if (ui_element == "BOTTOM") then
                     local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
                     if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
@@ -146,6 +147,8 @@ function map_settings(table, bool, ui_element)
                 else
                     cmd("echo 'TrueZen: UI Element was not recognized'")
                 end
+			else
+				print("I WAS FAAAALSE")
             end
         end
 
