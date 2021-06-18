@@ -45,8 +45,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_gitgutter").enable_element()
                     elseif (is_gitgutter_running == 1) then -- is not running
                         -- nothing
-                    else
-                        -- nothing either
                     end
                 elseif (opt == "integration_vim_signify") then
                     local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
@@ -55,16 +53,12 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_signify").enable_element()
                     elseif (is_vim_signify_running == 1) then -- is running
                         -- nothing
-                    else
-                        -- nothing either
                     end
                 elseif (opt == "integration_tmux") then
                     local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
                     if (is_tmux_running ~= "") then -- is running
                         require("true-zen.services.bottom.integrations.integration_tmux").enable_element()
-                    else
-                        -- tmux wasn't running
                     end
                 elseif (opt == "integration_vim_airline") then
                     local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
@@ -73,8 +67,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_airline").enable_element()
                     elseif (is_vim_airline_running == 1) then -- is running
                         -- nothing
-                    else
-                        -- nothing either
                     end
 
                     has_statusline_with_integration = true
@@ -85,8 +77,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_powerline").enable_element()
                     elseif (is_vim_powerline_running == 1) then -- is running
                         -- nothing
-                    else
-                        -- nothing either
                     end
 
                     has_statusline_with_integration = true
@@ -154,8 +144,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_gitgutter").disable_element()
                     elseif (is_gitgutter_running == 0) then -- is not running
                         -- nothing
-                    else
-                        -- nothing either
                     end
                 elseif (opt == "integration_vim_signify") then
                     local is_vim_signify_running = vim.api.nvim_eval("empty(getbufvar(bufnr(''), 'sy'))")
@@ -164,16 +152,12 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_signify").disable_element()
                     elseif (is_vim_signify_running == 0) then -- is not running
                         -- nothing
-                    else
-                        -- nothing either
                     end
                 elseif (opt == "integration_tmux") then
                     local is_tmux_running = vim.api.nvim_eval("$TMUX")
 
                     if (is_tmux_running ~= "") then
                         require("true-zen.services.bottom.integrations.integration_tmux").disable_element()
-                    else
-                        -- tmux wasn't running
                     end
                 elseif (opt == "integration_vim_airline") then
                     local is_vim_airline_running = vim.api.nvim_eval("exists('#airline')")
@@ -182,8 +166,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_airline").disable_element()
                     elseif (is_vim_airline_running == 0) then -- is not running
                         -- nothing
-                    else
-                        -- nothing either
                     end
 
                     has_statusline_with_integration = true
@@ -194,8 +176,6 @@ function load_integrations(state)
                         require("true-zen.services.bottom.integrations.integration_vim_powerline").disable_element()
                     elseif (is_vim_powerline_running == 0) then -- is not running
                         -- nothing
-                    else
-                        -- nothing either
                     end
 
                     has_statusline_with_integration = true
@@ -239,8 +219,6 @@ function load_integrations(state)
                     else
                         gs_ps_signs = false
                     end
-                else
-                    -- integration not recognized
                 end
             else
                 -- ignore it
@@ -681,7 +659,6 @@ function ataraxis_false() -- hide
         cmd("setlocal statusline=-")
     end
 
-    -- if it was already forced
     ::no_need_to_force_hide_again::
 
     -------------------------=== Integrations ===------------------------
@@ -695,12 +672,6 @@ function ataraxis_false() -- hide
         false
     )
     -------------------------=== Integrations ===------------------------
-
-	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
-		if (opts["focus"]["focus_method"] == "experimental") then
-			cmd("set statusline=-")
-		end
-	end
 
     -- everything will be skipped if there was more than one window open
     ::there_was_more_than_one_window::
