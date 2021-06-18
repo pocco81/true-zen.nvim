@@ -65,12 +65,12 @@ local function focus_false() -- unfocus window
     elseif (focus_method == "experimental" or focus_method == "Experimental") then
         focus_show = 0
 
-        if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
-            -- if it's nil or anything else then it's because it hasn't been executed
-            if (ataraxis_is_toggled == 1) then
-                require "true-zen.main".main(4, 1)
-            end
-        end
+        -- if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+        --     -- if it's nil or anything else then it's because it hasn't been executed
+        --     if (ataraxis_is_toggled == 1) then
+        --         require "true-zen.main".main(4, 1)
+        --     end
+        -- end
 
         service.experimental_focus_false()
     end

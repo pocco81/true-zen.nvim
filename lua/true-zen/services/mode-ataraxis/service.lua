@@ -371,10 +371,42 @@ function ataraxis_true() -- show
     )
     -------------------------=== Integrations ===------------------------
 
+	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+		if not (opts["focus"]["focus_method"] == "experimental") then
+			print("TrueZen: you need to set 'focus_method = experimental' in order to use the 'integration_tzfocus_tzataraxis' integration")
+		else
+			require'true-zen.main'.main(5, 1)
+		end
+	end
+
 end
 
 function ataraxis_false() -- hide
     local amount_wins = vim.api.nvim_eval("winnr('$')")
+
+
+    if (amount_wins > 1) then
+		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+			if not (opts["focus"]["focus_method"] == "experimental") then
+				print("TrueZen: you need to set 'focus_method = experimental' in order to use the 'integration_tzfocus_tzataraxis' integration")
+			else
+				require'true-zen.main'.main(5, 1)
+			end
+        elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
+            cmd("only")
+		else
+			print("TrueZen: TZAtaraxis can not be toggled if there is more than one window open. However, you can force it with the force_when_plus_one_window setting")
+
+        end
+	end
+
+	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+
+    if (amount_wins > 1) then
+		require'true-zen.main'.main(5, 1)
+	end
+
+	end
 
     if (amount_wins > 1) then
         if (opts["ataraxis"]["force_when_plus_one_window"] == false) then
