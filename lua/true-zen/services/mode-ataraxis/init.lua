@@ -2,6 +2,7 @@ local service = require("true-zen.services.mode-ataraxis.service")
 
 local cmd = vim.cmd
 local api = vim.api
+local opts = require("true-zen.config").options
 
 -- show and hide ataraxis funcs
 local function ataraxis_true()
@@ -12,6 +13,12 @@ end
 local function ataraxis_false()
     ataraxis_show = 0
     service.ataraxis_false()
+
+	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+		if (opts["focus"]["focus_method"] == "experimental") then
+			require("true-zen.services.bottom.integrations.integration_galaxyline").disable_element()
+		end
+	end
 end
 
 -- 1 if being shown
