@@ -75,7 +75,7 @@ local function focus_false() -- unfocus window
         service.experimental_focus_false()
     end
 
-	vim.g.__truezen_focus_loaded = "true"
+	vim.g.__truezen_focus_loaded = "false"
 
     if (opts["events"]["after_focus_mode_unfocuses"] == true) then
         true_zen.after_focus_mode_unfocuses()
