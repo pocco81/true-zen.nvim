@@ -170,33 +170,6 @@ As it's stated in the TL;DR, there are already some sane defaults that you may l
 ```lua
 true_false_commands = false,
 cursor_by_mode = false,
-bottom = {
-  hidden_laststatus = 0,
-  hidden_ruler = false,
-  hidden_showmode = false,
-  hidden_showcmd = false,
-  hidden_cmdheight = 1,
-
-  shown_laststatus = 2,
-  shown_ruler = true,
-  shown_showmode = false,
-  shown_showcmd = false,
-  shown_cmdheight = 1
-},
-top = {
-  hidden_showtabline = 0,
-
-  shown_showtabline = 2
-},
-left = {
-  hidden_number = false,
-  hidden_relativenumber = false,
-  hidden_signcolumn = "no",
-
-  shown_number = true,
-  shown_relativenumber = false,
-  shown_signcolumn = "no"
-},
 ataraxis = {
   ideal_writing_area_width = 0,
   just_do_it_for_me = false,
@@ -219,7 +192,7 @@ focus = {
   focus_method = "experimental"
 },
 minimalist = {
-  store_and_restore_settings = false,
+  store_and_restore_settings = true,
   show_vals_to_read = {}
 },
 events = {
@@ -247,6 +220,38 @@ integrations = {
 }
 ```
 
+
+Additionally there are some settings that you could use to control how the UI looks from TrueZen (They will only be available if `store_and_restore_settings` is set to `false` in the `minimalits = {}` table, however it's not recommended to do so):
+```
+bottom = {
+  hidden_laststatus = 0,
+  hidden_ruler = false,
+  hidden_showmode = false,
+  hidden_showcmd = false,
+  hidden_cmdheight = 1,
+
+  shown_laststatus = 2,
+  shown_ruler = true,
+  shown_showmode = false,
+  shown_showcmd = false,
+  shown_cmdheight = 1
+},
+top = {
+  hidden_showtabline = 0,
+
+  shown_showtabline = 2
+},
+left = {
+  hidden_number = false,
+  hidden_relativenumber = false,
+  hidden_signcolumn = "no",
+
+  shown_number = true,
+  shown_relativenumber = false,
+  shown_signcolumn = "no"
+}
+```
+
 The way you setup the settings on your config varies on whether you are using vimL for this or Lua.
 
 
@@ -261,33 +266,6 @@ local true_zen = require("true-zen")
 true_zen.setup({
   true_false_commands = false,
   cursor_by_mode = false,
-  bottom = {
-    hidden_laststatus = 0,
-    hidden_ruler = false,
-    hidden_showmode = false,
-    hidden_showcmd = false,
-    hidden_cmdheight = 1,
-
-    shown_laststatus = 2,
-    shown_ruler = true,
-    shown_showmode = false,
-    shown_showcmd = false,
-    shown_cmdheight = 1
-  },
-  top = {
-    hidden_showtabline = 0,
-
-    shown_showtabline = 2
-  },
-  left = {
-    hidden_number = false,
-    hidden_relativenumber = false,
-    hidden_signcolumn = "no",
-
-    shown_number = true,
-    shown_relativenumber = false,
-    shown_signcolumn = "no"
-  },
   ataraxis = {
     ideal_writing_area_width = 0,
     just_do_it_for_me = false,
@@ -310,7 +288,7 @@ true_zen.setup({
     focus_method = "experimental"
   },
   minimalist = {
-    store_and_restore_settings = false,
+    store_and_restore_settings = true,
     show_vals_to_read = {}
   },
   events = {
@@ -354,33 +332,6 @@ local true_zen = require("true-zen")
 true_zen.setup({
   true_false_commands = false,
   cursor_by_mode = false,
-  bottom = {
-    hidden_laststatus = 0,
-    hidden_ruler = false,
-    hidden_showmode = false,
-    hidden_showcmd = false,
-    hidden_cmdheight = 1,
-
-    shown_laststatus = 2,
-    shown_ruler = true,
-    shown_showmode = false,
-    shown_showcmd = false,
-    shown_cmdheight = 1
-  },
-  top = {
-    hidden_showtabline = 0,
-
-    shown_showtabline = 2
-  },
-  left = {
-    hidden_number = false,
-    hidden_relativenumber = false,
-    hidden_signcolumn = "no",
-
-    shown_number = true,
-    shown_relativenumber = false,
-    shown_signcolumn = "no"
-  },
   ataraxis = {
     ideal_writing_area_width = 0,
     just_do_it_for_me = false,
@@ -403,7 +354,7 @@ true_zen.setup({
     focus_method = "experimental"
   },
   minimalist = {
-    store_and_restore_settings = false,
+    store_and_restore_settings = true,
     show_vals_to_read = {}
   },
   events = {
@@ -600,7 +551,7 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
 
 ## Minimalist
-- `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the `shown_` prefix and stores the ones from the user config; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values only once, when any of the `UI` related commands, `:TZAtaraxis`, `:TZMinimalist` and/or variants are called. If, for example, were to `setlocal relativenumber` after already running any of the aforementioned commands, this won't be stored.
+- `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the ones from the current buffer; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values of the buffers and restores them for all.
 - `show_vals_to_read`: (Table of strings) Receives strings of settings that **shouldn't be stores_and_restored** and instead, **read from TrueZen's settings**. These strings must have the same name of their equivalent in the `UI` tables that have the `shown_` prefix (e.g: `"shown_showtabline"`) and must be separated by commas. A great application for this is, for example, if your plugin for showing the bufferline had enabled a setting for hiding it when there is only one buffer. If you were to enter Minimalist or Ataraxis mode, the plugin will store the settings that correspond for when the bufferline is hidden (`top` UI), and thus, if you opened new buffers the bufferline will not appear. For this you could simply add `"shown_showtabline"` to this table and set the value of `shown_showtabline` from the `top = {}` table! Here is what this example looks like
 
 ```
