@@ -48,7 +48,7 @@ config.options = {
         focus_method = "experimental"
     },
     minimalist = {
-        store_and_restore_settings = false,
+        store_and_restore_settings = true,
         show_vals_to_read = {}
     },
     events = {
