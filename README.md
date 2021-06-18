@@ -189,7 +189,7 @@ ataraxis = {
 },
 focus = {
   margin_of_error = 5,
-  focus_method = "experimental"
+  focus_method = "native"
 },
 minimalist = {
   store_and_restore_settings = true,
@@ -283,7 +283,7 @@ true_zen.setup({
   },
   focus = {
     margin_of_error = 5,
-    focus_method = "experimental"
+    focus_method = "native"
   },
   minimalist = {
     store_and_restore_settings = true,
@@ -347,7 +347,7 @@ true_zen.setup({
   },
   focus = {
     margin_of_error = 5,
-    focus_method = "experimental"
+    focus_method = "native"
   },
   minimalist = {
     store_and_restore_settings = true,
