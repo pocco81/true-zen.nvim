@@ -300,6 +300,8 @@ function ataraxis_true() -- show
         -- nothing
     end
 
+	cmd("q")		-- quits `tabe %` tab
+
     ::skip_normal_quitting::
 
     ------- general
@@ -447,6 +449,8 @@ function ataraxis_false() -- hide
 
     load_integrations(false)
     -------------------------=== Integrations ===------------------------
+
+	cmd("tabe %")
 
     tz_top_padding = vim.api.nvim_eval([[get(g:,"tz_top_padding", "NONE")]])
     tz_left_padding = vim.api.nvim_eval([[get(g:,"tz_left_padding", "NONE")]])
