@@ -8,12 +8,14 @@ function minimalist_true(minimalist_show) -- show
     bottom.main(1, minimalist_show)
     top.main(1, minimalist_show)
     left.main(1, minimalist_show)
+	vim.g.__truezen_minimalist_hiding = "true"
 end
 
 function minimalist_false(minimalist_show) -- don't show
     bottom.main(2, minimalist_show)
     top.main(2, minimalist_show)
     left.main(2, minimalist_show)
+	vim.g.__truezen_minimalist_hiding = "false"
 end
 
 return {
