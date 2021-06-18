@@ -112,9 +112,9 @@ function map_settings(table, bool, ui_element)
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
             local analyse = false
 
-            if (vim.g.__truezen_focus_loaded == "false") then
-                analyse = false
-            end
+            -- if (vim.g.__truezen_focus_loaded == "false") then
+            --     analyse = false
+            -- end
 
             if (vim.g.__truezen_minimalist_hiding == "false") then
                 analyse = true
