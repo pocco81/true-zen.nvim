@@ -4,18 +4,18 @@ local before_after_cmds = require("true-zen.utils.before_after_cmd")
 
 local function test_bool(final_opt, var)
     if (var == true) then
-        return "set " .. final_opt .. ""
+        return "setlocal " .. final_opt .. ""
     elseif (var == false) then
-        return "set no" .. final_opt .. ""
+        return "setlocal no" .. final_opt .. ""
     end
 end
 
 local function test_num(final_opt, num)
-    return "set " .. final_opt .. "=" .. num .. ""
+    return "setlocal " .. final_opt .. "=" .. num .. ""
 end
 
 local function test_str(final_opt, str)
-    return "set " .. final_opt .. "=" .. str .. ""
+    return "setlocal " .. final_opt .. "=" .. str .. ""
 end
 
 local function clean_and_exec(opt, table_opt, remove_str)
@@ -40,44 +40,46 @@ function map_settings(table, bool, ui_element)
     if (bool == true) then
         if (opts["minimalist"]["store_and_restore_settings"] == true) then
 			print("true")
+			if (vim.g.__truezen_focus_focusing == "false" or vim.g.__truezen_focus_focusing == nil) then
+				before_after_cmds.restore_settings(ui_element)
+					if (ui_element == "BOTTOM") then
+						local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
+
+						if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
+							before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
+						end
+					elseif (ui_element == "TOP") then
+						local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
+
+						if (top_has_been_stored == true or top_has_been_stored == nil) then
+							before_after_cmds.store_settings(opts["top"], "TOP")
+						end
+					elseif (ui_element == "LEFT") then
+						local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
+
+						if (left_has_been_stored == true or left_has_been_stored == nil) then
+							before_after_cmds.store_settings(opts["left"], "LEFT")
+						end
+					else
+						cmd("echo 'TrueZen: UI Element was not recognized'")
+					end
+
+				before_after_cmds.restore_settings(ui_element)
+				if (#opts["minimalist"]["show_vals_to_read"] > 0) then
+					for opt, _ in pairs(opts["minimalist"]["show_vals_to_read"]) do
+						for inner_opt, _ in pairs(table) do
+							if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
+								if string.find(inner_opt, "shown_") then
+									clean_and_exec(inner_opt, table[inner_opt], "shown_")
+								end
+							end
+						end
+					end
+				end
+			end
 			-- print("I ran true")
 			-- print("minimalist_show = "..tostring(require("true-zen.services.mode-minimalist.init").get_minimalist_show()))
 
-            before_after_cmds.restore_settings(ui_element)
-				if (ui_element == "BOTTOM") then
-					local bottom_has_been_stored = before_after_cmds.get_has_been_stored("BOTTOM")
-
-					if (bottom_has_been_stored == false or bottom_has_been_stored == nil) then
-					    before_after_cmds.store_settings(opts["bottom"], "BOTTOM")
-					end
-				elseif (ui_element == "TOP") then
-					local top_has_been_stored = before_after_cmds.get_has_been_stored("TOP")
-
-					if (top_has_been_stored == true or top_has_been_stored == nil) then
-					    before_after_cmds.store_settings(opts["top"], "TOP")
-					end
-				elseif (ui_element == "LEFT") then
-					local left_has_been_stored = before_after_cmds.get_has_been_stored("LEFT")
-
-					if (left_has_been_stored == true or left_has_been_stored == nil) then
-					    before_after_cmds.store_settings(opts["left"], "LEFT")
-					end
-				else
-					cmd("echo 'TrueZen: UI Element was not recognized'")
-				end
-
-            before_after_cmds.restore_settings(ui_element)
-            if (#opts["minimalist"]["show_vals_to_read"] > 0) then
-                for opt, _ in pairs(opts["minimalist"]["show_vals_to_read"]) do
-                    for inner_opt, _ in pairs(table) do
-                        if (tostring(opts["minimalist"]["show_vals_to_read"][opt]) == tostring(inner_opt)) then
-                            if string.find(inner_opt, "shown_") then
-                                clean_and_exec(inner_opt, table[inner_opt], "shown_")
-                            end
-                        end
-                    end
-                end
-            end
         else
             for opt, _ in pairs(table) do
                 if string.find(opt, "shown_") then

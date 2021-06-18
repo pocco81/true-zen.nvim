@@ -37,6 +37,7 @@ local function focus_true() -- focus window
             end
         end
     end
+	vim.g.__truezen_focus_focusing = "true"
 
     if (opts["events"]["after_focus_mode_focuses"] == true) then
         true_zen.after_focus_mode_focuses()
@@ -73,6 +74,8 @@ local function focus_false() -- unfocus window
 
         service.experimental_focus_false()
     end
+
+	vim.g.__truezen_focus_focusing = "false"
 
     if (opts["events"]["after_focus_mode_unfocuses"] == true) then
         true_zen.after_focus_mode_unfocuses()
