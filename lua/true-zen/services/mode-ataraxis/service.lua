@@ -673,7 +673,6 @@ function ataraxis_false() -- hide
     )
     -------------------------=== Integrations ===------------------------
 
-
     -- everything will be skipped if there was more than one window open
     ::there_was_more_than_one_window::
 end
