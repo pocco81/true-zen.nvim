@@ -85,9 +85,11 @@ function map_settings(table, bool, ui_element)
 				analyse = false
 			end
 
-			if (vim.g.__truezen_minimalist_hiding == "false" or vim.g.__truezen_minimalist_hiding == "true") then
+			if (vim.g.__truezen_minimalist_hiding == "false") then
 				print("Minimalist says it should be analyzed")
 				analyse = true
+			elseif (vim.g.__truezen_minimalist_hiding == "true") then
+				analyse = false
 			end
 
 			if (analyse == true) then
