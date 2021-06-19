@@ -38,17 +38,17 @@
 </p>
 
 
-<kbd><img src ="https://i.imgur.com/n71fn6R.png"></kbd>
+<kbd><img src ="https://i.imgur.com/yIimuJF.png"></kbd>
 <p align="center">
 	Ataraxis Mode
 </p><hr>
 
-<kbd><img src ="https://i.imgur.com/q0MoTfN.png"></kbd>
+<kbd><img src ="https://i.imgur.com/3PpBwSB.png"></kbd>
 <p align="center">
 	Minimalist Mode
 </p><hr>
 
-<kbd><img src ="https://i.imgur.com/ALDtKie.gif"></kbd>
+<kbd><img src ="https://i.imgur.com/atGxfOm.gif"></kbd>
 <p align="center">
 	Focus Mode
 </p>
