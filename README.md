@@ -125,6 +125,7 @@
 	- Gitsigns integration
 
 # 📺 Notices
+- **19-06-21**: Fixed bug with Focus mode.
 - **18-06-21**: Fixed small bugs with various features (hi groups, storing settings, ...)
 - **04-06-21**: Added setting for controlling Hi Groups affected by TrueZen.
 - **03-06-21**: Added events for the mode Focus.
