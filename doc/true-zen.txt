@@ -133,9 +133,9 @@ integrations = {
 }
 ```
 
-Additionally, there are some settings that you could use to control how the UI looks from TrueZen (They will only be available if `store_and_restore_settings` is set to `false` in the `minimalist = {}` table, however it's not recommended to do so):
+Additionally, there are some settings that you can use to control how the UI behaves from TrueZen. (Read about the `store_and_restore_settings` setting [here](#minimalist)):
 
-```
+```lua
 bottom = {
   hidden_laststatus = 0,
   hidden_ruler = false,
