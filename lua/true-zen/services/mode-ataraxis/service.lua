@@ -349,12 +349,15 @@ function ataraxis_true() -- show
     )
     -------------------------=== Integrations ===------------------------
 
-	if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
-		if not (opts["focus"]["focus_method"] == "experimental") then
-			print("TrueZen: you need to set 'focus_method = experimental' in order to use the 'integration_tzfocus_tzataraxis' integration")
-		else
-			require("true-zen.services.mode-focus.init").main(2)
+	if (it_was_focused == true) then
+		if (opts["integrations"]["integration_tzfocus_tzataraxis"] == true) then
+			if not (opts["focus"]["focus_method"] == "experimental") then
+				print("TrueZen: you need to set 'focus_method = experimental' in order to use the 'integration_tzfocus_tzataraxis' integration")
+			else
+				require("true-zen.services.mode-focus.init").main(2)
+			end
 		end
+		it_was_focused = false
 	end
 
 end
@@ -369,6 +372,7 @@ function ataraxis_false() -- hide
 				print("TrueZen: you need to set 'focus_method = experimental' in order to use the 'integration_tzfocus_tzataraxis' integration")
 			else
 				require("true-zen.services.mode-focus.init").main(1)
+				it_was_focused = true
 			end
         elseif (opts["ataraxis"]["force_when_plus_one_window"] == true) then
             cmd("only")
