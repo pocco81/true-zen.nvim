@@ -13,6 +13,9 @@ function native_focus_false() -- don't show
 end
 
 function experimental_focus_true()
+	require("true-zen.utils.before_after_cmd").restore_settings("LEFT")
+	require("true-zen.utils.before_after_cmd").restore_settings("BOTTOM")
+	require("true-zen.utils.before_after_cmd").restore_settings("TOP")
     cmd("tabe %")
 end
 
