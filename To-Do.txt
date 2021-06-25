@@ -12,16 +12,16 @@ This is what Goyo does:
 			show ruler
 		+
 	+ Change window
-		+,i 
+		+,i
 			set winminheight=1
 			set winheight=1
 			set winminwidth=1 winwidth=1
 			set laststatus=0
 			set showtabline=0
 			set noruler
-			set fillchars+=vert:\ 
-			set fillchars+=stl:\ 
-			set fillchars+=stlnc:\ 
+			set fillchars+=vert:\
+			set fillchars+=stl:\
+			set fillchars+=stlnc:\
 
 	+ Hide left hand scroll bars if any on GUI
 		+,i
@@ -38,7 +38,7 @@ how centering text works:
 			:wincmd l				move to split in the left
 			:vnew					for creating split in the right
 			:wincmd h				for moving to the split in the left (center)
-		
+
 		remember that before moving to other splits run the following command and also execute TZMinimalist
 			:setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn
 
@@ -51,9 +51,9 @@ how centering text works:
 	2. resize those splits (:vertical resize <num>) https://vi.stackexchange.com/questions/514/how-do-i-change-the-current-splits-width-and-height/518
 	3. prevent window from resizing `:set noequalalways`
 	4. hide border chars with (based on goyo)
-		set fillchars+=vert:\ 
-		set fillchars+=stl:\ 
-		set fillchars+=stlnc:\ 
+		set fillchars+=vert:\
+		set fillchars+=stl:\
+		set fillchars+=stlnc:\
 	5. execute minimalist mode on all of the splits
 	6. avoid buffers from being modifiable (https://github.com/junegunn/goyo.vim/blob/master/autoload/goyo.vim#L51)
 	7. `:vertical resize 80` will set your current vsplit to 80 characters wide
@@ -73,14 +73,14 @@ IMPORTANT:
 how to hide statusline for onces and for all:
 	:set statusline=-        " hide file name in statusline
 	Hide its colors if any after being removed:
-		:highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg 
+		:highlight StatusLine ctermfg=bg ctermbg=bg guibg=bg guifg=bg
 hide horizontal fillchars:
 	:highlight StatusLineNC ctermfg=bg ctermbg=bg guibg=bg guifg=bg
 
 
 refer to this thread: https://vi.stackexchange.com/questions/14217/how-to-hide-horizontal-line-between-windows
 
-		
+
 
 
 if I want to make add a do_it_for_me_setting for the paddings, in order of exection I'll have to:
@@ -106,10 +106,12 @@ To get current win size:
 
 
 
-
-
-
-
+Things to refactor:
+1. Settings: simplify them and categorize them properly
+2. Modes:
+	+ Focus: can be kept as it is
+	+ Minimalist: simplify it
+	+ Ataraxis: to avoid worrying about shown_ ui elements, just use `tabe %`
 
 
 
