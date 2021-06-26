@@ -37,14 +37,14 @@ endfunction
 " mapping {{{
 " modes
 " command! TZAtaraxis lua require'true-zen.main'.main(4, 0)
-command! -nargs=* TZAtaraxis call s:MapArgs(<f-args>) | lua require'true-zen.main'.main(4, 0)
-command! TZMinimalist lua require'true-zen.main'.main(3, 0)
-command! TZFocus lua require'true-zen.main'.main(5, 0)
+command! -nargs=* TZAtaraxis call s:MapArgs(<f-args>) | lua require'true-zen.main'.main(4, 'toggle')
+command! TZMinimalist lua require'true-zen.main'.main(3, 'toggle')
+command! TZFocus lua require'true-zen.main'.main(5, 'toggle')
 
 " general options
-command! TZBottom lua require'true-zen.main'.main(0, 0)
-command! TZTop lua require'true-zen.main'.main(1, 0)
-command! TZLeft lua require'true-zen.main'.main(2, 0)
+command! TZBottom lua require'true-zen.main'.main(0, 'toggle')
+command! TZTop lua require'true-zen.main'.main(1, 'toggle')
+command! TZLeft lua require'true-zen.main'.main(2, 'toggle')
 " }}}
 
 let &cpo = s:save_cpo " and restore after

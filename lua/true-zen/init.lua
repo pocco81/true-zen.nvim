@@ -7,24 +7,18 @@ local function setup_commands()
         -- UI components
         cmd("command! TZTopOn lua require'true-zen.main'.main(1, 'on')")
         cmd("command! TZTopOff lua require'true-zen.main'.main(1, 'off')")
-        cmd("command! TZLeftT lua require'true-zen.main'.main(2, 1)")
-        cmd("command! TZLeftF lua require'true-zen.main'.main(2, 2)")
-        cmd("command! TZBottomT lua require'true-zen.main'.main(0, 1)")
-        cmd("command! TZBottomF lua require'true-zen.main'.main(0, 2)")
+        cmd("command! TZLeftOn lua require'true-zen.main'.main(2, 'on')")
+        cmd("command! TZLeftOff lua require'true-zen.main'.main(2, 'off')")
+        cmd("command! TZBottomOn lua require'true-zen.main'.main(0, 'on')")
+        cmd("command! TZBottomOff lua require'true-zen.main'.main(0, 'off')")
 
         -- Modes
-        cmd("command! TZMinimalistT lua require'true-zen.main'.main(3, 1)")
-        cmd("command! TZMinimalistF lua require'true-zen.main'.main(3, 2)")
-        cmd("command! TZAtaraxisT lua require'true-zen.main'.main(4, 1)")
-        cmd("command! TZAtaraxisF lua require'true-zen.main'.main(4, 2)")
-
-        -- Modes
-        cmd("command! TZMinimalistT lua require'true-zen.main'.main(3, 1)")
-        cmd("command! TZMinimalistF lua require'true-zen.main'.main(3, 2)")
-        cmd("command! TZAtaraxisT lua require'true-zen.main'.main(4, 1)")
-        cmd("command! TZAtaraxisF lua require'true-zen.main'.main(4, 2)")
-        cmd("command! TZFocusT lua require'true-zen.main'.main(5, 1)")
-        cmd("command! TZFocusF lua require'true-zen.main'.main(5, 2)")
+        cmd("command! TZMinimalistOn lua require'true-zen.main'.main(3, 'on')")
+        cmd("command! TZMinimalistOff lua require'true-zen.main'.main(3, 'off')")
+        cmd("command! TZAtaraxisOn lua require'true-zen.main'.main(4, 'on')")
+        cmd("command! TZAtaraxisOff lua require'true-zen.main'.main(4, 'off')")
+        cmd("command! TZFocusOn lua require'true-zen.main'.main(5, 'on')")
+        cmd("command! TZFocusOff lua require'true-zen.main'.main(5, 'off')")
     elseif (opts.true_false_commands == false) then
         -- nothing
     else
