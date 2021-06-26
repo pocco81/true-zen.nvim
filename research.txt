@@ -114,5 +114,32 @@ Things to refactor:
 	+ Ataraxis: to avoid worrying about shown_ ui elements, just use `tabe %`
 
 
+IDEAS:
+
+1. Since in order of abstraction:
+
+UI Elements -> Minimalist mode -> Ataraxis mode
+
+it makes sense to do a BufDo for every UI element so that there will be some sord of consistency, and then Minimalist will just be a switch between all of them, but also exiting vim and reentering it should something to worry about.
+
+
+Code for every UI element:
++ On/Off funcs: toggle
++ main menu to assert todo:
++ events func: handles events (VimEnter, FocusGained, etc...)
+
+
+while under dev note:
+1. UI:
+	+ the settings for both the BOTTOM and the TOP ui elements apply to every buffer, but the LEFT doesn't
+	+ BOTTOM: most important setting is 'laststatus'
+	+ TOP: most important setting is 'showtabline'
+
+
+
+
+
+
+
 
 
