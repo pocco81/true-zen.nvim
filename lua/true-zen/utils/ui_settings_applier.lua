@@ -68,9 +68,12 @@ function M.load_settings(tbl, tbl_group)
             assert_and_execute(key, value)
         end
     else -- saved settings
+		print("here------1")
         if (next(get_table(tbl)) == nil) then
+			print("here------1.2")
             print("TrueZen: Cannot toggle " .. tbl_group .. " on because it is already on")
         else
+			print("here------1.3")
             for key, value in pairs(get_table(tbl)) do
                 assert_and_execute(key, value)
             end
