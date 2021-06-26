@@ -19,6 +19,7 @@ function M.main(option, command_option)
     if (option == 0) then
         bottom.main(command_option)
     elseif (option == 1) then
+		print("here!!")
         top.main(command_option)
     elseif (option == 2) then
         left.main(command_option)
