@@ -10,7 +10,7 @@ end
 
 function M.off()		-- hide top line
 	print("here 2")
-	usp.save_local_settings("TOP")
+	usp.save_local_settings("TOP", opts["ui"]["top"])
 	usp.load_settings(opts["ui"]["top"], "USER")
 end
 

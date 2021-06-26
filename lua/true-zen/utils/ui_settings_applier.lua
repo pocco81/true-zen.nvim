@@ -40,9 +40,9 @@ local function get_table(tbl)
     end
 end
 
-function M.save_local_settings(tbl)
+function M.save_local_settings(element, tbl)
     print("got to save_local_settings()")
-    local lcl_tbl = get_table(tbl)
+    local lcl_tbl = get_table(element)
 
     for key, value in pairs(tbl) do
         local current_state = vim.api.nvim_eval("&" .. key .. "")
