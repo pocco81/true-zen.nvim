@@ -5,8 +5,8 @@ local function setup_commands()
     -- top, left
     if (opts.true_false_commands == true) then
         -- UI components
-        cmd("command! TZTopT lua require'true-zen.main'.main(1, 'on')")
-        cmd("command! TZTopF lua require'true-zen.main'.main(1, 'off')")
+        cmd("command! TZTopOn lua require'true-zen.main'.main(1, 'on')")
+        cmd("command! TZTopOff lua require'true-zen.main'.main(1, 'off')")
         cmd("command! TZLeftT lua require'true-zen.main'.main(2, 1)")
         cmd("command! TZLeftF lua require'true-zen.main'.main(2, 2)")
         cmd("command! TZBottomT lua require'true-zen.main'.main(0, 1)")
