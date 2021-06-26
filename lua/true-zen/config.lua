@@ -1,11 +1,6 @@
 local config = {}
 
 config.options = {
-	true_false_commands = false,
-	cursor_by_mode = false,
-}
-
-config.options = {
     true_false_commands = false,
     cursor_by_mode = false,
 	ui = {
@@ -51,6 +46,7 @@ config.options = {
 }
 
 function config.set_options(opts)
+	print("setting up options...")
     opts = opts or {}
 
     for opt, _ in pairs(opts) do
