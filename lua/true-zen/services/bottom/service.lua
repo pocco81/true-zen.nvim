@@ -8,7 +8,6 @@ function M.on()
 end
 
 function M.off()
-    usp.save_local_settings(opts["ui"]["bottom"], "BOTTOM")
     usp.load_settings(opts["ui"]["bottom"], "USER")
 end
 

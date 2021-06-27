@@ -50,7 +50,7 @@ end
 
 function M.resume()
     service.off()
-    if (opts["integrations"]["tabline_plugins"] == true) then
+    if (opts["integrations"]["nvim_bufferline"] == true) then
 		nvim_bufferline()
     end
 end

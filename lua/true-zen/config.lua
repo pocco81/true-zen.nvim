@@ -53,7 +53,7 @@ config.options = {
 		vim_signify = false,
 		limelight = false,
 		gitsigns = false,
-		tabline_plugins = true
+		nvim_bufferline = true
 	}
 }
 
