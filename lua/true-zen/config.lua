@@ -43,6 +43,18 @@ config.options = {
 			show_vals_to_read = {}
 		},
 	},
+	integrations = {
+		galaxyline = false,
+		vim_airline = false,
+		vim_powerline = false,
+		tmux = false,
+		express_line = false,
+		gitgutter = false,
+		vim_signify = false,
+		limelight = false,
+		gitsigns = false,
+		tabline_plugins = true
+	}
 }
 
 function config.set_options(opts)

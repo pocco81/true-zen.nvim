@@ -21,9 +21,11 @@ local function autocmds(state)
             [[
 			augroup truezen_ui_top
 				autocmd!
-				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top.service'.off()" | endif
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top'.resume()" | endif
 			augroup END
-		]], false)
+		]],
+            false
+        )
     elseif (state == "stop") then
         api.nvim_exec([[
 			augroup truezen_ui_top
@@ -46,6 +48,14 @@ local function off()
     set_status("off")
 end
 
+function M.resume()
+    service.off()
+    if (opts["integrations"]["tabline_plugins"] == true) then
+        service.on()
+        service.off()
+    end
+end
+
 local function toggle()
     if (get_status() == "on") then
         off()
@@ -57,12 +67,6 @@ local function toggle()
         else
             on()
         end
-    end
-end
-
-function M.resume()
-    if (get_status() == "off") then
-        off()
     end
 end
 
