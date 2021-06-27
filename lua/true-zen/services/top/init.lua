@@ -12,13 +12,33 @@ local function set_status(value)
     status_top = value
 end
 
+local function autocmds(state)
+    if (state == "start") then
+        api.nvim_exec(
+            [[
+			augroup truezen_ui_top
+				autocmd!
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top'.resume()" | endif
+			augroup END
+		]], false)
+    elseif (state == "stop") then
+        api.nvim_exec([[
+			augroup truezen_ui_top
+				autocmd!
+			augroup END
+		]], false)
+    end
+end
+
 local function on()
     service.on()
+    autocmds("stop")
     set_status("on")
 end
 
 local function off()
     service.off()
+    autocmds("start")
     set_status("off")
 end
 
@@ -36,15 +56,21 @@ local function toggle()
     end
 end
 
+function M.resume()
+    if (get_status() == "off") then
+        off()
+    end
+end
+
 function M.main(option)
     option = option or 0
 
-    if (option == 'toggle') then
+    if (option == "toggle") then
         toggle()
-    elseif (option == 'on') then
-		on()
-    elseif (option == 'off') then
-		off()
+    elseif (option == "on") then
+        on()
+    elseif (option == "off") then
+        off()
     end
 end
 
