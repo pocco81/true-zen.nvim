@@ -32,13 +32,13 @@ end
 
 local function on()
     service.on()
-    autocmds("stop")
+    -- autocmds("stop")
     set_status("on")
 end
 
 local function off()
     service.off()
-    autocmds("start")
+    -- autocmds("start")
     set_status("off")
 end
 
