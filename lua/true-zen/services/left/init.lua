@@ -2,6 +2,9 @@ local service = require("true-zen.services.left.service")
 local cmd = vim.cmd
 local api = vim.api
 
+local opts = require("true-zen.config").options
+local usp = require("true-zen.utils.ui_settings_applier")
+
 local M = {}
 
 local function get_status()
@@ -12,14 +15,41 @@ local function set_status(value)
     left_status = value
 end
 
+local function autocmds(state)
+    if (state == "start") then
+        api.nvim_exec(
+            [[
+			augroup truezen_ui_left
+				autocmd!
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.left'.resume()" | endif
+			augroup END
+		]],
+            false
+        )
+    elseif (state == "stop") then
+        api.nvim_exec([[
+			augroup truezen_ui_left
+				autocmd!
+			augroup END
+		]], false)
+    end
+end
+
 local function on()
     service.on()
+    autocmds("stop")
     set_status("on")
 end
 
 local function off()
+    usp.save_local_settings(opts["ui"]["left"], "LEFT")
     service.off()
+    autocmds("start")
     set_status("off")
+end
+
+function M.resume()
+    service.off()
 end
 
 local function toggle()
