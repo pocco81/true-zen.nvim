@@ -3,6 +3,9 @@ local M = {}
 local bottom = require("true-zen.services.bottom.init")
 local top = require("true-zen.services.top.init")
 local left = require("true-zen.services.left.init")
+
+
+-- better to run it when it's going to be used and not at startup
 require("true-zen.utils.viml_funcs")
 
 -- local minimalist_mode = require("true-zen.services.mode-minimalist.init")
@@ -20,7 +23,6 @@ function M.main(option, command_option)
     if (option == 0) then
         bottom.main(command_option)
     elseif (option == 1) then
-		print("here!!")
         top.main(command_option)
     elseif (option == 2) then
         left.main(command_option)

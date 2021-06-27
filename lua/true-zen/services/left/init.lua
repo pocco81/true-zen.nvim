@@ -1,79 +1,51 @@
 local service = require("true-zen.services.left.service")
 local cmd = vim.cmd
+local api = vim.api
 
--- show and hide left funcs
-local function left_true()
-    left_show = 1
-    service.left_true()
+local M = {}
+
+local function get_status()
+    return left_status
 end
 
-local function left_false()
-    left_show = 0
-    service.left_false()
+local function set_status(value)
+    left_status = value
+end
+
+local function on()
+    service.on()
+    set_status("on")
+end
+
+local function off()
+    service.off()
+    set_status("off")
 end
 
 local function toggle()
-    if (left_show == 1) then -- left true; being shown
-        left_false()
-    elseif (left_show == 0) then -- left false; being hidden
-        left_true()
-    elseif (left_show == nil) then -- show var is nil
-        left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
-        if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
-            left_show = 1
-            toggle()
-        elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-            left_show = 1
-            toggle()
-        else
-            left_show = 0
-            toggle()
-        end
+    if (get_status() == "on") then
+        off()
+    elseif (get_status() == "off") then
+        on()
     else
-        -- nothing
-        cmd("echo 'none of the above'")
+        if (api.nvim_eval("&number > 0 || &relativenumber > 0 || &signcolumn == 'yes'") == 1) then
+            off()
+        else
+            on()
+        end
     end
 end
 
-function resume()
-    if (left_show == 1) then -- left true; shown
-        left_true()
-    elseif (left_show == 0) then -- left false; hidden
-        left_false()
-    elseif (left_show == nil) then -- show var is nil
-        left_show = vim.api.nvim_eval("&number > 0 || &relativenumber > 0")
-        if (vim.api.nvim_eval("&number > 0 || &relativenumber > 0") == 1) then
-            left_show = 1
-            resume()
-        elseif (vim.api.nvim_eval("&signcolumn") == "yes") then
-            left_show = 1
-            resume()
-        else
-            left_show = 0
-            resume()
-        end
-    else
-        -- nothing
-        cmd("echo 'none of the above'")
-    end
-end
-
-function main(option, minimalist_show)
+function M.main(option)
     option = option or 0
 
-    if (option == 0) then -- toggle left (on/off)
+    if (option == "toggle") then
         toggle()
-    elseif (option == 1) then -- show left
-        left_true()
-    elseif (option == 2) then
-        left_false()
-    else
-        -- not recognized
+    elseif (option == "on") then
+        on()
+    elseif (option == "off") then
+        off()
     end
 end
 
-return {
-    main = main,
-    resume = resume,
-    left_show = left_show
-}
+return M

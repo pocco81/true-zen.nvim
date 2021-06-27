@@ -1,20 +1,17 @@
 local opts = require("true-zen.config").options
-local cmd_settings = require("true-zen.utils.cmd_settings")
+local usp = require("true-zen.utils.ui_settings_applier")
+local cmd = vim.cmd
 
--- left specific options
--- set number
--- set relativenumber
--- set signcolumn=no
+local M = {}
 
-function left_true() -- show
-    cmd_settings.map_settings(opts["left"], true, "LEFT")
+function M.on()
+    usp.load_settings("LEFT", "OTHER")
 end
 
-function left_false() -- hide
-    cmd_settings.map_settings(opts["left"], false, "LEFT")
+function M.off()
+    usp.save_local_settings(opts["ui"]["left"], "LEFT")
+    -- usp.load_settings(opts["ui"]["left"], "USER")
+    cmd([[call BufDo("lua usp.load_settings(opts['ui']['left'], 'USER')")]])
 end
 
-return {
-    left_true = left_true,
-    left_false = left_false
-}
+return M
