@@ -8,7 +8,7 @@ function M.on() -- show top line
 end
 
 function M.off() -- hide top line
-    usp.save_local_settings(opts["ui"]["top"], "TOP")
+    -- usp.save_local_settings(opts["ui"]["top"], "TOP")
     usp.load_settings(opts["ui"]["top"], "USER")
 end
 

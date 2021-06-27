@@ -2,6 +2,8 @@ local service = require("true-zen.services.top.service")
 local cmd = vim.cmd
 local api = vim.api
 
+local usp = require("true-zen.utils.ui_settings_applier")
+
 local M = {}
 
 local function get_status()
@@ -18,7 +20,7 @@ local function autocmds(state)
             [[
 			augroup truezen_ui_top
 				autocmd!
-				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top'.resume()" | endif
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.top.service'.off()" | endif
 			augroup END
 		]], false)
     elseif (state == "stop") then
@@ -32,13 +34,14 @@ end
 
 local function on()
     service.on()
-    -- autocmds("stop")
+    autocmds("stop")
     set_status("on")
 end
 
 local function off()
+    usp.save_local_settings(opts["ui"]["top"], "TOP")
     service.off()
-    -- autocmds("start")
+    autocmds("start")
     set_status("off")
 end
 
