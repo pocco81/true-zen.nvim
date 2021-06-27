@@ -3,6 +3,7 @@ local M = {}
 local bottom = require("true-zen.services.bottom.init")
 local top = require("true-zen.services.top.init")
 local left = require("true-zen.services.left.init")
+require("true-zen.utils.viml_funcs")
 
 -- local minimalist_mode = require("true-zen.services.mode-minimalist.init")
 -- local ataraxis_mode = require("true-zen.services.mode-ataraxis.init")
