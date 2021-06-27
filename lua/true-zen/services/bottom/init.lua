@@ -1,65 +1,52 @@
 local service = require("true-zen.services.bottom.service")
 local cmd = vim.cmd
+local api = vim.api
 
--- show and hide bottom funcs
-local function bottom_true()
-    bottom_show = 1
-    service.bottom_true()
+local M = {}
+
+
+local function get_status()
+	return bottom_status
 end
 
-local function bottom_false()
-    bottom_show = 0
-    service.bottom_false()
+local function set_status(value)
+	bottom_status = value
+end
+
+local function on()
+	service.on()
+	set_status("on")
+end
+
+local function off()
+	service.off()
+	set_status("off")
 end
 
 local function toggle()
-    bottom_show = vim.api.nvim_eval("&laststatus > 0")
-    if (bottom_show == 1) then -- bottom true, shown; thus, hide
-        bottom_false()
-    elseif (bottom_show == 0) then -- bottom false, hidden; thus, show
-        bottom_true()
+    if (get_status() == "on") then
+        off()
+    elseif (get_status() == "off") then
+        on()
     else
-        -- nothing
+        if (api.nvim_eval("&laststatus > 0") == 1) then
+            off()
+        else
+            on()
+        end
     end
 end
 
-function resume()
-    if (bottom_show == 1) then -- bottm true; shown
-        bottom_true()
-    elseif (bottom_show == 0) then -- status line false; hidden
-        bottom_false()
-    elseif (bottom_show == nil) then -- show var is nil
-        -- bottom_true()
-        bottom_show = vim.api.nvim_eval("&laststatus > 0")
-    else
-        -- nothing
-        cmd("echo 'none of the above'")
-    end
-end
-
-function main(option, minimalist_show)
+function M.main(option)
     option = option or 0
 
-    if (option == 0) then -- toggle statuline (on/off)
+    if (option == 'toggle') then
         toggle()
-    elseif (option == 1) then -- show status line
-        bottom_true()
-    elseif (option == 2) then
-        bottom_false()
-    else
-        -- not recognized
+    elseif (option == 'on') then
+		on()
+    elseif (option == 'off') then
+		off()
     end
 end
 
--- vim.api.nvim_exec([[
--- 	augroup toggle_statusline
--- 		autocmd!
--- 		autocmd VimResume,FocusGained * lua resume()
--- 	augroup END
--- ]], false)
-
-return {
-    main = main,
-    resume = resume,
-    bottom_show = bottom_show
-}
+return M

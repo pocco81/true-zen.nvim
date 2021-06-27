@@ -116,12 +116,16 @@ Things to refactor:
 
 IDEAS:
 
+
 1. Since in order of abstraction:
 
 UI Elements -> Minimalist mode -> Ataraxis mode
 
 it makes sense to do a BufDo for every UI element so that there will be some sord of consistency, and then Minimalist will just be a switch between all of them, but also exiting vim and reentering it should something to worry about.
 
+2. Add some sort of "persistent topbar" that will prevent plugins like bufferline to show the statusline when a another file is opened when TOP ui  = off. Maybe an integration will be enough?
+
+3. Make it so that Ataraxis mode won't break even when other windows are opened
 
 Code for every UI element:
 + On/Off funcs: toggle

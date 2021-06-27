@@ -5,11 +5,11 @@ local api = vim.api
 local M = {}
 
 local function get_status()
-    return top_show
+    return status_top
 end
 
 local function set_status(value)
-    top_show = value
+    status_top = value
 end
 
 local function on()
