@@ -36,17 +36,15 @@ local function autocmds(state)
 end
 
 local function on()
-    -- service.on()
     cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.on()")]])
-    -- autocmds("stop")
+    autocmds("stop")
     set_status("on")
 end
 
 local function off()
     usp.save_local_settings(opts["ui"]["left"], "LEFT")
-    -- service.off()
     cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.off()")]])
-    -- autocmds("start")
+    autocmds("start")
     set_status("off")
 end
 
