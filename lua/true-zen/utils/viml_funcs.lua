@@ -3,7 +3,7 @@ print("i ran utils")
 vim.api.nvim_exec(
     [[
 	" Like bufdo but restore the current buffer.
-	function! BufDo(command)
+	function! g:TrueZenBufDo(command)
 		let currBuff=bufnr("%")
 		execute 'bufdo ' . a:command
 		execute 'buffer ' . currBuff
