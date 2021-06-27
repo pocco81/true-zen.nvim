@@ -11,7 +11,7 @@ end
 function M.off()
     usp.save_local_settings(opts["ui"]["left"], "LEFT")
     -- usp.load_settings(opts["ui"]["left"], "USER")
-    cmd([[call BufDo("lua usp.load_settings(opts['ui']['left'], 'USER')")]])
+    cmd([[call BufDo("lua require("true-zen.utils.ui_settings_applier").load_settings(opts['ui']['left'], 'USER')")]])
 end
 
 return M
