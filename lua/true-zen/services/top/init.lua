@@ -51,10 +51,9 @@ end
 function M.resume()
     service.off()
     if (opts["integrations"]["tabline_plugins"] == true) then
-		if not (api.nvim_eval("&showtabline > 0") == 1) then
-			cmd("set showtabline=2")
-			service.off()
-		end
+		print("ran thissssssss")
+        service.on()
+        service.off()
     end
 end
 
