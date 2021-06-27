@@ -37,14 +37,14 @@ end
 
 local function on()
     service.on()
-    autocmds("stop")
+    -- autocmds("stop")
     set_status("on")
 end
 
 local function off()
     usp.save_local_settings(opts["ui"]["left"], "LEFT")
     service.off()
-    autocmds("start")
+    -- autocmds("start")
     set_status("off")
 end
 
