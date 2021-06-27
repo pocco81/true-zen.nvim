@@ -5,11 +5,13 @@ local cmd = vim.cmd
 local M = {}
 
 function M.on()
-    cmd([[call g:TrueZenBufDo("lua require'true-zen.utils.ui_settings_applier'.load_settings(require'true-zen.config'.options['ui']['left'], 'OTHER')")]])
+    -- cmd([[call g:TrueZenBufDo("lua require'true-zen.utils.ui_settings_applier'.load_settings(require'true-zen.config'.options['ui']['left'], 'OTHER')")]])
+	usp.load_settings(opts['ui']['left'], 'OTHER')
 end
 
 function M.off()
-    cmd([[call g:TrueZenBufDo("lua require'true-zen.utils.ui_settings_applier'.load_settings(require'true-zen.config'.options['ui']['left'], 'USER')")]])
+    -- cmd([[call g:TrueZenBufDo("lua require'true-zen.utils.ui_settings_applier'.load_settings(require'true-zen.config'.options['ui']['left'], 'USER')")]])
+	usp.load_settings(opts['ui']['left'], 'USER')
 end
 
 return M
