@@ -3,6 +3,7 @@ local cmd = vim.cmd
 local api = vim.api
 
 local usp = require("true-zen.utils.ui_settings_applier")
+local opts = require("true-zen.config").options
 
 local M = {}
 
