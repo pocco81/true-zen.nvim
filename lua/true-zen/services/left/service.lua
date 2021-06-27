@@ -5,7 +5,7 @@ local cmd = vim.cmd
 local M = {}
 
 function M.on()
-    usp.load_settings("LEFT", "OTHER")
+    cmd([[call g:TrueZenBufDo("lua require'true-zen.utils.ui_settings_applier'.load_settings(require'true-zen.config'.options['ui']['left'], 'OTHER')")]])
 end
 
 function M.off()
