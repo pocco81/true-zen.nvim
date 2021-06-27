@@ -51,9 +51,7 @@ end
 function M.resume()
     service.off()
     if (opts["integrations"]["tabline_plugins"] == true) then
-		print("ran thissssssss")
-        service.on()
-        service.off()
+		nvim_bufferline()
     end
 end
 
