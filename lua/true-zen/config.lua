@@ -20,6 +20,8 @@ config.options = {
 	},
 	modes = {
 		ataraxis = {
+			ideal_writing_area_width = 0,
+			just_do_it_for_me = true,
 			left_padding = 32,
 			right_padding = 32,
 			top_padding = 1,
@@ -28,7 +30,9 @@ config.options = {
 			disable_bg_configuration = false,
 			disable_fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
+			force_when_plus_one_window = true,
 			force_hide_statusline = true,
+			quit_untoggles_ataraxis = true,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {
