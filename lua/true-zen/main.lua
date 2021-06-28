@@ -8,9 +8,9 @@ local left = require("true-zen.services.left.init")
 -- better to run it when it's going to be used and not at startup
 require("true-zen.utils.viml_funcs")
 
--- local minimalist_mode = require("true-zen.services.mode-minimalist.init")
--- local ataraxis_mode = require("true-zen.services.mode-ataraxis.init")
--- local focus_mode = require("true-zen.services.mode-focus.init")
+-- local minimalist_mode = require("true-zen.services.modes.mode-minimalist.init")
+-- local ataraxis_mode = require("true-zen.services.modes.mode-ataraxis.init")
+-- local focus_mode = require("true-zen.services.modes.mode-focus.init")
 
 -- must have, don't remove
 -- local resume = require("true-zen.services.resume.init")
