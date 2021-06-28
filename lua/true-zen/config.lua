@@ -38,10 +38,6 @@ config.options = {
 			margin_of_error = 5,
 			focus_method = "native"
 		},
-		minimalist = {
-			store_and_restore_settings = true,
-			show_vals_to_read = {}
-		},
 	},
 	integrations = {
 		galaxyline = false,
