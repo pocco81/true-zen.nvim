@@ -43,9 +43,9 @@ end
 
 local function toggle()
     if (get_status() == "on") then
-        off()
+        off(opts["modes"]["focus"]["focus_method"])
     elseif (get_status() == "off") then
-        on()
+        on(opts["modes"]["focus"]["focus_method"])
     else
         if (api.nvim_eval("winnr('$')") > 1) then
             local focus_method = opts["modes"]["focus"]["focus_method"]
