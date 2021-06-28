@@ -1,34 +1,34 @@
-local service = require("true-zen.services.left.service")
+local service = require("true-zen.services.ui.top.service")
 local cmd = vim.cmd
 local api = vim.api
 
-local opts = require("true-zen.config").options
 local usp = require("true-zen.utils.ui_settings_applier")
+local opts = require("true-zen.config").options
 
 local M = {}
 
 local function get_status()
-    return left_status
+    return status_top
 end
 
 local function set_status(value)
-    left_status = value
+    status_top = value
 end
 
 local function autocmds(state)
     if (state == "start") then
         api.nvim_exec(
             [[
-			augroup truezen_ui_left
+			augroup truezen_ui_top
 				autocmd!
-				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.left'.resume()" | endif
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.ui.top'.resume()" | endif
 			augroup END
 		]],
             false
         )
     elseif (state == "stop") then
         api.nvim_exec([[
-			augroup truezen_ui_left
+			augroup truezen_ui_top
 				autocmd!
 			augroup END
 		]], false)
@@ -37,19 +37,22 @@ end
 
 local function on()
     autocmds("stop")
-    cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.on()")]])
+    service.on()
     set_status("on")
 end
 
 local function off()
-    usp.save_local_settings(opts["ui"]["left"], "LEFT")
-    cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.off()")]])
+    usp.save_local_settings(opts["ui"]["top"], "TOP")
+    service.off()
     autocmds("start")
     set_status("off")
 end
 
 function M.resume()
     service.off()
+    if (opts["integrations"]["nvim_bufferline"] == true) then
+		nvim_bufferline()
+    end
 end
 
 local function toggle()
@@ -58,7 +61,7 @@ local function toggle()
     elseif (get_status() == "off") then
         on()
     else
-        if (api.nvim_eval("&number > 0 || &relativenumber > 0 || &signcolumn == 'yes'") == 1) then
+        if (api.nvim_eval("&showtabline > 0") == 1) then
             off()
         else
             on()
