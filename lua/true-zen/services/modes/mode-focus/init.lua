@@ -1,6 +1,8 @@
 local service = require("true-zen.services.modes.mode-focus.service")
 local opts = require("true-zen.config").options
+local truezen = require("true-zen.init")
 
+local api = vim.api
 local cmd = vim.cmd
 
 local M = {}
@@ -14,6 +16,11 @@ local function set_status(value)
 end
 
 local function on(focus_type)
+
+    if (truezen.before_mode_focus_on ~= nil) then
+        truezen.before_mode_focus_on()
+    end
+
     service.on()
 
     if (api.nvim_eval("winnr('$')") > 1) then
@@ -27,9 +34,18 @@ local function on(focus_type)
     end
 
     set_status("on")
+
+    if (truezen.after_mode_focus_on ~= nil) then
+        truezen.after_mode_focus_on()
+    end
 end
 
 local function off(focus_type)
+
+    if (truezen.before_mode_focus_off ~= nil) then
+        truezen.before_mode_focus_off()
+    end
+
     service.off()
 
     if (focus_type == "experimental") then
@@ -39,6 +55,10 @@ local function off(focus_type)
     end
 
     set_status("off")
+
+    if (truezen.after_mode_focus_off ~= nil) then
+        truezen.after_mode_focus_off()
+    end
 end
 
 local function toggle()
@@ -51,12 +71,12 @@ local function toggle()
             local focus_method = opts["modes"]["focus"]["focus_method"]
 
             if (focus_method == "native") then
-                local current_session_height = vim.api.nvim_eval("&co")
-                local current_session_width = vim.api.nvim_eval("&lines")
+                local current_session_height = api.nvim_eval("&co")
+                local current_session_width = api.nvim_eval("&lines")
                 local total_current_session = tonumber(current_session_width) + tonumber(current_session_height)
 
-                local current_window_height = vim.api.nvim_eval("winheight('%')")
-                local current_window_width = vim.api.nvim_eval("winwidth('%')")
+                local current_window_height = api.nvim_eval("winheight('%')")
+                local current_window_width = api.nvim_eval("winwidth('%')")
                 local total_current_window = tonumber(current_window_width) + tonumber(current_window_height)
 
                 difference = total_current_session - total_current_window
