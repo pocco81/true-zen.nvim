@@ -10,7 +10,7 @@ require("true-zen.utils.viml_funcs")
 
 local minimalist_mode = require("true-zen.services.modes.mode-minimalist.init")
 -- local ataraxis_mode = require("true-zen.services.modes.mode-ataraxis.init")
--- local focus_mode = require("true-zen.services.modes.mode-focus.init")
+local focus_mode = require("true-zen.services.modes.mode-focus.init")
 
 -- must have, don't remove
 -- local resume = require("true-zen.services.resume.init")
@@ -30,8 +30,8 @@ function M.main(option, command_option)
         minimalist_mode.main(command_option)
     -- elseif (option == 4) then
     --     ataraxis_mode.main(command_option)
-    -- elseif (option == 5) then
-    --     focus_mode.main(command_option)
+    elseif (option == 5) then
+        focus_mode.main(command_option)
     end
 end
 
