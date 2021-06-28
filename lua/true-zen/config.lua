@@ -58,7 +58,6 @@ config.options = {
 }
 
 function config.set_options(opts)
-	print("setting up options...")
     opts = opts or {}
 
     for opt, _ in pairs(opts) do
