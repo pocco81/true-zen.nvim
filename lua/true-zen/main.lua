@@ -8,7 +8,7 @@ local left = require("true-zen.services.ui.left.init")
 -- better to run it when it's going to be used and not at startup
 require("true-zen.utils.viml_funcs")
 
--- local minimalist_mode = require("true-zen.services.modes.mode-minimalist.init")
+local minimalist_mode = require("true-zen.services.modes.mode-minimalist.init")
 -- local ataraxis_mode = require("true-zen.services.modes.mode-ataraxis.init")
 -- local focus_mode = require("true-zen.services.modes.mode-focus.init")
 
@@ -26,8 +26,8 @@ function M.main(option, command_option)
         top.main(command_option)
     elseif (option == 2) then
         left.main(command_option)
-    -- elseif (option == 3) then
-    --     minimalist_mode.main(command_option)
+    elseif (option == 3) then
+        minimalist_mode.main(command_option)
     -- elseif (option == 4) then
     --     ataraxis_mode.main(command_option)
     -- elseif (option == 5) then
