@@ -10,21 +10,21 @@ local function get_status()
 end
 
 local function set_status(value)
-	status_mode_focus = value
+    status_mode_focus = value
 end
 
 local function on(focus_type)
     service.on()
 
-	if (api.nvim_eval("winnr('$')") > 1) then
-		if (focus_type == "experimental") then
-			service.on("experimental")
-		elseif (focus_type == "native") then
-			service.on("native")
-		end
-	else
-		print("TrueZen: You cannot focus the current window because there is only one")
-	end
+    if (api.nvim_eval("winnr('$')") > 1) then
+        if (focus_type == "experimental") then
+            service.on("experimental")
+        elseif (focus_type == "native") then
+            service.on("native")
+        end
+    else
+        print("TrueZen: You cannot focus the current window because there is only one")
+    end
 
     set_status("on")
 end
@@ -32,11 +32,11 @@ end
 local function off(focus_type)
     service.off()
 
-	if (focus_type == "experimental") then
-		service.off("experimental")
-	elseif (focus_type == "native") then
-		service.off("native")
-	end
+    if (focus_type == "experimental") then
+        service.off("experimental")
+    elseif (focus_type == "native") then
+        service.off("native")
+    end
 
     set_status("off")
 end
@@ -63,18 +63,18 @@ local function toggle()
 
                 for i = 1, tonumber(opts["modes"]["focus"]["margin_of_error"]), 1 do
                     if (difference == i) then -- since difference is small, it's assumable that window is focused
-						off("native")
+                        off("native")
                         break
                     elseif (i == tonumber(opts["modes"]["focus"]["margin_of_error"])) then -- difference is too big, it's assumable that window is not focused
-						on("native")
+                        on("native")
                         break
                     end
                 end
             elseif (focus_method == "experimental") then
-				on("experimental")
+                on("experimental")
             end
         else
-			print("TrueZen: You cannot focus the current window because there is only one")
+            print("TrueZen: You cannot focus the current window because there is only one")
         end
     end
 end
