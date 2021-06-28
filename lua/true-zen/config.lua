@@ -41,17 +41,16 @@ config.options = {
 		},
 	},
 	integrations = {
+		vim_gitgutter = false,
 		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
 		vim_airline = false,
 		vim_powerline = false,
-		express_line = false,
-
-		tmux = false,
-		vim_gitgutter = false,
 		vim_signify = false,
-		limelight = false,
-		gitsigns = false,
-		nvim_bufferline = true
+		express_line = false,
 	},
 	misc = {
 		on_off_commands = false,
