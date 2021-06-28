@@ -1,11 +1,8 @@
 local config = {}
 
 config.options = {
-    true_false_commands = false,
-    cursor_by_mode = false,
 	ui = {
 		bottom = {
-			-- set statusline not necessary
 			laststatus = 0,
 			ruler = false,
 			showmode = false,
@@ -50,6 +47,11 @@ config.options = {
 		limelight = false,
 		gitsigns = false,
 		nvim_bufferline = true
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
 	}
 }
 

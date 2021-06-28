@@ -40,11 +40,6 @@ endfunction
 command! -nargs=* TZAtaraxis call s:MapArgs(<f-args>) | lua require'true-zen.main'.main(4, 'toggle')
 command! TZMinimalist lua require'true-zen.main'.main(3, 'toggle')
 command! TZFocus lua require'true-zen.main'.main(5, 'toggle')
-
-" general options
-command! TZBottom lua require'true-zen.main'.main(0, 'toggle')
-command! TZTop lua require'true-zen.main'.main(1, 'toggle')
-command! TZLeft lua require'true-zen.main'.main(2, 'toggle')
 " }}}
 
 let &cpo = s:save_cpo " and restore after
