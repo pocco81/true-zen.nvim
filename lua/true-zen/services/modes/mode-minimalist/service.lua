@@ -1,24 +1,20 @@
-local bottom = require("true-zen.services.bottom.init")
-local top = require("true-zen.services.top.init")
-local left = require("true-zen.services.left.init")
+-- ui
+local top = require("lua.true-zen.services.ui.top.init")
+local bottom = require("lua.true-zen.services.ui.bottom.init")
+local left = require("lua.true-zen.services.ui.left.init")
 
--- bottom specific options
+local M = {}
 
-function minimalist_true(minimalist_show) -- show
-    bottom.main(1, minimalist_show)
-    top.main(1, minimalist_show)
-    left.main(1, minimalist_show)
-	vim.g.__truezen_minimalist_hiding = "true"
+function M.on()
+	top.main("off")
+	bottom.main("off")
+	left.main("off")
 end
 
-function minimalist_false(minimalist_show) -- don't show
-    bottom.main(2, minimalist_show)
-    top.main(2, minimalist_show)
-    left.main(2, minimalist_show)
-	vim.g.__truezen_minimalist_hiding = "false"
+function M.off()
+	top.main("on")
+	bottom.main("on")
+	left.main("on")
 end
 
-return {
-    minimalist_true = minimalist_true,
-    minimalist_false = minimalist_false
-}
+return M
