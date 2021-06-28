@@ -48,7 +48,7 @@ local function toggle()
         on()
     else
         if (api.nvim_eval("winnr('$')") > 1) then
-            local focus_method = opts["focus"]["focus_method"]
+            local focus_method = opts["modes"]["focus"]["focus_method"]
 
             if (focus_method == "native") then
                 local current_session_height = vim.api.nvim_eval("&co")
@@ -61,11 +61,11 @@ local function toggle()
 
                 difference = total_current_session - total_current_window
 
-                for i = 1, tonumber(opts["focus"]["margin_of_error"]), 1 do
+                for i = 1, tonumber(opts["modes"]["focus"]["margin_of_error"]), 1 do
                     if (difference == i) then -- since difference is small, it's assumable that window is focused
 						off("native")
                         break
-                    elseif (i == tonumber(opts["focus"]["margin_of_error"])) then -- difference is too big, it's assumable that window is not focused
+                    elseif (i == tonumber(opts["modes"]["focus"]["margin_of_error"])) then -- difference is too big, it's assumable that window is not focused
 						on("native")
                         break
                     end
