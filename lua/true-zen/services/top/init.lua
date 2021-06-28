@@ -36,8 +36,8 @@ local function autocmds(state)
 end
 
 local function on()
-    autocmds("stop")
     service.on()
+    autocmds("stop")
     set_status("on")
 end
 

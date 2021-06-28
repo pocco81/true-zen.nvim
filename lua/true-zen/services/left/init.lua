@@ -36,8 +36,8 @@ local function autocmds(state)
 end
 
 local function on()
-    cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.on()")]])
     autocmds("stop")
+    cmd([[call g:TrueZenBufDo("lua require'true-zen.services.left.service'.on()")]])
     set_status("on")
 end
 
