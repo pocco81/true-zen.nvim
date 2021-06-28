@@ -37,7 +37,7 @@ config.options = {
 		},
 		focus = {
 			margin_of_error = 5,
-			focus_method = "native"
+			focus_method = "experimental"
 		},
 	},
 	integrations = {
