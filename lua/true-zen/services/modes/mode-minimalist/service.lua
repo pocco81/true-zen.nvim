@@ -1,7 +1,7 @@
 -- ui
-local top = require("lua.true-zen.services.ui.top.init")
-local bottom = require("lua.true-zen.services.ui.bottom.init")
-local left = require("lua.true-zen.services.ui.left.init")
+local top = require("true-zen.services.ui.top.init")
+local bottom = require("true-zen.services.ui.bottom.init")
+local left = require("true-zen.services.ui.left.init")
 
 local M = {}
 
