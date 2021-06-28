@@ -1,8 +1,8 @@
 local M = {}
 
-local bottom = require("true-zen.services.bottom.init")
-local top = require("true-zen.services.top.init")
-local left = require("true-zen.services.left.init")
+local bottom = require("true-zen.services.ui.bottom.init")
+local top = require("true-zen.services.ui.top.init")
+local left = require("true-zen.services.ui.left.init")
 
 
 -- better to run it when it's going to be used and not at startup
