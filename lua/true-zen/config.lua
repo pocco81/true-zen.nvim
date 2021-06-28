@@ -44,9 +44,10 @@ config.options = {
 		galaxyline = false,
 		vim_airline = false,
 		vim_powerline = false,
-		tmux = false,
 		express_line = false,
-		gitgutter = false,
+
+		tmux = false,
+		vim_gitgutter = false,
 		vim_signify = false,
 		limelight = false,
 		gitsigns = false,
