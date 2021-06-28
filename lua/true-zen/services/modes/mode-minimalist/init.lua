@@ -1,7 +1,5 @@
 local service = require("true-zen.services.modes.mode-minimalist.service")
-
-local opts = require("true-zen.config").options
-local cmd = vim.cmd
+local truezen = require("true-zen.init")
 
 local M = {}
 
@@ -14,20 +12,36 @@ local function set_status(value)
 end
 
 local function on()
-	service.on()
+    if (truezen.before_mode_minimalist_on ~= nil) then
+        truezen.before_mode_minimalist_on()
+    end
+
+    service.on()
     set_status("on")
+
+    if (truezen.after_mode_minimalist_on ~= nil) then
+        truezen.after_mode_minimalist_on()
+    end
 end
 
 local function off()
-	service.off()
+    if (truezen.before_mode_minimalist_off ~= nil) then
+        truezen.before_mode_minimalist_off()
+    end
+
+    service.off()
     set_status("off")
+
+    if (truezen.after_mode_minimalist_off ~= nil) then
+        truezen.after_mode_minimalist_off()
+    end
 end
 
 local function toggle()
     if (get_status() == "on") then
         off()
     else
-		on()
+        on()
     end
 end
 
