@@ -1,22 +1,13 @@
-
-
-
-
 local cmd = vim.cmd
 
+local M = {}
 
-
-function enable_element()
-	cmd("Limelight")
+function M.enable_element()
+    cmd("Limelight")
 end
 
-function disable_element()
-	cmd("Limelight!")
+function M.disable_element()
+    cmd("Limelight!")
 end
 
-
-
-return {
-	enable_element = enable_element,
-	disable_element = disable_element
-}
+return M
