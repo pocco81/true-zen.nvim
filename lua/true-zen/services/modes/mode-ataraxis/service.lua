@@ -105,18 +105,18 @@ local function layout(action)
             if not (tz_left_padding == "NONE") then
                 left_padding_cmd = "vertical resize " .. tz_left_padding .. ""
             else
-                left_padding_cmd = "vertical resize " .. opts["ataraxis"]["left_padding"] .. ""
+                left_padding_cmd = "vertical resize " .. opts["modes"]["ataraxis"]["left_padding"] .. ""
             end
 
             if not (tz_right_padding == "NONE") then
                 right_padding_cmd = "vertical resize " .. tz_right_padding .. ""
             else
-                right_padding_cmd = "vertical resize " .. opts["ataraxis"]["right_padding"] .. ""
+                right_padding_cmd = "vertical resize " .. opts["modes"]["ataraxis"]["right_padding"] .. ""
             end
         else
-            if (opts["ataraxis"]["ideal_writing_area_width"] > 0) then
+            if (opts["modes"]["ataraxis"]["ideal_writing_area_width"] > 0) then
                 local window_width = api.nvim_eval("winwidth('%')")
-                local ideal_writing_area_width = opts["ataraxis"]["ideal_writing_area_width"]
+                local ideal_writing_area_width = opts["modes"]["ataraxis"]["ideal_writing_area_width"]
 
                 if (ideal_writing_area_width == window_width) then
                     print(
@@ -137,7 +137,7 @@ local function layout(action)
                     right_padding_cmd = "vertical resize " .. calculated_right_padding .. ""
                 end
             else
-                if (opts["ataraxis"]["just_do_it_for_me"] == true) then
+                if (opts["modes"]["ataraxis"]["just_do_it_for_me"] == true) then
                     -- calculate padding
                     local calculated_left_padding = api.nvim_eval("winwidth('%') / 4")
                     local calculated_right_padding = api.nvim_eval("winwidth('%') / 4")
@@ -145,8 +145,8 @@ local function layout(action)
                     left_padding_cmd = "vertical resize " .. calculated_left_padding .. ""
                     right_padding_cmd = "vertical resize " .. calculated_right_padding .. ""
                 else
-                    left_padding_cmd = "vertical resize " .. opts["ataraxis"]["left_padding"] .. ""
-                    right_padding_cmd = "vertical resize " .. opts["ataraxis"]["right_padding"] .. ""
+                    left_padding_cmd = "vertical resize " .. opts["modes"]["ataraxis"]["left_padding"] .. ""
+                    right_padding_cmd = "vertical resize " .. opts["modes"]["ataraxis"]["right_padding"] .. ""
                 end
             end
         end
@@ -155,13 +155,13 @@ local function layout(action)
         if not (tz_top_padding == "NONE") then
             top_padding_cmd = "resize " .. tz_top_padding .. ""
         else
-            top_padding_cmd = "resize " .. opts["ataraxis"]["top_padding"] .. ""
+            top_padding_cmd = "resize " .. opts["modes"]["ataraxis"]["top_padding"] .. ""
         end
 
         if not (tz_bottom_padding == "NONE") then
             bottom_padding_cmd = "resize " .. tz_bottom_padding .. ""
         else
-            bottom_padding_cmd = "resize " .. opts["ataraxis"]["bottom_padding"] .. ""
+            bottom_padding_cmd = "resize " .. opts["modes"]["ataraxis"]["bottom_padding"] .. ""
         end
 
         gen_buffer_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
@@ -204,9 +204,9 @@ function M.on()
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
-    if (opts["ataraxis"]["bg_configuration"] == true) then
-        hi_group.store_hi_groups(opts["ataraxis"]["affected_higroups"])
-        hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"], opts["ataraxis"]["affected_higroups"])
+    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+        hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
+        hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
 end
 
@@ -216,7 +216,7 @@ function M.off()
     integrations_loader.unload_integrations()
     fillchar.restore_fillchars()
 
-    if (opts["ataraxis"]["bg_configuration"] == true) then
+    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.restore_hi_groups()
     end
 end
