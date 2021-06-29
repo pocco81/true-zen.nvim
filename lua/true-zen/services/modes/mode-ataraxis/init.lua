@@ -1,4 +1,5 @@
 local service = require("true-zen.services.modes.mode-ataraxis.service")
+local opts = require("true-zen.config").options
 -- local truezen = require("true-zen.init")
 
 local api = vim.api
@@ -75,9 +76,21 @@ function M.resume()
         print("getting id of only the window that is modifiable...")
         print("going to the main window by id...")
 
-		-- cmd([[call g:TrueZenWinDo("if (&ma) | call win_gotoid(win_getid()) | endif")]])
+		local is_integration_noclc_enabled = opts["integrations"]["noclc"]
+
+		if (is_integration_noclc_enabled == true) then
+			local integration_noclc = require("true-zen.services.integrations.noclc")
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.disable_element("cusorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.disable_element("cusorcolumn") end
+		end
+
 		cmd([[call win_gotoid(g:truezen_main_window)]])
 
+		if (is_integration_noclc_enabled == true) then
+			local integration_noclc = require("true-zen.services.integrations.noclc")
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.enable_element("cusorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.enable_element("cusorcolumn") end
+		end
 
 		autocmds("start")
     else
