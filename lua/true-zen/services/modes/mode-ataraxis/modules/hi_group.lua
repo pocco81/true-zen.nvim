@@ -64,6 +64,7 @@ function M.set_hi_groups(custome_bg, affected_higroups)
     local call_tran = ""
 
     if (custome_bg == "" or custome_bg == "" or custome_bg == nil) then
+		print("got here-----------------------------------")
         call_tran = "call Tranquilize('black', g:__truezen_viml_affected_higroup)"
     else
         call_tran = "call Tranquilize('" .. custome_bg .. "', g:__truezen_viml_affected_higroup)"
