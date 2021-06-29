@@ -16,7 +16,9 @@ local function set_status(value)
 end
 
 local function eval_main_window()
-	vim.cmd([[windo if &ma | if exists("b:truezen_main_window_id") | let g:truezen_main_window = b:truezen_main_window_id | endif | endif]])
+    vim.cmd(
+        [[windo if &ma | if exists("b:truezen_main_window_id") | let g:truezen_main_window = b:truezen_main_window_id | endif | endif]]
+    )
 end
 
 local function autocmds(state)
@@ -40,72 +42,34 @@ local function autocmds(state)
 end
 
 local function get_win_dimensions()
-	local dimensions = {}
-	dimensions["x_axis"] = api.nvim_eval([[winwidth('%')]])
-	dimensions["y_axis"] = api.nvim_eval([[winheight('%')]])
+    local dimensions = {}
+    dimensions["x_axis"] = api.nvim_eval([[winwidth('%')]])
+    dimensions["y_axis"] = api.nvim_eval([[winheight('%')]])
 
-	return dimensions
+    return dimensions
 end
 
 local function on()
     service.on()
-	autocmds("start")
+    autocmds("start")
     set_status("on")
 end
 
 local function off()
-	autocmds("stop")
+    autocmds("stop")
     service.off()
     set_status("off")
 end
 
 function M.resume()
-
-	-- if (vim.fn.exists("w:truezen_window")) then
-		print("VAR EXISTS!")
-		-- local layout = api.nvim_eval("winrestcmd()")
-
-		-- if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
-		-- 	cmd("set number")
-		-- 	print("closing all windows without truezen_buffer var...")
-		-- 	print("load layout...")
-		-- 	print("getting id of only the window that is modifiable...")
-		-- 	print("going to the main window by id...")
-		-- else
-		-- 	print("Layout is still the same")
-		-- end
-
-	-- else
-		-- print("var does not exist...")
-	-- end
-
-	-- local window_id = api.nvim_eval([[get(g:,"truezen_main_window_id", 1000)]])
-	-- print("window id = "..window_id)
-	-- vim.fn.win_gotoid(window_id)
-	-- cmd([[call win_gotoid(g:truezen_main_window_id)]])
-
-	-- print("TZ buff"..tostring(fn.exists("b:truezen_buffer")))
-	-- if (fn.exists("b:truezen_buffer") == 1) then
-	-- 	eval_main_window()
-	-- 	print(tostring(vim.g.truezen_main_window))
-	-- else
-	-- 	print("it was not a padding buffer")
-	-- end
-	-- local window_id = api.nvim_eval([[get(g:,"truezen_main_window", "NONE")]])
-
-	-- if not (window_id == "NONE") then
-	-- 	fn.win_gotoid(window_id)
-	-- 	cmd([[unlet g:truezen_main_window]])
-
-	-- 	local dimensions = get_win_dimensions()
-
-	-- 	if (dimensions["x_axis"] ~= service.get_axis_length("x_axis") or dimensions["y_axis"] ~= service.get_axis_length("y_axis")) then
-	-- 		cmd("only")
-	-- 		service.layout("generate")
-	-- 	end
-	-- else
-	-- 	print("TrueZen: an error occurred, main window was deleted.")
-	-- end
+    if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
+        print("closing all windows without truezen_buffer var...")
+        print("load layout...")
+        print("getting id of only the window that is modifiable...")
+        print("going to the main window by id...")
+    else
+        print("Layout is still the same")
+    end
 end
 
 local function toggle()
