@@ -1,4 +1,4 @@
-local service = require("true-zen.services.mode-ataraxis.service")
+local service = require("true-zen.services.modes.mode-ataraxis.service")
 -- local truezen = require("true-zen.init")
 
 local M = {}
