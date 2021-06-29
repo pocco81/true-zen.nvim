@@ -75,7 +75,8 @@ function M.resume()
         print("getting id of only the window that is modifiable...")
         print("going to the main window by id...")
 
-		cmd([[call g:TrueZenWinDo("if (&ma) | call win_gotoid(win_getid()) | endif")]])
+		-- cmd([[call g:TrueZenWinDo("if (&ma) | call win_gotoid(win_getid()) | endif")]])
+		cmd([[call win_gotoid(g:truezen_main_window)]])
 
 
 		autocmds("start")
