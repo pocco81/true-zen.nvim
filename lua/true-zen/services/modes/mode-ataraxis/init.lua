@@ -63,10 +63,19 @@ end
 
 function M.resume()
     if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
+		autocmds("stop")
         print("closing all windows without truezen_buffer var...")
-        print("load layout...")
+
+		cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
+
+
+        print("loading layout...")
+		cmd(service.get_layout())
+
         print("getting id of only the window that is modifiable...")
         print("going to the main window by id...")
+
+		autocmds("start")
     else
         print("Layout is still the same")
     end
