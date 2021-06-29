@@ -93,11 +93,11 @@ function M.resume()
 
 		cmd([[call win_gotoid(g:truezen_main_window)]])
 
-		if (is_integration_noclc_enabled == true) then
-			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (exists_cursorline == 1) then integration_noclc.enable_element("cursorline") end
-			if (exists_cursorcolumn == 1) then integration_noclc.enable_element("cursorcolumn") end
-		end
+		-- if (is_integration_noclc_enabled == true) then
+		-- 	local integration_noclc = require("true-zen.services.integrations.noclc")
+		-- 	if (exists_cursorline == 1) then integration_noclc.enable_element("cursorline") end
+		-- 	if (exists_cursorcolumn == 1) then integration_noclc.enable_element("cursorcolumn") end
+		-- end
 
 		autocmds("start")
     else
