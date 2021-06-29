@@ -218,8 +218,8 @@ function M.on()
 end
 
 function M.off()
-    mode_minimalist.main("off")
     layout("destroy")
+    mode_minimalist.main("off")
     -- integrations_loader.unload_integrations()
     fillchar.restore_fillchars()
 
