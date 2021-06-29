@@ -25,7 +25,7 @@ local function autocmds(state)
             [[
 			augroup truezen_mode_ataraxis
 				autocmd!
-				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()"
 			augroup END
 		]],
             false
