@@ -25,7 +25,7 @@ local function autocmds(state)
             [[
 			augroup truezen_mode_ataraxis
 				autocmd!
-				autocmd BufWinEnter * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()"
+				autocmd WinLeave * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()"
 			augroup END
 		]],
             false
