@@ -21,6 +21,10 @@ local function off()
     set_status("off")
 end
 
+function M.resume()
+
+end
+
 local function toggle()
     if (get_status() == "on") then
         off()
