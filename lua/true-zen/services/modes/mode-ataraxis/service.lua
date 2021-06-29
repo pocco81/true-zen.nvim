@@ -193,9 +193,7 @@ function M.on()
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
-	print("abbt1")
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
-		print("abbt2")
         hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
