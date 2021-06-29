@@ -9,7 +9,7 @@ function M.enable_element()
 end
 
 function M.disable_element()
-	print("I RAN-------------------------------------------------------------------")
+	print("disabling galaxyline...")
     require("galaxyline").disable_galaxyline()
     require("galaxyline").inactive_galaxyline()
     cmd("setlocal statusline=-")
