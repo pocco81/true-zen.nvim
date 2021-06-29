@@ -67,17 +67,15 @@ function M.resume()
 		autocmds("stop")
 
 		local is_integration_noclc_enabled = opts["integrations"]["noclc"]
+		local exists_cursorline = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorline")]])
+		local exists_cursorcolumn = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorcolumn")]])
 
         print("closing all windows without truezen_buffer var...")
 
 		if (is_integration_noclc_enabled == true) then
 			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then
-				print("GOT HERE----------------0")
-				integration_noclc.disable_element("cursorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then
-				print("GOT HERE----------------1")
-				integration_noclc.disable_element("cursorcolumn") end
+			if (exists_cursorline == 1) then integration_noclc.disable_element("cursorline") end
+			if (exists_cursorcolumn == 1) then integration_noclc.disable_element("cursorcolumn") end
 		end
 
 		cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
@@ -95,12 +93,8 @@ function M.resume()
 
 		if (is_integration_noclc_enabled == true) then
 			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then
-				print("GOT HERE----------------2")
-				integration_noclc.enable_element("cursorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then
-				print("GOT HERE----------------3")
-				integration_noclc.enable_element("cursorcolumn") end
+			if (exists_cursorline == 1) then integration_noclc.enable_element("cursorline") end
+			if (exists_cursorcolumn == 1) then integration_noclc.enable_element("cursorcolumn") end
 		end
 
 		autocmds("start")
