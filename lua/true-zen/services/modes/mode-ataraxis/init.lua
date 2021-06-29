@@ -75,6 +75,9 @@ function M.resume()
         print("getting id of only the window that is modifiable...")
         print("going to the main window by id...")
 
+		cmd([[call g:TrueZenWinDo("if (&ma) | call win_gotoid(win_getid()) | endif")]])
+
+
 		autocmds("start")
     else
         print("Layout is still the same")
