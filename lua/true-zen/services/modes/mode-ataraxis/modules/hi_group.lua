@@ -2,7 +2,9 @@ local cmd = vim.cmd
 local g = vim.g
 local api = vim.api
 
-function set_hi_groups(custome_bg, affected_higroups)
+local M = {}
+
+function M.set_hi_groups(custome_bg, affected_higroups)
     custome_bg = custome_bg or ""
     affected_higroups =
         affected_higroups or
@@ -76,7 +78,7 @@ local function clear_table(tbl)
 	end
 end
 
-function store_hi_groups(local_hi_groups)
+function M.store_hi_groups(local_hi_groups)
     local_hi_groups =
         local_hi_groups or
         {
@@ -130,7 +132,7 @@ function store_hi_groups(local_hi_groups)
     hi_groups_stored = true
 end
 
-function restore_hi_groups()
+function M.restore_hi_groups()
     if (hi_groups_stored == false or hi_groups_stored == nil) then
     elseif (hi_groups_stored == true) then
         for hi_index, _ in pairs(hi_groups) do
@@ -148,8 +150,4 @@ function restore_hi_groups()
     end
 end
 
-return {
-    set_hi_groups = set_hi_groups,
-    store_hi_groups = store_hi_groups,
-    restore_hi_groups = restore_hi_groups
-}
+return M

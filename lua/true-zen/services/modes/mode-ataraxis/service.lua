@@ -167,7 +167,7 @@ local function layout(action)
         gen_buffer_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
         gen_buffer_specs("vnew", right_padding_cmd, "wincmd h") -- right buffer
         gen_buffer_specs("leftabove new", top_padding_cmd, "wincmd j") -- right buffer
-        gen_buffer_specs("rightbelow new", bottom_padding_cmd, "wincmd k") -- right buffer
+        gen_buffer_specs("rightbelow new", bottom_padding_cmd, "wincmd k") -- bottom buffer
         -- final position: middle buffer
 
         if (get_axis_length("x") == nil) then
@@ -175,25 +175,6 @@ local function layout(action)
             set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
     elseif (action == "destroy") then
-        -- if (window_has_neighbour("left")) then
-			-- print("was at left")
-        --     cmd("wincmd h")
-        --     cmd("q")
-        -- elseif (window_has_neighbour("right")) then
-			-- print("was at right")
-        --     cmd("wincmd l")
-        --     cmd("q")
-        -- elseif (window_has_neighbour("bottom")) then
-			-- print("was at bottom")
-        --     cmd("wincmd j")
-        --     cmd("q")
-        -- elseif (window_has_neighbour("top")) then
-			-- print("was at top")
-        --     cmd("wincmd k")
-        --     cmd("q")
-        -- end
-
-		-- because of `tabe %`
         cmd("only")
 		cmd("q")
 
@@ -208,25 +189,25 @@ function M.on()
 
     mode_minimalist.main("on")
     layout("generate")
-    integrations_loader.unload_integrations()
-    -- fillchar.store_fillchars()
-    -- fillchar.set_fillchars()
+    -- integrations_loader.unload_integrations()
+    fillchar.store_fillchars()
+    fillchar.set_fillchars()
 
-    -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
-    --     hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
-    --     hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
-    -- end
+    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+        hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
+        hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
+    end
 end
 
 function M.off()
     layout("destroy")
     mode_minimalist.main("off")
-    integrations_loader.load_integrations()
-    -- fillchar.restore_fillchars()
+    -- integrations_loader.load_integrations()
+    fillchar.restore_fillchars()
 
-    -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
-    --     hi_group.restore_hi_groups()
-    -- end
+    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+        hi_group.restore_hi_groups()
+    end
 end
 
 return M
