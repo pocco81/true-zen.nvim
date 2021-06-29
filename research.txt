@@ -139,6 +139,13 @@ while under dev note:
 	+ BOTTOM: most important setting is 'laststatus'
 	+ TOP: most important setting is 'showtabline'
 
+2. Ataraxis mode:
+
+In order for ataraxis mode to do what is does, in order of execution it should:
+	0. preparation
+	1. run minimalist on()
+	2. generate box
+	3. load integrations
 
 
 
