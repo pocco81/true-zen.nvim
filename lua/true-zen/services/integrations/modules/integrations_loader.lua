@@ -98,7 +98,7 @@ function M.unload_integrations()
                         [[
 							augroup truezen_integration_galaxyline
 								autocmd!
-								autocmd WinLeave,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
+								autocmd WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
 							augroup END
 					]],
                         false
