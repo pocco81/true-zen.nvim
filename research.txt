@@ -164,3 +164,10 @@ let g:my_layout = winrestcmd()
 and then restore it with:
 
 execute g:my_layout
+
+
+new solution:
+1. after leyout() do let g:my_layout = winrestcmd()
+2. in resume() if current buff has b:truezen_buffer
+	2.1 compare g:my_layout with g:local_layout, if same then do nothing, else `execute g:my_layout`
+3. go to only modifiable buffer
