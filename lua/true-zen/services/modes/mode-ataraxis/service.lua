@@ -189,6 +189,9 @@ local function layout(action)
             cmd("q")
         end
 
+		-- because of `tabe %`
+        cmd("q")
+
         unlet_padding_vars()
     end
 end
@@ -200,25 +203,25 @@ function M.on()
 
     mode_minimalist.main("on")
     layout("generate")
-    integrations_loader.load_integrations()
+    -- integrations_loader.load_integrations()
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
-    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
-        hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
-        hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
-    end
+    -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+    --     hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
+    --     hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
+    -- end
 end
 
 function M.off()
     mode_minimalist.main("off")
     layout("destroy")
-    integrations_loader.unload_integrations()
+    -- integrations_loader.unload_integrations()
     fillchar.restore_fillchars()
 
-    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
-        hi_group.restore_hi_groups()
-    end
+    -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+    --     hi_group.restore_hi_groups()
+    -- end
 end
 
 return M
