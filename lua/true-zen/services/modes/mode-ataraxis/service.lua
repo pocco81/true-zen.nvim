@@ -66,7 +66,7 @@ local function gen_buffer_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
     cmd([[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_window = 'true']]
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let w:truezen_window = 'true']]
     )
 
     if (extra ~= nil) then
