@@ -58,7 +58,7 @@ local function gen_buffer_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
     cmd([[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_padding_buffer = 'true']]
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_buffer = 'true']]
     )
 
     if (extra ~= nil) then
@@ -186,7 +186,8 @@ function M.layout(action)
         end
 
 		add_main_window([[win_getid()]])
-		-- cmd([[let b:truezen_main_window_id = win_getid()]])
+		cmd([[let b:truezen_main_window_id = win_getid()]])
+		cmd([[let b:truezen_buffer = 'true']])
 
     elseif (action == "destroy") then
         cmd("only")

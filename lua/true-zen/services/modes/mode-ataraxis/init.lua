@@ -60,7 +60,7 @@ local function off()
 end
 
 function M.resume()
-	if (fn.exists("b:truezen_padding_buffer") == 1) then
+	if (fn.exists("b:truezen_buffer") == 1) then
 		eval_main_window()
 		print(tostring(vim.g.truezen_main_window))
 	else
