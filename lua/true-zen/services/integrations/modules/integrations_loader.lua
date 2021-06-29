@@ -105,6 +105,7 @@ function M.unload_integrations()
                     )
 
                     M.require_element(integration, "disable")
+                    M.require_element(integration, "disable")
 					cmd("e")
                 else
                     if (integration == "vim_airline") then
