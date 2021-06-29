@@ -81,7 +81,6 @@ function M.load_integrations()
 end
 
 function M.unload_integrations()
-    print("at least ran")
     for integration, _ in pairs(opts["integrations"]) do
         if (integration == "nvim_bufferline") then
             goto continue
@@ -94,8 +93,6 @@ function M.unload_integrations()
              then
                 M.set_has_line_with_integration(true)
                 if (integration == "galaxyline" or integration == "express_line") then
-                    print("got here")
-
                     api.nvim_exec(
                         [[
 							augroup truezen_integration_galaxyline
