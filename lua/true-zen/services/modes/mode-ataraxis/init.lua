@@ -60,6 +60,9 @@ local function off()
 end
 
 function M.resume()
+	local window_id = api.nvim_eval([[get(g:,"truezen_main_window_id", 1000)]])
+	fn.win_gotoid(window_id)
+
 	-- print("TZ buff"..tostring(fn.exists("b:truezen_buffer")))
 	-- if (fn.exists("b:truezen_buffer") == 1) then
 	-- 	eval_main_window()
