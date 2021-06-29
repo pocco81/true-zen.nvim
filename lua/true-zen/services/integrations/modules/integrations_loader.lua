@@ -26,7 +26,6 @@ end
 
 function M.load_integrations()
     for integration, _ in pairs(opts["integrations"]) do
-
 		if (integration == "nvim_bufferline") then
 			goto continue
 		end
@@ -70,6 +69,7 @@ function M.load_integrations()
 end
 
 function M.unload_integrations()
+	print("at least ran")
     for integration, _ in pairs(opts["integrations"]) do
 		if (integration == "nvim_bufferline") then
 			goto continue
@@ -80,6 +80,7 @@ function M.unload_integrations()
 			if (integration == "galaxyline" or integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line") then
 				M.set_has_line_with_integration(true)
 				if (integration == "galaxyline" or integration == "express_line") then
+					print("got here")
 					require_element(integration, "disable")
 				else
 					if (integration == "vim_airline") then
