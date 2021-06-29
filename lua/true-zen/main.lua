@@ -4,16 +4,13 @@ local bottom = require("true-zen.services.ui.bottom.init")
 local top = require("true-zen.services.ui.top.init")
 local left = require("true-zen.services.ui.left.init")
 
-
 -- better to run it when it's going to be used and not at startup
 require("true-zen.utils.viml_funcs")
 
 local minimalist_mode = require("true-zen.services.modes.mode-minimalist.init")
--- local ataraxis_mode = require("true-zen.services.modes.mode-ataraxis.init")
+local ataraxis_mode = require("true-zen.services.modes.mode-ataraxis.init")
 local focus_mode = require("true-zen.services.modes.mode-focus.init")
 
--- must have, don't remove
--- local resume = require("true-zen.services.resume.init")
 local cmd = vim.cmd
 
 function M.main(option, command_option)
@@ -28,8 +25,8 @@ function M.main(option, command_option)
         left.main(command_option)
     elseif (option == 3) then
         minimalist_mode.main(command_option)
-    -- elseif (option == 4) then
-    --     ataraxis_mode.main(command_option)
+    elseif (option == 4) then
+        ataraxis_mode.main(command_option)
     elseif (option == 5) then
         focus_mode.main(command_option)
     end
