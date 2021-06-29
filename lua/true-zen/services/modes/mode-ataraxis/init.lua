@@ -1,6 +1,6 @@
 local service = require("true-zen.services.modes.mode-ataraxis.service")
 local opts = require("true-zen.config").options
--- local truezen = require("true-zen.init")
+local truezen = require("true-zen.init")
 
 local api = vim.api
 local fn = vim.fn
@@ -43,15 +43,32 @@ local function autocmds(state)
 end
 
 local function on()
+
+    if (truezen.before_mode_ataraxis_on ~= nil) then
+        truezen.before_mode_ataraxis_on()
+    end
+
     service.on()
     autocmds("start")
     set_status("on")
+
+    if (truezen.after_mode_ataraxis_on ~= nil) then
+        truezen.after_mode_ataraxis_on()
+    end
 end
 
 local function off()
+    if (truezen.before_mode_ataraxis_off ~= nil) then
+        truezen.before_mode_ataraxis_off()
+    end
+
     autocmds("stop")
     service.off()
     set_status("off")
+
+    if (truezen.after_mode_ataraxis_off ~= nil) then
+        truezen.after_mode_ataraxis_off()
+    end
 end
 
 function M.resume()
