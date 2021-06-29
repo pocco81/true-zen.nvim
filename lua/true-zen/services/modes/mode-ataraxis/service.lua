@@ -1,5 +1,5 @@
 local opts = require("true-zen.config").options
-local mode_minimalist = require("lua.true-zen.services.modes.mode-minimalist.init")
+local mode_minimalist = require("true-zen.services.modes.mode-minimalist.init")
 local hi_group = require("true-zen.services.modes.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.modes.mode-ataraxis.modules.fillchar")
 local integrations_loader = require("true-zen.services.integrations.modules.integrations_loader")
