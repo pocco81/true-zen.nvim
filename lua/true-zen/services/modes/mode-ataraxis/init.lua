@@ -66,6 +66,7 @@ function M.resume()
 		local layout = api.nvim_eval("winrestcmd()")
 
 		if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
+			cmd("set number")
 			print("closing all windows without truezen_buffer var...")
 			print("load layout...")
 			print("getting id of only the window that is modifiable...")
