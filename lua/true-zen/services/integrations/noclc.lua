@@ -4,13 +4,13 @@ local cmd = vim.cmd
 local M = {}
 
 function M.enable_element(element)
-	if (element == "cusorline") then require("no-clc.modules.cusorline.init").main(true)
-	elseif (element == "cusorcolumn") then require("no-clc.modules.cusorcolumn.init").main(true) end
+	if (element == "cursorline") then require("no-clc.modules.cursorline.init").main(true)
+	elseif (element == "cursorcolumn") then require("no-clc.modules.cursorcolumn.init").main(true) end
 end
 
 function M.disable_element(element)
-	if (element == "cusorline") then require("no-clc.modules.cusorline.init").main(false)
-	elseif (element == "cusorcolumn") then require("no-clc.modules.cusorcolumn.init").main(false) end
+	if (element == "cursorline") then require("no-clc.modules.cursorline.init").main(false)
+	elseif (element == "cursorcolumn") then require("no-clc.modules.cursorcolumn.init").main(false) end
 end
 
 return M

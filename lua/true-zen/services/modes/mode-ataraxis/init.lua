@@ -80,16 +80,16 @@ function M.resume()
 
 		if (is_integration_noclc_enabled == true) then
 			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.disable_element("cusorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.disable_element("cusorcolumn") end
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.disable_element("cursorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.disable_element("cursorcolumn") end
 		end
 
 		cmd([[call win_gotoid(g:truezen_main_window)]])
 
 		if (is_integration_noclc_enabled == true) then
 			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.enable_element("cusorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.enable_element("cusorcolumn") end
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.enable_element("cursorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.enable_element("cursorcolumn") end
 		end
 
 		autocmds("start")
