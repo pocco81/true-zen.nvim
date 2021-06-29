@@ -41,7 +41,6 @@ local function get_table(tbl)
 end
 
 function M.save_local_settings(tbl, element)
-    print("got to save_local_settings()")
     local lcl_tbl = get_table(element)
 
     for key, value in pairs(tbl) do
@@ -62,18 +61,14 @@ function M.save_local_settings(tbl, element)
 end
 
 function M.load_settings(tbl, tbl_group)
-    print("got to load_settings()")
     if (tbl_group == "USER") then -- user settings
         for key, value in pairs(tbl) do
             assert_and_execute(key, value)
         end
     else -- saved settings
-        print("here------1")
         if (next(get_table(tbl)) == nil) then
-            print("here------1.2")
             print("TrueZen: Cannot toggle " .. tbl_group .. " on because it is already on")
         else
-            print("here------1.3")
             for key, value in pairs(get_table(tbl)) do
                 assert_and_execute(key, value)
             end
