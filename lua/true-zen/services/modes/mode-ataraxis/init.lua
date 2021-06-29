@@ -42,14 +42,6 @@ local function autocmds(state)
     end
 end
 
-local function get_win_dimensions()
-    local dimensions = {}
-    dimensions["x_axis"] = api.nvim_eval([[winwidth('%')]])
-    dimensions["y_axis"] = api.nvim_eval([[winheight('%')]])
-
-    return dimensions
-end
-
 local function on()
     service.on()
     autocmds("start")
@@ -66,38 +58,9 @@ function M.resume()
     if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
 		autocmds("stop")
 
-		local is_integration_noclc_enabled = opts["integrations"]["noclc"]
-		local exists_cursorline = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorline")]])
-		local exists_cursorcolumn = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorcolumn")]])
-
-		print("exists_cursorline = "..exists_cursorline.."; exists_cursorcolumn = "..exists_cursorcolumn)
-
-        print("closing all windows without truezen_buffer var...")
-
-		if (is_integration_noclc_enabled == true) then
-			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (exists_cursorline == 1) then integration_noclc.disable_element("cursorline") end
-			if (exists_cursorcolumn == 1) then integration_noclc.disable_element("cursorcolumn") end
-		end
-
 		cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
-
-
-        print("loading layout...")
 		cmd(service.get_layout())
-
-        print("getting id of only the window that is modifiable...")
-        print("going to the main window by id...")
-
-
-
 		cmd([[call win_gotoid(g:truezen_main_window)]])
-
-		-- if (is_integration_noclc_enabled == true) then
-		-- 	local integration_noclc = require("true-zen.services.integrations.noclc")
-		-- 	if (exists_cursorline == 1) then integration_noclc.enable_element("cursorline") end
-		-- 	if (exists_cursorcolumn == 1) then integration_noclc.enable_element("cursorcolumn") end
-		-- end
 
 		autocmds("start")
     else

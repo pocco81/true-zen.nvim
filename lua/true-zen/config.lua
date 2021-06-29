@@ -50,7 +50,6 @@ config.options = {
 		vim_powerline = false,
 		vim_signify = false,
 		express_line = false,
-		noclc = false,
 	},
 	misc = {
 		on_off_commands = false,

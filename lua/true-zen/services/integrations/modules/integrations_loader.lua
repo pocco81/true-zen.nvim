@@ -128,7 +128,7 @@ function M.unload_integrations()
                     M.require_element(integration, "disable")
                 end
             else -- limelight, gitsigns,
-                M.require_element(integration, "enable")
+                M.require_element(integration, "disable")
             end
         end
 

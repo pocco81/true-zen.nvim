@@ -9,16 +9,6 @@ local api = vim.api
 
 local M = {}
 
-local main_windows = {}
-
-local function get_main_windows()
-	return main_windows
-end
-
-local function add_main_window(value)
-	table.insert(main_windows, value)
-end
-
 function M.get_axis_length(axis)
     if (axis == "x") then
         return x_axis
@@ -220,8 +210,6 @@ function M.on()
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
     integrations_loader.unload_integrations()
-
-    -- cmd([[call g:TrueZenWinDo("let b:truezen_main_window_id = win_getid()")]])
 end
 
 function M.off()
