@@ -63,6 +63,17 @@ function M.resume()
 
 	if (vim.fn.exists("b:truezen_buffer")) then
 		print("VAR EXISTS!")
+		local layout = api.nvim_eval("winrestcmd()")
+
+		if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
+			print("closing all windows without truezen_buffer var...")
+			print("load layout...")
+			print("getting id of only the window that is modifiable...")
+			print("going to the main window by id...")
+		else
+			print("Layout is still the same")
+		end
+
 	else
 		print("var does not exist...")
 	end

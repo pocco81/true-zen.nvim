@@ -27,6 +27,14 @@ function M.get_axis_length(axis)
     return y_axis
 end
 
+function M.set_layout(layout)
+	truezen_layout = layout
+end
+
+function M.get_layout()
+	return truezen_layout
+end
+
 function M.set_axis_length(axis, value)
     if (axis == "x") then
         x_axis = value
@@ -186,6 +194,7 @@ function M.layout(action)
         end
 
 		cmd([[let b:truezen_buffer = 'true']])
+		M.set_layout(api.nvim_eval([[winrestcmd()]]))
 
     elseif (action == "destroy") then
         cmd("only")
