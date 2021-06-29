@@ -24,18 +24,14 @@ config.options = {
 			right_padding = 32,
 			top_padding = 1,
 			bottom_padding = 1,
-
-
 			ideal_writing_area_width = 0,
 			just_do_it_for_me = true,
-			disable_fillchars_configuration = false,
+
+			fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
-			force_hide_statusline = true,
 			quit_untoggles_ataraxis = true,
-
 			custome_bg = "",
-			disable_bg_configuration = false,
-
+			bg_configuration = false,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {

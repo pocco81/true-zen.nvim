@@ -7,17 +7,7 @@ local integrations_loader = require("true-zen.services.integrations.modules.inte
 local cmd = vim.cmd
 local api = vim.api
 
-local main_windows = {}
-
 local M = {}
-
-local function save_main_window(id)
-    table.insert(main_windows, id)
-end
-
-local function get_saved_windows()
-    return main_windows
-end
 
 local function get_axis_length(axis)
     if (axis == "x") then
@@ -36,9 +26,6 @@ local function set_axis_length(axis, value)
 end
 
 local function ensure_settings()
-    -- 1 = true
-    -- 0 = false
-
     if (api.nvim_eval("&splitbelow != 0 || &splitright != 0") == 1) then
         cmd("set splitbelow")
         cmd("set splitright")
@@ -80,11 +67,11 @@ function window_has_neighbour(direction)
             local position = api.nvim_eval([[win_screenpos(]] .. amount_windows .. [[)]])
             amount_windows = amount_windows - 1
 
-			if ((current_position[1] + api.nvim_eval("winheight(0)")) < position[1]) then
-				return true
-			end
+            if ((current_position[1] + api.nvim_eval("winheight(0)")) < position[1]) then
+                return true
+            end
         end
-		return false
+        return false
     elseif (direction == "left") then
         return current_position[2] ~= 1
     elseif (direction == "right") then
@@ -92,14 +79,13 @@ function window_has_neighbour(direction)
             local position = api.nvim_eval([[win_screenpos(]] .. amount_windows .. [[)]])
             amount_windows = amount_windows - 1
 
-			if ((current_position[2] + api.nvim_eval("winwidth(0)")) < position[2]) then
-				return true
-			end
+            if ((current_position[2] + api.nvim_eval("winwidth(0)")) < position[2]) then
+                return true
+            end
         end
-		return false
+        return false
     end
 end
-
 
 local function layout(action)
     if (action == "generate") then
@@ -189,26 +175,25 @@ local function layout(action)
             set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
     elseif (action == "destroy") then
-
-		if (window_has_neighbour("left")) then
-			cmd("wincmd h")
-			cmd("q")
-		elseif (window_has_neighbour("right")) then
-			cmd("wincmd l")
-			cmd("q")
-		elseif (window_has_neighbour("bottom")) then
+        if (window_has_neighbour("left")) then
+            cmd("wincmd h")
+            cmd("q")
+        elseif (window_has_neighbour("right")) then
+            cmd("wincmd l")
+            cmd("q")
+        elseif (window_has_neighbour("bottom")) then
             cmd("wincmd j")
             cmd("q")
-		elseif (window_has_neighbour("top")) then
+        elseif (window_has_neighbour("top")) then
             cmd("wincmd k")
             cmd("q")
-		end
+        end
 
         unlet_padding_vars()
     end
 end
 
-function on()
+function M.on()
     if (api.nvim_eval("winnr('$')") > 1) then
         cmd("tabe %")
     end
@@ -216,12 +201,24 @@ function on()
     mode_minimalist.main("on")
     layout("generate")
     integrations_loader.load_integrations()
+    fillchar.store_fillchars()
+    fillchar.set_fillchars()
+
+    if (opts["ataraxis"]["bg_configuration"] == true) then
+        hi_group.store_hi_groups(opts["ataraxis"]["affected_higroups"])
+        hi_group.set_hi_groups(opts["ataraxis"]["custome_bg"], opts["ataraxis"]["affected_higroups"])
+    end
 end
 
-function off()
+function M.off()
     mode_minimalist.main("off")
     layout("destroy")
     integrations_loader.unload_integrations()
+    fillchar.restore_fillchars()
+
+    if (opts["ataraxis"]["bg_configuration"] == true) then
+        hi_group.restore_hi_groups()
+    end
 end
 
 return M
