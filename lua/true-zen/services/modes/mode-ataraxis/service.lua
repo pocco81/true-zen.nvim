@@ -187,8 +187,8 @@ function M.layout(action)
 
 		print(api.nvim_eval([[win_getid()]]))
 		-- add_main_window([[win_getid()]])
-		cmd([[let b:truezen_main_window_id = win_getid()]])
-		cmd([[let b:truezen_buffer = 'true']])
+		cmd([[let g:truezen_main_window_id = win_getid()]])
+		-- cmd([[let b:truezen_buffer = 'true']])
 
     elseif (action == "destroy") then
         cmd("only")
@@ -214,7 +214,7 @@ function M.on()
     end
     integrations_loader.unload_integrations()
 
-    cmd([[call g:TrueZenWinDo("let b:truezen_main_window_id = win_getid()")]])
+    -- cmd([[call g:TrueZenWinDo("let b:truezen_main_window_id = win_getid()")]])
 end
 
 function M.off()
