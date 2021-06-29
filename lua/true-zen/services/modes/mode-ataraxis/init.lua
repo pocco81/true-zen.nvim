@@ -60,6 +60,7 @@ local function off()
 end
 
 function M.resume()
+	print("TZ buff"..tostring(fn.exists("b:truezen_buffer")))
 	if (fn.exists("b:truezen_buffer") == 1) then
 		eval_main_window()
 		print(tostring(vim.g.truezen_main_window))
