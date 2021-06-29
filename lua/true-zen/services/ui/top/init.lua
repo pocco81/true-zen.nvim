@@ -51,7 +51,7 @@ end
 function M.resume()
     service.off()
     if (opts["integrations"]["nvim_bufferline"] == true) then
-		require("true-zen.services.integrations.integration_nvim_bufferline").run()
+		require("true-zen.services.integrations.nvim_bufferline").run()
     end
 end
 
