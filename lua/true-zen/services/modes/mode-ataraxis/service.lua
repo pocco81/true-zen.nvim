@@ -208,9 +208,9 @@ function M.on()
 
     mode_minimalist.main("on")
     layout("generate")
-    -- integrations_loader.load_integrations()
-    fillchar.store_fillchars()
-    fillchar.set_fillchars()
+    integrations_loader.load_integrations()
+    -- fillchar.store_fillchars()
+    -- fillchar.set_fillchars()
 
     -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
     --     hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
@@ -221,8 +221,8 @@ end
 function M.off()
     layout("destroy")
     mode_minimalist.main("off")
-    -- integrations_loader.unload_integrations()
-    fillchar.restore_fillchars()
+    integrations_loader.unload_integrations()
+    -- fillchar.restore_fillchars()
 
     -- if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
     --     hi_group.restore_hi_groups()

@@ -2,7 +2,9 @@ local opts = require("true-zen.config").options
 
 local cmd = vim.cmd
 
-function set_fillchars()
+local M = {}
+
+function M.set_fillchars()
     cmd([[set fillchars+=stl:\ ]])
     cmd([[set fillchars+=stlnc:\ ]])
     cmd([[set fillchars+=vert:\ ]])
@@ -21,10 +23,10 @@ function set_fillchars()
     end
 end
 
-function store_fillchars()
+function M.store_fillchars()
     local fillchars = vim.api.nvim_eval("&fillchars")
 
-    if (fillchars == "" or fillchars == "" or fillchars == " " or fillchars == " " or fillchars == nil) then
+    if (fillchars == "" or fillchars == " " or fillchars == nil) then
         -- vim's default fillchars
         final_fillchars = [[stl:\ ,stlnc:\ ,vert:\│,fold:·,foldopen:-,foldclose:+,foldsep:\|,diff:-,msgsep:\ ,eob:~]]
     else
@@ -37,14 +39,10 @@ function store_fillchars()
     fillchars_stored = true
 end
 
-function restore_fillchars()
+function M.restore_fillchars()
     if (fillchars_stored == true) then
         cmd("set fillchars=" .. final_fillchars .. "")
     end
 end
 
-return {
-    set_fillchars = set_fillchars,
-    store_fillchars = store_fillchars,
-    restore_fillchars = restore_fillchars
-}
+return M
