@@ -62,21 +62,21 @@ end
 function M.resume()
 	eval_main_window()
 	print(tostring(vim.g.truezen_main_window))
-	local window_id = api.nvim_eval([[get(g:,"truezen_main_window", "NONE")]])
+	-- local window_id = api.nvim_eval([[get(g:,"truezen_main_window", "NONE")]])
 
-	if not (window_id == "NONE") then
-		fn.win_gotoid(window_id)
-		cmd([[unlet g:truezen_main_window]])
+	-- if not (window_id == "NONE") then
+	-- 	fn.win_gotoid(window_id)
+	-- 	cmd([[unlet g:truezen_main_window]])
 
-		local dimensions = get_win_dimensions()
+	-- 	local dimensions = get_win_dimensions()
 
-		if (dimensions["x_axis"] ~= service.get_axis_length("x_axis") or dimensions["y_axis"] ~= service.get_axis_length("y_axis")) then
-			cmd("only")
-			service.layout("generate")
-		end
-	else
-		print("TrueZen: an error occurred, main window was deleted.")
-	end
+	-- 	if (dimensions["x_axis"] ~= service.get_axis_length("x_axis") or dimensions["y_axis"] ~= service.get_axis_length("y_axis")) then
+	-- 		cmd("only")
+	-- 		service.layout("generate")
+	-- 	end
+	-- else
+	-- 	print("TrueZen: an error occurred, main window was deleted.")
+	-- end
 end
 
 local function toggle()
