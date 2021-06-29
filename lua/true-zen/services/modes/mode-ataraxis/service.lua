@@ -57,8 +57,8 @@ end
 local function gen_buffer_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
-    cmd(
-        "setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0"
+    cmd([[
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_padding_buffer = 'true']]
     )
 
     if (extra ~= nil) then
@@ -185,9 +185,8 @@ function M.layout(action)
             M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
-		-- add_main_window([[win_getid()]])
-
-		vim.b.truezen_main_window_id = vim.api.nvim_eval([[win_getid()]])
+		add_main_window([[win_getid()]])
+		-- cmd([[let b:truezen_main_window_id = win_getid()]])
 
     elseif (action == "destroy") then
         cmd("only")
@@ -212,6 +211,8 @@ function M.on()
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
     integrations_loader.unload_integrations()
+
+    cmd([[call g:TrueZenWinDo("let b:truezen_main_window_id = win_getid()")]])
 end
 
 function M.off()

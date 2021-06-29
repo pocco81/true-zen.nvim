@@ -60,8 +60,12 @@ local function off()
 end
 
 function M.resume()
-	eval_main_window()
-	print(tostring(vim.g.truezen_main_window))
+	if (fn.exists("b:truezen_padding_buffer") == 1) then
+		eval_main_window()
+		print(tostring(vim.g.truezen_main_window))
+	else
+		print("it was not a padding buffer")
+	end
 	-- local window_id = api.nvim_eval([[get(g:,"truezen_main_window", "NONE")]])
 
 	-- if not (window_id == "NONE") then
