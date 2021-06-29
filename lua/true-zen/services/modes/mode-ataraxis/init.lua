@@ -16,7 +16,7 @@ local function set_status(value)
 end
 
 local function eval_main_window()
-	cmd([[windo if &ma | if exists("b:truezen_main_window_id") | let g:truezen_main_window = b:truezen_main_window_id | endif | endif]])
+	vim.cmd([[windo if &ma | if exists("b:truezen_main_window_id") | let g:truezen_main_window = b:truezen_main_window_id | endif | endif]])
 end
 
 local function autocmds(state)
@@ -61,6 +61,7 @@ end
 
 function M.resume()
 	eval_main_window()
+	print(tostring(vim.g.truezen_main_window))
 	local window_id = api.nvim_eval([[get(g:,"truezen_main_window", "NONE")]])
 
 	if not (window_id == "NONE") then
