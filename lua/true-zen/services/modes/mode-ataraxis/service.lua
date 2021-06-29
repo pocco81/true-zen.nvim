@@ -185,7 +185,8 @@ function M.layout(action)
             M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
-		add_main_window([[win_getid()]])
+		print(api.nvim_eval([[win_getid()]]))
+		-- add_main_window([[win_getid()]])
 		cmd([[let b:truezen_main_window_id = win_getid()]])
 		cmd([[let b:truezen_buffer = 'true']])
 
