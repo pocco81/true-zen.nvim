@@ -98,15 +98,13 @@ function M.unload_integrations()
                         [[
 							augroup truezen_integration_galaxyline
 								autocmd!
-								autocmd WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
+								autocmd WinLeave,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
 							augroup END
 					]],
                         false
                     )
 
                     M.require_element(integration, "disable")
-                    M.require_element(integration, "disable")
-					cmd("e")
                 else
                     if (integration == "vim_airline") then
                         if (api.nvim_eval("exists('#airline')") == 1) then
