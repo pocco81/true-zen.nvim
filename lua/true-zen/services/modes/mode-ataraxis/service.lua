@@ -176,15 +176,19 @@ local function layout(action)
         end
     elseif (action == "destroy") then
         if (window_has_neighbour("left")) then
+			print("was at left")
             cmd("wincmd h")
             cmd("q")
         elseif (window_has_neighbour("right")) then
+			print("was at right")
             cmd("wincmd l")
             cmd("q")
         elseif (window_has_neighbour("bottom")) then
+			print("was at bottom")
             cmd("wincmd j")
             cmd("q")
         elseif (window_has_neighbour("top")) then
+			print("was at top")
             cmd("wincmd k")
             cmd("q")
         end
