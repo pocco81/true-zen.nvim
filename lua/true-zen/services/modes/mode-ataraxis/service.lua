@@ -210,6 +210,7 @@ function M.on()
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
     integrations_loader.unload_integrations()
+	require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')
 end
 
 function M.off()
