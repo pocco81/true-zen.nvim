@@ -185,10 +185,7 @@ function M.layout(action)
             M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
-		print(api.nvim_eval([[win_getid()]]))
-		-- add_main_window([[win_getid()]])
-		cmd([[let g:truezen_main_window_id = win_getid()]])
-		-- cmd([[let b:truezen_buffer = 'true']])
+		cmd([[let b:truezen_buffer = 'true']])
 
     elseif (action == "destroy") then
         cmd("only")
