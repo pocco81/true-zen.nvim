@@ -19,7 +19,7 @@ local function add_main_window(value)
 	table.insert(main_windows, value)
 end
 
-local function get_axis_length(axis)
+function M.get_axis_length(axis)
     if (axis == "x") then
         return x_axis
     end
@@ -27,7 +27,7 @@ local function get_axis_length(axis)
     return y_axis
 end
 
-local function set_axis_length(axis, value)
+function M.set_axis_length(axis, value)
     if (axis == "x") then
         x_axis = value
     else
@@ -97,7 +97,7 @@ function window_has_neighbour(direction)
     end
 end
 
-local function layout(action)
+function M.layout(action)
     if (action == "generate") then
         ensure_settings()
 
@@ -176,16 +176,18 @@ local function layout(action)
 
         gen_buffer_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
         gen_buffer_specs("vnew", right_padding_cmd, "wincmd h") -- right buffer
-        gen_buffer_specs("leftabove new", top_padding_cmd, "wincmd j") -- right buffer
+        gen_buffer_specs("leftabove new", top_padding_cmd, "wincmd j") -- top buffer
         gen_buffer_specs("rightbelow new", bottom_padding_cmd, "wincmd k") -- bottom buffer
         -- final position: middle buffer
 
-        if (get_axis_length("x") == nil) then
-            set_axis_length("x", api.nvim_eval([[winwidth('%')]]))
-            set_axis_length("y", api.nvim_eval([[winheight('%')]]))
+        if (M.get_axis_length("x") == nil) then
+            M.set_axis_length("x", api.nvim_eval([[winwidth('%')]]))
+            M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
 		add_main_window([[win_getid()]])
+
+		vim.b.truezen_main_window_id = vim.api.nvim_eval([[win_getid()]])
 
     elseif (action == "destroy") then
         cmd("only")
@@ -201,7 +203,7 @@ function M.on()
     -- end
 
     mode_minimalist.main("on")
-    layout("generate")
+    M.layout("generate")
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
@@ -213,7 +215,7 @@ function M.on()
 end
 
 function M.off()
-    layout("destroy")
+    M.layout("destroy")
     mode_minimalist.main("off")
     integrations_loader.load_integrations()
     fillchar.restore_fillchars()
