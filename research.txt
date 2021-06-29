@@ -152,5 +152,5 @@ In order for ataraxis mode to do what is does, in order of execution it should:
 
 
 
-
-
+For ataraxis:
+Now we need to store and windows that have the main contents so that resume() will grab the id of every window in the current buffer and check if it exists in the table, if it does go to that buffer and compare sizes.

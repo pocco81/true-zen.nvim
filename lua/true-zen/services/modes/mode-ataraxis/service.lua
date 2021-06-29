@@ -9,6 +9,16 @@ local api = vim.api
 
 local M = {}
 
+local main_windows = {}
+
+local function get_main_windows()
+	return main_windows
+end
+
+local function add_main_window(value)
+	table.insert(main_windows, value)
+end
+
 local function get_axis_length(axis)
     if (axis == "x") then
         return x_axis
@@ -174,6 +184,9 @@ local function layout(action)
             set_axis_length("x", api.nvim_eval([[winwidth('%')]]))
             set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
+
+		add_main_window([[win_getid()]])
+
     elseif (action == "destroy") then
         cmd("only")
 		cmd("q")
