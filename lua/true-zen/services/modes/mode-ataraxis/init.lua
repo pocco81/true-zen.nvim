@@ -65,7 +65,20 @@ end
 function M.resume()
     if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
 		autocmds("stop")
+
+		local is_integration_noclc_enabled = opts["integrations"]["noclc"]
+
         print("closing all windows without truezen_buffer var...")
+
+		if (is_integration_noclc_enabled == true) then
+			local integration_noclc = require("true-zen.services.integrations.noclc")
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then
+				print("GOT HERE----------------0")
+				integration_noclc.disable_element("cursorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then
+				print("GOT HERE----------------1")
+				integration_noclc.disable_element("cursorcolumn") end
+		end
 
 		cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
 
@@ -76,20 +89,18 @@ function M.resume()
         print("getting id of only the window that is modifiable...")
         print("going to the main window by id...")
 
-		local is_integration_noclc_enabled = opts["integrations"]["noclc"]
 
-		if (is_integration_noclc_enabled == true) then
-			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.disable_element("cursorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.disable_element("cursorcolumn") end
-		end
 
 		cmd([[call win_gotoid(g:truezen_main_window)]])
 
 		if (is_integration_noclc_enabled == true) then
 			local integration_noclc = require("true-zen.services.integrations.noclc")
-			if (fn.exists('#noclc_active_window_buffer_cursorline')) then integration_noclc.enable_element("cursorline") end
-			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then integration_noclc.enable_element("cursorcolumn") end
+			if (fn.exists('#noclc_active_window_buffer_cursorline')) then
+				print("GOT HERE----------------2")
+				integration_noclc.enable_element("cursorline") end
+			if (fn.exists('#noclc_active_window_buffer_cursorcolumn')) then
+				print("GOT HERE----------------3")
+				integration_noclc.enable_element("cursorcolumn") end
 		end
 
 		autocmds("start")
