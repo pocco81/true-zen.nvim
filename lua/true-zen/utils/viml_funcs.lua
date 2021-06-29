@@ -26,13 +26,12 @@ api.nvim_exec(
     false
 )
 
--- like windo but restore the current window.
+-- like windo but restore the current window and only execute commands on modifiable windows
 api.nvim_exec(
     [[
 	function! g:TrueZenWinDo(command)
 		let currwin=winnr()
-		execute 'windo ' . a:command
-		execute currwin . 'wincmd w'
+		if &ma | execute 'windo ' . a:command | execute currwin . 'wincmd w' | endif
 	endfunction
 	com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
 ]],
