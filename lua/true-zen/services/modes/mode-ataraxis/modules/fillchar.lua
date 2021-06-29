@@ -10,7 +10,7 @@ function set_fillchars()
     cmd([[set fillchars+=msgsep:\ ]])
     cmd([[set fillchars+=eob:\ ]])
 
-    if (opts["ataraxis"]["keep_default_fold_fillchars"] == true) then
+    if (opts["modes"]["ataraxis"]["keep_default_fold_fillchars"] == true) then
         -- This is for the mouse to work
         cmd([[set fillchars+=fold:·,foldopen:-,foldclose:+,foldsep:\|]])
     else
