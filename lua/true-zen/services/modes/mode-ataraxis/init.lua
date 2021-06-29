@@ -70,6 +70,8 @@ function M.resume()
 		local exists_cursorline = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorline")]])
 		local exists_cursorcolumn = api.nvim_eval([[exists("#noclc_active_window_buffer_cursorcolumn")]])
 
+		print("exists_cursorline = "..exists_cursorline.."; exists_cursorcolumn = "..exists_cursorcolumn)
+
         print("closing all windows without truezen_buffer var...")
 
 		if (is_integration_noclc_enabled == true) then
