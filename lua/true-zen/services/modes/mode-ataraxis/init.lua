@@ -25,7 +25,7 @@ local function autocmds(state)
             [[
 			augroup truezen_mode_ataraxis
 				autocmd!
-				autocmd WinEnter * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()"
+				autocmd WinEnter * if exists("w:truezen_window") | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif
 			augroup END
 		]],
             false
@@ -61,23 +61,23 @@ end
 
 function M.resume()
 
-	if (vim.fn.exists("w:truezen_window")) then
+	-- if (vim.fn.exists("w:truezen_window")) then
 		print("VAR EXISTS!")
-		local layout = api.nvim_eval("winrestcmd()")
+		-- local layout = api.nvim_eval("winrestcmd()")
 
-		if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
-			cmd("set number")
-			print("closing all windows without truezen_buffer var...")
-			print("load layout...")
-			print("getting id of only the window that is modifiable...")
-			print("going to the main window by id...")
-		else
-			print("Layout is still the same")
-		end
+		-- if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
+		-- 	cmd("set number")
+		-- 	print("closing all windows without truezen_buffer var...")
+		-- 	print("load layout...")
+		-- 	print("getting id of only the window that is modifiable...")
+		-- 	print("going to the main window by id...")
+		-- else
+		-- 	print("Layout is still the same")
+		-- end
 
-	else
-		print("var does not exist...")
-	end
+	-- else
+		-- print("var does not exist...")
+	-- end
 
 	-- local window_id = api.nvim_eval([[get(g:,"truezen_main_window_id", 1000)]])
 	-- print("window id = "..window_id)
