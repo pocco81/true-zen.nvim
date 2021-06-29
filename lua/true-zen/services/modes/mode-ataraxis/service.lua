@@ -66,7 +66,7 @@ local function gen_buffer_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
     cmd([[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_buffer = 'true']]
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let b:truezen_window = 'true']]
     )
 
     if (extra ~= nil) then
@@ -193,7 +193,7 @@ function M.layout(action)
             M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
-		cmd([[let b:truezen_buffer = 'true']])
+		cmd([[let w:truezen_window = 'true']])
 		M.set_layout(api.nvim_eval([[winrestcmd()]]))
 
     elseif (action == "destroy") then

@@ -61,7 +61,7 @@ end
 
 function M.resume()
 
-	if (vim.fn.exists("b:truezen_buffer")) then
+	if (vim.fn.exists("w:truezen_window")) then
 		print("VAR EXISTS!")
 		local layout = api.nvim_eval("winrestcmd()")
 
