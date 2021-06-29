@@ -189,7 +189,6 @@ function M.on()
 
     mode_minimalist.main("on")
     layout("generate")
-    integrations_loader.unload_integrations()
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
@@ -197,6 +196,7 @@ function M.on()
         hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
+    integrations_loader.unload_integrations()
 end
 
 function M.off()
