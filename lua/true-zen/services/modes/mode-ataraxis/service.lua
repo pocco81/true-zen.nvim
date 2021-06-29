@@ -202,9 +202,9 @@ local function layout(action)
 end
 
 function M.on()
-    if (api.nvim_eval("winnr('$')") > 1) then
-        cmd("tabe %")
-    end
+    -- if (api.nvim_eval("winnr('$')") > 1) then
+	cmd("tabe %")
+    -- end
 
     mode_minimalist.main("on")
     layout("generate")
