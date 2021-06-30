@@ -197,11 +197,11 @@ end
 
 function M.on()
     -- if (api.nvim_eval("winnr('$')") > 1) then
+    integrations_loader.unload_integrations()
 	cmd("tabe %")
     -- end
 
     mode_minimalist.main("on")
-    integrations_loader.unload_integrations()
     M.layout("generate")
     fillchar.store_fillchars()
     fillchar.set_fillchars()
