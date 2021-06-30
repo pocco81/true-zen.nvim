@@ -20,7 +20,7 @@ local function autocmds(state)
     if (state == "start") then
         api.nvim_exec(
             [[
-			augroup truezen_ui_bottom
+			augroup truezen_ui_bottom_resume
 				autocmd!
 				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.ui.bottom'.resume()" | endif
 			augroup END
@@ -29,7 +29,7 @@ local function autocmds(state)
         )
     elseif (state == "stop") then
         api.nvim_exec([[
-			augroup truezen_ui_bottom
+			augroup truezen_ui_bottom_resume
 				autocmd!
 			augroup END
 		]], false)
