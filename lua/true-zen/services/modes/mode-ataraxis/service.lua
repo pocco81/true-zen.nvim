@@ -197,6 +197,8 @@ end
 
 function M.on()
     -- if (api.nvim_eval("winnr('$')") > 1) then
+
+	-- for some reason if the integrations are loaded after `tabe %` some integrations stop working
     integrations_loader.unload_integrations()
 	cmd("tabe %")
     -- end
