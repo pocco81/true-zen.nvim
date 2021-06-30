@@ -69,7 +69,7 @@ function M.load_integrations()
                     M.require_element(integration, "enable")
                 end
             elseif (integration == "tmux") then
-                if (api.nvim_eval("$TMUX") == "") then
+                if (api.nvim_eval("$TMUX") ~= "") then
                     M.require_element(integration, "enable")
                 end
             else -- limelight, gitsigns,
