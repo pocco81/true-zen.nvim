@@ -80,8 +80,6 @@ function M.resume()
 		cmd([[call win_gotoid(g:truezen_main_window)]])
 
 		autocmds("start")
-    else
-        print("Layout is still the same")
     end
 end
 
