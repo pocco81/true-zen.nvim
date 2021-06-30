@@ -41,4 +41,6 @@ function M.setup(custom_opts)
     setup_cursor()
 end
 
+function M.after_mode_focus_on() end
+
 return M
