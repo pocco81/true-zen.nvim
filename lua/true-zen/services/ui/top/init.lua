@@ -45,6 +45,11 @@ local function off()
     usp.save_local_settings(opts["ui"]["top"], "TOP")
     service.off()
     autocmds("start")
+
+    if (opts["integrations"]["nvim_bufferline"] == true) then
+		require("true-zen.services.integrations.nvim_bufferline").enable_element()
+    end
+
     set_status("off")
 end
 
