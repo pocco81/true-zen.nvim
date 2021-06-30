@@ -1,5 +1,5 @@
 local service = require("true-zen.services.modes.mode-minimalist.service")
-local truezen = require("true-zen.init")
+local truezen = require("true-zen")
 
 local M = {}
 
