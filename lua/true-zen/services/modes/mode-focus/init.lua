@@ -35,9 +35,9 @@ local function on(focus_type)
 
     set_status("on")
 
-    if (truezen.after_mode_focus_on ~= nil) then
+    -- if (truezen.after_mode_focus_on ~= nil) then
         truezen.after_mode_focus_on()
-    end
+    -- end
 end
 
 local function off(focus_type)
