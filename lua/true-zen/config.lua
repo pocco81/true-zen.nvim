@@ -29,9 +29,8 @@ config.options = {
 
 			fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
-			quit_untoggles_ataraxis = true,
 			custome_bg = "",
-			bg_configuration = false,
+			bg_configuration = true,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {

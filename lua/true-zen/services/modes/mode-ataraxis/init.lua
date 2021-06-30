@@ -16,26 +16,36 @@ local function set_status(value)
     status_mode_ataraxis = value
 end
 
-local function eval_main_window()
-    vim.cmd(
-        [[windo if &ma | if exists("b:truezen_main_window_id") | let g:truezen_main_window = b:truezen_main_window_id | endif | endif]]
-    )
-end
-
 local function autocmds(state)
     if (state == "start") then
         api.nvim_exec(
             [[
-			augroup truezen_mode_ataraxis
+			augroup truezen_mode_ataraxis_resume
 				autocmd!
 				autocmd WinEnter * if exists("w:truezen_window") | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif
 			augroup END
 		]],
             false
         )
+
+        api.nvim_exec(
+            [[
+			augroup truezen_mode_ataraxis_quit
+				autocmd!
+				autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"
+			augroup END
+		]],
+            false
+        )
     elseif (state == "stop") then
         api.nvim_exec([[
-			augroup truezen_mode_ataraxis
+			augroup truezen_mode_ataraxis_resume
+				autocmd!
+			augroup END
+		]], false)
+
+        api.nvim_exec([[
+			augroup truezen_mode_ataraxis_quit
 				autocmd!
 			augroup END
 		]], false)
@@ -43,7 +53,6 @@ local function autocmds(state)
 end
 
 local function on()
-
     if (truezen.before_mode_ataraxis_on ~= nil) then
         truezen.before_mode_ataraxis_on()
     end
@@ -73,13 +82,13 @@ end
 
 function M.resume()
     if (service.get_layout() ~= api.nvim_eval("winrestcmd()")) then
-		autocmds("stop")
+        autocmds("stop")
 
-		cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
-		cmd(service.get_layout())
-		cmd([[call win_gotoid(g:truezen_main_window)]])
+        cmd([[call g:TrueZenWinDo("if !exists('w:truezen_window') | :q | endif")]])
+        cmd(service.get_layout())
+        cmd([[call win_gotoid(g:truezen_main_window)]])
 
-		autocmds("start")
+        autocmds("start")
     end
 end
 
