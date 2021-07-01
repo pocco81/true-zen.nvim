@@ -76,18 +76,18 @@
 	+ [UI Elements](#ui-elements)
 	+ [On/Off](#onoff)
 * [Configuration](#-configuration)
-	* [General](#general)
-	* [UI Elements](#ui-elements)
-	* [Events](#events)
+	+ [UI](#ui)
+	+ [Modes](#modes)
+		+ [Ataraxis](#ataraxis)
+		+ [Focus](#focus)
 	* [Integrations](#integrations)
-	* [Ataraxis](#ataraxis)
-	* [Focus](#focus)
+	* [Misc](#misc)
+	* [Events](#events)
 * [Key Bindings](#-key-bindings)
 * [Contribute](#-contribute)
 * [Inspirations](#-inspirations)
 * [License](#-license)
 * [FAQ](#-faq)
-* [Do you...](#-do-you)
 * [To-Do](#-to-do)
 
 # 🎁 Features
@@ -99,7 +99,7 @@
 	+ Minimalist mode: hides UI components.
 	+ Focus mode: maximizes current window. (has two different focusing methods)
 	+ Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff (e.g. setting an ideal writing area width).
-		- Padding can be set manually or automatically.
+		+ Padding can be set manually or automatically.
 + Highly customizable
 + Custom cursor that changes shape according to current vi-mode
 + You can still cycle through open buffers even when you can't see them in the UI
@@ -192,8 +192,6 @@ modes = {
 		bottom_padding = 1,
 		ideal_writing_area_width = 0,
 		just_do_it_for_me = true,
-
-		fillchars_configuration = false,
 		keep_default_fold_fillchars = true,
 		custome_bg = "",
 		bg_configuration = true,
@@ -258,8 +256,6 @@ true_zen.setup({
 			bottom_padding = 1,
 			ideal_writing_area_width = 0,
 			just_do_it_for_me = true,
-
-			fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
 			bg_configuration = true,
@@ -327,8 +323,6 @@ true_zen.setup({
 			bottom_padding = 1,
 			ideal_writing_area_width = 0,
 			just_do_it_for_me = true,
-
-			fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
 			bg_configuration = true,
@@ -412,24 +406,23 @@ Although settings already have self-explanatory names, here is where you can fin
 These settings are part of the `ui = {}` table and control Nvim's UI when toggling either Minimalist or Ataraxis mode. Those settings have the exact same names they have in NeoVim, so there is no need to explain what they do. If you need help with any of them use `:help <setting_name>`. Note that every setting belongs to a table that represents the part of the UI they are part of, for example: the setting `showtabline` is part of the `top = {}` table because visually it's part of the top part of NeoVim.
 
 ## Modes
+They are part of the `modes = {}` table and control the settings for the different modes TrueZen provides!
 
 ### Ataraxis
-
 + `left_padding`: (Integer) sets padding for the left.
 + `right_padding`: (Integer) sets padding for the right.
 + `top_padding`: (Integer) sets padding for the top.
 + `bottom_padding`: (Integer) sets padding for the bottom.
++ `just_do_it_for_me`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
++ `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. Useful if you want the mouse to keep working.
++ `ideal_writing_area_width`: (Integer) sets an ideal width for the writing area. Setting it to `0` disables it, any number greater than `0` does the opposite, which will then ignore the `just_do_it_for_me`, the `left_padding`, and the `right_padding` settings for obvious reasons. For example: if you set it to `20` you will always get a writing area or `20` and both the `left` and the `right` hand side paddings will be set automatically. This feature is useful for people with various monitors with different sizes.
++ `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
++ `bg_configuration`: (Boolean) if true, allows TrueZen to interact with the user's background. Set it to false only if you are having problems with it. (Note: Refer to the FAQ about this)
++ `custome_bg` (String) used for setting a backgroups color if your colorscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
 
-- `ideal_writing_area_width`: (Integer) sets an ideal width for the writing area. Setting it to `0` disables it, any number greater than `0` does the opposite, which will then ignore the `just_do_it_for_me`, the `left_padding`, and the `right_padding` settings for obvious reasons. For example: if you set it to `20` you will always get a writing area or `20` and both the `left` and the `right` hand side paddings will be set automatically. This feature is useful for people with various monitors with different sizes.
-- `just_do_it_for_me`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
-- `custome_bg` (String) used for setting a bg color if your coloscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
-- `disable_bg_configuration`: (Boolean) disable any background configuration/interaction. Use it only if you have issues with the backgrounds (although I strongly recommend checkgin the FAQ about this and/or using the `custome_bg` setting for this)
-- `disable_fillchars_configuration`: (Boolean) disables fillchars interactions. By default the plugin hides them all to give that "clean" look. If you are having issues with the fillchars try setting them on your config (`:help 'fillchars'`), but if that didn' help either, then set this option to `true`.
-- `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. This is for the mouse to keep working.
-- `force_when_plus_one_window`: (Boolean) by default you can't toggle Ataraxis if there is more than one window open, this is to prevent layout issues. If set to `true`, TrueZen will quits all the other windows (not buffers) before entering Ataraxis mode on the current window. As a workaround, check the `integration_tzfocus_tzataraxis` integration and the `"experimental"` `focus_method`.
-- `force_hide_statusline`: (Boolean) forcefully hide the statusline if it isn't being compliant.
-- `quit_untoggles_ataraxis`: (Boolean) if true, while on Ataraxis mode, you may use `:q`/`:quit` to untoggle from Ataraxis mode too. Notice that no matter if you enable this or not you will still be able to untoggle Ataraxis with its command.
-- `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
+### Focus
++ `margin_of_error`: (Integer > 1) adjusts MOE (margin of error). Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
++ `focus_method`: (String: "native"/"experimental") sets focusing method. `"native"` uses "vim's way" of focusing windows. The drawback of this method is that it tends to break if you resize the terminal. `"experimental"` is a new way of focusing windows that allows for free terminal resizing.
 
 ## Integrations
 These settings are part of the `integrations = {}` table and can be used to enable or disable integrations.
@@ -550,12 +543,6 @@ TrueZen.nvim is released under the GPL v3.0 license. It grants open-source permi
 - The right to modify and distribute copies of new versions of the software
 
 For more convoluted language, see the [LICENSE file](https://github.com/Pocco81/TrueZen.nvim/blob/main/README.md).
-
-# ✋ Do you...
-
-- Have a question? Start a [discussion](https://github.com/Pocco81/TrueZen.nvim/discussions).
-- Have a problem? Make an [issue](https://github.com/Pocco81/TrueZen.nvim/issues). Remember to include an appropriate label.
-- Hava an idea? Create a [pull request](https://github.com/Pocco81/TrueZen.nvim/pulls).
 
 # 📋 TO-DO
 
