@@ -26,8 +26,6 @@ config.options = {
 			bottom_padding = 1,
 			ideal_writing_area_width = 0,
 			just_do_it_for_me = true,
-
-			fillchars_configuration = false,
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
 			bg_configuration = true,

@@ -57,7 +57,7 @@
 # TL;DR
 
 <div style="text-align: justify">
-	TrueZen.nvim is a NeoVim plugin written mostly in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's three different modes (Ataraxis, Minimalist and Focus). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
+	TrueZen.nvim is a NeoVim plugin written in Lua that aims to provide a cleaner and less cluttered interface [than usual] when toggled in either of it's three different modes (Ataraxis, Minimalist and Focus). It can be installed with your favorite plugin manager and has some sane defaults so that you can just execute ':TZAtaraxis' to get started!
 </div>
 
 # 🌲 Table of Contents
@@ -73,7 +73,8 @@
 	* [Updating](#updating)
 * [Usage (commands)](#-usage-commands)
 	* [Default](#default)
-	* [Extra (True/False)](#extra-truefalse)
+	+ [UI Elements](#ui-elements)
+	+ [On/Off](#onoff)
 * [Configuration](#-configuration)
 	* [General](#general)
 	* [UI Elements](#ui-elements)
@@ -90,49 +91,45 @@
 * [To-Do](#-to-do)
 
 # 🎁 Features
-- Hide UI components (e.g. statusline, numbers, buffer list).
-- Three different modes!
-	- Minimalist mode: hides UI components.
-	- Focus mode: maximizes current window. (offers two different focusing methods)
-	- Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff (e.g. setting an ideal writing area width).
++ Can deactivate UI components separately
+	+ Left: (relative)numbers, signcolumn
+	+ Top: tabline
+	+ Bottom: laststatus, ruler, showmode, showcmd, cmdheight
++ Three different modes!
+	+ Minimalist mode: hides UI components.
+	+ Focus mode: maximizes current window. (has two different focusing methods)
+	+ Ataraxis mode: same as 'Minimalist mode' but adds "padding" and other cool stuff (e.g. setting an ideal writing area width).
 		- Padding can be set manually or automatically.
-- Highly customizable
-- Have a centralized or a decentralized configuration
-- Can deactivate UI components separately
-	- Left: (relative)numbers, signcolumn
-	- Top: tabline
-	- Bottom: laststatus, ruler, showmode, showcmd, cmdheight
-- Custom cursor that changes shape according to current vi-mode
-- You can still cycle through open buffers even when you can't see them in the UI
-- Non nonsensical
-- Can launch at startup if needed
-- Can execute code at certain events
-	- Before Minimalist mode shows/hides everything
-	- After Minimalist mode shows/hides everything
-	- Before Focus mode focuses/unfocuses everything
-	- After Focus mode focuses/unfocuses everything
-- Loads on demand, so it won't affect your startup time
-- Integrations with other plugins/stuff
-	- Vim Airline integration
-	- Tmux integration
-	- Galaxyline integration
-	- Vim powerline integration
-	- Express line integration
-	- Gitgutter integration
-	- Vim Signify integration
-	- Limelight integration
-	- `TZFocus` and `TZAtaraxis` integration
-	- Gitsigns integration
++ Highly customizable
++ Custom cursor that changes shape according to current vi-mode
++ You can still cycle through open buffers even when you can't see them in the UI
++ Non nonsensical
++ Can launch at startup if needed
++ Can execute code at certain events
++ Integrations with other plugins/stuff
+	+ [vim-airline](https://github.com/vim-airline/vim-airline)
+	+ [Tmux](https://github.com/tmux/tmux)
+	+ [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
+	+ [Powerline](https://github.com/powerline/powerline)
+	+ [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+	+ [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
+	+ [express_line.nvim](https://github.com/tjdevries/express_line.nvim)
+	+ [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+	+ [vim-signify](https://github.com/mhinz/vim-signify)
+	+ [limelight.vim](https://github.com/junegunn/limelight.vim)
 
 # 📺 Notices
-- **19-06-21**: Fixed bug with Focus mode.
-- **18-06-21**: Fixed small bugs with various features (hi groups, storing settings, ...)
-- **04-06-21**: Added setting for controlling Hi Groups affected by TrueZen.
-- **03-06-21**: Added events for the mode Focus.
-- **28-05-21**: Added option to keep default fold fillchars.
-- **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
-- **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
-- **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
+
++ **30-06-21**: Everything was refactored, improved and simplified.
++ **29-06-21**: Added nvim-bufferline.lua integration + Ataraxis mode doesn't break anymore if the window layout changes.
++ **19-06-21**: Fixed bug with Focus mode.
++ **18-06-21**: Fixed small bugs with various features (hi groups, storing settings, ...)
++ **04-06-21**: Added setting for controlling Hi Groups affected by TrueZen.
++ **03-06-21**: Added events for the mode Focus.
++ **28-05-21**: Added option to keep default fold fillchars.
++ **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
++ **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
++ **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
 
 # 📦 Installation
 
@@ -140,7 +137,6 @@
 
 - [NeoVim nightly](https://github.com/neovim/neovim/releases/tag/nightly) (>=v0.5.0)
 - [Lua ver. >= 5.3](https://www.lua.org/manual/5.3/readme.html#changes)
-- A nice color scheme to complement your experience ;)
 
 ## Adding the plugin
 You can use your favorite plugin manager for this. Here are some examples with the most popular ones:
@@ -168,92 +164,66 @@ NeoBundleFetch 'Pocco81/TrueZen.nvim'
 ```
 
 ## Setup (configuration)
-As it's stated in the TL;DR, there are already some sane defaults that you may like, however you can change them to match your taste. These are the defaults:
+These are the default settings:
+
 ```lua
-true_false_commands = false,
-cursor_by_mode = false,
-ataraxis = {
-  ideal_writing_area_width = 0,
-  just_do_it_for_me = false,
-  left_padding = 40,
-  right_padding = 40,
-  top_padding = 0,
-  bottom_padding = 0,
-  custome_bg = "",
-  disable_bg_configuration = false,
-  disable_fillchars_configuration = false,
-  keep_default_fold_fillchars = true,
-  force_when_plus_one_window = false,
-  force_hide_statusline = true,
-  quit_untoggles_ataraxis = false,
-  affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+ui = {
+	bottom = {
+		laststatus = 0,
+		ruler = false,
+		showmode = false,
+		showcmd = false,
+		cmdheight = 1,
+	},
+	top = {
+		showtabline = 0,
+	},
+	left = {
+		number = false,
+		relativenumber = false,
+		signcolumn = "no",
+	},
 },
-focus = {
-  margin_of_error = 5,
-  focus_method = "native"
-},
-minimalist = {
-  store_and_restore_settings = true,
-  show_vals_to_read = {}
-},
-events = {
-  before_minimalist_mode_shown = false,
-  before_minimalist_mode_hidden = false,
-  after_minimalist_mode_shown = false,
-  after_minimalist_mode_hidden = false,
-  before_focus_mode_focuses = false,
-  before_focus_mode_unfocuses = false,
-  after_focus_mode_focuses = false,
-  after_focus_mode_unfocuses = false
+modes = {
+	ataraxis = {
+		left_padding = 32,
+		right_padding = 32,
+		top_padding = 1,
+		bottom_padding = 1,
+		ideal_writing_area_width = 0,
+		just_do_it_for_me = true,
+
+		fillchars_configuration = false,
+		keep_default_fold_fillchars = true,
+		custome_bg = "",
+		bg_configuration = true,
+		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+	},
+	focus = {
+		margin_of_error = 5,
+		focus_method = "experimental"
+	},
 },
 integrations = {
-  integration_galaxyline = false,
-  integration_vim_airline = false,
-  integration_vim_powerline = false,
-  integration_tmux = false,
-  integration_express_line = false,
-  integration_gitgutter = false,
-  integration_vim_signify = false,
-  integration_limelight = false,
-  integration_tzfocus_tzataraxis = false,
-  integration_gitsigns = false
-}
-```
-
-Additionally, there are some settings that you can use to control how the UI behaves from TrueZen. (Read about the `store_and_restore_settings` setting [here](#minimalist)):
-
-```lua
-bottom = {
-  hidden_laststatus = 0,
-  hidden_ruler = false,
-  hidden_showmode = false,
-  hidden_showcmd = false,
-  hidden_cmdheight = 1,
-
-  shown_laststatus = 2,
-  shown_ruler = true,
-  shown_showmode = false,
-  shown_showcmd = false,
-  shown_cmdheight = 1
+	vim_gitgutter = false,
+	galaxyline = false,
+	tmux = false,
+	gitsigns = false,
+	nvim_bufferline = false,
+	limelight = false,
+	vim_airline = false,
+	vim_powerline = false,
+	vim_signify = false,
+	express_line = false,
 },
-top = {
-  hidden_showtabline = 0,
-
-  shown_showtabline = 2
-},
-left = {
-  hidden_number = false,
-  hidden_relativenumber = false,
-  hidden_signcolumn = "no",
-
-  shown_number = true,
-  shown_relativenumber = false,
-  shown_signcolumn = "no"
+misc = {
+	on_off_commands = false,
+	ui_elements_commands = false,
+	cursor_by_mode = false,
 }
 ```
 
 The way you setup the settings on your config varies on whether you are using vimL for this or Lua.
-
 
 <details>
     <summary>For init.lua</summary>
@@ -262,56 +232,61 @@ The way you setup the settings on your config varies on whether you are using vi
 ```lua
 local true_zen = require("true-zen")
 
--- setup for TrueZen.nvim
 true_zen.setup({
-  true_false_commands = false,
-  cursor_by_mode = false,
-  ataraxis = {
-    ideal_writing_area_width = 0,
-    just_do_it_for_me = false,
-    left_padding = 40,
-    right_padding = 40,
-    top_padding = 0,
-    bottom_padding = 0,
-    custome_bg = "",
-    disable_bg_configuration = false,
-    disable_fillchars_configuration = false,
-    keep_default_fold_fillchars = true,
-    force_when_plus_one_window = false,
-    force_hide_statusline = true,
-    quit_untoggles_ataraxis = false,
-    affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
-  },
-  focus = {
-    margin_of_error = 5,
-    focus_method = "native"
-  },
-  minimalist = {
-    store_and_restore_settings = true,
-    show_vals_to_read = {}
-  },
-  events = {
-    before_minimalist_mode_shown = false,
-    before_minimalist_mode_hidden = false,
-    after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false,
-    before_focus_mode_focuses = false,
-    before_focus_mode_unfocuses = false,
-    after_focus_mode_focuses = false,
-    after_focus_mode_unfocuses = false
-  },
-  integrations = {
-    integration_galaxyline = false,
-    integration_vim_airline = false,
-    integration_vim_powerline = false,
-    integration_tmux = false,
-    integration_express_line = false,
-    integration_gitgutter = false,
-    integration_vim_signify = false,
-    integration_limelight = false,
-    integration_tzfocus_tzataraxis = false,
-    integration_gitsigns = false
-  }
+	ui = {
+		bottom = {
+			laststatus = 0,
+			ruler = false,
+			showmode = false,
+			showcmd = false,
+			cmdheight = 1,
+		},
+		top = {
+			showtabline = 0,
+		},
+		left = {
+			number = false,
+			relativenumber = false,
+			signcolumn = "no",
+		},
+	},
+	modes = {
+		ataraxis = {
+			left_padding = 32,
+			right_padding = 32,
+			top_padding = 1,
+			bottom_padding = 1,
+			ideal_writing_area_width = 0,
+			just_do_it_for_me = true,
+
+			fillchars_configuration = false,
+			keep_default_fold_fillchars = true,
+			custome_bg = "",
+			bg_configuration = true,
+			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+		},
+		focus = {
+			margin_of_error = 5,
+			focus_method = "experimental"
+		},
+	},
+	integrations = {
+		vim_gitgutter = false,
+		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
+		vim_airline = false,
+		vim_powerline = false,
+		vim_signify = false,
+		express_line = false,
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
+	}
 })
 ```
 <br />
@@ -326,56 +301,61 @@ true_zen.setup({
 lua << EOF
 local true_zen = require("true-zen")
 
--- setup for TrueZen.nvim
 true_zen.setup({
-  true_false_commands = false,
-  cursor_by_mode = false,
-  ataraxis = {
-    ideal_writing_area_width = 0,
-    just_do_it_for_me = false,
-    left_padding = 40,
-    right_padding = 40,
-    top_padding = 0,
-    bottom_padding = 0,
-    custome_bg = "",
-    disable_bg_configuration = false,
-    disable_fillchars_configuration = false,
-    keep_default_fold_fillchars = true,
-    force_when_plus_one_window = false,
-    force_hide_statusline = true,
-    quit_untoggles_ataraxis = false,
-    affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
-  },
-  focus = {
-    margin_of_error = 5,
-    focus_method = "native"
-  },
-  minimalist = {
-    store_and_restore_settings = true,
-    show_vals_to_read = {}
-  },
-  events = {
-    before_minimalist_mode_shown = false,
-    before_minimalist_mode_hidden = false,
-    after_minimalist_mode_shown = false,
-    after_minimalist_mode_hidden = false,
-    before_focus_mode_focuses = false,
-    before_focus_mode_unfocuses = false,
-    after_focus_mode_focuses = false,
-    after_focus_mode_unfocuses = false
-  },
-  integrations = {
-    integration_galaxyline = false,
-    integration_vim_airline = false,
-    integration_vim_powerline = false,
-    integration_tmux = false,
-    integration_express_line = false,
-    integration_gitgutter = false,
-    integration_vim_signify = false,
-    integration_limelight = false,
-    integration_tzfocus_tzataraxis = false,
-    integration_gitsigns = false
-  }
+	ui = {
+		bottom = {
+			laststatus = 0,
+			ruler = false,
+			showmode = false,
+			showcmd = false,
+			cmdheight = 1,
+		},
+		top = {
+			showtabline = 0,
+		},
+		left = {
+			number = false,
+			relativenumber = false,
+			signcolumn = "no",
+		},
+	},
+	modes = {
+		ataraxis = {
+			left_padding = 32,
+			right_padding = 32,
+			top_padding = 1,
+			bottom_padding = 1,
+			ideal_writing_area_width = 0,
+			just_do_it_for_me = true,
+
+			fillchars_configuration = false,
+			keep_default_fold_fillchars = true,
+			custome_bg = "",
+			bg_configuration = true,
+			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+		},
+		focus = {
+			margin_of_error = 5,
+			focus_method = "experimental"
+		},
+	},
+	integrations = {
+		vim_gitgutter = false,
+		galaxyline = false,
+		tmux = false,
+		gitsigns = false,
+		nvim_bufferline = false,
+		limelight = false,
+		vim_airline = false,
+		vim_powerline = false,
+		vim_signify = false,
+		express_line = false,
+	},
+	misc = {
+		on_off_commands = false,
+		ui_elements_commands = false,
+		cursor_by_mode = false,
+	}
 })
 EOF
 ```
@@ -391,11 +371,11 @@ This depends on your plugin manager. If, for example, you are using Packer.nvim,
 ```
 
 # 🤖 Usage (commands)
-All the commands follow the *camel casing* naming convention and have the `TZ` prefix so that it's easy to remember that they are part of the TrueZen.nvim plugin. These are all of them:
+All the commands follow the *camel casing* naming convention and have the `TZ` prefix so that it's easy to remember that they are part of this plugin. These are all of them:
 
 ## Default
 - `:TZMinimalist` toggles Minimalist mode. Activates/deactivates NeoVim's UI components from the left, bottom and top of NeoVim on all the buffers you enter in the current session.
-- `:TZFocus` toggle focus mode. Focus mode maximizes the current window. It has two defferent focusing methods too! Due to the fact that there is no way to check whether a window is maximized or not, it compares different factors in order to determine it; that's why it has the `margin_of_error` setting.
+- `:TZFocus` toggles Focus mode. Maximizes/minimizes the current window.
 - `:TZAtaraxis` toggles Ataraxis mode. Ataraxis is kind of a "super extension" of Minimalist mode that uses it for deactivating UI components, however, it also provides padding to all buffers in the current session + makes use of the different integrations. Furthermore, you could also set values for the padding of the left (`l`), right (`r`), top (`t`), and bottom (`b`) of the Ataraxis instance you are about to spawn. This values are optional and when given their equivalent from the config is ignored. They should be separated by spaces and the format they should have is: `<(l)eft/(r)ight>/(t)op/(b)ottom<number_of_cells>`. Here is an example:
 
 ```
@@ -403,140 +383,45 @@ All the commands follow the *camel casing* naming convention and have the `TZ` p
 ```
 Note: it's not mandatory to give all four of them.
 
-For obvious reasons, giving these params affects other settings. Like for example: passing a custome right (`r`) or left (`l`) padding makes TrueZen ignore the `ideal_writing_area_width` and the `just_do_it_for_me` settings. Also, notice that you *shouldn't* exit Ataraxis by giving params to the command, or else custome padding formats might not work when toggling it with params again.
-
+## UI Elements
 - `:TZBottom` toggles the bottom part of NeoVim's UI. It toggles: laststatus, ruler, showmode, showcmd, and cmdheight.
 - `:TZTop` toggles the top part of NeoVim's UI. It toggles: tabline.
 - `:TZLeft` toggles the left part of NeoVim's UI. It toggles: numbers, relative numbers, and signcolumn.
 
-## Extra (True/False)
-These are the commands that can be enabled if `true_false_commands` is set to `true`. They are simply the "true or false" version of each one of the default commands. They have a `T` (for `true`) or an `F` (for `false`) suffix indicating what they do: True = show and False = hide (e.g.  `TZLeftT` will show the left UI part of Nvim). These are all of then:
+## On/Off
+- `:TZAtaraxisOn` turns on Ataraxis mode.
+- `:TZAtaraxisOff` turns off Ataraxis mode.
+- `:TZMinimalistOn` turns on Minimalist mode.
+- `:TZMinimalistOff` turns off Minimalist mode.
+- `:TZFocusOn` turns on Focus mode
+- `:TZFocusOff` turns off Focus mode
 
-- `:TZAtaraxisT` show every UI component (Left, Top, Bottom) and add padding to every buffers + integrations.
-- `:TZAtaraxisF` hide every UI component (Left, Top, Bottom) and remove padding from every buffer + integrations.
-- `:TZMinimalistT` show every UI component (Left, Top, Bottom).
-- `:TZMinimalistF` hide every UI component (Left, Top, Bottom).
-- `:TZBottomT` show bottom UI parts.
-- `:TZBottomF` hide bottom UI parts.
-- `:TZTopT` show top UI parts.
-- `:TZTopF` hide top UI parts.
-- `:TZLeftT` show left UI parts.
-- `:TZLeftF` hide left UI parts
-- `:TZFocusT` focus current window
-- `:TZFocusF` unfocus current window
+The following commands are enabled is the `ui_elements_commands` setting is set to true as well:
+
+- `:TZBottomOn` show bottom UI parts.
+- `:TZBottomOff` hide bottom UI parts.
+- `:TZTopOn` show top UI parts.
+- `:TZTopOff` hide top UI parts.
+- `:TZLeftOn` show left UI parts.
+- `:TZLeftOff` hide left UI parts
 
 # 🍉 Configuration
-Although settings already have self-explanatory names, here is where you can find info about each one of them and their classifications! There are individual settings and settings that are tables. Settings that are tables are simply *settings with subsettings*.
+Although settings already have self-explanatory names, here is where you can find info about each one of them and their classifications!
 
-## General
-This settings are unrelated to any group and are independent.
-- `true_false_commands`: (Boolean) if true, enables true/false extra commands.
-- `cursor_by_mode`: (Boolean) if true, changes cursor according to current Vi mode. Useful for when the statuline and showmode are hidden so that one can easily identify the current mode.
+## UI
+These settings are part of the `ui = {}` table and control Nvim's UI when toggling either Minimalist or Ataraxis mode. Those settings have the exact same names they have in NeoVim, so there is no need to explain what they do. If you need help with any of them use `:help <setting_name>`. Note that every setting belongs to a table that represents the part of the UI they are part of, for example: the setting `showtabline` is part of the `top = {}` table because visually it's part of the top part of NeoVim.
 
-## UI elements
-Every setting that makes part of a UI component (Left, Top, Bottom) has a prefix indicating the state when that setting is going to be executed (e.g. `hidden_number` modifies what happens to the number line when the `Left` UI part of NeoVim is hidden). Note: remember that `<prefix>` can either be "shown" or "hidden." In the case of settings that receive a booleans: `true` = set the setting and `false` = do not set the setting (e.g `hidden_number = true`: will *set* (show) the numberline when the Left UI part is hidden.)
+## Modes
 
-### Bottom
-- `<prefix>_laststatus`: (Integer) gives information about the status of a buffer with the default statusline including the path, permissions, line and a percentage representation of where you are in the file.
-- `<prefix>_ruler`: (Boolean) it displays the line number, the column number, the virtual column number, and the relative position of the cursor in the file (as a percentage).
-- `<prefix>_showmode`: (Boolean) show current vi mode.
-- `<prefix>_showcmd`: (Boolean) shows partial commands in the last line of the screen.
-- `<prefix>_cmdheight`: (Integer)height of the space you use to type commands.
+### Ataraxis
 
-### Top
-- `<prefix>_showtabline`: (Integer) show the tabline with current buffers.
++ `left_padding`: (Integer) sets padding for the left.
++ `right_padding`: (Integer) sets padding for the right.
++ `top_padding`: (Integer) sets padding for the top.
++ `bottom_padding`: (Integer) sets padding for the bottom.
 
-### Left
-- `<prefix>_number`: (Boolean) show numberline.
-- `<prefix>_relativenumber`: (Boolean) show realative numberline.
-- `<prefix>_signcolumn`: (String: "yes"/"no") show sign column.
-
-## Events
-Use them to execute code at certain events [described by the names they have]. Needless to say, they belong on the `events = {}` table.
-
-- `before_minimalist_mode_shown`: (Boolean) allows code to be executed before Minimalist mode shows UI components
-- `before_minimalist_mode_hidden`: (Boolean) allows code to be executed before Minimalist mode hides UI components
-- `after_minimalist_mode_shown`: (Boolean) allows code to be executed after Minimalist mode shows UI components
-- `after_minimalist_mode_hidden`: (Boolean) allows code to be executed after Minimalist mode hides UI components
-- `before_focus_mode_focuses`: (Boolean) allows code to be execute before Focus mode focuses the current window.
-- `before_focus_mode_unfocuses`: (Boolean) allows code to be executed before Focus mode unfocuses the current window.
-- `after_focus_mode_focuses`: (Boolean) allows code to be executed after Focus mode focuses the current window.
-- `after_focus_mode_unfocuses`: (Boolean) allows code to be executed after Focus mode unfocuses the current window.
-
-The code that executes in any of this circumstances is set by a function by the same name of the setting (e.g require('true-zen').after_minimalist_mode_hidden). This is are some examples for each one of this events:
-
-```lua
--- require TrueZen.nvim
-local true_zen = require("true-zen")
-
--- Minimalist mode events
-true_zen.after_minimalist_mode_hidden = function ()
-  print("I ran after minimalist mode hid everything")
-end
-
-true_zen.before_minimalist_mode_hidden = function ()
-  print("I ran before minimalist mode hid everything")
-end
-
-true_zen.after_minimalist_mode_shown = function ()
-  print("I ran after minimalist mode showed everything")
-end
-
-true_zen.before_minimalist_mode_shown = function ()
-  print("I ran before minimalist mode showed everything")
-end
-
--- Focus mode events
-true_zen.before_focus_mode_focuses = function ()
-  print("I ran before focus mode focused everything")
-end
-
-true_zen.before_focus_mode_unfocuses = function ()
-  print("I ran before focus mode unfocused everything")
-end
-
-true_zen.after_focus_mode_focuses = function ()
-  print("I ran after focus mode focused everything")
-end
-
-true_zen.after_focus_mode_unfocuses = function ()
-  print("I ran before focus mode unfocused everything")
-end
-```
-
-## Integrations
-Integrations are a way for providing support for certain (Neo)Vim plugins/stuff in order for TrueZen to integrate nicely with them. Needless to say, these settings can be set in the `integrations = {}` table. Integrations only work for Ataraxis mode and if you have the specific plugin/thing installed. Enabling any of them in the case you don't have that specific element installed will result in an error. In this case, `true` will *enable* the extension, and `false` will *disable* it; this **does not mean** that if you set *x* integration to `false` you'll get the exact opposite behaviour as if it was `true`.
-
-
-### General integrations
-- `integration_tmux`: (Boolean) if set to true, hides Tmux tab bar when Ataraxis mode is toggled.
-- `integration_gitgutter`: (Boolean) if set to true, disables Gitgutter when Ataraxis mode is toggled.
-- `integration_vim_signify`: (Boolean) if set to true, disables Vim Signify when Ataraxis mode is toggled.
-- `integration_limelight`: (Boolean) if set to true, enables Limelight when Ataraxis mode is toggled.
-- `integration_tzfocus_tzataraxis`: (Boolean) if set to true, it will focus current window and then enter Ataraxis mode, and the opposite happens if you unfocus it. This integration only works if the `focus_method` setting under the `Focus` table is set to `"experimental"`.
-- `integration_gitsigns`: (Boolean) if set to true, it will deactive Gitsigns' elements and restore to their previous state once Ataraxis mode is untoggled.
-
-### Statuslines integrations:
-Not all statuslines obey a simple `set statusline=-`, that's why this integrations are crucials for you to have nice experience when using Ataraxis mode. This will ensure that that specific statusline is hidden. If the statusline that you use does not have an integration, consider opening an issue in the GitHub repository and if possible mention how to toggle/untoggle your specific statusline. In the meantime, you have three options:
-1. Let Ataraxis mode try to hide it.
-2. Set the `force_hide_statusline` setting on the `Ataraxis` table to `true`.
-3. Use the `after_minimalist_mode_hidden` and the `after_minimalist_mode_shown` events to hide/show it yourself.
-
-- `integration_galaxyline`: (Boolean) if set to true, hides galaxyline when Ataraxis mode hides everything.
-- `integration_vim_airline`: (Boolean) if set to true, hides vim airline when Ataraxis mode hides everythinge.
-- `integration_vim_powerline`: (Boolean) if set to true, hides vim powerline when Ataraxis mode hides everything.
-- `integration_express_line`: (Boolean) if set to true, hides expressline when Ataraxis mode hides everything.
-
-Note for Vim Powerline users: toggling/untoggling your statusline is a little bit slow, but since you are using it then you must know that already.
-
-
-## Ataraxis
 - `ideal_writing_area_width`: (Integer) sets an ideal width for the writing area. Setting it to `0` disables it, any number greater than `0` does the opposite, which will then ignore the `just_do_it_for_me`, the `left_padding`, and the `right_padding` settings for obvious reasons. For example: if you set it to `20` you will always get a writing area or `20` and both the `left` and the `right` hand side paddings will be set automatically. This feature is useful for people with various monitors with different sizes.
-- `just_do_it_for_me`: (Boolean) if set to true, will ignore `left_padding` and `right_padding` and will set them for you.
-- `left_padding`: (Integer) sets padding for the left.
-- `right_padding`: (Integer) sets padding for the right.
-- `top_padding`: (Integer) sets padding for the top.
-- `bottom_padding`: (Integer) sets padding for the bottom.
+- `just_do_it_for_me`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
 - `custome_bg` (String) used for setting a bg color if your coloscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
 - `disable_bg_configuration`: (Boolean) disable any background configuration/interaction. Use it only if you have issues with the backgrounds (although I strongly recommend checkgin the FAQ about this and/or using the `custome_bg` setting for this)
 - `disable_fillchars_configuration`: (Boolean) disables fillchars interactions. By default the plugin hides them all to give that "clean" look. If you are having issues with the fillchars try setting them on your config (`:help 'fillchars'`), but if that didn' help either, then set this option to `true`.
@@ -546,30 +431,54 @@ Note for Vim Powerline users: toggling/untoggling your statusline is a little bi
 - `quit_untoggles_ataraxis`: (Boolean) if true, while on Ataraxis mode, you may use `:q`/`:quit` to untoggle from Ataraxis mode too. Notice that no matter if you enable this or not you will still be able to untoggle Ataraxis with its command.
 - `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
 
-## Minimalist
-- `store_and_restore_settings`: (Boolean) if true, ignores values of all the `UI` element's tables that have the ones from the current buffer; it will also restore them when required. To avoid certain incrongruences and increase speed, the plugin stores this values of the buffers and restores them for all.
-- `show_vals_to_read`: (Table of strings) Receives strings of settings that **shouldn't be stores_and_restored** and instead, **read from TrueZen's settings**. These strings must have the same name of their equivalent in the `UI` tables that have the `shown_` prefix (e.g: `"shown_showtabline"`) and must be separated by commas. A great application for this is, for example, if your plugin for showing the bufferline had enabled a setting for hiding it when there is only one buffer. If you were to enter Minimalist or Ataraxis mode, the plugin will store the settings that correspond for when the bufferline is hidden (`top` UI), and thus, if you opened new buffers the bufferline will not appear. For this you could simply add `"shown_showtabline"` to this table and set the value of `shown_showtabline` from the `top = {}` table! Here is what this example looks like
+## Integrations
+These settings are part of the `integrations = {}` table and can be used to enable or disable integrations.
 
+- `integration_galaxyline`: (Boolean) if true, hides galaxyline when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_vim_airline`: (Boolean) if true, hides vim airline when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_vim_powerline`: (Boolean) if true, hides vim powerline when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_express_line`: (Boolean) if true, hides expressline when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_tmux`: (Boolean) if true, hides Tmuxs' statusline when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_gitgutter`: (Boolean) if true, disables Gitgutter when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_vim_signify`: (Boolean) if true, disables Vim Signify when Ataraxis mode is on and toggles it back on after exiting it.
+- `integration_limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
+- `integration_gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
+
+## Misc
++ `on_off_commands`: (Boolean) if true, enables [On/Off commands](#onoff).
++ `ui_elements_commands`: (Boolean) if true, enables [commands for the UI elements](#ui-elements).
++ `cursor_by_mode`: (Boolean) if true, changes the cursors' shape according to the current Vi mode. Useful for when the statuline and showmode are hidden so that one can easily identify the current mode.
+
+## Events
+Use them to execute code at certain events [described by the names they have]. These are the ones available:
+
+| Mode       | Function Name              |
+|------------|----------------------------|
+| Focus      | before_mode_focus_on       |
+| Focus      | after_mode_focus_on        |
+| Focus      | before_mode_focus_off      |
+| Focus      | after_mode_focus_off       |
+| Minimalist | before_mode_minimalist_on  |
+| Minimalist | after_mode_minimalist_on   |
+| Minimalist | before_mode_minimalist_off |
+| Minimalist | after_mode_minimalist_off  |
+| Ataraxis   | before_mode_ataraxis_on    |
+| Ataraxis   | after_mode_ataraxis_on     |
+| Ataraxis   | before_mode_ataraxis_off   |
+| Ataraxis   | after_mode_ataraxis_off    |
+
+They can be used like so:
+
+```lua
+local true_zen = require("true-zen")
+
+true_zen.after_mode_ataraxis_on = function ()
+	print("hi!")
+end
 ```
-minimalist = {
-  store_and_restore_settings = true,
-  show_vals_to_read = {
-    "shown_showtabline"
-  }
-}
-```
-
-Important Notes:
-- This setting depends on `store_and_restore_settings` being set to `true`.
-- Becuase of the way the "saving and restoring" part of the plugin was coded, you ***must*** at least have all the settings (no matter their value, just put something in there with the corresponding data type) with the `shown_` prefix on their corresponding table so that TrueZen can match them with your current config's values instead of the ones that are set on TrueZen's config.
-
-## Focus
-- `margin_of_error`: (Integer > 1) adjusts MOE (margin of error) for focus mode. Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
-- `focus_method`: (String: "native"/"experimental") sets focusing method. `"native"` uses "vim's way" of focusing windows. The drawback of this method is that it tends to break if you resize the terminal. `"experimental"` is a new way of focusing windows that allows for free terminal resizing. It works by creating a buffer of the current window and opening it in "fullscreen". This focusing method is crucial for the `integration_tzfocus_tzataraxis` integration and will also allow you to toggle `Ataraxis` on a window that's being focused!
-
 
 # 🧻 Key-bindings
-There are no default key-bindings. However you can set them on your own as you'd normally do! Here is an example mapping `<F12>` to toggle `Ataraxis` mode:
+There are no default key-bindings. However,  you can set them on your own as you'd normally do! Here is an example mapping `<F12>` to toggle `Ataraxis` mode:
 
 **For init.lua**
 ```lua
@@ -595,13 +504,12 @@ For **init.vim**:
 ```vimscript
 autocmd VimEnter * TZAtaraxis
 ```
-Keep in mind that there are some plugins, for instance, Galaxyline, that no matter what you do will load themselves only after everything else has been loaded. If this is your case, try playing around with the different **events** TrueZen.nvim offers to get your desired behaviour!
 
 - Q: ***"How can I view the doc from NeoVim?"***
 - A: Use `:help TrueZen.nvim`
 
 - Q: ***"Why isn't my statusline being hidden when I toggle Ataraxis mode?"***
-- A: If your statusline does not have an integration, TrueZen will try its best to hide it. If it fails then try using the `force_hide_statusline` setting under the `ataraxis = {}` table. If it does have an integration and you have `force_hide_statusline` set to true, but even then it fails to hide the statusline, then is an issue with your statusline. Every, single, statusline, works differently. If this happens to you, try using another statusline and see if you are still getting this issue. The only known statusline were the latter happens is `Galaxyline`. Sometimes it shows it self when it shouldn't and vice versa.
+- A: If your statusline does not have an integration, TrueZen will try its best to hide it. If it fails, then open an issue and request for the integration, and in the mean time use the built-in [events](#events).
 
 - Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
 - A: This issue occurs because:
@@ -616,10 +524,10 @@ hi NORMAL guibg=<color/hex_code>
 " hi NORMAL guibg=#1e222a
 ```
 
-If you don't fit in either of the above cases/the fixes didn't for you, then disable BG interaction between TrueZen and NeoVim (your colorscheme in this case) with the `disable_bg_configuration` setting under the `ataraxis = {}` table.
+If you don't fit in either of the above cases/the fixes didn't work for you, then disable BG interaction between TrueZen and NeoVim (your colorscheme in this case) with the `disable_bg_configuration` setting under the `ataraxis = {}` table.
 
 
-If you already tried everything of the obove and *nothing worked* (which I doubt), then it's an issue with your Colorscheme, not a TrueZen.nvim one!
+If you already tried everything of the above and *nothing worked* (which I doubt), then it's an issue with your Colorscheme, not a TrueZen.nvim one!
 
 # 🫂 Contribute
 
@@ -650,14 +558,12 @@ For more convoluted language, see the [LICENSE file](https://github.com/Pocco81/
 - Hava an idea? Create a [pull request](https://github.com/Pocco81/TrueZen.nvim/pulls).
 
 # 📋 TO-DO
-The current To-Do's can be found in [this public Trello.com board](https://trello.com/b/nGGv2jk7/truezennvim). Just keep in mind each tag meaning:
-- Purple = bug
-- Green = low priority
-- Yellow = medium priority
-- Red = high priority
 
-Note: If you are part of the colorblind spectrum enable "Color blind friendly mode".
+**High Priority:**
++ None
 
+**Low Priority:**
++ None
 
 <hr>
 <p align="center">
