@@ -120,6 +120,7 @@
 
 # 📺 Notices
 
++ **03-07-21**: Fixed #31
 + **30-06-21**: Everything was refactored, improved and simplified.
 + **29-06-21**: Added nvim-bufferline.lua integration + Ataraxis mode doesn't break anymore if the window layout changes.
 + **19-06-21**: Fixed bug with Focus mode.
