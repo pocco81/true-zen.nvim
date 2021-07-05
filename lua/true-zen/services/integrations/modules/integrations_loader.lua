@@ -4,7 +4,7 @@ local integrations_path = "true-zen.services.integrations."
 local api = vim.api
 local cmd = vim.cmd
 
--- NOTE: This doesn't load every singlep integration, it just laods the ones taht are needed
+-- NOTE: This doesn't load every single integration, it just laods the ones taht are needed
 -- for the Ataraxis mode.
 
 local M = {}
@@ -72,7 +72,9 @@ function M.load_integrations()
                 if (api.nvim_eval("$TMUX") ~= "") then
                     M.require_element(integration, "enable")
                 end
-            else -- limelight, gitsigns,
+			elseif (integration == "limelight") then
+				M.require_element(integration, "disable")
+            else -- gitsigns,
                 M.require_element(integration, "enable")
             end
         end
@@ -128,7 +130,9 @@ function M.unload_integrations()
                 if (api.nvim_eval("$TMUX") ~= "") then
                     M.require_element(integration, "disable")
                 end
-            else -- limelight, gitsigns,
+			elseif (integration == "limelight") then
+				M.require_element(integration, "enable")
+            else -- gitsigns
                 M.require_element(integration, "disable")
             end
         end
