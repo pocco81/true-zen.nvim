@@ -198,7 +198,6 @@ end
 function M.on()
 	-- for some reason if the integrations are loaded after `tabe %` some integrations stop working
 	cmd("tabe %")
-
     mode_minimalist.main("on")
     M.layout("generate")
     fillchar.store_fillchars()
