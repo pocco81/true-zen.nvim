@@ -211,6 +211,11 @@ function M.on()
     end
 
     integrations_loader.unload_integrations()
+
+	if (integrations_loader.get_has_line_with_integration() == nil or integrations_loader.get_has_line_with_integration() == false) then
+		cmd([[setlocal statusline=-]])
+	end
+
 end
 
 function M.off()

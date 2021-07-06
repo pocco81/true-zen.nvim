@@ -4,6 +4,8 @@ local integrations_path = "true-zen.services.integrations."
 local api = vim.api
 local cmd = vim.cmd
 
+local has_line_with_integration
+
 -- NOTE: This doesn't load every single integration, it just laods the ones taht are needed
 -- for the Ataraxis mode.
 
@@ -15,6 +17,10 @@ end
 
 function M.set_has_line_with_integration(value)
     has_line_with_integration = value
+end
+
+function M.get_has_line_with_integration()
+    return has_line_with_integration
 end
 
 function M.require_element(element, type)
