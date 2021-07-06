@@ -34,10 +34,10 @@ function M.load_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "galaxyline" or integration == "vim_airline" or integration == "vim_powerline" or
-                    integration == "express_line")
+                    integration == "express_line" or integration == "lualine")
              then
                 M.set_has_line_with_integration(true)
-                if (integration == "galaxyline" or integration == "express_line") then
+                if (integration == "galaxyline") then
 
                     api.nvim_exec(
                         [[
@@ -54,10 +54,12 @@ function M.load_integrations()
                         if (api.nvim_eval("exists('#airline')") == 0) then
                             M.require_element(integration, "enable")
                         end
-                    else
+                    elseif (integration == "vim_powerline") then
                         if (api.nvim_eval("exists('#PowerlineMain')") == 0) then
                             M.require_element(integration, "enable")
                         end
+					else -- lualine, express_line
+						M.require_element(integration, "enable")
                     end
                 end
             elseif (integration == "vim_gitgutter") then
@@ -92,10 +94,10 @@ function M.unload_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "galaxyline" or integration == "vim_airline" or integration == "vim_powerline" or
-                    integration == "express_line")
+                    integration == "express_line" or integration == "lualine")
              then
                 M.set_has_line_with_integration(true)
-                if (integration == "galaxyline" or integration == "express_line") then
+                if (integration == "galaxyline") then
                     api.nvim_exec(
                         [[
 							augroup truezen_integration_galaxyline
@@ -112,10 +114,12 @@ function M.unload_integrations()
                         if (api.nvim_eval("exists('#airline')") == 1) then
                             M.require_element(integration, "disable")
                         end
-                    else
+                    elseif (integration == "vim_powerline") then
                         if (api.nvim_eval("exists('#PowerlineMain')") == 1) then
                             M.require_element(integration, "disable")
                         end
+					else -- lualine, express_line
+						M.require_element(integration, "disable")
                     end
                 end
             elseif (integration == "vim_gitgutter") then
