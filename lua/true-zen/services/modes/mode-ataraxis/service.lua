@@ -197,7 +197,6 @@ end
 
 function M.on()
 	-- for some reason if the integrations are loaded after `tabe %` some integrations stop working
-    integrations_loader.unload_integrations()
 	cmd("tabe %")
 
     mode_minimalist.main("on")
@@ -209,6 +208,8 @@ function M.on()
         hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
         hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
     end
+
+    integrations_loader.unload_integrations()
 end
 
 function M.off()
