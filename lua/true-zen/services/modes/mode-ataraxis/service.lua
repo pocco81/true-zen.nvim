@@ -3,6 +3,7 @@ local mode_minimalist = require("true-zen.services.modes.mode-minimalist.init")
 local hi_group = require("true-zen.services.modes.mode-ataraxis.modules.hi_group")
 local fillchar = require("true-zen.services.modes.mode-ataraxis.modules.fillchar")
 local integrations_loader = require("true-zen.services.integrations.modules.integrations_loader")
+local special_integrations_loader = require("true-zen.services.integrations.modules.special_integrations_loader")
 
 local cmd = vim.cmd
 local api = vim.api
@@ -197,6 +198,7 @@ end
 
 function M.on()
 	-- for some reason if the integrations are loaded after `tabe %` some integrations stop working
+	special_integrations_loader.unload_integrations()
 	cmd("tabe %")
     mode_minimalist.main("on")
     M.layout("generate")
@@ -215,6 +217,7 @@ function M.off()
     M.layout("destroy")
     mode_minimalist.main("off")
     integrations_loader.load_integrations()
+    special_integrations_loader.load_integrations()
     fillchar.restore_fillchars()
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then

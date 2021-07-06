@@ -27,40 +27,26 @@ end
 
 function M.load_integrations()
     for integration, _ in pairs(opts["integrations"]) do
-        if (integration == "nvim_bufferline") then
+        if (integration == "nvim_bufferline" or integration == "galaxyline") then
             goto continue
         end
 
         if (opts["integrations"][integration] == true) then
             if
-                (integration == "galaxyline" or integration == "vim_airline" or integration == "vim_powerline" or
-                    integration == "express_line" or integration == "lualine")
+                (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
+                    integration == "lualine")
              then
                 M.set_has_line_with_integration(true)
-                if (integration == "galaxyline") then
-
-                    api.nvim_exec(
-                        [[
-							augroup truezen_integration_galaxyline
-								autocmd!
-							augroup END
-					]],
-                        false
-                    )
-
-                    M.require_element(integration, "enable")
-                else
-                    if (integration == "vim_airline") then
-                        if (api.nvim_eval("exists('#airline')") == 0) then
-                            M.require_element(integration, "enable")
-                        end
-                    elseif (integration == "vim_powerline") then
-                        if (api.nvim_eval("exists('#PowerlineMain')") == 0) then
-                            M.require_element(integration, "enable")
-                        end
-					else -- lualine, express_line
-						M.require_element(integration, "enable")
+                if (integration == "vim_airline") then
+                    if (api.nvim_eval("exists('#airline')") == 0) then
+                        M.require_element(integration, "enable")
                     end
+                elseif (integration == "vim_powerline") then
+                    if (api.nvim_eval("exists('#PowerlineMain')") == 0) then
+                        M.require_element(integration, "enable")
+                    end
+                else -- lualine, express_line
+                    M.require_element(integration, "enable")
                 end
             elseif (integration == "vim_gitgutter") then
                 if (api.nvim_eval("get(g:, 'gitgutter_enabled', 0)") == 0) then
@@ -74,8 +60,8 @@ function M.load_integrations()
                 if (api.nvim_eval("$TMUX") ~= "") then
                     M.require_element(integration, "enable")
                 end
-			elseif (integration == "limelight") then
-				M.require_element(integration, "disable")
+            elseif (integration == "limelight") then
+                M.require_element(integration, "disable")
             else -- gitsigns,
                 M.require_element(integration, "enable")
             end
@@ -87,40 +73,26 @@ end
 
 function M.unload_integrations()
     for integration, _ in pairs(opts["integrations"]) do
-        if (integration == "nvim_bufferline") then
+        if (integration == "nvim_bufferline" or integration == "galaxyline") then
             goto continue
         end
 
         if (opts["integrations"][integration] == true) then
             if
-                (integration == "galaxyline" or integration == "vim_airline" or integration == "vim_powerline" or
-                    integration == "express_line" or integration == "lualine")
+                (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
+                    integration == "lualine")
              then
                 M.set_has_line_with_integration(true)
-                if (integration == "galaxyline") then
-                    api.nvim_exec(
-                        [[
-							augroup truezen_integration_galaxyline
-								autocmd!
-								autocmd WinEnter,BufWinEnter,BufEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
-							augroup END
-					]],
-                        false
-                    )
-
-                    M.require_element(integration, "disable")
-                else
-                    if (integration == "vim_airline") then
-                        if (api.nvim_eval("exists('#airline')") == 1) then
-                            M.require_element(integration, "disable")
-                        end
-                    elseif (integration == "vim_powerline") then
-                        if (api.nvim_eval("exists('#PowerlineMain')") == 1) then
-                            M.require_element(integration, "disable")
-                        end
-					else -- lualine, express_line
-						M.require_element(integration, "disable")
+                if (integration == "vim_airline") then
+                    if (api.nvim_eval("exists('#airline')") == 1) then
+                        M.require_element(integration, "disable")
                     end
+                elseif (integration == "vim_powerline") then
+                    if (api.nvim_eval("exists('#PowerlineMain')") == 1) then
+                        M.require_element(integration, "disable")
+                    end
+                else -- lualine, express_line
+                    M.require_element(integration, "disable")
                 end
             elseif (integration == "vim_gitgutter") then
                 if (api.nvim_eval("get(g:, 'gitgutter_enabled', 0)") == 1) then
@@ -134,8 +106,8 @@ function M.unload_integrations()
                 if (api.nvim_eval("$TMUX") ~= "") then
                     M.require_element(integration, "disable")
                 end
-			elseif (integration == "limelight") then
-				M.require_element(integration, "enable")
+            elseif (integration == "limelight") then
+                M.require_element(integration, "enable")
             else -- gitsigns
                 M.require_element(integration, "disable")
             end
