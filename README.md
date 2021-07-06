@@ -120,6 +120,7 @@
 
 # 📺 Notices
 
++ **06-07-21**: Added lualine integration.
 + **03-07-21**: Fixed #31
 + **30-06-21**: Everything was refactored, improved and simplified.
 + **29-06-21**: Added nvim-bufferline.lua integration + Ataraxis mode doesn't break anymore if the window layout changes.
@@ -214,6 +215,7 @@ integrations = {
 	vim_powerline = false,
 	vim_signify = false,
 	express_line = false,
+	lualine = false,
 },
 misc = {
 	on_off_commands = false,
@@ -278,6 +280,7 @@ true_zen.setup({
 		vim_powerline = false,
 		vim_signify = false,
 		express_line = false,
+		lualine = false,
 	},
 	misc = {
 		on_off_commands = false,
@@ -345,6 +348,7 @@ true_zen.setup({
 		vim_powerline = false,
 		vim_signify = false,
 		express_line = false,
+		lualine = false,
 	},
 	misc = {
 		on_off_commands = false,
@@ -428,15 +432,16 @@ They are part of the `modes = {}` table and control the settings for the differe
 ## Integrations
 These settings are part of the `integrations = {}` table and can be used to enable or disable integrations.
 
-- `integration_galaxyline`: (Boolean) if true, hides galaxyline when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_vim_airline`: (Boolean) if true, hides vim airline when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_vim_powerline`: (Boolean) if true, hides vim powerline when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_express_line`: (Boolean) if true, hides expressline when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_tmux`: (Boolean) if true, hides Tmuxs' statusline when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_gitgutter`: (Boolean) if true, disables Gitgutter when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_vim_signify`: (Boolean) if true, disables Vim Signify when Ataraxis mode is on and toggles it back on after exiting it.
-- `integration_limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
-- `integration_gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
+- `galaxyline`: (Boolean) if true, hides galaxyline when Ataraxis mode is on and toggles it back on after exiting it.
+- `vim_airline`: (Boolean) if true, hides vim airline when Ataraxis mode is on and toggles it back on after exiting it.
+- `vim_powerline`: (Boolean) if true, hides vim powerline when Ataraxis mode is on and toggles it back on after exiting it.
+- `express_line`: (Boolean) if true, hides expressline when Ataraxis mode is on and toggles it back on after exiting it.
+- `lualine`: (Boolean) if true, hides lualine when Ataraxis mode is on and toggles it back on after exiting it.
+- `tmux`: (Boolean) if true, hides Tmuxs' statusline when Ataraxis mode is on and toggles it back on after exiting it.
+- `gitgutter`: (Boolean) if true, disables Gitgutter when Ataraxis mode is on and toggles it back on after exiting it.
+- `vim_signify`: (Boolean) if true, disables Vim Signify when Ataraxis mode is on and toggles it back on after exiting it.
+- `limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
+- `gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
 
 ## Misc
 + `on_off_commands`: (Boolean) if true, enables [On/Off commands](#onoff).
