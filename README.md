@@ -138,7 +138,6 @@
 ## Prerequisites
 
 - [NeoVim nightly](https://github.com/neovim/neovim/releases/tag/nightly) (>=v0.5.0)
-- [Lua ver. >= 5.3](https://www.lua.org/manual/5.3/readme.html#changes)
 
 ## Adding the plugin
 You can use your favorite plugin manager for this. Here are some examples with the most popular ones:
