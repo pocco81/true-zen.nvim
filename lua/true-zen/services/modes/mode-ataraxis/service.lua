@@ -177,26 +177,27 @@ function M.layout(action)
                 end
 
                 local window_width = api.nvim_list_uis()[1]["width"]
-				print("window width = " .. window_width)
-				print("iwaw = " .. ideal_writing_area_width)
+
+                print("window width = " .. window_width)
+                print("iwaw = " .. ideal_writing_area_width)
 
                 if (ideal_writing_area_width >= window_width) then
-                    print(
-                        "TrueZen: the ideal_writing_area_width setting cannot have the same or a grater width than the current UI, it must be smaller. Refer to the doc to learn about 'relative width'."
-                    )
-                else
-                    local total_left_right_width = window_width - ideal_writing_area_width
-
-                    if (total_left_right_width % 2 > 0) then
-                        total_left_right_width = total_left_right_width + 1
-                    end
-
-                    local calculated_left_padding = total_left_right_width / 2
-                    local calculated_right_padding = total_left_right_width / 2
-
-                    left_padding_cmd = "vertical resize " .. calculated_left_padding .. ""
-                    right_padding_cmd = "vertical resize " .. calculated_right_padding .. ""
+                    ideal_writing_area_width = window_width - 1
+					print("changed = " .. ideal_writing_area_width)
                 end
+
+
+                local total_left_right_width = window_width - ideal_writing_area_width
+
+                if (total_left_right_width % 2 > 0) then
+                    total_left_right_width = total_left_right_width + 1
+                end
+
+                local calculated_left_padding = total_left_right_width / 2
+                local calculated_right_padding = total_left_right_width / 2
+
+                left_padding_cmd = "vertical resize " .. calculated_left_padding .. ""
+                right_padding_cmd = "vertical resize " .. calculated_right_padding .. ""
             else
                 if (opts["modes"]["ataraxis"]["just_do_it_for_me"] == true) then
                     local calculated_left_padding = api.nvim_eval("winwidth('%') / 4")
