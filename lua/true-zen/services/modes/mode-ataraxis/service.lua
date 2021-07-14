@@ -151,7 +151,7 @@ function M.layout(action)
                     local diff = max - min
 
                     if (get_iwaw_proportion() == nil) then
-                        set_iwaw_proportion(math.floor((diff / api.nvim_list_uis()[1]["width"]) + 0.5))
+                        set_iwaw_proportion(diff / api.nvim_list_uis()[1]["width"])
                     end
 
 					local unasserted_iwaw = get_iwaw_proportion() * api.nvim_list_uis()[1]["width"]
@@ -161,7 +161,7 @@ function M.layout(action)
 					elseif (unasserted_iwaw < min) then
 						ideal_writing_area_width = min
 					else
-						ideal_writing_area_width = unasserted_iwaw
+						ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
 					end
 
                 else
