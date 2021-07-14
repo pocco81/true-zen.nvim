@@ -145,9 +145,10 @@ function M.layout(action)
             if (opts["modes"]["ataraxis"]["ideal_writing_area_width"][1] > 0) then
                 local ideal_writing_area_width
 
-                if (#opts["modes"]["ataraxis"]["ideal_writing_area_width"] == 2) then
+                if (#opts["modes"]["ataraxis"]["ideal_writing_area_width"] >= 2) then
                     local min = opts["modes"]["ataraxis"]["ideal_writing_area_width"][1]
                     local max = opts["modes"]["ataraxis"]["ideal_writing_area_width"][2]
+                    local pick = opts["modes"]["ataraxis"]["ideal_writing_area_width"][3]
                     local diff = max - min
 
                     if (get_iwaw_proportion() == nil) then
@@ -161,8 +162,15 @@ function M.layout(action)
 					elseif (unasserted_iwaw < min) then
 						ideal_writing_area_width = min
 					else
-						ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
-						print("ideal_writing_area_width = " .. ideal_writing_area_width)
+						if (pick == nil) then
+							ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
+						else
+							if (pick == "max") then
+								ideal_writing_area_width = max
+							elseif (pick == "min") then
+								ideal_writing_area_width = min
+							end
+						end
 					end
 
                 else
