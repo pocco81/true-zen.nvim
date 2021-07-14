@@ -155,34 +155,32 @@ function M.layout(action)
                         set_iwaw_proportion(diff / api.nvim_list_uis()[1]["width"])
                     end
 
-					local unasserted_iwaw = get_iwaw_proportion() * api.nvim_list_uis()[1]["width"]
+                    local unasserted_iwaw = get_iwaw_proportion() * api.nvim_list_uis()[1]["width"]
 
-					if (unasserted_iwaw > max) then
-						ideal_writing_area_width = max
-					elseif (unasserted_iwaw < min) then
-						ideal_writing_area_width = min
-					else
-						if (pick == nil) then
-							ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
-						else
-							if (pick == "max") then
-								ideal_writing_area_width = max
-							elseif (pick == "min") then
-								ideal_writing_area_width = min
-							end
-						end
-					end
-
+                    if (unasserted_iwaw > max) then
+                        ideal_writing_area_width = max
+                    elseif (unasserted_iwaw < min) then
+                        ideal_writing_area_width = min
+                    else
+                        if (pick == nil) then
+                            ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
+                        else
+                            if (pick == "max") then
+                                ideal_writing_area_width = max
+                            elseif (pick == "min") then
+                                ideal_writing_area_width = min
+                            end
+                        end
+                    end
                 else
                     ideal_writing_area_width = opts["modes"]["ataraxis"]["ideal_writing_area_width"][1]
                 end
 
                 local window_width = api.nvim_list_uis()[1]["width"]
 
-                if (ideal_writing_area_width == window_width) then
+                if (ideal_writing_area_width >= window_width) then
                     print(
-                        "TrueZen: the ideal_writing_area_width setting cannot have the same size as your current window, it must be smaller than " ..
-                            window_width
+                        "TrueZen: the ideal_writing_area_width setting cannot have the same or a grater width than the current UI, it must be smaller. Refer to the doc to learn about 'relative width'."
                     )
                 else
                     local total_left_right_width = window_width - ideal_writing_area_width
