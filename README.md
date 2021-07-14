@@ -120,6 +120,7 @@
 
 # 📺 Notices
 
++ **14-07-21**: Added feature requested by #35.
 + **06-07-21**: Added lualine integration.
 + **03-07-21**: Fixed #31
 + **30-06-21**: Everything was refactored, improved and simplified.
@@ -191,7 +192,7 @@ modes = {
 		right_padding = 32,
 		top_padding = 1,
 		bottom_padding = 1,
-		ideal_writing_area_width = 0,
+		ideal_writing_area_width = {0},
 		just_do_it_for_me = true,
 		keep_default_fold_fillchars = true,
 		custome_bg = "",
@@ -256,7 +257,7 @@ true_zen.setup({
 			right_padding = 32,
 			top_padding = 1,
 			bottom_padding = 1,
-			ideal_writing_area_width = 0,
+			ideal_writing_area_width = {0},
 			just_do_it_for_me = true,
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
@@ -324,7 +325,7 @@ true_zen.setup({
 			right_padding = 32,
 			top_padding = 1,
 			bottom_padding = 1,
-			ideal_writing_area_width = 0,
+			ideal_writing_area_width = {0},
 			just_do_it_for_me = true,
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
@@ -419,7 +420,7 @@ They are part of the `modes = {}` table and control the settings for the differe
 + `bottom_padding`: (Integer) sets padding for the bottom.
 + `just_do_it_for_me`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
 + `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. Useful if you want the mouse to keep working.
-+ `ideal_writing_area_width`: (Integer) sets an ideal width for the writing area. Setting it to `0` disables it, any number greater than `0` does the opposite, which will then ignore the `just_do_it_for_me`, the `left_padding`, and the `right_padding` settings for obvious reasons. For example: if you set it to `20` you will always get a writing area or `20` and both the `left` and the `right` hand side paddings will be set automatically. This feature is useful for people with various monitors with different sizes.
++ `ideal_writing_area_width`: (Table) sets an ideal width for the writing area. It can receive up to 3 values (`{<int -> min_width>, <int -> max_width>, <str -> "min"/"max">}`) but only one is needed for it to work. Passing a `0` to the table disables it, anything grater than does the opposite. It simply ensures a writing area of the given size regardless of the ui's proportions where possible. If only `<min_width>` is passed, then that value is the ideal writing area. Useful for people with multiple monitors that **don't use a terminal multiplexer or resize it often**. If `<min_width>` and `<max_width>` are passed, it defines a range to pick the writing area from, where the first value is the minimum width it can have and the second value is the maximum. Useful for people with **terminal multiplexers/that resize the terminal a lot**. If `<min_width>`, `<max_width>` and `<"min"/"max">` are passed, the same as passing the two values will happen but it will try pick either the "max" or the "min" width where possible.
 + `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
 + `bg_configuration`: (Boolean) if true, allows TrueZen to interact with the user's background. Set it to false only if you are having problems with it. (Note: Refer to the FAQ about this)
 + `custome_bg` (String) used for setting a backgroups color if your colorscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
