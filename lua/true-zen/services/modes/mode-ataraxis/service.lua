@@ -8,6 +8,8 @@ local special_integrations_loader = require("true-zen.services.integrations.modu
 local cmd = vim.cmd
 local api = vim.api
 
+local iwaw_proportion
+
 local M = {}
 
 function M.get_axis_length(axis)
@@ -19,11 +21,11 @@ function M.get_axis_length(axis)
 end
 
 function M.set_layout(layout)
-	truezen_layout = layout
+    truezen_layout = layout
 end
 
 function M.get_layout()
-	return truezen_layout
+    return truezen_layout
 end
 
 function M.set_axis_length(axis, value)
@@ -33,6 +35,22 @@ function M.set_axis_length(axis, value)
         y_axis = value
     end
 end
+
+local function set_iwaw_proportion(val)
+    iwaw_proportion = val
+end
+
+local function get_iwaw_proportion()
+    return iwaw_proportion
+end
+
+-- local function set_min_iwaw()
+
+-- end
+
+-- local function get_min_iwaw()
+
+-- end
 
 local function ensure_settings()
     if (api.nvim_eval("&splitbelow != 0 || &splitright != 0") == 1) then
@@ -56,7 +74,8 @@ end
 local function gen_buffer_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
-    cmd([[
+    cmd(
+        [[
         setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let w:truezen_window = 'true']]
     )
 
@@ -110,7 +129,7 @@ function M.layout(action)
         local top_padding_cmd = ""
         local bottom_padding_cmd = ""
 
-        if (tz_left_padding ~= "NONE" or tz_right_padding ~= "NONE") then -- not equal to NONE
+        if (tz_left_padding ~= "NONE" or tz_right_padding ~= "NONE") then
             if not (tz_left_padding == "NONE") then
                 left_padding_cmd = "vertical resize " .. tz_left_padding .. ""
             else
@@ -123,9 +142,33 @@ function M.layout(action)
                 right_padding_cmd = "vertical resize " .. opts["modes"]["ataraxis"]["right_padding"] .. ""
             end
         else
-            if (opts["modes"]["ataraxis"]["ideal_writing_area_width"] > 0) then
-                local window_width = api.nvim_eval("winwidth('%')")
-                local ideal_writing_area_width = opts["modes"]["ataraxis"]["ideal_writing_area_width"]
+            if (opts["modes"]["ataraxis"]["ideal_writing_area_width"][1] > 0) then
+                local ideal_writing_area_width
+
+                if (#opts["modes"]["ataraxis"]["ideal_writing_area_width"] == 2) then
+                    local min = opts["modes"]["ataraxis"]["ideal_writing_area_width"][1]
+                    local max = opts["modes"]["ataraxis"]["ideal_writing_area_width"][2]
+                    local diff = max - min
+
+                    if (get_iwaw_proportion() == nil) then
+                        set_iwaw_proportion(math.floor((diff / api.nvim_list_uis()[1]["width"]) + 0.5))
+                    end
+
+					local unasserted_iwaw = get_iwaw_proportion() * api.nvim_list_uis()[1]["width"]
+
+					if (unasserted_iwaw > max) then
+						ideal_writing_area_width = max
+					elseif (unasserted_iwaw < min) then
+						ideal_writing_area_width = min
+					else
+						ideal_writing_area_width = unasserted_iwaw
+					end
+
+                else
+                    ideal_writing_area_width = opts["modes"]["ataraxis"]["ideal_writing_area_width"][1]
+                end
+
+                local window_width = api.nvim_list_uis()[1]["width"]
 
                 if (ideal_writing_area_width == window_width) then
                     print(
@@ -147,7 +190,6 @@ function M.layout(action)
                 end
             else
                 if (opts["modes"]["ataraxis"]["just_do_it_for_me"] == true) then
-                    -- calculate padding
                     local calculated_left_padding = api.nvim_eval("winwidth('%') / 4")
                     local calculated_right_padding = api.nvim_eval("winwidth('%') / 4")
 
@@ -184,22 +226,21 @@ function M.layout(action)
             M.set_axis_length("y", api.nvim_eval([[winheight('%')]]))
         end
 
-		cmd([[let g:truezen_main_window = win_getid()]])
-		cmd([[let w:truezen_window = 'true']])
-		M.set_layout(api.nvim_eval([[winrestcmd()]]))
-
+        cmd([[let g:truezen_main_window = win_getid()]])
+        cmd([[let w:truezen_window = 'true']])
+        M.set_layout(api.nvim_eval([[winrestcmd()]]))
     elseif (action == "destroy") then
         cmd("only")
-		cmd("q")
+        cmd("q")
 
         unlet_padding_vars()
     end
 end
 
 function M.on()
-	-- for some reason if the integrations are loaded after `tabe %` some integrations stop working
-	special_integrations_loader.unload_integrations()
-	cmd("tabe %")
+    -- for some reason if the integrations are loaded after `tabe %` some integrations stop working
+    special_integrations_loader.unload_integrations()
+    cmd("tabe %")
     mode_minimalist.main("on")
     M.layout("generate")
     fillchar.store_fillchars()
@@ -212,10 +253,12 @@ function M.on()
 
     integrations_loader.unload_integrations()
 
-	if (integrations_loader.get_has_line_with_integration() == nil or integrations_loader.get_has_line_with_integration() == false) then
-		cmd([[setlocal statusline=-]])
-	end
-
+    if
+        (integrations_loader.get_has_line_with_integration() == nil or
+            integrations_loader.get_has_line_with_integration() == false)
+     then
+        cmd([[setlocal statusline=-]])
+    end
 end
 
 function M.off()
