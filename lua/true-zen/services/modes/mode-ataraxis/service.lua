@@ -177,6 +177,8 @@ function M.layout(action)
                 end
 
                 local window_width = api.nvim_list_uis()[1]["width"]
+				print("window width = " .. window_width)
+				print("iwaw = " .. ideal_writing_area_width)
 
                 if (ideal_writing_area_width >= window_width) then
                     print(
