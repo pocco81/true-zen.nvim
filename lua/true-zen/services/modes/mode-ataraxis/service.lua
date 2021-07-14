@@ -162,6 +162,7 @@ function M.layout(action)
 						ideal_writing_area_width = min
 					else
 						ideal_writing_area_width = math.floor(unasserted_iwaw + 0.5)
+						print("ideal_writing_area_width = " .. ideal_writing_area_width)
 					end
 
                 else
