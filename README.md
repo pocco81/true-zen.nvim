@@ -120,6 +120,7 @@
 
 # 📺 Notices
 
++ **15-07-21**: Fixed #36.
 + **14-07-21**: Added feature requested by #35.
 + **06-07-21**: Added lualine integration.
 + **03-07-21**: Fixed #31
