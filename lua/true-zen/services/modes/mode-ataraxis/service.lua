@@ -7,8 +7,13 @@ local special_integrations_loader = require("true-zen.services.integrations.modu
 
 local cmd = vim.cmd
 local api = vim.api
+local o = vim.o
 
 local iwaw_proportion
+local splitbelow
+local splitright
+local x_axis
+local y_axis
 
 local M = {}
 
@@ -44,19 +49,39 @@ local function get_iwaw_proportion()
     return iwaw_proportion
 end
 
--- local function set_min_iwaw()
+local function set_split(split, val)
+	if (split == "splitbelow") then
+		splitbelow = val
+	else
+		splitright = val
+	end
+end
 
--- end
-
--- local function get_min_iwaw()
-
--- end
+local function get_split(split)
+	if (split == "splitbelow") then
+		return splitbelow
+	else
+		return splitright
+	end
+end
 
 local function ensure_settings()
-    if (api.nvim_eval("&splitbelow != 0 || &splitright != 0") == 1) then
-        cmd("set splitbelow")
-        cmd("set splitright")
-    end
+	if (o.splitbelow == false) then
+		set_split("splitbelow", false); o.splitbelow = true
+	else
+		set_split("splitbelow", true)
+	end
+
+	if (o.splitright == false) then
+		set_split("splitright", false); o.splitright = true
+	else
+		set_split("splitright", true)
+	end
+end
+
+local function restore_settings()
+	o.splitbelow = get_split("splitbelow") or true
+	o.splitright = get_split("splitright") or true
 end
 
 local function unlet_padding_vars()
@@ -81,37 +106,6 @@ local function gen_buffer_specs(gen_command, command, extra)
 
     if (extra ~= nil) then
         cmd(extra)
-    end
-end
-
-function window_has_neighbour(direction)
-    local current_position = api.nvim_eval([[win_screenpos(winnr())]])
-    local amount_windows = api.nvim_eval("winnr('$')")
-
-    if (direction == "top") then
-        return current_position[1] ~= 1
-    elseif (direction == "bottom") then
-        while (amount_windows > 0) do
-            local position = api.nvim_eval([[win_screenpos(]] .. amount_windows .. [[)]])
-            amount_windows = amount_windows - 1
-
-            if ((current_position[1] + api.nvim_eval("winheight(0)")) < position[1]) then
-                return true
-            end
-        end
-        return false
-    elseif (direction == "left") then
-        return current_position[2] ~= 1
-    elseif (direction == "right") then
-        while (amount_windows > 0) do
-            local position = api.nvim_eval([[win_screenpos(]] .. amount_windows .. [[)]])
-            amount_windows = amount_windows - 1
-
-            if ((current_position[2] + api.nvim_eval("winwidth(0)")) < position[2]) then
-                return true
-            end
-        end
-        return false
     end
 end
 
@@ -281,6 +275,8 @@ function M.off()
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.restore_hi_groups()
     end
+
+	restore_settings()
 end
 
 return M
