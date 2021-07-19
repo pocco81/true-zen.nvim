@@ -29,6 +29,7 @@ config.options = {
 			keep_default_fold_fillchars = true,
 			custome_bg = "",
 			bg_configuration = true,
+			quit = "untoggle",
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {

@@ -5,6 +5,7 @@ local truezen = require("true-zen")
 local api = vim.api
 local fn = vim.fn
 local cmd = vim.cmd
+local status_mode_ataraxis
 
 local M = {}
 
@@ -28,15 +29,27 @@ local function autocmds(state)
             false
         )
 
-        api.nvim_exec(
-            [[
-			augroup truezen_mode_ataraxis_quit
-				autocmd!
-				autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"
-			augroup END
-		]],
-            false
-        )
+        local quit_opt = opts["modes"]["ataraxis"]["quit"]
+        local quit_cmd
+
+        if (quit_opt ~= nil) then
+            if (quit_opt == "untoggle") then
+                quit_cmd = [[execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"]]
+            elseif (cmd == "close") then
+                quit_cmd = [[execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')" | quit]]
+            end
+
+			api.nvim_exec(
+				[[
+				augroup truezen_mode_ataraxis_quit
+					autocmd!
+					autocmd QuitPre * ]] .. quit_cmd .. [[
+				augroup END
+			]],
+				false
+			)
+        end
+
     elseif (state == "stop") then
         api.nvim_exec([[
 			augroup truezen_mode_ataraxis_resume
@@ -44,11 +57,15 @@ local function autocmds(state)
 			augroup END
 		]], false)
 
-        api.nvim_exec([[
-			augroup truezen_mode_ataraxis_quit
-				autocmd!
-			augroup END
-		]], false)
+
+		if (opts["modes"]["ataraxis"]["quit"] ~= nil) then
+			api.nvim_exec([[
+				augroup truezen_mode_ataraxis_quit
+					autocmd!
+				augroup END
+			]], false)
+		end
+
     end
 end
 
