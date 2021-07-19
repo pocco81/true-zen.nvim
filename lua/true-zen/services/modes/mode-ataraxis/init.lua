@@ -30,24 +30,29 @@ local function autocmds(state)
         )
 
         local quit_opt = opts["modes"]["ataraxis"]["quit"]
-        local quit_cmd
 
         if (quit_opt ~= nil) then
             if (quit_opt == "untoggle") then
-                quit_cmd = [[execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"]]
-            elseif (cmd == "close") then
-                quit_cmd = [[execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')" | quit]]
-            end
-
-			api.nvim_exec(
-				[[
-				augroup truezen_mode_ataraxis_quit
-					autocmd!
-					autocmd QuitPre * ]] .. quit_cmd .. [[
-				augroup END
-			]],
-				false
-			)
+				api.nvim_exec(
+					[[
+					augroup truezen_mode_ataraxis_quit
+						autocmd!
+						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"
+					augroup END
+				]],
+					false
+				)
+            elseif (quit_opt == "close") then
+				api.nvim_exec(
+					[[
+					augroup truezen_mode_ataraxis_quit
+						autocmd!
+						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')" | quit
+ 					augroup END
+				]],
+					false
+				)
+			end
         end
 
     elseif (state == "stop") then
