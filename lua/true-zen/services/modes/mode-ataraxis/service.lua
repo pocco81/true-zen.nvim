@@ -239,10 +239,11 @@ function M.layout(action)
 end
 
 function M.on()
-    -- for some reason if the integrations are loaded after `tabe %` some integrations stop working
     special_integrations_loader.unload_integrations()
     cmd("tabe %")
-    mode_minimalist.main("on")
+	if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
+		mode_minimalist.main("on")
+	end
     M.layout("generate")
     fillchar.store_fillchars()
     fillchar.set_fillchars()

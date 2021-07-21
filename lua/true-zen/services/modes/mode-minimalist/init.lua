@@ -2,12 +2,13 @@ local service = require("true-zen.services.modes.mode-minimalist.service")
 local truezen = require("true-zen")
 
 local M = {}
+local status_mode_minimalist
 
-local function get_status()
+function M.get_status()
     return status_mode_minimalist
 end
 
-local function set_status(value)
+function M.set_status(value)
     status_mode_minimalist = value
 end
 
@@ -17,7 +18,7 @@ local function on()
     end
 
     service.on()
-    set_status("on")
+    M.set_status("on")
 
     if (truezen.after_mode_minimalist_on ~= nil) then
         truezen.after_mode_minimalist_on()
@@ -30,7 +31,7 @@ local function off()
     end
 
     service.off()
-    set_status("off")
+    M.set_status("off")
 
     if (truezen.after_mode_minimalist_off ~= nil) then
         truezen.after_mode_minimalist_off()
@@ -38,7 +39,7 @@ local function off()
 end
 
 local function toggle()
-    if (get_status() == "on") then
+    if (M.get_status() == "on") then
         off()
     else
         on()
