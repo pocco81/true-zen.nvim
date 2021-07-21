@@ -120,26 +120,31 @@
 
 # 📺 Notices
 
-+ **21-07-21**: Fix #41.
-+ **19-07-21**: Feat #39 added.
-+ **15-07-21**: Fixed #36.
-+ **14-07-21**: Added feature requested by #35.
+<ul>
+  <li><b>21-07-21</b>: Fix #41.</li>
+  <li><b>19-07-21</b>: Feat #49 added.</li>
+  <li><b>15-07-21</b>: Fixed #36.</li>
+  <li><b>14-07-21</b>: Added feature requested by #35.</li>
+</ul>
 
 <details>
 <summary>Old notices...</summary>
-<br />
-+ **06-07-21**: Added lualine integration.
-+ **03-07-21**: Fixed #31
-+ **30-06-21**: Everything was refactored, improved and simplified.
-+ **29-06-21**: Added nvim-bufferline.lua integration + Ataraxis mode doesn't break anymore if the window layout changes.
-+ **19-06-21**: Fixed bug with Focus mode.
-+ **18-06-21**: Fixed small bugs with various features (hi groups, storing settings, ...)
-+ **04-06-21**: Added setting for controlling Hi Groups affected by TrueZen.
-+ **03-06-21**: Added events for the mode Focus.
-+ **28-05-21**: Added option to keep default fold fillchars.
-+ **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
-+ **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
-+ **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
+<p>
+<ul>
+  <li><b>06-07-21</b>: Added lualine integration.</li>
+  <li><b>03-07-21</b>: Fixed #31</li>
+  <li><b>30-06-21</b>: Everything was refactored, improved and simplified.</li>
+  <li><b>29-06-21</b>: Added nvim-bufferline.lua integration + Ataraxis mode doesn't break anymore if the window layout changes.</li>
+  <li><b>19-06-21</b>: Fixed bug with Focus mode.</li>
+  <li><b>18-06-21</b>: Fixed small bugs with various features (hi groups, storing settings, ...)</li>
+  <li><b>04-06-21</b>: Added setting for controlling Hi Groups affected by TrueZen.</li>
+  <li><b>03-06-21</b>: Added events for the mode Focus.</li>
+  <li><b>28-05-21</b>: Added option to keep default fold fillchars.</li>
+  <li><b>08-05-21</b>: Added option for using :q to untoggle Ataraxis.</li>
+  <li><b>06-05-21</b>: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.</li>
+  <li><b>05-05-21</b>: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and UI related.</li>
+</ul>
+</p>
 </details>
 
 
