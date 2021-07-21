@@ -120,9 +120,14 @@
 
 # 📺 Notices
 
++ **21-07-21**: Fix #41.
 + **19-07-21**: Feat #39 added.
 + **15-07-21**: Fixed #36.
 + **14-07-21**: Added feature requested by #35.
+
+<details>
+<summary>Old notices...</summary>
+<br />
 + **06-07-21**: Added lualine integration.
 + **03-07-21**: Fixed #31
 + **30-06-21**: Everything was refactored, improved and simplified.
@@ -135,6 +140,8 @@
 + **08-05-21**: Added option for using `:q` to untoggle Ataraxis.
 + **06-05-21**: Added option for setting arbitrary padding for each one of the sides before entering Ataraxis. Also, fixed Galaxyline bug.
 + **05-05-21**: Added option for storing and restoring user settings for Minimalist mode, Ataraxis mode and `UI` related.
+</details>
+
 
 # 📦 Installation
 
