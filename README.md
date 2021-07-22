@@ -121,7 +121,7 @@
 # 📺 Notices
 
 <ul>
-  <li><b>21-07-21</b>: Fix #41.</li>
+  <li><b>21-07-21</b>: Fix #41 and #42.</li>
   <li><b>19-07-21</b>: Feat #49 added.</li>
   <li><b>15-07-21</b>: Fixed #36.</li>
   <li><b>14-07-21</b>: Added feature requested by #35.</li>
