@@ -10,9 +10,11 @@ local api = vim.api
 local o = vim.o
 local fn = vim.fn
 
+local truezen_layout
 local iwaw_proportion
 local splitbelow
 local splitright
+local hidden
 local x_axis
 local y_axis
 
@@ -66,6 +68,10 @@ local function get_split(split)
 	end
 end
 
+local function get_hidden() return hidden end
+
+local function set_hidden(val) hidden = val end
+
 local function ensure_settings()
 	if (o.splitbelow == false) then
 		set_split("splitbelow", false); o.splitbelow = true
@@ -78,11 +84,19 @@ local function ensure_settings()
 	else
 		set_split("splitright", true)
 	end
+
+	if (o.hidden == false) then
+		set_hidden(false); o.hidden = true
+	else
+		set_hidden(true)
+	end
+
 end
 
 local function restore_settings()
 	o.splitbelow = get_split("splitbelow") or true
 	o.splitright = get_split("splitright") or true
+	o.hidden = get_hidden() or true
 end
 
 local function unlet_padding_vars()
