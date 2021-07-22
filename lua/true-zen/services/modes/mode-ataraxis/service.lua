@@ -8,6 +8,7 @@ local special_integrations_loader = require("true-zen.services.integrations.modu
 local cmd = vim.cmd
 local api = vim.api
 local o = vim.o
+local fn = vim.fn
 
 local iwaw_proportion
 local splitbelow
@@ -239,6 +240,9 @@ function M.layout(action)
 end
 
 function M.on()
+
+	local cursor_pos = fn.getpos(".")
+
     special_integrations_loader.unload_integrations()
     cmd("tabe %")
 	if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
@@ -261,9 +265,18 @@ function M.on()
      then
         cmd([[setlocal statusline=-]])
     end
+
+	fn.setpos('.', cursor_pos)
 end
 
 function M.off()
+
+	local cursor_pos
+
+	if (api.nvim_eval([[get(g:,"truezen_main_window", "no")]]) == fn.win_getid()) then
+		cursor_pos = fn.getpos(".")
+	end
+
     M.layout("destroy")
     mode_minimalist.main("off")
     integrations_loader.load_integrations()
@@ -275,6 +288,11 @@ function M.off()
     end
 
 	restore_settings()
+
+	if (cursor_pos ~= nil) then
+		fn.setpos('.', cursor_pos)
+		cursor_pos = nil
+	end
 end
 
 return M
