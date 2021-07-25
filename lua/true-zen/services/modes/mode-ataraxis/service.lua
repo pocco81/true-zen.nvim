@@ -134,11 +134,11 @@ local function gen_background()
 		if normal and normal.background then
 			local bg = colors.darken(normal.background, bg_prop)
 			cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
-			set_winhl("winhighlight=Normal:TrueZenWinBg")
+			set_winhl("winhighlight=Normal:TrueZenBg")
 		end
 	elseif (style == "solid") then
 		cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg_prop, bg_prop))
-		set_winhl("winhighlight=Normal:TrueZenWinBg")
+		set_winhl("winhighlight=Normal:TrueZenBg")
 	else
 		set_winhl("")
 	end
