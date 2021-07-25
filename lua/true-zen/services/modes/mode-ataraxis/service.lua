@@ -350,6 +350,8 @@ function M.on()
         end
 
         hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
+
+		cmd([[setlocal winhighlight=Normal:]] .. get_normal_bg()[1])
     end
 
     integrations_loader.unload_integrations()
