@@ -314,9 +314,9 @@ end
 local function restore_normal_bg()
     local style = opts["modes"]["ataraxis"]["custom_bg"][1]
     if (style == "darken") then
-        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[1]) -- user bg
     elseif (style == "solid") then
-        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[1]) -- user bg
     end
 end
 
