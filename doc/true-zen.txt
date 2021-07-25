@@ -106,7 +106,7 @@ modes = {
 		ideal_writing_area_width = {0},
 		just_do_it_for_me = true,
 		keep_default_fold_fillchars = true,
-		custome_bg = "",
+		custom_bg = {"none", ""},
 		bg_configuration = true,
 		quit = "untoggle",
 		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
@@ -201,7 +201,7 @@ true_zen.setup({
 			ideal_writing_area_width = {0},
 			just_do_it_for_me = true,
 			keep_default_fold_fillchars = true,
-			custome_bg = "",
+			custom_bg = {"none", ""},
 			bg_configuration = true,
 			quit = "untoggle",
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
@@ -264,7 +264,7 @@ true_zen.setup({
 			ideal_writing_area_width = {0},
 			just_do_it_for_me = true,
 			keep_default_fold_fillchars = true,
-			custome_bg = "",
+			custom_bg = {"none", ""},
 			bg_configuration = true,
 			quit = "untoggle",
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
@@ -368,8 +368,8 @@ They are part of the `modes = {}` table and control the settings for the differe
 + `ideal_writing_area_width`: (Table) sets an ideal width for the writing area. It can receive up to 3 values (`{<int -> min_width>, <int -> max_width>, <str -> "min"/"max">}`) but only one is needed for it to work. Passing a `0` to the table disables it, anything grater than does the opposite. It simply ensures a writing area of the given size regardless of the ui's proportions where possible. If only `<min_width>` is passed, then that value is the ideal writing area. Useful for people with multiple monitors that **don't use a terminal multiplexer or resize it often**. If `<min_width>` and `<max_width>` are passed, it defines a range to pick the writing area from, where the first value is the minimum width it can have and the second value is the maximum. Useful for people with **terminal multiplexers/that resize the terminal a lot**. If `<min_width>`, `<max_width>` and `<"min"/"max">` are passed, the same as passing the two values will happen but it will try pick either the "max" or the "min" width where possible.
 + `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table.
 + `bg_configuration`: (Boolean) if true, allows TrueZen to interact with the user's background. Set it to false only if you are having problems with it. (Note: Refer to the FAQ about this)
-+ `quit`: (String - "untoggle", "close", nil) changes the behaviour of the `quit` command while on Ataraxis mode. if "untoggle", quit will untoggle Ataraxis mode, but if set to "close" it will close the original window from where it was first called. To simply use quit as always set it to nil.
-+ `custome_bg` (String) used for setting a backgroups color if your colorscheme doesn't provide one already/you don't want to set one for Nvim as a whole but only for TrueZen.nvim. If you already have a BG color, leave the quotes empty. Refer to the FAQ about this.
++ `quit`: (String - "untoggle", "close", nil) changes the behaviour of the `quit` command while on Ataraxis mode. if "untoggle", quit will untoggle Ataraxis mode, but if set to "close" it will close the original window from where it was first called. To simply use quit as always set it to `nil`.
++ `custom_bg` (Table): used for adding custom bg (or none) used by the paddings and for tranquilizing the given `hi groups`. It receives two value, where value one is the style, and value two is the background propery/colors. If value one is `"solid"` then it will set the given hex color (value two) (e.g. `custom_bg = {"solid", "#1a1d1e"}`). If value one is `"darken"` it will darken the padding by the given degree between 1 and 0.0 (value two), where `1` is the same as the background and `0.0` is the completly dark (e.g. `custom_bg = {"darken", 0.87}`). Finally, if the value one is `"none"` then it the given color (value two) will only be using for tranquilizing the `hi groups` (e.g. `custom_bg = {"none", ""}`).
 
 ### Focus														*truezen-config-focus*
 + `margin_of_error`: (Integer > 1) adjusts MOE (margin of error). Less = more precision, however, it's recommended to keep the defaults, or at least a number >= 2. This only matters if `focus_method` is set to `"native"`.
@@ -470,7 +470,7 @@ Keep in mind that there are some plugins, for instance, Galaxyline, that no matt
 
 - Q: ***Getting this error: `E420: BG color unknown`. How do I solve this?***
 - A: This issue occurs because:
-1. You don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, use the `custome_bg = "<hex_code>/<normal_color>"` setting to set a bg color for TrueZen, this solution *should* deffinately work. This will set a bg for TrueZen to use. If possible try to set it to match your normal Nvim background color.
+1. You don't have `set termguicolors` in your init.vim (or `vim.cmd("set termguicolors")` in your init.lua). If that didn't help, use the `custom_bg` setting to set a bg color for TrueZen, this solution *should* deffinately work. This will set a bg for TrueZen to use. If possible try to set it to match your normal Nvim background color.
 
 and/or
 
