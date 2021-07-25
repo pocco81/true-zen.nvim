@@ -351,7 +351,7 @@ function M.on()
 
         hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
 
-		cmd([[setlocal winhighlight=Normal:]] .. get_normal_bg()[1])
+		cmd([[setlocal winhighlight=Normal:TrueZenAuxBg]])
     end
 
     integrations_loader.unload_integrations()
