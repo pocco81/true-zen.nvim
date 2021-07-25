@@ -4,19 +4,21 @@ local hi_group = require("true-zen.services.modes.mode-ataraxis.modules.hi_group
 local fillchar = require("true-zen.services.modes.mode-ataraxis.modules.fillchar")
 local integrations_loader = require("true-zen.services.integrations.modules.integrations_loader")
 local special_integrations_loader = require("true-zen.services.integrations.modules.special_integrations_loader")
+local colors = require("true-zen.utils.colors")
 
 local cmd = vim.cmd
 local api = vim.api
 local o = vim.o
 local fn = vim.fn
 
-local truezen_layout
 local iwaw_proportion
+local truezen_layout
 local splitbelow
 local splitright
 local hidden
 local x_axis
 local y_axis
+local winhl
 
 local M = {}
 
@@ -42,6 +44,15 @@ function M.set_axis_length(axis, value)
     else
         y_axis = value
     end
+end
+
+
+local function set_winhl(val)
+	winhl = val
+end
+
+local function get_winhl()
+	return winhl
 end
 
 local function set_iwaw_proportion(val)
@@ -111,12 +122,34 @@ local function unlet_padding_vars()
     )
 end
 
-local function gen_buffer_specs(gen_command, command, extra)
+local function gen_background()
+
+	local style = opts["modes"]["ataraxis"]["custom_bg"][1]
+	local bg_prop = opts["modes"]["ataraxis"]["custom_bg"][2]
+
+	if (style == "darken") then
+
+		local normal = colors.get_hl("Normal")
+
+		if normal and normal.background then
+			local bg = colors.darken(normal.background, bg_prop)
+			cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
+			set_winhl("winhighlight=Normal:TrueZenWinBg")
+		end
+	elseif (style == "solid") then
+		cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg_prop, bg_prop))
+		set_winhl("winhighlight=Normal:TrueZenWinBg")
+	else
+		set_winhl("")
+	end
+end
+
+local function gen_window_specs(gen_command, command, extra)
     cmd(gen_command)
     cmd(command)
     cmd(
         [[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 | let w:truezen_window = 'true']]
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0]] .. get_winhl() .. [[ | let w:truezen_window = 'true']]
     )
 
     if (extra ~= nil) then
@@ -231,10 +264,10 @@ function M.layout(action)
             bottom_padding_cmd = "resize " .. opts["modes"]["ataraxis"]["bottom_padding"] .. ""
         end
 
-        gen_buffer_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
-        gen_buffer_specs("vnew", right_padding_cmd, "wincmd h") -- right buffer
-        gen_buffer_specs("leftabove new", top_padding_cmd, "wincmd j") -- top buffer
-        gen_buffer_specs("rightbelow new", bottom_padding_cmd, "wincmd k") -- bottom buffer
+        gen_window_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
+        gen_window_specs("vnew", right_padding_cmd, "wincmd h") -- right buffer
+        gen_window_specs("leftabove new", top_padding_cmd, "wincmd j") -- top buffer
+        gen_window_specs("rightbelow new", bottom_padding_cmd, "wincmd k") -- bottom buffer
         -- final position: middle buffer
 
         if (M.get_axis_length("x") == nil) then
@@ -262,13 +295,24 @@ function M.on()
 	if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
 		mode_minimalist.main("on")
 	end
+
+	if (get_winhl() == nil) then
+		gen_background()
+	end
+
     M.layout("generate")
     fillchar.store_fillchars()
     fillchar.set_fillchars()
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
-        hi_group.set_hi_groups(opts["modes"]["ataraxis"]["custome_bg"], opts["modes"]["ataraxis"]["affected_higroups"])
+
+		local bg_color = opts["modes"]["ataraxis"]["custom_bg"][2]
+		if (opts["modes"]["ataraxis"]["custom_bg"][1] == "darken") then
+			bg_color = ""
+		end
+
+        hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
     end
 
     integrations_loader.unload_integrations()

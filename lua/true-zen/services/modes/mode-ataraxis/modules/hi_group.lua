@@ -4,8 +4,8 @@ local api = vim.api
 
 local M = {}
 
-function M.set_hi_groups(custome_bg, affected_higroups)
-    custome_bg = custome_bg or ""
+function M.set_hi_groups(custom_bg, affected_higroups)
+    custom_bg = custom_bg or ""
     affected_higroups =
         affected_higroups or
         {"NonText", "FoldColumn", "ColorColumn", "VertSplit", "StatusLine", "StatusLineNC", "SignColumn"}
@@ -63,10 +63,10 @@ function M.set_hi_groups(custome_bg, affected_higroups)
 
     local call_tran = ""
 
-    if (custome_bg == "" or custome_bg == "" or custome_bg == nil) then
+    if (custom_bg == "" or custom_bg == "" or custom_bg == nil) then
         call_tran = "call Tranquilize('black', g:__truezen_viml_affected_higroup)"
     else
-        call_tran = "call Tranquilize('" .. custome_bg .. "', g:__truezen_viml_affected_higroup)"
+        call_tran = "call Tranquilize('" .. custom_bg .. "', g:__truezen_viml_affected_higroup)"
     end
 
     cmd(call_tran)
