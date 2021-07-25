@@ -147,14 +147,14 @@ local function gen_background()
             local bg = colors.darken(normal.background, bg_prop)
             set_normal_bg({normal.background, bg}) -- [1] = user bg; [2] = truezen bg
             cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
-            cmd(("highlight TrueZenAuxBg guibg=%s"):format(bg))
+            cmd(("highlight TrueZenAuxBg guibg=%s"):format(normal.background))
             set_winhl("winhighlight=Normal:TrueZenBg")
         end
     elseif (style == "solid") then
         local normal = colors.get_hl("Normal")
         set_normal_bg({normal.background, bg_prop}) -- [1] = user bg; [2] = truezen bg
         cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg_prop, bg_prop))
-        cmd(("highlight TrueZenAuxBg guibg=%s"):format(bg_prop))
+        cmd(("highlight TrueZenAuxBg guibg=%s"):format(normal.background))
         set_winhl("winhighlight=Normal:TrueZenBg")
     else
         set_winhl("")
