@@ -19,6 +19,7 @@ local hidden
 local x_axis
 local y_axis
 local winhl
+local normal_bg
 
 local M = {}
 
@@ -46,13 +47,12 @@ function M.set_axis_length(axis, value)
     end
 end
 
-
 local function set_winhl(val)
-	winhl = val
+    winhl = val
 end
 
 local function get_winhl()
-	return winhl
+    return winhl
 end
 
 local function set_iwaw_proportion(val)
@@ -63,51 +63,65 @@ local function get_iwaw_proportion()
     return iwaw_proportion
 end
 
+local function set_normal_bg(color)
+    normal_bg = color
+end
+
+local function get_normal_bg()
+    return normal_bg
+end
+
 local function set_split(split, val)
-	if (split == "splitbelow") then
-		splitbelow = val
-	else
-		splitright = val
-	end
+    if (split == "splitbelow") then
+        splitbelow = val
+    else
+        splitright = val
+    end
 end
 
 local function get_split(split)
-	if (split == "splitbelow") then
-		return splitbelow
-	else
-		return splitright
-	end
+    if (split == "splitbelow") then
+        return splitbelow
+    else
+        return splitright
+    end
 end
 
-local function get_hidden() return hidden end
+local function get_hidden()
+    return hidden
+end
 
-local function set_hidden(val) hidden = val end
+local function set_hidden(val)
+    hidden = val
+end
 
 local function ensure_settings()
-	if (o.splitbelow == false) then
-		set_split("splitbelow", false); o.splitbelow = true
-	else
-		set_split("splitbelow", true)
-	end
+    if (o.splitbelow == false) then
+        set_split("splitbelow", false)
+        o.splitbelow = true
+    else
+        set_split("splitbelow", true)
+    end
 
-	if (o.splitright == false) then
-		set_split("splitright", false); o.splitright = true
-	else
-		set_split("splitright", true)
-	end
+    if (o.splitright == false) then
+        set_split("splitright", false)
+        o.splitright = true
+    else
+        set_split("splitright", true)
+    end
 
-	if (o.hidden == false) then
-		set_hidden(false); o.hidden = true
-	else
-		set_hidden(true)
-	end
-
+    if (o.hidden == false) then
+        set_hidden(false)
+        o.hidden = true
+    else
+        set_hidden(true)
+    end
 end
 
 local function restore_settings()
-	o.splitbelow = get_split("splitbelow") or true
-	o.splitright = get_split("splitright") or true
-	o.hidden = get_hidden() or true
+    o.splitbelow = get_split("splitbelow") or true
+    o.splitright = get_split("splitright") or true
+    o.hidden = get_hidden() or true
 end
 
 local function unlet_padding_vars()
@@ -123,25 +137,28 @@ local function unlet_padding_vars()
 end
 
 local function gen_background()
+    local style = opts["modes"]["ataraxis"]["custom_bg"][1]
+    local bg_prop = opts["modes"]["ataraxis"]["custom_bg"][2]
 
-	local style = opts["modes"]["ataraxis"]["custom_bg"][1]
-	local bg_prop = opts["modes"]["ataraxis"]["custom_bg"][2]
+    if (style == "darken") then
+        local normal = colors.get_hl("Normal")
 
-	if (style == "darken") then
-
-		local normal = colors.get_hl("Normal")
-
-		if normal and normal.background then
-			local bg = colors.darken(normal.background, bg_prop)
-			cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
-			set_winhl("winhighlight=Normal:TrueZenBg")
-		end
-	elseif (style == "solid") then
-		cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg_prop, bg_prop))
-		set_winhl("winhighlight=Normal:TrueZenBg")
-	else
-		set_winhl("")
-	end
+        if normal and normal.background then
+            local bg = colors.darken(normal.background, bg_prop)
+            set_normal_bg({normal.background, bg}) -- [1] = user bg; [2] = truezen bg
+            cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
+            cmd(("highlight TrueZenAuxBg guibg=%s"):format(bg))
+            set_winhl("winhighlight=Normal:TrueZenBg")
+        end
+    elseif (style == "solid") then
+        local normal = colors.get_hl("Normal")
+        set_normal_bg({normal.background, bg_prop}) -- [1] = user bg; [2] = truezen bg
+        cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg_prop, bg_prop))
+        cmd(("highlight TrueZenAuxBg guibg=%s"):format(bg_prop))
+        set_winhl("winhighlight=Normal:TrueZenBg")
+    else
+        set_winhl("")
+    end
 end
 
 local function gen_window_specs(gen_command, command, extra)
@@ -149,7 +166,8 @@ local function gen_window_specs(gen_command, command, extra)
     cmd(command)
     cmd(
         [[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]] .. get_winhl() .. [[ | let w:truezen_window = 'true']]
+        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]] ..
+            get_winhl() .. [[ | let w:truezen_window = 'true']]
     )
 
     if (extra ~= nil) then
@@ -220,11 +238,9 @@ function M.layout(action)
 
                 local window_width = api.nvim_list_uis()[1]["width"]
 
-
                 if (ideal_writing_area_width >= window_width) then
                     ideal_writing_area_width = window_width - 1
                 end
-
 
                 local total_left_right_width = window_width - ideal_writing_area_width
 
@@ -286,19 +302,40 @@ function M.layout(action)
     end
 end
 
-function M.on()
+local function tranq_normal_bg()
+    local style = opts["modes"]["ataraxis"]["custom_bg"][1]
+    if (style == "darken") then
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+    elseif (style == "solid") then
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+    end
+end
 
-	local cursor_pos = fn.getpos(".")
+local function restore_normal_bg()
+    local style = opts["modes"]["ataraxis"]["custom_bg"][1]
+    if (style == "darken") then
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+    elseif (style == "solid") then
+        cmd([[hi Normal guibg=]] .. get_normal_bg()[2]) -- truezen bg
+    end
+end
+
+function M.on()
+    local cursor_pos = fn.getpos(".")
 
     special_integrations_loader.unload_integrations()
     cmd("tabe %")
-	if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
-		mode_minimalist.main("on")
-	end
+    if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
+        mode_minimalist.main("on")
+    end
 
-	if (get_winhl() == nil) then
-		gen_background()
-	end
+    if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
+        if (get_winhl() == nil) then
+            gen_background()
+        end
+
+        tranq_normal_bg()
+    end
 
     M.layout("generate")
     fillchar.store_fillchars()
@@ -307,10 +344,10 @@ function M.on()
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.store_hi_groups(opts["modes"]["ataraxis"]["affected_higroups"])
 
-		local bg_color = opts["modes"]["ataraxis"]["custom_bg"][2]
-		if (opts["modes"]["ataraxis"]["custom_bg"][1] == "darken") then
-			bg_color = ""
-		end
+        local bg_color = opts["modes"]["ataraxis"]["custom_bg"][2]
+        if (opts["modes"]["ataraxis"]["custom_bg"][1] == "darken") then
+            bg_color = ""
+        end
 
         hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
     end
@@ -324,16 +361,15 @@ function M.on()
         cmd([[setlocal statusline=-]])
     end
 
-	fn.setpos('.', cursor_pos)
+    fn.setpos(".", cursor_pos)
 end
 
 function M.off()
+    local cursor_pos
 
-	local cursor_pos
-
-	if (api.nvim_eval([[get(g:,"truezen_main_window", "no")]]) == fn.win_getid()) then
-		cursor_pos = fn.getpos(".")
-	end
+    if (api.nvim_eval([[get(g:,"truezen_main_window", "no")]]) == fn.win_getid()) then
+        cursor_pos = fn.getpos(".")
+    end
 
     M.layout("destroy")
     mode_minimalist.main("off")
@@ -343,14 +379,15 @@ function M.off()
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.restore_hi_groups()
+		restore_normal_bg()
     end
 
-	restore_settings()
+    restore_settings()
 
-	if (cursor_pos ~= nil) then
-		fn.setpos('.', cursor_pos)
-		cursor_pos = nil
-	end
+    if (cursor_pos ~= nil) then
+        fn.setpos(".", cursor_pos)
+        cursor_pos = nil
+    end
 end
 
 return M
