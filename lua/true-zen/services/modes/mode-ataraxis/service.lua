@@ -143,13 +143,30 @@ local function gen_background()
     if (style == "darken") then
         local normal = colors.get_hl("Normal")
 
+		local user_bg
+		local truezen_bg
+		local aux_bg
+
         if normal and normal.background then
-            local bg = colors.darken(normal.background, bg_prop)
-            set_normal_bg({normal.background, bg}) -- [1] = user bg; [2] = truezen bg
-            cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(bg, bg))
-            cmd(("highlight TrueZenAuxBg guibg=%s"):format(normal.background))
-            set_winhl("winhighlight=Normal:TrueZenBg")
-        end
+			user_bg = normal.background
+			truezen_bg = colors.darken(user_bg, bg_prop)
+		else
+			user_bg = nil
+
+			if (o.bg == "dark") then
+				aux_bg = "#111921"
+				truezen_bg = colors.darken(aux_bg, bg_prop)
+			else
+				aux_bg = "#363636"
+				truezen_bg = colors.darken("#363636", bg_prop)
+			end
+		end
+
+		set_normal_bg({user_bg, truezen_bg}) -- [1] = user bg; [2] = truezen bg
+
+		cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(truezen_bg, truezen_bg))
+		cmd(("highlight TrueZenAuxBg guibg=%s"):format((user_bg or aux_bg)))
+		set_winhl("winhighlight=Normal:TrueZenBg")
     elseif (style == "solid") then
         local normal = colors.get_hl("Normal")
         set_normal_bg({normal.background, bg_prop}) -- [1] = user bg; [2] = truezen bg
@@ -314,7 +331,7 @@ end
 local function restore_normal_bg()
     local style = opts["modes"]["ataraxis"]["custom_bg"][1]
     if (style == "darken") then
-        cmd([[hi Normal guibg=]] .. get_normal_bg()[1]) -- user bg
+        cmd([[hi Normal guibg=]] .. (get_normal_bg()[1] or "none")) -- user bg
     elseif (style == "solid") then
         cmd([[hi Normal guibg=]] .. get_normal_bg()[1]) -- user bg
     end
