@@ -121,16 +121,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>19-07-21</b>: Fix #46.</li>
   <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
   <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
   <li><b>19-07-21</b>: Feat #49 added.</li>
-  <li><b>15-07-21</b>: Fixed #36.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>15-07-21</b>: Fixed #36.</li>
   <li><b>14-07-21</b>: Added feature requested by #35.</li>
   <li><b>06-07-21</b>: Added lualine integration.</li>
   <li><b>03-07-21</b>: Fixed #31</li>
