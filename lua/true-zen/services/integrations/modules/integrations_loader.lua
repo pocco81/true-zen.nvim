@@ -68,6 +68,8 @@ function M.load_integrations()
                 end
             elseif (integration == "limelight") then
                 M.require_element(integration, "disable")
+            elseif (integration == "twilight") then
+                M.require_element(integration, "disable")
             else -- gitsigns,
                 M.require_element(integration, "enable")
             end
