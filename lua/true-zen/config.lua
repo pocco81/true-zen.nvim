@@ -44,6 +44,7 @@ config.options = {
 		gitsigns = false,
 		nvim_bufferline = false,
 		limelight = false,
+		twilight = false,
 		vim_airline = false,
 		vim_powerline = false,
 		vim_signify = false,
