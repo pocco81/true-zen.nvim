@@ -121,16 +121,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
   <li><b>19-07-21</b>: Fix #46.</li>
   <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
   <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
-  <li><b>19-07-21</b>: Feat #49 added.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>19-07-21</b>: Feat #49 added.</li>
   <li><b>15-07-21</b>: Fixed #36.</li>
   <li><b>14-07-21</b>: Added feature requested by #35.</li>
   <li><b>06-07-21</b>: Added lualine integration.</li>
@@ -228,6 +229,7 @@ integrations = {
 	gitsigns = false,
 	nvim_bufferline = false,
 	limelight = false,
+	twilight = false,
 	vim_airline = false,
 	vim_powerline = false,
 	vim_signify = false,
@@ -294,6 +296,7 @@ true_zen.setup({
 		gitsigns = false,
 		nvim_bufferline = false,
 		limelight = false,
+		twilight = false,
 		vim_airline = false,
 		vim_powerline = false,
 		vim_signify = false,
@@ -363,6 +366,7 @@ true_zen.setup({
 		gitsigns = false,
 		nvim_bufferline = false,
 		limelight = false,
+		twilight = false,
 		vim_airline = false,
 		vim_powerline = false,
 		vim_signify = false,
@@ -463,6 +467,7 @@ These settings are part of the `integrations = {}` table and can be used to enab
 - `gitgutter`: (Boolean) if true, disables Gitgutter when Ataraxis mode is on and toggles it back on after exiting it.
 - `vim_signify`: (Boolean) if true, disables Vim Signify when Ataraxis mode is on and toggles it back on after exiting it.
 - `limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
+- `twilight`: (Boolean) if true, enables Twilight when Ataraxis mode is on and toggles it back off after exiting it.
 - `gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
 
 ## Misc

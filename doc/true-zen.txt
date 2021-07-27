@@ -123,6 +123,7 @@ integrations = {
 	gitsigns = false,
 	nvim_bufferline = false,
 	limelight = false,
+	twilight = false,
 	vim_airline = false,
 	vim_powerline = false,
 	vim_signify = false,
@@ -218,6 +219,7 @@ true_zen.setup({
 		gitsigns = false,
 		nvim_bufferline = false,
 		limelight = false,
+		twilight = false,
 		vim_airline = false,
 		vim_powerline = false,
 		vim_signify = false,
@@ -281,6 +283,7 @@ true_zen.setup({
 		gitsigns = false,
 		nvim_bufferline = false,
 		limelight = false,
+		twilight = false,
 		vim_airline = false,
 		vim_powerline = false,
 		vim_signify = false,
@@ -387,6 +390,7 @@ These settings are part of the `integrations = {}` table and can be used to enab
 - `gitgutter`: (Boolean) if true, disables Gitgutter when Ataraxis mode is on and toggles it back on after exiting it.
 - `vim_signify`: (Boolean) if true, disables Vim Signify when Ataraxis mode is on and toggles it back on after exiting it.
 - `limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
+- `twilight`: (Boolean) if true, enables Twilight when Ataraxis mode is on and toggles it back off after exiting it.
 - `gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
 
 ## Misc															*truezen-config-misc*
