@@ -3,6 +3,7 @@ local g = vim.g
 local api = vim.api
 
 local M = {}
+
 local default_higroups = {
     FoldColumn = {},
     ColorColumn = {},
@@ -21,16 +22,6 @@ local terms = {
     "guifg",
     "gui"
 }
-
-local hi_groups_stored
-
-local function set_hi_groups_stored(val)
-	hi_groups_stored = val
-end
-
-local function get_hi_groups_stored()
-	return hi_groups_stored
-end
 
 function M.set_hi_groups(custom_bg, affected_higroups)
     custom_bg = custom_bg or ""
@@ -52,7 +43,6 @@ function M.set_hi_groups(custom_bg, affected_higroups)
 			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 		endfunction
 		com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
-
 	]],
         false
     )
@@ -81,7 +71,6 @@ function M.set_hi_groups(custom_bg, affected_higroups)
 					call SetColor(grp, 'fg', bg)
 					call SetColor(grp, 'bg', bg)
 				endif
-
 				call SetColor(grp, '', 'NONE')
 			endfor
 		endfunction
@@ -116,7 +105,6 @@ function M.store_hi_groups(local_hi_groups)
 		function! ReturnHighlightTerm(group, term)
 			" Store output of group to variable
 			let output = execute('hi ' . a:group)
-
 			" Find the term we're looking for
 			return matchstr(output, a:term.'=\zs\S*')
 		endfunction
@@ -125,7 +113,7 @@ function M.store_hi_groups(local_hi_groups)
     )
 
     for hi_index, _ in pairs(hi_groups) do
-        if (hi_groups[hi_index ~= "ignore"]) then
+        if (hi_groups[hi_index] ~= "ignore") then
             clear_table(hi_groups[hi_index]) -- flush the table before reloading it
             for term_index, _ in pairs(terms) do
                 cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
@@ -139,18 +127,18 @@ function M.store_hi_groups(local_hi_groups)
         end
     end
 
-	set_hi_groups_stored(true)
+    hi_groups_stored = true
 end
 
 function M.restore_hi_groups()
-    if (get_hi_groups_stored() == false or get_hi_groups_stored() == nil) then
-    elseif (get_hi_groups_stored() == true) then
+    if (hi_groups_stored == false or hi_groups_stored == nil) then
+    elseif (hi_groups_stored == true) then
         for hi_index, _ in pairs(hi_groups) do
             if (hi_groups[hi_index] ~= "ignore") then
                 local final_cmd = "highlight " .. tostring(hi_index) .. ""
                 local list_of_terms = ""
                 for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
-                    local current_term = terms[inner_hi_index]
+                    current_term = terms[inner_hi_index]
                     list_of_terms =
                         list_of_terms ..
                         " " .. current_term .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
