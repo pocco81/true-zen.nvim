@@ -3,16 +3,44 @@ local g = vim.g
 local api = vim.api
 
 local M = {}
+local default_higroups = {
+    FoldColumn = {},
+    ColorColumn = {},
+    VertSplit = {},
+    StatusLine = {},
+    StatusLineNC = {},
+    SignColumn = {}
+}
+
+-- term != terminal; term = terminology
+local terms = {
+    "cterm",
+    "ctermbg",
+    "ctermfg",
+    "guibg",
+    "guifg",
+    "gui"
+}
+
+local hi_groups_stored
+
+local function set_hi_groups_stored(val)
+	hi_groups_stored = val
+end
+
+local function get_hi_groups_stored()
+	return hi_groups_stored
+end
 
 function M.set_hi_groups(custom_bg, affected_higroups)
     custom_bg = custom_bg or ""
-    affected_higroups =
-        affected_higroups or
-        {"NonText", "FoldColumn", "ColorColumn", "VertSplit", "StatusLine", "StatusLineNC", "SignColumn"}
+    affected_higroups = affected_higroups or default_higroups
 
     local concatenated_affected_higroups = "{"
-    for grp, _ in pairs(affected_higroups) do
-        concatenated_affected_higroups = concatenated_affected_higroups .. "'" .. grp .. "',"
+    for grp, val in pairs(affected_higroups) do
+        if (val ~= "ignore") then
+            concatenated_affected_higroups = concatenated_affected_higroups .. "'" .. grp .. "',"
+        end
     end
     concatenated_affected_higroups = concatenated_affected_higroups .. "}"
 
@@ -73,23 +101,13 @@ function M.set_hi_groups(custom_bg, affected_higroups)
 end
 
 local function clear_table(tbl)
-	for k in pairs (tbl) do
-		tbl[k] = nil
-	end
+    for k in pairs(tbl) do
+        tbl[k] = nil
+    end
 end
 
 function M.store_hi_groups(local_hi_groups)
-    local_hi_groups =
-        local_hi_groups or
-        {
-            NonText = {},
-            FoldColumn = {},
-            ColorColumn = {},
-            VertSplit = {},
-            StatusLine = {},
-            StatusLineNC = {},
-            SignColumn = {}
-        }
+    local_hi_groups = local_hi_groups or default_higroups
 
     hi_groups = local_hi_groups
 
@@ -106,46 +124,41 @@ function M.store_hi_groups(local_hi_groups)
         false
     )
 
-    -- term != terminal; term = terminology
-    terms = {
-        "cterm",
-        "ctermbg",
-        "ctermfg",
-        "guibg",
-        "guifg",
-        "gui"
-    }
-
     for hi_index, _ in pairs(hi_groups) do
-		clear_table(hi_groups[hi_index])		-- flush the table before reloading it
-        for term_index, _ in pairs(terms) do
-            cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
-            local term_val = vim.api.nvim_eval("g:term_val")
-            if (term_val == "" or term_val == "") then
-                term_val = "NONE"
-            end
+        if (hi_groups[hi_index ~= "ignore"]) then
+            clear_table(hi_groups[hi_index]) -- flush the table before reloading it
+            for term_index, _ in pairs(terms) do
+                cmd("let term_val = ReturnHighlightTerm('" .. hi_index .. "', '" .. terms[term_index] .. "')")
+                local term_val = vim.api.nvim_eval("g:term_val")
+                if (term_val == "" or term_val == "") then
+                    term_val = "NONE"
+                end
 
-            table.insert(hi_groups[hi_index], term_val)
+                table.insert(hi_groups[hi_index], term_val)
+            end
         end
     end
 
-    hi_groups_stored = true
+	set_hi_groups_stored(true)
 end
 
 function M.restore_hi_groups()
-    if (hi_groups_stored == false or hi_groups_stored == nil) then
-    elseif (hi_groups_stored == true) then
+    if (get_hi_groups_stored() == false or get_hi_groups_stored() == nil) then
+    elseif (get_hi_groups_stored() == true) then
         for hi_index, _ in pairs(hi_groups) do
-            local final_cmd = "highlight " .. tostring(hi_index) .. ""
-            local list_of_terms = ""
-            for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
-                current_term = terms[inner_hi_index]
-                list_of_terms =
-                    list_of_terms .. " " .. current_term .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
-            end
+            if (hi_groups[hi_index] ~= "ignore") then
+                local final_cmd = "highlight " .. tostring(hi_index) .. ""
+                local list_of_terms = ""
+                for inner_hi_index, _ in pairs(hi_groups[hi_index]) do
+                    local current_term = terms[inner_hi_index]
+                    list_of_terms =
+                        list_of_terms ..
+                        " " .. current_term .. "=" .. tostring(hi_groups[hi_index][inner_hi_index]) .. ""
+                end
 
-            final_cmd = final_cmd .. list_of_terms
-            cmd(final_cmd)
+                final_cmd = final_cmd .. list_of_terms
+                cmd(final_cmd)
+            end
         end
     end
 end
