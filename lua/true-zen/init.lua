@@ -1,9 +1,8 @@
-local opts = require("true-zen.config").options
 local cmd = vim.cmd
 
 local M = {}
 
-local function setup_commands()
+local function setup_commands(opts)
     if (opts["misc"]["on_off_commands"] == true) then
         cmd([[command! TZMinimalistOn lua require'true-zen.main'.main(3, 'on')]])
         cmd([[command! TZMinimalistOff lua require'true-zen.main'.main(3, 'off')]])
@@ -29,7 +28,7 @@ local function setup_commands()
     end
 end
 
-local function setup_cursor()
+local function setup_cursor(opts)
     if (opts["misc"]["cursor_by_mode"] == true) then
         cmd("set guicursor=i-c-ci:ver25,o-v-ve:hor20,cr-sm-n-r:block")
     end
@@ -37,8 +36,11 @@ end
 
 function M.setup(custom_opts)
     require("true-zen.config").set_options(custom_opts)
-    setup_commands()
-    setup_cursor()
+
+	-- must be required after or else it will stick to the default options
+	local opts = require("true-zen.config").options
+    setup_commands(opts)
+    setup_cursor(opts)
 end
 
 return M
