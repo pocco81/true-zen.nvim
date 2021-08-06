@@ -179,17 +179,19 @@ local function gen_background()
 end
 
 local function gen_window_specs(gen_command, command, extra)
-    cmd(gen_command)
-    cmd(command)
-    cmd(
-        [[
-        setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]] ..
-            get_winhl() .. [[ | let w:truezen_window = 'true']]
-    )
+	if (command ~= "") then
+		cmd(gen_command)
+		cmd(command)
+		cmd(
+			[[
+			setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]] ..
+				get_winhl() .. [[ | let w:truezen_window = 'true']]
+		)
 
-    if (extra ~= nil) then
-        cmd(extra)
-    end
+		if (extra ~= nil) then
+			cmd(extra)
+		end
+	end
 end
 
 function M.layout(action)
@@ -285,16 +287,19 @@ function M.layout(action)
         end
 
         -- TODO: REPLACE THIS WITH PCALL TO AVOID NEGATIVE NUMBERS
-        if not (tz_top_padding == "NONE") then
-            top_padding_cmd = "resize " .. tz_top_padding .. ""
+        if (tz_top_padding ~= "NONE") then
+			if (tz_top_padding ~= 0) then top_padding_cmd = "resize " .. tz_top_padding .. "" end
         else
-            top_padding_cmd = "resize " .. opts["modes"]["ataraxis"]["top_padding"] .. ""
+			local user_top = opts["modes"]["ataraxis"]["top_padding"]
+			if (user_top ~= 0) then top_padding_cmd = "resize " .. user_top .. "" end
         end
 
-        if not (tz_bottom_padding == "NONE") then
-            bottom_padding_cmd = "resize " .. tz_bottom_padding .. ""
+        if (tz_bottom_padding ~= "NONE") then
+			if (tz_bottom_padding ~= 0) then bottom_padding_cmd = "resize " .. tz_bottom_padding .. "" end
         else
-            bottom_padding_cmd = "resize " .. opts["modes"]["ataraxis"]["bottom_padding"] .. ""
+			local user_bottom = opts["modes"]["ataraxis"]["bottom_padding"]
+			if (user_bottom ~= 0) then bottom_padding_cmd = "resize " .. user_bottom .. "" end
+
         end
 
         gen_window_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
