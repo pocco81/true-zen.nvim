@@ -348,7 +348,7 @@ function M.on()
     special_integrations_loader.unload_integrations()
     cmd("tabe %")
     if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
-        mode_minimalist.main("on")
+        mode_minimalist.on()
     end
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
@@ -396,7 +396,7 @@ function M.off()
     end
 
     M.layout("destroy")
-    mode_minimalist.main("off")
+    mode_minimalist.off()
     integrations_loader.load_integrations()
     special_integrations_loader.load_integrations()
     fillchar.restore_fillchars()

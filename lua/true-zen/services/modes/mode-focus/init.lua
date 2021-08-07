@@ -15,7 +15,7 @@ local function set_status(value)
     status_mode_focus = value
 end
 
-local function on(focus_type)
+function M.on(focus_type)
 
     if (truezen.before_mode_focus_on ~= nil) then
         truezen.before_mode_focus_on()
@@ -40,7 +40,7 @@ local function on(focus_type)
     end
 end
 
-local function off(focus_type)
+function M.off(focus_type)
 
     if (truezen.before_mode_focus_off ~= nil) then
         truezen.before_mode_focus_off()
@@ -63,9 +63,9 @@ end
 
 local function toggle()
     if (get_status() == "on") then
-        off(opts["modes"]["focus"]["focus_method"])
+        M.off(opts["modes"]["focus"]["focus_method"])
     elseif (get_status() == "off") then
-        on(opts["modes"]["focus"]["focus_method"])
+        M.on(opts["modes"]["focus"]["focus_method"])
     else
         if (api.nvim_eval("winnr('$')") > 1) then
             local focus_method = opts["modes"]["focus"]["focus_method"]
@@ -83,15 +83,15 @@ local function toggle()
 
                 for i = 1, tonumber(opts["modes"]["focus"]["margin_of_error"]), 1 do
                     if (difference == i) then -- since difference is small, it's assumable that window is focused
-                        off("native")
+                        M.off("native")
                         break
                     elseif (i == tonumber(opts["modes"]["focus"]["margin_of_error"])) then -- difference is too big, it's assumable that window is not focused
-                        on("native")
+                        M.on("native")
                         break
                     end
                 end
             elseif (focus_method == "experimental") then
-                on("experimental")
+                M.on("experimental")
             end
         else
             print("TrueZen: You cannot focus the current window because there is only one")
@@ -105,9 +105,9 @@ function M.main(option)
     if (option == "toggle") then
         toggle()
     elseif (option == "on") then
-		if (get_status() == "off") then on() else print("TrueZen: cannot turn focus mode on because it is already on") end
+		if (get_status() == "off") then M.on() else print("TrueZen: cannot turn focus mode on because it is already on") end
     elseif (option == "off") then
-		if (get_status() == "on") then off() else print("TrueZen: cannot turn focus mode off because it is already off") end
+		if (get_status() == "on") then M.off() else print("TrueZen: cannot turn focus mode off because it is already off") end
     end
 end
 

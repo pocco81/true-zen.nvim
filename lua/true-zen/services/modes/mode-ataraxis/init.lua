@@ -3,7 +3,6 @@ local opts = require("true-zen.config").options
 local truezen = require("true-zen")
 
 local api = vim.api
-local fn = vim.fn
 local cmd = vim.cmd
 local status_mode_ataraxis
 
@@ -37,7 +36,7 @@ local function autocmds(state)
 					[[
 					augroup truezen_mode_ataraxis_quit
 						autocmd!
-						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')"
+						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.off()"
 					augroup END
 				]],
 					false
@@ -47,7 +46,7 @@ local function autocmds(state)
 					[[
 					augroup truezen_mode_ataraxis_quit
 						autocmd!
-						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.main('off')" | quit
+						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.off()" | quit
  					augroup END
 				]],
 					false
@@ -74,7 +73,7 @@ local function autocmds(state)
     end
 end
 
-local function on()
+function M.on()
     if (truezen.before_mode_ataraxis_on ~= nil) then
         truezen.before_mode_ataraxis_on()
     end
@@ -88,7 +87,7 @@ local function on()
     end
 end
 
-local function off()
+function M.off()
     if (truezen.before_mode_ataraxis_off ~= nil) then
         truezen.before_mode_ataraxis_off()
     end
@@ -116,9 +115,9 @@ end
 
 local function toggle()
     if (get_status() == "on") then
-        off()
+        M.off()
     else
-        on()
+        M.on()
     end
 end
 
@@ -128,9 +127,9 @@ function M.main(option)
     if (option == "toggle") then
         toggle()
     elseif (option == "on") then
-		if (get_status() == "off") then on() else print("TrueZen: cannot turn ataraxis mode on because it is already on") end
+		if (get_status() == "off") then M.on() else print("TrueZen: cannot turn ataraxis mode on because it is already on") end
     elseif (option == "off") then
-		if (get_status() == "on") then off() else print("TrueZen: cannot turn ataraxis mode off because it is already off") end
+		if (get_status() == "on") then M.off() else print("TrueZen: cannot turn ataraxis mode off because it is already off") end
     end
 end
 

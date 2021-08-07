@@ -12,7 +12,7 @@ function M.set_status(value)
     status_mode_minimalist = value
 end
 
-local function on()
+function M.on()
     if (truezen.before_mode_minimalist_on ~= nil) then
         truezen.before_mode_minimalist_on()
     end
@@ -25,7 +25,7 @@ local function on()
     end
 end
 
-local function off()
+function M.off()
     if (truezen.before_mode_minimalist_off ~= nil) then
         truezen.before_mode_minimalist_off()
     end
@@ -40,9 +40,9 @@ end
 
 local function toggle()
     if (M.get_status() == "on") then
-        off()
+        M.off()
     else
-        on()
+        M.on()
     end
 end
 
@@ -52,9 +52,9 @@ function M.main(option)
     if (option == "toggle") then
         toggle()
     elseif (option == "on") then
-		if (M.get_status() == "off") then on() else print("TrueZen: cannot turn minimalist mode on because it is already on") end
+		if (M.get_status() == "off") then M.on() else print("TrueZen: cannot turn minimalist mode on because it is already on") end
     elseif (option == "off") then
-		if (M.get_status() == "on") then off() else print("TrueZen: cannot turn minimalist mode off because it is already off") end
+		if (M.get_status() == "on") then M.off() else print("TrueZen: cannot turn minimalist mode off because it is already off") end
     end
 end
 
