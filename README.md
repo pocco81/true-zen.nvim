@@ -121,16 +121,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
   <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
   <li><b>19-07-21</b>: Fix #46.</li>
   <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
-  <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
   <li><b>19-07-21</b>: Feat #49 added.</li>
   <li><b>15-07-21</b>: Fixed #36.</li>
   <li><b>14-07-21</b>: Added feature requested by #35.</li>
