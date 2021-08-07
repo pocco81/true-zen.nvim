@@ -105,9 +105,9 @@ function M.main(option)
     if (option == "toggle") then
         toggle()
     elseif (option == "on") then
-        on()
+		if (get_status() == "off") then on() else print("TrueZen: cannot turn focus mode on because it is already on") end
     elseif (option == "off") then
-        off()
+		if (get_status() == "on") then off() else print("TrueZen: cannot turn focus mode off because it is already off") end
     end
 end
 
