@@ -273,7 +273,7 @@ function M.layout(action)
                 left_padding_cmd = "vertical resize " .. calculated_left_padding .. ""
                 right_padding_cmd = "vertical resize " .. calculated_right_padding .. ""
             else
-                if (opts["modes"]["ataraxis"]["just_do_it_for_me"] == true) then
+                if (opts["modes"]["ataraxis"]["auto_padding"] == true) then
                     local calculated_left_padding = api.nvim_eval("winwidth('%') / 4")
                     local calculated_right_padding = api.nvim_eval("winwidth('%') / 4")
 
