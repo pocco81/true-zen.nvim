@@ -211,7 +211,7 @@ modes = {
 		top_padding = 1,
 		bottom_padding = 1,
 		ideal_writing_area_width = {0},
-		just_do_it_for_me = true,
+		auto_padding = true,
 		keep_default_fold_fillchars = true,
 		custom_bg = {"none", ""},
 		bg_configuration = true,
@@ -278,7 +278,7 @@ true_zen.setup({
 			top_padding = 1,
 			bottom_padding = 1,
 			ideal_writing_area_width = {0},
-			just_do_it_for_me = true,
+			auto_padding = true,
 			keep_default_fold_fillchars = true,
 			custom_bg = {"none", ""},
 			bg_configuration = true,
@@ -348,7 +348,7 @@ true_zen.setup({
 			top_padding = 1,
 			bottom_padding = 1,
 			ideal_writing_area_width = {0},
-			just_do_it_for_me = true,
+			auto_padding = true,
 			keep_default_fold_fillchars = true,
 			custom_bg = {"none", ""},
 			bg_configuration = true,
@@ -442,7 +442,7 @@ They are part of the `modes = {}` table and control the settings for the differe
 + `right_padding`: (Integer) sets padding for the right.
 + `top_padding`: (Integer) sets padding for the top.
 + `bottom_padding`: (Integer) sets padding for the bottom.
-+ `just_do_it_for_me`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
++ `auto_padding`: (Boolean) if true, it will ignore `left_padding` and `right_padding` and will set them for you.
 + `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. Useful if you want the mouse to keep working.
 + `ideal_writing_area_width`: (Table) sets an ideal width for the writing area. It can receive up to 3 values (`{<int -> min_width>, <int -> max_width>, <str -> "min"/"max">}`) but only one is needed for it to work. Passing a `0` to the table disables it, anything grater than does the opposite. It simply ensures a writing area of the given size regardless of the ui's proportions where possible. If only `<min_width>` is passed, then that value is the ideal writing area. Useful for people with multiple monitors that **don't use a terminal multiplexer or resize it often**. If `<min_width>` and `<max_width>` are passed, it defines a range to pick the writing area from, where the first value is the minimum width it can have and the second value is the maximum. Useful for people with **terminal multiplexers/that resize the terminal a lot**. If `<min_width>`, `<max_width>` and `<"min"/"max">` are passed, the same as passing the two values will happen but it will try pick either the "max" or the "min" width where possible.
 + `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table or `"ignore"` in case you want that hi groups to be completely ignored.
