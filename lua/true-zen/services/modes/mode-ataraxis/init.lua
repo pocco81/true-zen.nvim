@@ -18,18 +18,40 @@ end
 
 local function autocmds(state)
     if (state == "start") then
-        api.nvim_exec(
-            [[
-			augroup truezen_mode_ataraxis_resume
-				autocmd!
-				autocmd WinEnter * if exists("w:truezen_window") | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif
-			augroup END
-		]],
-            false
-        )
+
+		if not (opts["modes"]["ataraxis"]["ignore_floating_windows"]) then
+			api.nvim_exec(
+				[[
+				augroup truezen_mode_ataraxis_resume_enter
+					autocmd!
+					autocmd WinEnter * if exists("w:truezen_window") | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif
+				augroup END
+			]],
+				false
+			)
+		else
+			api.nvim_exec(
+				[[
+				augroup truezen_mode_ataraxis_resume_enter
+					autocmd!
+					autocmd WinEnter * if exists("w:truezen_window") | if (g:truezen_last_floats == 1) | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.resume()" | endif | endif
+				augroup END
+			]],
+				false
+			)
+
+			api.nvim_exec(
+				[[
+				augroup truezen_mode_ataraxis_resume_leave
+					autocmd!
+					autocmd WinLeave * let g:truezen_last_floats = nvim_win_get_config(0).relative == ''
+				augroup END
+			]],
+				false
+			)
+		end
 
         local quit_opt = opts["modes"]["ataraxis"]["quit"]
-
         if (quit_opt ~= nil) then
             if (quit_opt == "untoggle") then
 				api.nvim_exec(
@@ -56,11 +78,18 @@ local function autocmds(state)
 
     elseif (state == "stop") then
         api.nvim_exec([[
-			augroup truezen_mode_ataraxis_resume
+			augroup truezen_mode_ataraxis_resume_enter
 				autocmd!
 			augroup END
 		]], false)
 
+		if (opts["modes"]["ataraxis"]["ignore_floating_windows"]) then
+			api.nvim_exec([[
+				augroup truezen_mode_ataraxis_resume_leave
+					autocmd!
+				augroup END
+			]], false)
+		end
 
 		if (opts["modes"]["ataraxis"]["quit"] ~= nil) then
 			api.nvim_exec([[

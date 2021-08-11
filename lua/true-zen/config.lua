@@ -30,6 +30,7 @@ config.options = {
 			custom_bg = {"none", ""},
 			bg_configuration = true,
 			quit = "untoggle",
+			ignore_floating_windows = true,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {
