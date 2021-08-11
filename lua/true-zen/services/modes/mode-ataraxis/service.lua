@@ -20,6 +20,7 @@ local x_axis
 local y_axis
 local winhl
 local normal_bg
+local file_exists
 
 local M = {}
 
@@ -69,6 +70,14 @@ end
 
 local function get_normal_bg()
     return normal_bg
+end
+
+local function set_file_exists(val)
+	file_exists = val
+end
+
+local function get_file_exists()
+	return file_exists
 end
 
 local function set_split(split, val)
@@ -318,7 +327,10 @@ function M.layout(action)
         M.set_layout(api.nvim_eval([[winrestcmd()]]))
     elseif (action == "destroy") then
         cmd("only")
-        cmd("q")
+
+		if (get_file_exists()) then
+			cmd("q")
+		end
 
         unlet_padding_vars()
     end
@@ -346,7 +358,12 @@ function M.on()
     local cursor_pos = fn.getpos(".")
 
     special_integrations_loader.unload_integrations()
-    cmd("tabe %")
+
+	if (fn.filereadable(fn.expand("%:p")) == 1) then
+		cmd("tabe %")
+		set_file_exists(true)
+	end
+
     if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
         mode_minimalist.on()
     end
