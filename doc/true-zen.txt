@@ -109,6 +109,7 @@ modes = {
 		custom_bg = {"none", ""},
 		bg_configuration = true,
 		quit = "untoggle",
+		ignore_floating_windows = true,
 		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 	},
 	focus = {
@@ -205,6 +206,7 @@ true_zen.setup({
 			custom_bg = {"none", ""},
 			bg_configuration = true,
 			quit = "untoggle",
+			ignore_floating_windows = true,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {
@@ -269,6 +271,7 @@ true_zen.setup({
 			custom_bg = {"none", ""},
 			bg_configuration = true,
 			quit = "untoggle",
+			ignore_floating_windows = true,
 			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
 		},
 		focus = {
@@ -372,6 +375,7 @@ They are part of the `modes = {}` table and control the settings for the differe
 + `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table or `"ignore"` in case you want that hi groups to be completely ignored.
 + `bg_configuration`: (Boolean) if true, allows TrueZen to interact with the user's background. Set it to false only if you are having problems with it. (Note: Refer to the FAQ about this)
 + `quit`: (String - "untoggle", "close", nil) changes the behaviour of the `quit` command while on Ataraxis mode. if "untoggle", quit will untoggle Ataraxis mode, but if set to "close" it will close the original window from where it was first called. To simply use quit as always set it to `nil`.
++ `ignore_floating_windows`: (Boolean) if true, will avoid restoring TrueZen's layout after exiting a floating window. If you use plugins that depend on floating windows that disappear/appear constantly (e.g. [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)), then you are not gonna want TrueZen to be "closing" them all the time. However, if x plugin creates a floating window that you [usually] interact with once then this isn't needed.
 + `custom_bg` (Table): used for adding custom bg (or none) used by the paddings and for tranquilizing the given `hi groups`. It receives two value, where value one is the style, and value two is the background propery/colors. If value one is `"solid"` then it will set the given hex color (value two) (e.g. `custom_bg = {"solid", "#1a1d1e"}`). If value one is `"darken"` it will darken the padding by the given degree between 1 and 0.0 (value two), where `1` is the same as the background and `0.0` is the completly dark (e.g. `custom_bg = {"darken", 0.87}`). Finally, if the value one is `"none"` then it the given color (value two) will only be using for tranquilizing the `hi groups` (e.g. `custom_bg = {"none", ""}`).
 
 ### Focus														*truezen-config-focus*
