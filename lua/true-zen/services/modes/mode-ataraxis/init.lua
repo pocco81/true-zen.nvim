@@ -5,6 +5,7 @@ local truezen = require("true-zen")
 local api = vim.api
 local cmd = vim.cmd
 local status_mode_ataraxis
+vim.g.lmfao = 0
 
 local M = {}
 
@@ -28,8 +29,24 @@ local function redefine_ui_au()
     )
 end
 
+local function unlet_critical_vars()
+    api.nvim_exec([[
+		if exists("g:tz_resized") | unlet g:tz_resized | endif
+	]], false)
+end
+
 local function autocmds(state)
     if (state == "start") then
+        api.nvim_exec(
+            [[
+			augroup truezen_mode_ataraxis_resume_ran
+				autocmd!
+				autocmd VimResized * if !exists("g:tz_resized") | let g:tz_resized = 0 | else | let g:tz_resized = g:tz_resized + 1 | execute "lua require'true-zen.services.modes.mode-ataraxis.init'.assert_resize()" | endif
+			augroup END
+		]],
+            false
+        )
+
         if not (opts["modes"]["ataraxis"]["ignore_floating_windows"]) then
             api.nvim_exec(
                 [[
@@ -89,6 +106,15 @@ local function autocmds(state)
 
         redefine_ui_au()
     elseif (state == "stop") then
+        api.nvim_exec(
+            [[
+			augroup truezen_mode_ataraxis_resume_ran
+				autocmd!
+			augroup END
+		]],
+            false
+        )
+
         api.nvim_exec([[
 			augroup truezen_mode_ataraxis_resume_enter
 				autocmd!
@@ -113,6 +139,12 @@ local function autocmds(state)
     end
 end
 
+function M.assert_resize()
+    autocmds("stop")
+    cmd(service.get_layout())
+    autocmds("start")
+end
+
 function M.on()
     if (truezen.before_mode_ataraxis_on ~= nil) then
         truezen.before_mode_ataraxis_on()
@@ -135,6 +167,7 @@ function M.off()
     autocmds("stop")
     service.off()
     set_status("off")
+	unlet_critical_vars()
 
     if (truezen.after_mode_ataraxis_off ~= nil) then
         truezen.after_mode_ataraxis_off()
