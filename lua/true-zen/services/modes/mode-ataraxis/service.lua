@@ -21,6 +21,7 @@ local y_axis
 local winhl
 local normal_bg
 local file_exists
+local minimalist_prev_status
 
 local M = {}
 
@@ -48,6 +49,14 @@ function M.set_axis_length(axis, value)
     end
 end
 
+local function set_minimalist_prev_status(val)
+    minimalist_prev_status = val
+end
+
+local function get_minimalist_prev_status()
+    return minimalist_prev_status
+end
+
 local function set_winhl(val)
     winhl = val
 end
@@ -73,11 +82,11 @@ local function get_normal_bg()
 end
 
 local function set_file_exists(val)
-	file_exists = val
+    file_exists = val
 end
 
 local function get_file_exists()
-	return file_exists
+    return file_exists
 end
 
 local function set_split(split, val)
@@ -152,30 +161,30 @@ local function gen_background()
     if (style == "darken") then
         local normal = colors.get_hl("Normal")
 
-		local user_bg
-		local truezen_bg
-		local aux_bg
+        local user_bg
+        local truezen_bg
+        local aux_bg
 
         if normal and normal.background then
-			user_bg = normal.background
-			truezen_bg = colors.darken(user_bg, bg_prop)
-		else
-			user_bg = nil
+            user_bg = normal.background
+            truezen_bg = colors.darken(user_bg, bg_prop)
+        else
+            user_bg = nil
 
-			if (o.bg == "dark") then
-				aux_bg = "#111921"
-				truezen_bg = colors.darken(aux_bg, bg_prop)
-			else
-				aux_bg = "#363636"
-				truezen_bg = colors.darken("#363636", bg_prop)
-			end
-		end
+            if (o.bg == "dark") then
+                aux_bg = "#111921"
+                truezen_bg = colors.darken(aux_bg, bg_prop)
+            else
+                aux_bg = "#363636"
+                truezen_bg = colors.darken("#363636", bg_prop)
+            end
+        end
 
-		set_normal_bg({user_bg, truezen_bg}) -- [1] = user bg; [2] = truezen bg
+        set_normal_bg({user_bg, truezen_bg}) -- [1] = user bg; [2] = truezen bg
 
-		cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(truezen_bg, truezen_bg))
-		cmd(("highlight TrueZenAuxBg guibg=%s"):format((user_bg or aux_bg)))
-		set_winhl("winhighlight=Normal:TrueZenBg")
+        cmd(("highlight TrueZenBg guibg=%s guifg=%s"):format(truezen_bg, truezen_bg))
+        cmd(("highlight TrueZenAuxBg guibg=%s"):format((user_bg or aux_bg)))
+        set_winhl("winhighlight=Normal:TrueZenBg")
     elseif (style == "solid") then
         local normal = colors.get_hl("Normal")
         set_normal_bg({normal.background, bg_prop}) -- [1] = user bg; [2] = truezen bg
@@ -188,19 +197,19 @@ local function gen_background()
 end
 
 local function gen_window_specs(gen_command, command, extra)
-	if (command ~= "") then
-		cmd(gen_command)
-		cmd(command)
-		cmd(
-			[[
+    if (command ~= "") then
+        cmd(gen_command)
+        cmd(command)
+        cmd(
+            [[
 			setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]] ..
-				get_winhl() .. [[ | let w:truezen_window = 'true']]
-		)
+                get_winhl() .. [[ | let w:truezen_window = 'true']]
+        )
 
-		if (extra ~= nil) then
-			cmd(extra)
-		end
-	end
+        if (extra ~= nil) then
+            cmd(extra)
+        end
+    end
 end
 
 function M.layout(action)
@@ -297,18 +306,25 @@ function M.layout(action)
 
         -- TODO: REPLACE THIS WITH PCALL TO AVOID NEGATIVE NUMBERS
         if (tz_top_padding ~= "NONE") then
-			if (tz_top_padding ~= 0) then top_padding_cmd = "resize " .. tz_top_padding .. "" end
+            if (tz_top_padding ~= 0) then
+                top_padding_cmd = "resize " .. tz_top_padding .. ""
+            end
         else
-			local user_top = opts["modes"]["ataraxis"]["top_padding"]
-			if (user_top ~= 0) then top_padding_cmd = "resize " .. user_top .. "" end
+            local user_top = opts["modes"]["ataraxis"]["top_padding"]
+            if (user_top ~= 0) then
+                top_padding_cmd = "resize " .. user_top .. ""
+            end
         end
 
         if (tz_bottom_padding ~= "NONE") then
-			if (tz_bottom_padding ~= 0) then bottom_padding_cmd = "resize " .. tz_bottom_padding .. "" end
+            if (tz_bottom_padding ~= 0) then
+                bottom_padding_cmd = "resize " .. tz_bottom_padding .. ""
+            end
         else
-			local user_bottom = opts["modes"]["ataraxis"]["bottom_padding"]
-			if (user_bottom ~= 0) then bottom_padding_cmd = "resize " .. user_bottom .. "" end
-
+            local user_bottom = opts["modes"]["ataraxis"]["bottom_padding"]
+            if (user_bottom ~= 0) then
+                bottom_padding_cmd = "resize " .. user_bottom .. ""
+            end
         end
 
         gen_window_specs("leftabove vnew", left_padding_cmd, "wincmd l") -- left buffer
@@ -328,9 +344,9 @@ function M.layout(action)
     elseif (action == "destroy") then
         cmd("only")
 
-		if (get_file_exists()) then
-			cmd("q")
-		end
+        if (get_file_exists()) then
+            cmd("q")
+        end
 
         unlet_padding_vars()
     end
@@ -359,13 +375,16 @@ function M.on()
 
     special_integrations_loader.unload_integrations()
 
-	if (fn.filereadable(fn.expand("%:p")) == 1) then
-		cmd("tabe %")
-		set_file_exists(true)
-	end
+    if (fn.filereadable(fn.expand("%:p")) == 1) then
+        cmd("tabe %")
+        set_file_exists(true)
+    end
 
     if (mode_minimalist.get_status() == "off" or mode_minimalist.get_status() == nil) then
         mode_minimalist.on()
+        set_minimalist_prev_status(false)
+    else
+        set_minimalist_prev_status(true)
     end
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
@@ -390,7 +409,7 @@ function M.on()
 
         hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
 
-		cmd([[setlocal winhighlight=Normal:TrueZenAuxBg]])
+        cmd([[setlocal winhighlight=Normal:TrueZenAuxBg]])
     end
 
     integrations_loader.unload_integrations()
@@ -413,14 +432,16 @@ function M.off()
     end
 
     M.layout("destroy")
-    mode_minimalist.off()
+    if (get_minimalist_prev_status() == false) then
+        mode_minimalist.off()
+    end
     integrations_loader.load_integrations()
     special_integrations_loader.load_integrations()
     fillchar.restore_fillchars()
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
         hi_group.restore_hi_groups()
-		restore_normal_bg()
+        restore_normal_bg()
     end
 
     restore_settings()
