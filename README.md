@@ -121,16 +121,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>15-07-21</b>: Fixed #54: only set win opts for TrueZen windows.</li>
   <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
   <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
   <li><b>19-07-21</b>: Fix #46.</li>
-  <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
   <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
   <li><b>19-07-21</b>: Feat #49 added.</li>
   <li><b>15-07-21</b>: Fixed #36.</li>
@@ -575,10 +576,10 @@ The following projects inspired the creation of TrueZen.nvim. If possible, go ch
 
 TrueZen.nvim is released under the GPL v3.0 license. It grants open-source permissions for users including:
 
-- The right to download and run the software freely
-- The right to make changes to the software as desired
-- The right to redistribute copies of the software
-- The right to modify and distribute copies of new versions of the software
++ The right to download and run the software freely
++ The right to make changes to the software as desired
++ The right to redistribute copies of the software
++ The right to modify and distribute copies of new versions of the software
 
 For more convoluted language, see the [LICENSE file](https://github.com/Pocco81/TrueZen.nvim/blob/main/README.md).
 
