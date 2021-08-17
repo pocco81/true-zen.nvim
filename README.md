@@ -117,6 +117,9 @@
 	+ [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 	+ [vim-signify](https://github.com/mhinz/vim-signify)
 	+ [limelight.vim](https://github.com/junegunn/limelight.vim)
+	+ [lightline.vim](https://github.com/itchyny/lightline.vim)
+	+ [twilight.nvim](https://github.com/folke/twilight.nvim)
+	+ [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
 
 # 📺 Notices
 
