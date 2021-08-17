@@ -130,6 +130,7 @@ integrations = {
 	vim_signify = false,
 	express_line = false,
 	lualine = false,
+	lightline = false
 },
 misc = {
 	on_off_commands = false,
@@ -227,6 +228,7 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
+		lightline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -292,6 +294,7 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
+		lightline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -396,6 +399,7 @@ These settings are part of the `integrations = {}` table and can be used to enab
 - `limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
 - `twilight`: (Boolean) if true, enables Twilight when Ataraxis mode is on and toggles it back off after exiting it.
 - `gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
+- `lightline`: (Boolean) if true, hides lightline when Ataraxis mode is on and toggles it back on after exiting it.
 
 ## Misc															*truezen-config-misc*
 + `on_off_commands`: (Boolean) if true, enables [On/Off commands](#onoff).
