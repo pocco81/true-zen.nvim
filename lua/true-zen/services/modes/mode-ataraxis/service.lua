@@ -457,8 +457,8 @@ function M.on()
 
 	local statusline_integration = integrations_loader.get_has_line_with_integration()
     if (statusline_integration == nil or statusline_integration == false) then
-        cmd([[setlocal statusline=-]])
         cmd([[let g:tz_tmp_statusline=&statusline]])
+        cmd([[setlocal statusline=-]]) -- hide it for the win
         local tz_statusline = api.nvim_eval([[get(g:,"tz_tmp_statusline", "NONE")]])
 		if (tz_statusline ~= "" or tz_statusline ~= "NONE") then
 			set_statusline(tz_statusline)
@@ -483,6 +483,7 @@ function M.off()
 
 	local statusline_integration = integrations_loader.get_has_line_with_integration()
     integrations_loader.load_integrations()
+    special_integrations_loader.load_integrations()
 
     if (statusline_integration == nil or statusline_integration == false) then
 		statusline_autocmd("stop")
@@ -491,7 +492,6 @@ function M.off()
 		end
     end
 
-    special_integrations_loader.load_integrations()
     fillchar.restore_fillchars()
 
     if (opts["modes"]["ataraxis"]["bg_configuration"] == true) then
