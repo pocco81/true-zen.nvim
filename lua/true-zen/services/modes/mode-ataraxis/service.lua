@@ -22,6 +22,7 @@ local winhl
 local normal_bg
 local file_exists
 local minimalist_prev_status
+local statusline
 
 local M = {}
 
@@ -89,6 +90,14 @@ local function get_file_exists()
     return file_exists
 end
 
+local function set_statusline(sl)
+	statusline = sl
+end
+
+local function get_statusline()
+	return statusline
+end
+
 local function set_split(split, val)
     if (split == "splitbelow") then
         splitbelow = val
@@ -111,6 +120,29 @@ end
 
 local function set_hidden(val)
     hidden = val
+end
+
+local function statusline_autocmd(co) -- co = [to] carry out
+	if (co == "start") then
+		api.nvim_exec(
+			[[
+			augroup truezen_tmp_statusline
+				autocmd!
+				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * let &statusline='%#Normal# '
+			augroup end
+		]],
+			false
+		)
+	else
+		api.nvim_exec(
+			[[
+			augroup truezen_tmp_statusline
+				autocmd!
+			augroup end
+		]],
+			false
+		)
+	end
 end
 
 local function ensure_settings()
@@ -149,6 +181,15 @@ local function unlet_padding_vars()
 		if exists("g:tz_bottom_padding") | unlet g:tz_bottom_padding | endif
 		if exists("g:tz_left_padding") | unlet g:tz_left_padding | endif
 		if exists("g:tz_right_padding") | unlet g:tz_right_padding | endif
+	]],
+        false
+    )
+end
+
+local function unlet_sys_vars()
+    api.nvim_exec(
+        [[
+		if exists("g:tz_tmp_statusline") | unlet g:tz_tmp_statusline | endif
 	]],
         false
     )
@@ -414,11 +455,15 @@ function M.on()
 
     integrations_loader.unload_integrations()
 
-    if
-        (integrations_loader.get_has_line_with_integration() == nil or
-            integrations_loader.get_has_line_with_integration() == false)
-     then
+	local statusline_integration = integrations_loader.get_has_line_with_integration()
+    if (statusline_integration == nil or statusline_integration == false) then
         cmd([[setlocal statusline=-]])
+        cmd([[let g:tz_tmp_statusline=&statusline]])
+        local tz_statusline = api.nvim_eval([[get(g:,"tz_tmp_statusline", "NONE")]])
+		if (tz_statusline ~= "" or tz_statusline ~= "NONE") then
+			set_statusline(tz_statusline)
+			statusline_autocmd("start")
+		end
     end
 
     fn.setpos(".", cursor_pos)
@@ -435,7 +480,17 @@ function M.off()
     if (get_minimalist_prev_status() == false) then
         mode_minimalist.off()
     end
+
+	local statusline_integration = integrations_loader.get_has_line_with_integration()
     integrations_loader.load_integrations()
+
+    if (statusline_integration == nil or statusline_integration == false) then
+		statusline_autocmd("stop")
+		if (get_statusline() ~= nil and get_statusline() ~= "") then
+			cmd([[let &statusline=g:tz_tmp_statusline]])
+		end
+    end
+
     special_integrations_loader.load_integrations()
     fillchar.restore_fillchars()
 
@@ -445,6 +500,7 @@ function M.off()
     end
 
     restore_settings()
+	unlet_sys_vars()
 
     if (cursor_pos ~= nil) then
         fn.setpos(".", cursor_pos)
