@@ -121,16 +121,18 @@
 # 📺 Notices
 
 <ul>
+  <li><b>19-07-21</b>: Feat #56: added lightline.vim integration.</li>
+  <li><b>19-07-21</b>: Feat (#53): resize Ataraxis padding when nvim's size changes!.</li>
   <li><b>15-07-21</b>: Fixed #54: only set win opts for TrueZen windows.</li>
   <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
-  <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
-  <li><b>19-07-21</b>: Fix #46.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
+  <li><b>19-07-21</b>: Fix #46.</li>
   <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
   <li><b>21-07-21</b>: Fix #41, #42, #43 and #44</li>
   <li><b>19-07-21</b>: Feat #49 added.</li>
@@ -238,6 +240,7 @@ integrations = {
 	vim_signify = false,
 	express_line = false,
 	lualine = false,
+	lightline = false
 },
 misc = {
 	on_off_commands = false,
@@ -306,6 +309,7 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
+		lightline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -377,6 +381,7 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
+		lightline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -475,6 +480,7 @@ These settings are part of the `integrations = {}` table and can be used to enab
 - `limelight`: (Boolean) if true, enables Limelight when Ataraxis mode is on and toggles it back off after exiting it.
 - `twilight`: (Boolean) if true, enables Twilight when Ataraxis mode is on and toggles it back off after exiting it.
 - `gitsigns`: (Boolean) if true, disables Gitsigns' elements when Ataraxis mode is on and enables them after exiting it.
+- `lightline`: (Boolean) if true, hides lightline when Ataraxis mode is on and toggles it back on after exiting it.
 
 ## Misc
 + `on_off_commands`: (Boolean) if true, enables [On/Off commands](#onoff).

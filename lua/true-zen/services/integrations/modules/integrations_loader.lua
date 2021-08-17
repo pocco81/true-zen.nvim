@@ -40,7 +40,7 @@ function M.load_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
-                    integration == "lualine")
+                    integration == "lualine" or integration == "lightline")
              then
                 M.set_has_line_with_integration(true)
                 if (integration == "vim_airline") then
@@ -51,7 +51,7 @@ function M.load_integrations()
                     if (api.nvim_eval("exists('#PowerlineMain')") == 0) then
                         M.require_element(integration, "enable")
                     end
-                else -- lualine, express_line
+                else -- lualine, express_line, lightline
                     M.require_element(integration, "enable")
                 end
             elseif (integration == "vim_gitgutter") then
@@ -88,7 +88,7 @@ function M.unload_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
-                    integration == "lualine")
+                    integration == "lualine" or integration == "lightline")
              then
                 M.set_has_line_with_integration(true)
                 if (integration == "vim_airline") then
@@ -99,7 +99,7 @@ function M.unload_integrations()
                     if (api.nvim_eval("exists('#PowerlineMain')") == 1) then
                         M.require_element(integration, "disable")
                     end
-                else -- lualine, express_line
+                else -- lualine, express_line, lightline
                     M.require_element(integration, "disable")
                 end
             elseif (integration == "vim_gitgutter") then
