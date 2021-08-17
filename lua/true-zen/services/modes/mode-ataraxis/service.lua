@@ -128,7 +128,7 @@ local function statusline_autocmd(co) -- co = [to] carry out
 			[[
 			augroup truezen_tmp_statusline
 				autocmd!
-				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * let &statusline='%#Normal# '
+				autocmd VimResume,FocusGained,BufEnter,WinEnter,BufWinEnter * let &statusline='%#Normal# '
 			augroup end
 		]],
 			false
