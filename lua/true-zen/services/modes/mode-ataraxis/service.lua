@@ -415,6 +415,7 @@ function M.on()
     local cursor_pos = fn.getpos(".")
 
     special_integrations_loader.unload_integrations()
+    integrations_loader.unload_integrations()
 
     if (fn.filereadable(fn.expand("%:p")) == 1) then
         cmd("tabe %")
@@ -453,7 +454,6 @@ function M.on()
         cmd([[setlocal winhighlight=Normal:TrueZenAuxBg]])
     end
 
-    integrations_loader.unload_integrations()
 
 	local statusline_integration = integrations_loader.get_has_line_with_integration()
     if (statusline_integration == nil or statusline_integration == false) then
@@ -485,6 +485,7 @@ function M.off()
     integrations_loader.load_integrations()
     special_integrations_loader.load_integrations()
 
+	-- vim.g.si = integrations_loader.get_has_line_with_integration()
     if (statusline_integration == nil or statusline_integration == false) then
 		statusline_autocmd("stop")
 		if (get_statusline() ~= nil and get_statusline() ~= "") then
