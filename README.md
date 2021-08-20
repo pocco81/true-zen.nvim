@@ -162,7 +162,7 @@
 
 ## Prerequisites
 
-- [NeoVim nightly](https://github.com/neovim/neovim/releases/tag/nightly) (>=v0.5.0)
+- [NeoVim](https://github.com/neovim/neovim) (>=v0.5.0)
 
 ## Adding the plugin
 You can use your favorite plugin manager for this. Here are some examples with the most popular ones:
