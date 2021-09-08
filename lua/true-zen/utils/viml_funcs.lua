@@ -1,4 +1,3 @@
-
 local api = vim.api
 
 --[[
@@ -9,13 +8,14 @@ call BufDo("set fillchars+=vert:\\ ")
 since the function is global, it can be called outside of this nvim_exec statement like so:
 vim.cmd([[call BufDo("set fillchars+=vert:\\ "
 don't forget to complete the statement, is just becuase I can't do that within nvim_exec statement
-]]--
+]]
+--
 
 -- original source: https://vim.fandom.com/wiki/Run_a_command_in_multiple_buffers
 
 -- like bufdo but restore the current buffer.
 api.nvim_exec(
-    [[
+	[[
 	function! g:TrueZenBufDo(command)
 		let currBuff=bufnr("%")
 		execute 'bufdo ' . a:command
@@ -23,12 +23,12 @@ api.nvim_exec(
 	endfunction
 	com! -nargs=+ -complete=command Bufdo call BufDo(<q-args>)
 ]],
-    false
+	false
 )
 
 -- like windo but restore the current window
 api.nvim_exec(
-    [[
+	[[
 	function! g:TrueZenWinDo(command)
 		let currwin=winnr()
 		execute 'windo ' . a:command
@@ -36,12 +36,12 @@ api.nvim_exec(
 	endfunction
 	com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
 ]],
-    false
+	false
 )
 
 -- like tabdo but restore the current tab.
 api.nvim_exec(
-    [[
+	[[
 	function! g:TrueZenTabDo(command)
 		let currTab=tabpagenr()
 		execute 'tabdo ' . a:command
@@ -49,12 +49,12 @@ api.nvim_exec(
 	endfunction
 	com! -nargs=+ -complete=command Tabdo call TabDo(<q-args>)
 ]],
-    false
+	false
 )
 
 -- like tabdo but restore the current tab.
 api.nvim_exec(
-    [[
+	[[
 	function! g:TrueZenTabDo(command)
 		let currTab=tabpagenr()
 		execute 'tabdo ' . a:command
@@ -62,5 +62,5 @@ api.nvim_exec(
 	endfunction
 	com! -nargs=+ -complete=command Tabdo call TabDo(<q-args>)
 ]],
-    false
+	false
 )
