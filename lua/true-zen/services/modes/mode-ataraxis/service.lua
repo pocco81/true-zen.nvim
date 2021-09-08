@@ -449,7 +449,7 @@ function M.on()
             bg_color = ""
         end
 
-        hi_group.set_hi_groups(bg_color or "", opts["modes"]["ataraxis"]["affected_higroups"])
+        hi_group.set_hi_groups(bg_color or "")
 
         cmd([[setlocal winhighlight=Normal:TrueZenAuxBg]])
     end

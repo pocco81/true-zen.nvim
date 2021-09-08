@@ -24,18 +24,26 @@ config.options = {
 			right_padding = 32,
 			top_padding = 1,
 			bottom_padding = 1,
-			ideal_writing_area_width = {0},
+			ideal_writing_area_width = { 0 },
 			auto_padding = true,
 			keep_default_fold_fillchars = true,
-			custom_bg = {"none", ""},
+			custom_bg = { "none", "" },
 			bg_configuration = true,
 			quit = "untoggle",
 			ignore_floating_windows = true,
-			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
 		},
 		focus = {
 			margin_of_error = 5,
-			focus_method = "experimental"
+			focus_method = "experimental",
 		},
 	},
 	integrations = {
@@ -51,17 +59,17 @@ config.options = {
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
-		lightline = false
+		lightline = false,
 	},
 	misc = {
 		on_off_commands = false,
 		ui_elements_commands = false,
 		cursor_by_mode = false,
-	}
+	},
 }
 
 function config.set_options(opts)
-    opts = opts or {}
+	opts = opts or {}
 	config.options = vim.tbl_deep_extend("force", config.options, opts)
 end
 
