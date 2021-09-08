@@ -124,16 +124,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>07-09-21</b>: Migrated to Stylua for formatting.</li>
   <li><b>19-07-21</b>: Feat #56: added lightline.vim integration.</li>
   <li><b>19-07-21</b>: Feat (#53): resize Ataraxis padding when nvim's size changes!.</li>
   <li><b>15-07-21</b>: Fixed #54: only set win opts for TrueZen windows.</li>
-  <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
   <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
   <li><b>19-07-21</b>: Fix #46.</li>
   <li><b>15-07-21</b>: Added feature #45. Now the `custom_bg` setting changed.</li>
