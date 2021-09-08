@@ -5,11 +5,11 @@ local cmd = vim.cmd
 local M = {}
 
 function M.on()
-	usp.load_settings(opts['ui']['left'], 'OTHER')
+	usp.load_settings(opts["ui"]["left"], "OTHER")
 end
 
 function M.off()
-	usp.load_settings(opts['ui']['left'], 'USER')
+	usp.load_settings(opts["ui"]["left"], "USER")
 end
 
 return M

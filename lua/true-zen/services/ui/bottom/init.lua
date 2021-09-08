@@ -7,7 +7,6 @@ local usp = require("true-zen.utils.ui_settings_applier")
 
 local M = {}
 
-
 local function get_status()
 	return bottom_status
 end
@@ -17,35 +16,38 @@ local function set_status(value)
 end
 
 local function autocmds(state)
-    if (state == "start") then
-        api.nvim_exec(
-            [[
+	if state == "start" then
+		api.nvim_exec(
+			[[
 			augroup truezen_ui_bottom_resume
 				autocmd!
 				autocmd VimResume,FocusGained,WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.ui.bottom'.resume()" | endif
 			augroup END
 		]],
-            false
-        )
-    elseif (state == "stop") then
-        api.nvim_exec([[
+			false
+		)
+	elseif state == "stop" then
+		api.nvim_exec(
+			[[
 			augroup truezen_ui_bottom_resume
 				autocmd!
 			augroup END
-		]], false)
-    end
+		]],
+			false
+		)
+	end
 end
 
 local function on()
-    autocmds("stop")
+	autocmds("stop")
 	service.on()
 	set_status("on")
 end
 
 local function off()
-    usp.save_local_settings(opts["ui"]["bottom"], "BOTTOM")
+	usp.save_local_settings(opts["ui"]["bottom"], "BOTTOM")
 	service.off()
-    autocmds("start")
+	autocmds("start")
 	set_status("off")
 end
 
@@ -54,29 +56,29 @@ function M.resume()
 end
 
 local function toggle()
-    if (get_status() == "on") then
-        off()
-    elseif (get_status() == "off") then
-        on()
-    else
-        if (api.nvim_eval("&laststatus > 0") == 1) then
-            off()
-        else
-            on()
-        end
-    end
+	if get_status() == "on" then
+		off()
+	elseif get_status() == "off" then
+		on()
+	else
+		if api.nvim_eval("&laststatus > 0") == 1 then
+			off()
+		else
+			on()
+		end
+	end
 end
 
 function M.main(option)
-    option = option or 0
+	option = option or 0
 
-    if (option == 'toggle') then
-        toggle()
-    elseif (option == 'on') then
+	if option == "toggle" then
+		toggle()
+	elseif option == "on" then
 		on()
-    elseif (option == 'off') then
+	elseif option == "off" then
 		off()
-    end
+	end
 end
 
 return M
