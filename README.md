@@ -223,7 +223,15 @@ modes = {
 		bg_configuration = true,
 		quit = "untoggle",
 		ignore_floating_windows = true,
-		affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+		affected_higroups = {
+			NonText = true,
+			FoldColumn = true,
+			ColorColumn = true,
+			VertSplit = true,
+			StatusLine = true,
+			StatusLineNC = true,
+			SignColumn = true,
+		},
 	},
 	focus = {
 		margin_of_error = 5,
@@ -292,7 +300,15 @@ true_zen.setup({
 			bg_configuration = true,
 			quit = "untoggle",
 			ignore_floating_windows = true,
-			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
 		},
 		focus = {
 			margin_of_error = 5,
@@ -364,7 +380,15 @@ true_zen.setup({
 			bg_configuration = true,
 			quit = "untoggle",
 			ignore_floating_windows = true,
-			affected_higroups = {NonText = {}, FoldColumn = {}, ColorColumn = {}, VertSplit = {}, StatusLine = {}, StatusLineNC = {}, SignColumn = {}}
+			affected_higroups = {
+				NonText = true,
+				FoldColumn = true,
+				ColorColumn = true,
+				VertSplit = true,
+				StatusLine = true,
+				StatusLineNC = true,
+				SignColumn = true,
+			},
 		},
 		focus = {
 			margin_of_error = 5,
@@ -458,6 +482,7 @@ They are part of the `modes = {}` table and control the settings for the differe
 + `keep_default_fold_fillchars`: (Boolean) Keep default fold fillchars. Useful if you want the mouse to keep working.
 + `ideal_writing_area_width`: (Table) sets an ideal width for the writing area. It can receive up to 3 values (`{<int -> min_width>, <int -> max_width>, <str -> "min"/"max">}`) but only one is needed for it to work. Passing a `0` to the table disables it, anything grater than does the opposite. It simply ensures a writing area of the given size regardless of the ui's proportions where possible. If only `<min_width>` is passed, then that value is the ideal writing area. Useful for people with multiple monitors that **don't use a terminal multiplexer or resize it often**. If `<min_width>` and `<max_width>` are passed, it defines a range to pick the writing area from, where the first value is the minimum width it can have and the second value is the maximum. Useful for people with **terminal multiplexers/that resize the terminal a lot**. If `<min_width>`, `<max_width>` and `<"min"/"max">` are passed, the same as passing the two values will happen but it will try pick either the "max" or the "min" width where possible.
 + `affected_higroups`: (Table) receives a table with all of the Hi Groups that get affected by TrueZen. Every key must match the name of an existing hi group and every value must be an empty table or `"ignore"` in case you want that hi groups to be completely ignored.
++ `affected_higroups`: (Table) receives highlight groups you want TrueZen to override. The `key` must be the name of the highlight group and the `value` is a boolean (`true` for overriding the highlight group and `false` to just ignore it).
 + `bg_configuration`: (Boolean) if true, allows TrueZen to interact with the user's background. Set it to false only if you are having problems with it. (Note: Refer to the FAQ about this)
 + `quit`: (String - "untoggle", "close", nil) changes the behaviour of the `quit` command while on Ataraxis mode. if "untoggle", quit will untoggle Ataraxis mode, but if set to "close" it will close the original window from where it was first called. To simply use quit as always set it to `nil`.
 + `ignore_floating_windows`: (Boolean) if true, will avoid restoring TrueZen's layout after exiting a floating window. If you use plugins that depend on floating windows that disappear/appear constantly (e.g. [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)), then you are not gonna want TrueZen to be "closing" them all the time. However, if x plugin creates a floating window that you [usually] interact with once then this isn't needed.
