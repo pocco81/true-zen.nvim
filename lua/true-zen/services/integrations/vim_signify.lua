@@ -3,11 +3,11 @@ local cmd = vim.cmd
 local M = {}
 
 function M.enable_element()
-    cmd("SignifyToggle")
+	cmd("SignifyToggle")
 end
 
 function M.disable_element()
-    cmd("SignifyToggle")
+	cmd("SignifyToggle")
 end
 
 return M

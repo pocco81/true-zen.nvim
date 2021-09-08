@@ -1,13 +1,11 @@
-local api = vim.api
-
 local M = {}
 
 function M.enable_element()
-    require("el").setup()
+	require("el").setup()
 end
 
 function M.disable_element()
-    -- nothing
+	-- nothing
 end
 
 return M

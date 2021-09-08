@@ -40,7 +40,8 @@ function M.load_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
-                    integration == "lualine" or integration == "lightline")
+                    integration == "lualine" or
+                    integration == "lightline")
              then
                 M.set_has_line_with_integration(true)
                 if (integration == "vim_airline") then
@@ -88,7 +89,8 @@ function M.unload_integrations()
         if (opts["integrations"][integration] == true) then
             if
                 (integration == "vim_airline" or integration == "vim_powerline" or integration == "express_line" or
-                    integration == "lualine" or integration == "lightline")
+                    integration == "lualine" or
+                    integration == "lightline")
              then
                 M.set_has_line_with_integration(true)
                 if (integration == "vim_airline") then
