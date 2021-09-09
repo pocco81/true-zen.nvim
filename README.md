@@ -112,6 +112,7 @@
     -   [vim-airline](https://github.com/vim-airline/vim-airline)
     -   [Tmux](https://github.com/tmux/tmux)
     -   [galaxyline.nvim](https://github.com/glepnir/galaxyline.nvim)
+    -   [feline.nvim](https://github.com/famiu/feline.nvim)
     -   [Powerline](https://github.com/powerline/powerline)
     -   [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     -   [nvim-bufferline.lua](https://github.com/akinsho/nvim-bufferline.lua)
@@ -126,16 +127,17 @@
 # 📺 Notices
 
 <ul>
+  <li><b>19-07-21</b>: Feat #60: feline integration.</li>
   <li><b>07-09-21</b>: Migrated to Stylua for formatting.</li>
   <li><b>19-07-21</b>: Feat #56: added lightline.vim integration.</li>
   <li><b>19-07-21</b>: Feat (#53): resize Ataraxis padding when nvim's size changes!.</li>
-  <li><b>15-07-21</b>: Fixed #54: only set win opts for TrueZen windows.</li>
 </ul>
 
 <details>
 <summary>Old notices...</summary>
 <p>
 <ul>
+  <li><b>15-07-21</b>: Fixed #54: only set win opts for TrueZen windows.</li>
   <li><b>15-07-21</b>: After #50, assert the possibility of performing operations by `<something>On\Off` commands.</li>
   <li><b>27-07-21</b>: Added Twilight.nvim integration (requested by #47).</li>
   <li><b>19-07-21</b>: Fix #46.</li>
@@ -257,7 +259,8 @@ integrations = {
 	vim_signify = false,
 	express_line = false,
 	lualine = false,
-	lightline = false
+	lightline = false,
+	feline = false
 },
 misc = {
 	on_off_commands = false,
@@ -334,7 +337,8 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
-		lightline = false
+		lightline = false,
+		feline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -414,7 +418,8 @@ true_zen.setup({
 		vim_signify = false,
 		express_line = false,
 		lualine = false,
-		lightline = false
+		lightline = false,
+		feline = false
 	},
 	misc = {
 		on_off_commands = false,
@@ -517,6 +522,7 @@ used for setting a backgroups color if your colorscheme doesn't provide one alre
 These settings are part of the `integrations = {}` table and can be used to enable or disable integrations.
 
 -   `galaxyline`: (Boolean) if true, hides galaxyline when Ataraxis mode is on and toggles it back on after exiting it.
+-   `feline`: (Boolean) if true, hides feline when Ataraxis mode is on and toggles it back on after exiting it.
 -   `vim_airline`: (Boolean) if true, hides vim airline when Ataraxis mode is on and toggles it back on after exiting it.
 -   `vim_powerline`: (Boolean) if true, hides vim powerline when Ataraxis mode is on and toggles it back on after exiting it.
 -   `express_line`: (Boolean) if true, hides expressline when Ataraxis mode is on and toggles it back on after exiting it.
