@@ -60,6 +60,7 @@ config.options = {
 		express_line = false,
 		lualine = false,
 		lightline = false,
+		feline = false,
 	},
 	misc = {
 		on_off_commands = false,
