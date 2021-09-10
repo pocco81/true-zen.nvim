@@ -18,10 +18,11 @@ end
 function M.load_integrations()
 	if (opts["integrations"]["galaxyline"] == true) then
 		integrations_loader.set_has_line_with_integration(true)
+		-- stylua: ignore
 		api.nvim_exec([[
-				augroup truezen_integration_galaxyline
-					autocmd!
-				augroup END
+			augroup truezen_integration_galaxyline
+				autocmd!
+			augroup END
 		]], false)
 
 		M.require_element("galaxyline", "enable")
@@ -30,15 +31,13 @@ end
 
 function M.unload_integrations()
 	if (opts["integrations"]["galaxyline"] == true) then
-		api.nvim_exec(
-			[[
-				augroup truezen_integration_galaxyline
-					autocmd!
-					autocmd WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
-				augroup END
-		]],
-			false
-		)
+		-- stylua: ignore
+		api.nvim_exec([[
+			augroup truezen_integration_galaxyline
+				autocmd!
+				autocmd WinEnter,BufWinEnter * if (&modifiable == 1) | execute "lua require'true-zen.services.integrations.modules.integrations_loader'.require_element('galaxyline', 'disable')" | endif
+			augroup END
+		]], false)
 
 		M.require_element("galaxyline", "disable")
 	end
