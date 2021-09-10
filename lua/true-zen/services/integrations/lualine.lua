@@ -7,14 +7,14 @@ function M.enable_element()
 	-- cmd([[set statusline=%!v:lua.require'lualine'.statusline()]])
 	vim.o.statusline = "%!v:lua.require'lualine'.statusline()"
 	vim.api.nvim_exec(
-		[[
-      augroup lualine
-        autocmd!
-        autocmd WinLeave,BufLeave * lua vim.wo.statusline=require'lualine'.statusline()
-        autocmd BufWinEnter,WinEnter,BufEnter * set statusline<
-        autocmd VimResized * redrawstatus
-      augroup END
-    ]],
+	[[
+		augroup lualine
+		autocmd!
+		autocmd WinLeave,BufLeave * lua vim.wo.statusline=require'lualine'.statusline()
+		autocmd BufWinEnter,WinEnter,BufEnter * set statusline<
+		autocmd VimResized * redrawstatus
+		augroup END
+	]],
 		false
 	)
 end

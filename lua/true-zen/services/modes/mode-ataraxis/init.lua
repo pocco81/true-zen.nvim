@@ -80,7 +80,7 @@ local function autocmds(state)
 					augroup truezen_mode_ataraxis_quit
 						autocmd!
 						autocmd QuitPre * execute "lua require'true-zen.services.modes.mode-ataraxis.init'.off()" | quit
- 					augroup END
+					augroup END
 				]],
 					false
 				)

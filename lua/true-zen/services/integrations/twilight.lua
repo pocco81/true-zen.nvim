@@ -3,11 +3,11 @@ local cmd = vim.cmd
 local M = {}
 
 function M.enable_element()
-    cmd("TwilightEnable")
+	cmd("TwilightEnable")
 end
 
 function M.disable_element()
-    cmd("TwilightDisable")
+	cmd("TwilightDisable")
 end
 
 return M
