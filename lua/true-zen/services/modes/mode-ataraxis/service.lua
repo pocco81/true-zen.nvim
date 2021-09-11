@@ -124,24 +124,20 @@ end
 
 local function statusline_autocmd(co) -- co = [to] carry out
 	if co == "start" then
-		api.nvim_exec(
-			[[
+		-- stylua: ignore
+		api.nvim_exec([[
 			augroup truezen_tmp_statusline
 				autocmd!
 				autocmd VimResume,FocusGained,BufEnter,WinEnter,BufWinEnter * let &statusline='%#Normal# '
 			augroup end
-		]],
-			false
-		)
+		]], false)
 	else
-		api.nvim_exec(
-			[[
+		-- stylua: ignore
+		api.nvim_exec([[
 			augroup truezen_tmp_statusline
 				autocmd!
 			augroup end
-		]],
-			false
-		)
+		]], false)
 	end
 end
 
@@ -175,24 +171,19 @@ local function restore_settings()
 end
 
 local function unlet_padding_vars()
-	api.nvim_exec(
-		[[
+	-- stylua: ignore
+	api.nvim_exec([[
 		if exists("g:tz_top_padding") | unlet g:tz_top_padding | endif
 		if exists("g:tz_bottom_padding") | unlet g:tz_bottom_padding | endif
 		if exists("g:tz_left_padding") | unlet g:tz_left_padding | endif
 		if exists("g:tz_right_padding") | unlet g:tz_right_padding | endif
-	]],
-		false
-	)
+	]], false)
 end
 
 local function unlet_sys_vars()
-	api.nvim_exec(
-		[[
+	api.nvim_exec([[
 		if exists("g:tz_tmp_statusline") | unlet g:tz_tmp_statusline | endif
-	]],
-		false
-	)
+	]], false)
 end
 
 local function gen_background()

@@ -43,29 +43,25 @@ function M.set_hi_groups(custom_bg)
 
 	g.__truezen_viml_affected_higroup = api.nvim_eval([[luaeval("]] .. concatenated_affected_higroups .. [[")]])
 
-	api.nvim_exec(
-		[[
+	-- stylua: ignore
+	api.nvim_exec([[
 		function! GetColor(group, attr)
 			return synIDattr(synIDtrans(hlID(a:group)), a:attr)
 		endfunction
 		com! -nargs=+ -complete=command GetColor call GetColor(<q-args>)
-	]],
-		false
-	)
+	]], false)
 
-	api.nvim_exec(
-		[[
+	-- stylua: ignore
+	api.nvim_exec([[
 		function! SetColor(group, attr, color)
 			let gui = has('gui_running') || has('termguicolors') && &termguicolors
 			execute printf('hi %s %s%s=%s', a:group, gui ? 'gui' : 'cterm', a:attr, a:color)
 		endfunction
 		com! -nargs=+ -complete=command SetColor call SetColor(<q-args>)
-	]],
-		false
-	)
+	]], false)
 
-	api.nvim_exec(
-		[[
+	-- stylua: ignore
+	api.nvim_exec([[
 		function! Tranquilize(bg_color, hi_groups)
 			let bg = GetColor('Normal', 'bg#')
 			for grp in a:hi_groups
@@ -80,9 +76,7 @@ function M.set_hi_groups(custom_bg)
 				call SetColor(grp, '', 'NONE')
 			endfor
 		endfunction
-	]],
-		false
-	)
+	]], false)
 
 	local call_tran = ""
 
@@ -98,17 +92,15 @@ end
 function M.store_hi_groups(user_hi_groups)
 	user_hi_groups = user_hi_groups or default_higroups
 
-	api.nvim_exec(
-		[[
+	-- stylua: ignore
+	api.nvim_exec([[
 		function! ReturnHighlightTerm(group, term)
 			" Store output of group to variable
 			let output = execute('hi ' . a:group)
 			" Find the term we're looking for
 			return matchstr(output, a:term.'=\zs\S*')
 		endfunction
-	]],
-		false
-	)
+	]], false)
 
 	local hgs = {}
 	for group, val in pairs(user_hi_groups) do
