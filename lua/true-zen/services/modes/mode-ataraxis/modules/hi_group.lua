@@ -21,8 +21,8 @@ local terms = {
 	"ctermfg",
 	"guibg",
 	"guifg",
-	"gui",
 }
+if vim.fn.has('gui_running') ~= 0 then table.insert(terms, "gui") end
 
 local function set_hgs(hg)
 	hi_groups = hg
