@@ -5,7 +5,7 @@ local M = {}
 function M.enable_element()
 	vim.g.ran = true
 	-- cmd([[set statusline=%!v:lua.require'lualine'.statusline()]])
-	vim.o.statusline = "%!v:lua.require'lualine'.statusline()"
+	vim.o.statusline = "%{%v:lua.require'lualine'.statusline()%}"
 	-- stylua: ignore
 	vim.api.nvim_exec([[
 		augroup lualine
