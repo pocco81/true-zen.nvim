@@ -4,7 +4,7 @@ local api = vim.api
 local M = {}
 
 function M.enable_element()
-	vim.o.statusline = '%!v:lua.require\'feline\'.statusline()'
+	vim.o.statusline = '%{%v:lua.require\'feline\'.generate_statusline()%}'
 	-- stylua: ignore
 	api.nvim_exec([[
 		aug feline
