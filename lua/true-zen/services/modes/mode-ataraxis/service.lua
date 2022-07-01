@@ -234,7 +234,7 @@ local function gen_window_specs(gen_command, command, extra)
 		cmd(command)
 		cmd(
 			[[
-			setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler noshowmode noshowcmd laststatus=0 ]]
+			setlocal buftype=nofile bufhidden=wipe nomodifiable nobuflisted noswapfile nocursorline nocursorcolumn nonumber norelativenumber noruler nolist noshowmode noshowcmd laststatus=0 ]]
 				.. get_winhl()
 				.. [[ | let w:truezen_window = 'true']]
 		)
