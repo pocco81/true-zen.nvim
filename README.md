@@ -276,7 +276,7 @@ The way you setup the settings on your config varies on whether you are using vi
 <p>
 
 ```lua
-local true_zen = require("true-zen")
+local true_zen = require("true_zen")
 
 true_zen.setup({
 	ui = {
@@ -357,7 +357,7 @@ true_zen.setup({
 
 ```lua
 lua << EOF
-local true_zen = require("true-zen")
+local true_zen = require("true_zen")
 
 true_zen.setup({
 	ui = {
@@ -563,7 +563,7 @@ Use them to execute code at certain events [described by the names they have]. T
 They can be used like so:
 
 ```lua
-local true_zen = require("true-zen")
+local true_zen = require("true_zen")
 
 true_zen.after_mode_ataraxis_on = function ()
 	print("hi!")
