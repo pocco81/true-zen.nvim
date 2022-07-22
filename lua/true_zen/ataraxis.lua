@@ -11,7 +11,7 @@ local api = vim.api
 
 local base = colors.get_hl("Normal")["background"]
 
-if cnf.modes.ataraxis.backdrop ~= 0 then
+if base ~= nil and cnf.modes.ataraxis.backdrop ~= 0 then
 	if cnf.modes.ataraxis.shade == "dark" then
 		base = colors.darken("#000000", cnf.modes.ataraxis.backdrop, base)
 	else

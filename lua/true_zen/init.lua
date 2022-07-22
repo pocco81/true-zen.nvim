@@ -1,5 +1,4 @@
 local M = {}
-local echo = require("true_zen.utils.echo")
 
 function M.ataraxis()
 	require("true_zen.ataraxis").toggle()

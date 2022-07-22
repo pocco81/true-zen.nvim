@@ -61,7 +61,7 @@ function M.on()
 	alldo({ "set norelativenumber", "set nonumber" })
 
 	-- hide statusline
-	local bkg_color = colors.get_hl("Normal")["background"]
+	local bkg_color = colors.get_hl("Normal")["background"] or "NONE"
 	colors.highlight("StatusLine", { fg = bkg_color, bg = bkg_color }, true)
 	colors.highlight("StatusLineNC", { fg = bkg_color, bg = bkg_color }, true)
 
