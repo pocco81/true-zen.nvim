@@ -5,7 +5,6 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/Pocco81/TrueZen.nvim"
         ><img
             src="https://img.shields.io/github/repo-size/Pocco81/TrueZen.nvim?style=flat-square"
             alt="GitHub repository size"

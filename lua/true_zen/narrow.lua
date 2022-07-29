@@ -2,6 +2,7 @@ local M = {}
 
 local echo = require("true_zen.utils.echo")
 local cnf = require("true_zen.config").options
+local data = require("true_zen.utils.data")
 local cmd = vim.cmd
 local fn = vim.fn
 local wo = vim.wo
@@ -33,6 +34,7 @@ local function normalize_line(line, mode)
 end
 
 function M.on(line1, line2)
+	data.do_callback("narrow", "open")
 	local beg_line = normalize_line(line1, "head")
 	local end_line = normalize_line(line2, "tail")
 	local curr_pos = fn.getpos(".")
@@ -74,6 +76,7 @@ function M.on(line1, line2)
 end
 
 function M.off()
+	data.do_callback("narrow", "close")
 	vim.g.active_buffs = (vim.g.active_buffs > 0 and vim.g.active_buffs or 1) - 1
 	b.tz_narrowed_buffer = nil
 

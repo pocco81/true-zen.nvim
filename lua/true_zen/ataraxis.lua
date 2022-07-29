@@ -2,8 +2,8 @@ local M = {}
 
 local running
 local colors = require("true_zen.utils.colors")
-local echo = require("true_zen.utils.echo")
 local cmd = vim.cmd
+local data = require("true_zen.utils.data")
 local cnf = require("true_zen.config").options
 local fn = vim.fn
 local o = vim.o
@@ -138,6 +138,7 @@ local function layout(action)
 end
 
 function M.on()
+	data.do_callback("ataraxis", "open")
 	if cnf.modes.ataraxis.quit_untoggles == true then
 		api.nvim_create_autocmd({ "QuitPre" }, {
 			callback = function()
@@ -160,6 +161,12 @@ function M.on()
 
 	for hi_group, _ in pairs(original_opts["highlights"]) do
 		colors.highlight(hi_group, { bg = base })
+	end
+
+	for integration, val in pairs(cnf.integrations) do
+		if (type(val) == "table" and val.enabled or val) == true and integration ~= "tmux" then
+			require("true_zen.integrations." .. integration).on()
+		end
 	end
 
 	api.nvim_create_autocmd({ "VimResized" }, { -- sorta works
@@ -207,6 +214,7 @@ function M.on()
 end
 
 function M.off()
+	data.do_callback("ataraxis", "close")
 	cmd("only")
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
@@ -226,6 +234,12 @@ function M.off()
 	api.nvim_create_augroup("TrueZenAtaraxis", {
 		clear = true,
 	})
+
+	for integration, val in pairs(cnf.integrations) do
+		if (type(val) == "table" and val.enabled or val) == true and integration ~= "tmux" then
+			require("true_zen.integrations." .. integration).off()
+		end
+	end
 
 	win = {}
 	running = false

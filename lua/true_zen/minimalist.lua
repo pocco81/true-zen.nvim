@@ -1,6 +1,7 @@
 local M = {}
 
 local colors = require("true_zen.utils.colors")
+local data = require("true_zen.utils.data")
 local cnf = require("true_zen.config").options
 local o = vim.o
 local cmd = vim.cmd
@@ -8,6 +9,7 @@ local fn = vim.fn
 local w = vim.w
 local wo = vim.wo
 local api = vim.api
+local IGNORED_BUF_TYPES = data.set_of(cnf.modes.minimalist.ignored_buf_types)
 
 local is_minimalized
 local original_opts = {}
@@ -24,7 +26,11 @@ local function alldo(run)
 
 	for _, command in pairs(run) do
 		-- tapped together solution, but works! :)
-		cmd([[windo if &modifiable == 1 && &buflisted == 1 && &bufhidden == "" | exe "let g:my_buf = bufnr(\"%\") | exe \"bufdo ]] .. command .. [[\" | exe \"buffer \" . g:my_buf" | endif]])
+		cmd(
+			[[windo if &modifiable == 1 && &buflisted == 1 && &bufhidden == "" | exe "let g:my_buf = bufnr(\"%\") | exe \"bufdo ]]
+				.. command
+				.. [[\" | exe \"buffer \" . g:my_buf" | endif]]
+		)
 	end
 
 	w.tz_buffer = nil
@@ -35,13 +41,22 @@ local function alldo(run)
 end
 
 local function save_opts()
-	-- local suitable_window = fn.winnr()
-	-- for _,ignored_buf_type in pairs(cnf.modes.minimalist.ignored_buf_types) do
-	--
-	-- end
+	-- check if current window's buffer type matches any of IGNORED_BUF_TYPES, if so look for one that doesn't
+	local suitable_window = fn.winnr()
+	local currtab = fn.tabpagenr()
+	if IGNORED_BUF_TYPES[fn.gettabwinvar(currtab, suitable_window, "&buftype")] ~= nil then
+		for i = 1, fn.winnr("$") do
+			if IGNORED_BUF_TYPES[fn.gettabwinvar(currtab, i, "&buftype")] == nil then
+				suitable_window = i
+				goto continue
+			end
+		end
+	end
+	::continue::
 
+	-- get the options from suitable_window
 	for user_opt, val in pairs(cnf.modes.minimalist.options) do
-		original_opts[user_opt] = o[user_opt]
+		original_opts[user_opt] = fn.gettabwinvar(currtab, suitable_window, "&" .. user_opt)
 		o[user_opt] = val
 	end
 
@@ -54,28 +69,33 @@ local function save_opts()
 end
 
 function M.on()
+	data.do_callback("minimalist", "open")
 	save_opts()
 
-	-- hide (relative)number on every window or every tab
-	alldo({ "set norelativenumber", "set nonumber" })
+	if cnf.modes.minimalist.options.number == false then
+		alldo({ "set nonumber" })
+	end
 
-	-- hide statusline
+	if cnf.modes.minimalist.options.relativenumber == false then
+		alldo({ "set norelativenumber" })
+	end
+
+	-- fully hide statusline and tabline
 	local bkg_color = colors.get_hl("Normal")["background"] or "NONE"
 	colors.highlight("StatusLine", { fg = bkg_color, bg = bkg_color }, true)
 	colors.highlight("StatusLineNC", { fg = bkg_color, bg = bkg_color }, true)
 	colors.highlight("TabLine", { fg = bkg_color, bg = bkg_color }, true)
 	colors.highlight("TabLineFill", { fg = bkg_color, bg = bkg_color }, true)
 
-	for integration, val in pairs(cnf.integrations) do
-		if val == true then
-			require("true_zen.integrations." .. integration).on()
-		end
+	if cnf.integrations.tmux == true then
+		require("true_zen.integrations.tmux").on()
 	end
 
 	is_minimalized = true
 end
 
 function M.off()
+	data.do_callback("minimalist", "close")
 	api.nvim_create_augroup("TrueZenMinimalist", {
 		clear = true,
 	})
@@ -91,20 +111,18 @@ function M.off()
 	original_opts.number = nil
 	original_opts.relativenumber = nil
 
-	for k,v in pairs(original_opts) do
+	for k, v in pairs(original_opts) do
 		if k ~= "highlights" then
 			o[k] = v
 		end
 	end
 
-	for hi_group,props in pairs(original_opts["highlights"]) do
+	for hi_group, props in pairs(original_opts["highlights"]) do
 		colors.highlight(hi_group, { fg = props.foreground, bg = props.background }, true)
 	end
 
-	for integration, val in pairs(cnf.integrations) do
-		if val == true then
-			require("true_zen.integrations." .. integration).off()
-		end
+	if cnf.integrations.tmux == true then
+		require("true_zen.integrations.tmux").off()
 	end
 
 	is_minimalized = false
