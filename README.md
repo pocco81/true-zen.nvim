@@ -51,8 +51,7 @@ Install the plugin with your favourite package manager:
 
 <details>
 <summary><a href="https://github.com/wbthomason/packer.nvim">Packer.nvim</a></summary>
-
-\```lua
+```lua
 use({
 	"Pocco81/true-zen.nvim",
 	config = function()
@@ -62,15 +61,12 @@ use({
 		 }
 	end,
 })
-\```
-
+```
 </details>
 
 <details>
 <summary><a href="https://github.com/junegunn/vim-plug">vim-plug</a></summary>
-<code>
-
-\```vim
+```vim
 Plug 'folke/zen-mode.nvim'
 lua << EOF
 	require("true-zen").setup {
@@ -78,8 +74,7 @@ lua << EOF
 		-- or just leave it empty :)
 	}
 EOF
-\```
-
+```
 </details>
 
 &nbsp;
@@ -131,7 +126,7 @@ true-zen comes with the following defaults:
 			--- `informative`: to get nice pre-baked folds
 			--- `invisible`: hide them
 			--- function() end: pass a custom func with your fold lines. See :h foldtext
-			folds_style = "invisible",
+			folds_style = "informative",
 			run_ataraxis = true, -- display narrowed text in a Ataraxis session
 			open_callback = nil, -- run a function when opening Narrow mode
 			close_callback = nil, -- run a function when closing Narrow mode
