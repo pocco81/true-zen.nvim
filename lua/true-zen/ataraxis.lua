@@ -144,7 +144,6 @@ local function layout(action)
 end
 
 function M.on()
-	data.do_callback("ataraxis", "open")
 	if cnf.modes.ataraxis.quit_untoggles == true then
 		api.nvim_create_autocmd({ "QuitPre" }, {
 			callback = function()
@@ -217,10 +216,10 @@ function M.on()
 	})
 
 	running = true
+	data.do_callback("ataraxis", "open")
 end
 
 function M.off()
-	data.do_callback("ataraxis", "close")
 	cmd("only")
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
@@ -249,6 +248,7 @@ function M.off()
 
 	win = {}
 	running = false
+	data.do_callback("ataraxis", "close")
 end
 
 function M.toggle()
