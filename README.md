@@ -43,6 +43,8 @@ https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-
 
 + Neovim >= 0.5.0
 
+&nbsp;
+
 ### 📦 Installation
 
 Install the plugin with your favourite package manager:
@@ -79,6 +81,8 @@ EOF
 \```
 
 </details>
+
+&nbsp;
 
 ### ⚙️ Configuration
 
@@ -160,12 +164,16 @@ api.nvim_set_keymap("n", "<leader>n", ":TZMinimalist<CR>", {})
 api.nvim_set_keymap("n", "<leader>n", ":TZAtaraxis<CR>", {})
 ```
 
+&nbsp;
+
 ### 🪴 Usage
 
 + `TZAtaraxis`: toggle ataraxis mode
 + `TZMinimalist`: toggle minimalist mode
 + `TZNarrow`: toggle narrow mode
 + `TZFocus`: toggle focus mode
+
+&nbsp;
 
 ### 📜 License
 
