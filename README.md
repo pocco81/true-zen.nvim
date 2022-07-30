@@ -17,9 +17,6 @@
 
 &nbsp;
 
-<!-- <p align="center"> -->
-<!-- </p> -->
-
 https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-acdc-c880082ef3a8.mp4
 
 &nbsp;
