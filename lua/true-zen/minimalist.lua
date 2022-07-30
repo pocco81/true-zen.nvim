@@ -83,11 +83,10 @@ function M.on()
 	end
 
 	-- fully hide statusline and tabline
-	local bkg_color = colors.get_hl("Normal")["background"] or "NONE"
-	colors.highlight("StatusLine", { fg = bkg_color, bg = bkg_color }, true)
-	colors.highlight("StatusLineNC", { fg = bkg_color, bg = bkg_color }, true)
-	colors.highlight("TabLine", { fg = bkg_color, bg = bkg_color }, true)
-	colors.highlight("TabLineFill", { fg = bkg_color, bg = bkg_color }, true)
+	local base = colors.get_hl("Normal")["background"] or "NONE"
+	for hi_group, _ in pairs(original_opts["highlights"]) do
+		colors.highlight(hi_group, { bg = base, fg = base }, true)
+	end
 
 	if cnf.integrations.tmux == true then
 		require("true-zen.integrations.tmux").on()

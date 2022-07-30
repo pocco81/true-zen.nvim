@@ -14,9 +14,9 @@ local padding = cnf.modes.ataraxis.padding
 local minimum_writing_area = cnf.modes.ataraxis.minimum_writing_area
 local CARDINAL_POINTS = { left = "width", right = "width", top = "height", bottom = "height" }
 
-local base = colors.get_hl("Normal")["background"]
+local base = colors.get_hl("Normal")["background"] or "NONE"
 
-if base ~= nil and cnf.modes.ataraxis.backdrop ~= 0 then
+if base ~= "NONE" and cnf.modes.ataraxis.backdrop ~= 0 then
 	if cnf.modes.ataraxis.shade == "dark" then
 		base = colors.darken("#000000", cnf.modes.ataraxis.backdrop, base)
 	else
@@ -57,6 +57,7 @@ local function save_opts()
 		ColorColumn = colors.get_hl("ColorColumn"),
 		VertSplit = colors.get_hl("VertSplit"),
 		SignColumn = colors.get_hl("SignColumn"),
+		WinBar = colors.get_hl("WinBar"),
 	}
 end
 
@@ -160,7 +161,7 @@ function M.on()
 	o.fillchars = "stl: ,stlnc: ,vert: ,diff: ,msgsep: ,eob: "
 
 	for hi_group, _ in pairs(original_opts["highlights"]) do
-		colors.highlight(hi_group, { bg = base })
+		colors.highlight(hi_group, { bg = base, fg = base })
 	end
 
 	for integration, val in pairs(cnf.integrations) do
