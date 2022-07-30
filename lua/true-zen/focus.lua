@@ -2,8 +2,7 @@ local M = {}
 
 local is_focused
 local cmd = vim.cmd
-local cnf = require("true_zen.config").options
-local data = require("true_zen.utils.data")
+local data = require("true-zen.utils.data")
 
 function M.on()
 	data.do_callback("focus", "open")

@@ -5,22 +5,22 @@ vim.g.loaded_true_zen = true
 
 local command = vim.api.nvim_create_user_command
 
-command("TZZAtaraxis", function()
-	require("true_zen").ataraxis()
+command("TZAtaraxis", function()
+	require("true-zen").ataraxis()
 end, {})
 
-command("TZZFocus", function()
-	require("true_zen").focus()
+command("TZFocus", function()
+	require("true-zen").focus()
 end, {})
 
-command("TZZMinimalist", function()
-	require("true_zen").minimalist()
+command("TZMinimalist", function()
+	require("true-zen").minimalist()
 end, {})
 
-command("TZZNarrow", function(...)
+command("TZNarrow", function(...)
 	local args = {...}
 	local line1 = args[1]["line1"]
 	local line2 = args[1]["line2"]
 
-	require("true_zen").narrow(line1, line2)
+	require("true-zen").narrow(line1, line2)
 end, { range = true, bar = true })

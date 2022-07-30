@@ -1,8 +1,9 @@
 local M = {}
 
-local colors = require("true_zen.utils.colors")
-local data = require("true_zen.utils.data")
-local cnf = require("true_zen.config").options
+local colors = require("true-zen.utils.colors")
+local echo = require("true-zen.utils.echo")
+local data = require("true-zen.utils.data")
+local cnf = require("true-zen.config").options
 local o = vim.o
 local cmd = vim.cmd
 local fn = vim.fn
@@ -56,7 +57,8 @@ local function save_opts()
 
 	-- get the options from suitable_window
 	for user_opt, val in pairs(cnf.modes.minimalist.options) do
-		original_opts[user_opt] = fn.gettabwinvar(currtab, suitable_window, "&" .. user_opt)
+		local opt = fn.gettabwinvar(currtab, suitable_window, "&" .. user_opt)
+		original_opts[user_opt] = (type(opt) == "number" and (opt == 1 and true or false) or opt)
 		o[user_opt] = val
 	end
 
@@ -88,7 +90,7 @@ function M.on()
 	colors.highlight("TabLineFill", { fg = bkg_color, bg = bkg_color }, true)
 
 	if cnf.integrations.tmux == true then
-		require("true_zen.integrations.tmux").on()
+		require("true-zen.integrations.tmux").on()
 	end
 
 	is_minimalized = true
@@ -100,11 +102,11 @@ function M.off()
 		clear = true,
 	})
 
-	if original_opts.number then
+	if original_opts.number == true then
 		alldo({ "set number" })
 	end
 
-	if original_opts.relativenumber then
+	if original_opts.relativenumber == true then
 		alldo({ "set relativenumber" })
 	end
 
@@ -122,7 +124,7 @@ function M.off()
 	end
 
 	if cnf.integrations.tmux == true then
-		require("true_zen.integrations.tmux").off()
+		require("true-zen.integrations.tmux").off()
 	end
 
 	is_minimalized = false

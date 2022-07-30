@@ -1,10 +1,10 @@
 local M = {}
 
 local running
-local colors = require("true_zen.utils.colors")
+local colors = require("true-zen.utils.colors")
 local cmd = vim.cmd
-local data = require("true_zen.utils.data")
-local cnf = require("true_zen.config").options
+local data = require("true-zen.utils.data")
+local cnf = require("true-zen.config").options
 local fn = vim.fn
 local o = vim.o
 local wo = vim.wo
@@ -148,7 +148,7 @@ function M.on()
 		})
 	end
 
-	require("true_zen.minimalist").on()
+	require("true-zen.minimalist").on()
 	save_opts()
 
 	if fn.filereadable(fn.expand("%:p")) == 1 then
@@ -165,7 +165,7 @@ function M.on()
 
 	for integration, val in pairs(cnf.integrations) do
 		if (type(val) == "table" and val.enabled or val) == true and integration ~= "tmux" then
-			require("true_zen.integrations." .. integration).on()
+			require("true-zen.integrations." .. integration).on()
 		end
 	end
 
@@ -219,7 +219,7 @@ function M.off()
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
 	end
-	require("true_zen.minimalist").off()
+	require("true-zen.minimalist").off()
 
 	for k, v in pairs(original_opts) do
 		if k ~= "highlights" then
@@ -237,7 +237,7 @@ function M.off()
 
 	for integration, val in pairs(cnf.integrations) do
 		if (type(val) == "table" and val.enabled or val) == true and integration ~= "tmux" then
-			require("true_zen.integrations." .. integration).off()
+			require("true-zen.integrations." .. integration).off()
 		end
 	end
 

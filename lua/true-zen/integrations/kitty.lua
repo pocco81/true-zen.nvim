@@ -1,6 +1,6 @@
 local M = {}
 
-local cnf = require("true_zen.config").options
+local cnf = require("true-zen.config").options
 local fn = vim.fn
 local status
 

@@ -16,13 +16,8 @@ config.options = {
 				top = 0,
 				bottom = 0,
 			},
-			open_callback = nil,
-			close_callback = nil,
-		},
-		narrow = {
-			run_ataraxis = false, -- display narrowed text in a Ataraxis session
-			open_callback = nil,
-			close_callback = nil,
+			open_callback = nil, -- run a function when opening Ataraxis mode
+			close_callback = nil, -- run a function when closing Ataraxis mode
 		},
 		minimalist = {
 			ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
@@ -39,17 +34,27 @@ config.options = {
 				ruler = false,
 				numberwidth = 1
 			},
-			open_callback = nil,
-			close_callback = nil,
+			open_callback = nil, -- run a function when opening Minimalist mode
+			close_callback = nil, -- run a function when closing Minimalist mode
+		},
+		narrow = {
+			--- change the style of the fold lines. Set it to:
+			--- `informative`: to get nice pre-baked folds
+			--- `invisible`: hide them
+			--- function() end: pass a custom func with your fold lines. See :h foldtext
+			folds_style = "invisible",
+			run_ataraxis = true, -- display narrowed text in a Ataraxis session
+			open_callback = nil, -- run a function when opening Narrow mode
+			close_callback = nil, -- run a function when closing Narrow mode
 		},
 		focus = {
-			open_callback = nil,
-			close_callback = nil,
+			open_callback = nil, -- run a function when opening Focus mode
+			close_callback = nil, -- run a function when closing Focus mode
 		}
 	},
 	integrations = {
 		tmux = false, -- hide tmux status bar in (minimalist, ataraxis)
-		kitty = { -- increment font size in Kitty. Note: you must set `allow_remote_control socket-only` and `listen_on unix:/tmp/kitty` in your personal config
+		kitty = { -- increment font size in Kitty. Note: you must set `allow_remote_control socket-only` and `listen_on unix:/tmp/kitty` in your personal config (ataraxis)
 			enabled = false,
 			font = "+3"
 		},

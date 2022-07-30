@@ -1,4 +1,4 @@
-local TITLE = "true_zen"
+local TITLE = "true-zen"
 
 return function(msg, kind)
 	local has_notify_plugin = pcall(require, "notify")
