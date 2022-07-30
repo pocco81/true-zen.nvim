@@ -161,7 +161,7 @@ api.nvim_set_keymap("n", "<leader>vm", ":TZMinimalist<CR>", {})
 api.nvim_set_keymap("n", "<leader>va", ":TZAtaraxis<CR>", {})
 
 -- or
-truezen = require('true-zen')
+local truezen = require('true-zen')
 vim.keymap.set('n', '<leader>vn', function()
   local first = 0
   local last = vim.api.nvim_buf_line_count(0)
