@@ -71,7 +71,6 @@ local function save_opts()
 end
 
 function M.on()
-	data.do_callback("minimalist", "open")
 	save_opts()
 
 	if cnf.modes.minimalist.options.number == false then
@@ -93,10 +92,10 @@ function M.on()
 	end
 
 	is_minimalized = true
+	data.do_callback("minimalist", "open")
 end
 
 function M.off()
-	data.do_callback("minimalist", "close")
 	api.nvim_create_augroup("TrueZenMinimalist", {
 		clear = true,
 	})
@@ -127,6 +126,7 @@ function M.off()
 	end
 
 	is_minimalized = false
+	data.do_callback("minimalist", "close")
 end
 
 function M.toggle()
