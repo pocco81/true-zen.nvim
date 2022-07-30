@@ -71,7 +71,7 @@ use({
 	<summary><a href="https://github.com/junegunn/vim-plug">vim-plug</a></summary>
 
 ```vim
-Plug 'folke/zen-mode.nvim'
+Plug 'Pocco81/true-zen.nvim'
 lua << EOF
 	require("true-zen").setup {
 		-- your config goes here
