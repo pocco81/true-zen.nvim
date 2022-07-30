@@ -54,15 +54,15 @@ Install the plugin with your favourite package manager:
 	<summary><a href="https://github.com/wbthomason/packer.nvim">Packer.nvim</a></summary>
 
 ```lua
-	use({
-		"Pocco81/true-zen.nvim",
-		config = function()
-			 require("true-zen").setup {
-				-- your config goes here
-				-- or just leave it empty :)
-			 }
-		end,
-	})
+use({
+	"Pocco81/true-zen.nvim",
+	config = function()
+		 require("true-zen").setup {
+			-- your config goes here
+			-- or just leave it empty :)
+		 }
+	end,
+})
 ```
 
 </details>
