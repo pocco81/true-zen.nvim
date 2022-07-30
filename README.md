@@ -154,11 +154,27 @@ Additionally you may want to set up some key mappings for each true-zen mode:
 ```lua
 local api = vim.api
 
-api.nvim_set_keymap("n", "<leader>n", ":TZNarrow<CR>", {})
-api.nvim_set_keymap("v", "<leader>n", ":'<,'>TZNarrow<CR>", {})
-api.nvim_set_keymap("n", "<leader>n", ":TZFocus<CR>", {})
-api.nvim_set_keymap("n", "<leader>n", ":TZMinimalist<CR>", {})
-api.nvim_set_keymap("n", "<leader>n", ":TZAtaraxis<CR>", {})
+api.nvim_set_keymap("n", "<leader>vn", ":TZNarrow<CR>", {})
+api.nvim_set_keymap("v", "<leader>vn", ":'<,'>TZNarrow<CR>", {})
+api.nvim_set_keymap("n", "<leader>vf", ":TZFocus<CR>", {})
+api.nvim_set_keymap("n", "<leader>vm", ":TZMinimalist<CR>", {})
+api.nvim_set_keymap("n", "<leader>va", ":TZAtaraxis<CR>", {})
+
+-- or
+truezen = require('true-zen')
+vim.keymap.set('n', '<leader>vn', function()
+  local first = 0
+  local last = vim.api.nvim_buf_line_count(0)
+  truezen.narrow(first, last)
+end, { noremap = true })
+vim.keymap.set('v', '<leader>vn', function()
+  local first = vim.fn.line('v')
+  local last = vim.fn.line('.')
+  truezen.narrow(first, last)
+end, { noremap = true })
+vim.keymap.set('n', '<leader>vf', truezen.focus, { noremap = true })
+vim.keymap.set('n', '<leader>vm', truezen.minimalist, { noremap = true })
+vim.keymap.set('n', '<leader>va', truezen.ataraxis, { noremap = true })
 ```
 
 &nbsp;
