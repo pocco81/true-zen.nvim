@@ -108,6 +108,9 @@ end
 
 local function layout(action)
 	if action == "generate" then
+		local splitbelow, splitright = o.splitbelow, o.splitright
+		o.splitbelow, o.splitright = true, true
+
 		local left_padding = fix_padding("left", "width")
 		local right_padding = fix_padding("right", "width")
 		local top_padding = fix_padding("top", "height")
@@ -119,6 +122,8 @@ local function layout(action)
 		win.right = pad_win("vnew", { width = right_padding }, "wincmd h") -- right buffer
 		win.top = pad_win("leftabove new", { height = top_padding }, "wincmd j") -- top buffer
 		win.bottom = pad_win("rightbelow new", { height = bottom_padding }, "wincmd k") -- bottom buffer
+
+		o.splitbelow, o.splitright = splitbelow, splitright
 	else -- resize
 		local pad_sizes = {}
 		pad_sizes.left = fix_padding("left", "width")
