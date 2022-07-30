@@ -19,29 +19,30 @@
 
 <!-- <p align="center"> -->
 <!-- </p> -->
+
 https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-acdc-c880082ef3a8.mp4
 
 &nbsp;
 
 ### 📋 Features
 
-+ has 4 different modes to unclutter your screen:
-	+ Ataraxis: good ol' zen mode
-	+ Minimalist: disable ui components (e.g. numbers, tabline, statusline)
-	+ Narrow: narrow a text region for better focus
-	+ Focus: focus the current window
-+ customizable lua callbacks for each mode
-+ works out of the box
-+ integratons:
-	+ [tmux](https://github.com/tmux/tmux)
-	+ [kitty](https://sw.kovidgoyal.net/kitty/)
-	+ [twilight.nvim](https://github.com/folke/twilight.nvim)
+-   has 4 different modes to unclutter your screen:
+    -   Ataraxis: good ol' zen mode
+    -   Minimalist: disable ui components (e.g. numbers, tabline, statusline)
+    -   Narrow: narrow a text region for better focus
+    -   Focus: focus the current window
+-   customizable lua callbacks for each mode
+-   works out of the box
+-   integratons:
+    -   [tmux](https://github.com/tmux/tmux)
+    -   [kitty](https://sw.kovidgoyal.net/kitty/)
+    -   [twilight.nvim](https://github.com/folke/twilight.nvim)
 
 &nbsp;
 
 ### 📚 Requirements
 
-+ Neovim >= 0.5.0
+-   Neovim >= 0.5.0
 
 &nbsp;
 
@@ -50,22 +51,25 @@ https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-
 Install the plugin with your favourite package manager:
 
 <details>
-<summary><a href="https://github.com/wbthomason/packer.nvim">Packer.nvim</a></summary>
+	<summary><a href="https://github.com/wbthomason/packer.nvim">Packer.nvim</a></summary>
+
 ```lua
-use({
-	"Pocco81/true-zen.nvim",
-	config = function()
-		 require("true-zen").setup {
-			-- your config goes here
-			-- or just leave it empty :)
-		 }
-	end,
-})
+	use({
+		"Pocco81/true-zen.nvim",
+		config = function()
+			 require("true-zen").setup {
+				-- your config goes here
+				-- or just leave it empty :)
+			 }
+		end,
+	})
 ```
+
 </details>
 
 <details>
-<summary><a href="https://github.com/junegunn/vim-plug">vim-plug</a></summary>
+	<summary><a href="https://github.com/junegunn/vim-plug">vim-plug</a></summary>
+
 ```vim
 Plug 'folke/zen-mode.nvim'
 lua << EOF
@@ -75,6 +79,7 @@ lua << EOF
 	}
 EOF
 ```
+
 </details>
 
 &nbsp;
@@ -163,10 +168,10 @@ api.nvim_set_keymap("n", "<leader>n", ":TZAtaraxis<CR>", {})
 
 ### 🪴 Usage
 
-+ `TZAtaraxis`: toggle ataraxis mode
-+ `TZMinimalist`: toggle minimalist mode
-+ `TZNarrow`: toggle narrow mode
-+ `TZFocus`: toggle focus mode
+-   `TZAtaraxis`: toggle ataraxis mode
+-   `TZMinimalist`: toggle minimalist mode
+-   `TZNarrow`: toggle narrow mode
+-   `TZFocus`: toggle focus mode
 
 &nbsp;
 
