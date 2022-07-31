@@ -154,6 +154,8 @@ function M.on()
 		})
 	end
 
+	local cursor_pos = fn.getpos(".")
+
 	require("true-zen.minimalist").on()
 	save_opts()
 
@@ -217,6 +219,7 @@ function M.on()
 	})
 
 	running = true
+	fn.setpos('.', cursor_pos)
 end
 
 function M.off()
@@ -225,6 +228,12 @@ function M.off()
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
 	end
+
+	local cursor_pos
+	if win.main == api.nvim_get_current_win() then
+		cursor_pos = fn.getpos(".")
+	end
+
 	require("true-zen.minimalist").off()
 
 	for k, v in pairs(original_opts) do
@@ -249,6 +258,11 @@ function M.off()
 
 	win = {}
 	running = false
+
+	if cursor_pos ~= nil then
+		fn.setpos('.', cursor_pos)
+		cursor_pos = nil
+	end
 end
 
 function M.toggle()
