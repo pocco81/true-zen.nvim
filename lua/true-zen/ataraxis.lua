@@ -223,15 +223,16 @@ function M.on()
 end
 
 function M.off()
-	data.do_callback("ataraxis", "close")
-	cmd("only")
-	if fn.filereadable(fn.expand("%:p")) == 1 then
-		cmd("q")
-	end
 
 	local cursor_pos
 	if win.main == api.nvim_get_current_win() then
 		cursor_pos = fn.getpos(".")
+	end
+
+	data.do_callback("ataraxis", "close")
+	cmd("only")
+	if fn.filereadable(fn.expand("%:p")) == 1 then
+		cmd("q")
 	end
 
 	require("true-zen.minimalist").off()
