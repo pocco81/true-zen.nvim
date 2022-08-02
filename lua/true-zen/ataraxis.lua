@@ -46,6 +46,7 @@ local opts = {
 		number = false,
 		relativenumber = false,
 		foldenable = false,
+		list = false,
 	},
 }
 
