@@ -145,6 +145,7 @@ local function layout(action)
 end
 
 function M.on()
+	local cursor_pos = fn.getpos(".")
 	if cnf.modes.ataraxis.quit_untoggles == true then
 		api.nvim_create_autocmd({ "QuitPre" }, {
 			callback = function()
@@ -216,12 +217,22 @@ function M.on()
 		desc = "Asser whether to resize TrueZen pad windows or not",
 	})
 
+	fn.setpos('.', cursor_pos)
 	running = true
 	data.do_callback("ataraxis", "open")
 end
 
 function M.off()
+	local cursor_pos
+	if api.nvim_win_is_valid(win.main) then
+		if win.main ~= api.nvim_get_current_win() then
+			fn.win_gotoid(win.main)
+		end
+		cursor_pos = fn.getpos(".")
+	end
+
 	cmd("only")
+
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
 	end
@@ -245,6 +256,10 @@ function M.off()
 		if (type(val) == "table" and val.enabled or val) == true and integration ~= "tmux" then
 			require("true-zen.integrations." .. integration).off()
 		end
+	end
+
+	if cursor_pos ~= nil then
+		fn.setpos('.', cursor_pos)
 	end
 
 	win = {}
