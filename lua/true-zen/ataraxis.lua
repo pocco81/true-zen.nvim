@@ -164,6 +164,7 @@ function M.on()
 	layout("generate")
 
 	o.fillchars = "stl: ,stlnc: ,vert: ,diff: ,msgsep: ,eob: "
+	o.showtabline = 0
 
 	for hi_group, _ in pairs(original_opts["highlights"]) do
 		colors.highlight(hi_group, { bg = base, fg = base })
