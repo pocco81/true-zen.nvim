@@ -46,6 +46,7 @@ local opts = {
 		number = false,
 		relativenumber = false,
 		foldenable = false,
+		list = false,
 	},
 }
 
@@ -144,7 +145,7 @@ local function layout(action)
 end
 
 function M.on()
-	data.do_callback("ataraxis", "open")
+	local cursor_pos = fn.getpos(".")
 	if cnf.modes.ataraxis.quit_untoggles == true then
 		api.nvim_create_autocmd({ "QuitPre" }, {
 			callback = function()
@@ -153,8 +154,6 @@ function M.on()
 			group = "TrueZenAtaraxis",
 		})
 	end
-
-	local cursor_pos = fn.getpos(".")
 
 	require("true-zen.minimalist").on()
 	save_opts()
@@ -218,23 +217,25 @@ function M.on()
 		desc = "Asser whether to resize TrueZen pad windows or not",
 	})
 
-	running = true
 	fn.setpos('.', cursor_pos)
+	running = true
+	data.do_callback("ataraxis", "open")
 end
 
 function M.off()
-
 	local cursor_pos
-	if win.main == api.nvim_get_current_win() then
+	if api.nvim_win_is_valid(win.main) then
+		if win.main ~= api.nvim_get_current_win() then
+			fn.win_gotoid(win.main)
+		end
 		cursor_pos = fn.getpos(".")
 	end
 
-	data.do_callback("ataraxis", "close")
 	cmd("only")
+
 	if fn.filereadable(fn.expand("%:p")) == 1 then
 		cmd("q")
 	end
-
 	require("true-zen.minimalist").off()
 
 	for k, v in pairs(original_opts) do
@@ -257,13 +258,13 @@ function M.off()
 		end
 	end
 
-	win = {}
-	running = false
-
 	if cursor_pos ~= nil then
 		fn.setpos('.', cursor_pos)
-		cursor_pos = nil
 	end
+
+	win = {}
+	running = false
+	data.do_callback("ataraxis", "close")
 end
 
 function M.toggle()
