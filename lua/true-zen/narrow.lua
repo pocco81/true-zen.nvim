@@ -4,6 +4,7 @@ local echo = require("true-zen.utils.echo")
 local cnf = require("true-zen.config").options
 local colors = require("true-zen.utils.colors")
 local data = require("true-zen.utils.data")
+local api = vim.api
 local cmd = vim.cmd
 local fn = vim.fn
 local wo = vim.wo
@@ -13,6 +14,10 @@ local FOLDS_STYLE = cnf.modes.narrow.folds_style
 
 vim.g.active_buffs = 0
 local original_opts = {}
+
+api.nvim_create_augroup("TrueZenNarrow", {
+	clear = true,
+})
 
 function M.custom_folds_style()
 	if type(FOLDS_STYLE) == "function" then
@@ -72,12 +77,19 @@ function M.on(line1, line2)
 		cmd([[execute (]] .. end_line .. [[ + 1) ',$' 'fold']])
 	end
 
-	--- @
 	wo.foldtext = 'v:lua.require("true-zen.narrow").custom_folds_style()'
 	fn.setpos(".", curr_pos)
 	cmd("normal! zz")
 
 	if cnf.modes.narrow.run_ataraxis == true then
+		if cnf.modes.ataraxis.quit_untoggles == true then
+			api.nvim_create_autocmd({ "QuitPre" }, {
+				callback = function()
+						M.off()
+				end,
+				group = "TrueZenNarrow",
+			})
+		end
 		if vim.g.active_buffs <= 0 then
 			require("true-zen.ataraxis").on()
 		end
