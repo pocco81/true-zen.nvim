@@ -53,7 +53,9 @@ local opts = {
 local function save_opts()
 	original_opts.fillchars = o.fillchars
 	original_opts.highlights = {
-		MsgArea = colors.get_hl("MsgArea"),
+		just_bg = {
+			MsgArea = colors.get_hl("MsgArea"),
+		},
 		FoldColumn = colors.get_hl("FoldColumn"),
 		ColorColumn = colors.get_hl("ColorColumn"),
 		VertSplit = colors.get_hl("VertSplit"),
@@ -167,7 +169,13 @@ function M.on()
 	o.fillchars = "stl: ,stlnc: ,vert: ,diff: ,msgsep: ,eob: "
 
 	for hi_group, _ in pairs(original_opts["highlights"]) do
-		colors.highlight(hi_group, { bg = base, fg = base })
+		if hi_group == "just_bg" then
+			for bg_hi_group, _ in pairs(original_opts["highlights"]["just_bg"]) do
+				colors.highlight(bg_hi_group, { bg = base })
+			end
+		else
+			colors.highlight(hi_group, { bg = base, fg = base })
+		end
 	end
 
 	for integration, val in pairs(cnf.integrations) do
@@ -245,7 +253,13 @@ function M.off()
 	end
 
 	for hi_group, props in pairs(original_opts["highlights"]) do
-		colors.highlight(hi_group, { fg = props.foreground, bg = props.background }, true)
+		if hi_group == "just_bg" then
+			for bg_hi_group, bg_props in pairs(original_opts["highlights"]["just_bg"]) do
+				colors.highlight(bg_hi_group, { bg = bg_props.background })
+			end
+		else
+			colors.highlight(hi_group, { fg = props.foreground, bg = props.background }, true)
+		end
 	end
 
 	api.nvim_create_augroup("TrueZenAtaraxis", {

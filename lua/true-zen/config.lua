@@ -58,7 +58,8 @@ config.options = {
 			enabled = false,
 			font = "+3"
 		},
-		twilight = false -- enable twilight (ataraxis)
+		twilight = false, -- enable twilight (ataraxis)
+		lualine = false -- hide nvim-lualine (ataraxis)
 	},
 }
 function config.set_options(opts)

@@ -34,6 +34,7 @@ https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-
     -   [tmux](https://github.com/tmux/tmux)
     -   [kitty](https://sw.kovidgoyal.net/kitty/)
     -   [twilight.nvim](https://github.com/folke/twilight.nvim)
+	- [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim)
 
 &nbsp;
 
@@ -145,6 +146,7 @@ true-zen comes with the following defaults:
 			font = "+3"
 		},
 		twilight = false -- enable twilight (ataraxis)
+		lualine = false -- hide nvim-lualine (ataraxis)
 	},
 }
 ```
