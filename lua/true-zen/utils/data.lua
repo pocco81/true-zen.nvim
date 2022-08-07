@@ -10,9 +10,13 @@ function M.set_of(list)
 	return set
 end
 
-function M.do_callback(mode, status)
-	if type(cnf.modes[mode][status .. "_callback"]) == "function" then
-		cnf.modes[mode][status .. "_callback"]()
+function M.do_callback(mode, status, when)
+	if type(cnf.modes[mode].callbacks[status .. "_" .. when]) == "function" then
+		if vim.g["tz_disable_" .. mode .. "_" .. status .. "_" .. when] == true then
+			vim.g["tz_disable_" .. mode .. "_" .. status .. "_" .. when] = false
+		else
+			cnf.modes[mode].callbacks[status .. "_" .. when]()
+		end
 	end
 end
 

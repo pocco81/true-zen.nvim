@@ -1,6 +1,6 @@
 local M = {}
 
-local running
+M.running = false
 local colors = require("true-zen.utils.colors")
 local cmd = vim.cmd
 local data = require("true-zen.utils.data")
@@ -147,6 +147,8 @@ local function layout(action)
 end
 
 function M.on()
+	data.do_callback("ataraxis", "open", "pre")
+
 	local cursor_pos = fn.getpos(".")
 	if cnf.modes.ataraxis.quit_untoggles == true then
 		api.nvim_create_autocmd({ "QuitPre" }, {
@@ -226,11 +228,13 @@ function M.on()
 	})
 
 	fn.setpos('.', cursor_pos)
-	running = true
-	data.do_callback("ataraxis", "open")
+	M.running = true
+	data.do_callback("ataraxis", "open", "pos")
 end
 
 function M.off()
+	data.do_callback("ataraxis", "close", "pre")
+
 	local cursor_pos
 	if api.nvim_win_is_valid(win.main) then
 		if win.main ~= api.nvim_get_current_win() then
@@ -277,12 +281,12 @@ function M.off()
 	end
 
 	win = {}
-	running = false
-	data.do_callback("ataraxis", "close")
+	M.running = false
+	data.do_callback("ataraxis", "close", "pos")
 end
 
 function M.toggle()
-	if running then
+	if M.running then
 		M.off()
 	else
 		M.on()

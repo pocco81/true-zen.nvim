@@ -1,18 +1,16 @@
 local M = {}
 
+M.running = false
 local colors = require("true-zen.utils.colors")
-local echo = require("true-zen.utils.echo")
 local data = require("true-zen.utils.data")
 local cnf = require("true-zen.config").options
 local o = vim.o
 local cmd = vim.cmd
 local fn = vim.fn
 local w = vim.w
-local wo = vim.wo
 local api = vim.api
 local IGNORED_BUF_TYPES = data.set_of(cnf.modes.minimalist.ignored_buf_types)
 
-local is_minimalized
 local original_opts = {}
 
 api.nvim_create_augroup("TrueZenMinimalist", {
@@ -71,6 +69,8 @@ local function save_opts()
 end
 
 function M.on()
+	data.do_callback("minimalist", "open", "pre")
+
 	save_opts()
 
 	if cnf.modes.minimalist.options.number == false then
@@ -91,11 +91,13 @@ function M.on()
 		require("true-zen.integrations.tmux").on()
 	end
 
-	is_minimalized = true
-	data.do_callback("minimalist", "open")
+	M.running = true
+	data.do_callback("minimalist", "open", "pos")
 end
 
 function M.off()
+	data.do_callback("minimalist", "close", "pre")
+
 	api.nvim_create_augroup("TrueZenMinimalist", {
 		clear = true,
 	})
@@ -125,12 +127,12 @@ function M.off()
 		require("true-zen.integrations.tmux").off()
 	end
 
-	is_minimalized = false
-	data.do_callback("minimalist", "close")
+	M.running = false
+	data.do_callback("minimalist", "close", "pos")
 end
 
 function M.toggle()
-	if is_minimalized then
+	if M.running then
 		M.off()
 	else
 		M.on()

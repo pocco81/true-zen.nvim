@@ -103,8 +103,12 @@ true-zen comes with the following defaults:
 				top = 0,
 				bottom = 0,
 			},
-			open_callback = nil, -- run a function when opening Ataraxis mode
-			close_callback = nil, -- run a function when closing Ataraxis mode
+			callbacks = { -- run functions when opening/closing Ataraxis mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		minimalist = {
 			ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
@@ -121,8 +125,12 @@ true-zen comes with the following defaults:
 				ruler = false,
 				numberwidth = 1
 			},
-			open_callback = nil, -- run a function when opening Minimalist mode
-			close_callback = nil, -- run a function when closing Minimalist mode
+			callbacks = { -- run functions when opening/closing Minimalist mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		narrow = {
 			--- change the style of the fold lines. Set it to:
@@ -131,12 +139,20 @@ true-zen comes with the following defaults:
 			--- function() end: pass a custom func with your fold lines. See :h foldtext
 			folds_style = "informative",
 			run_ataraxis = true, -- display narrowed text in a Ataraxis session
-			open_callback = nil, -- run a function when opening Narrow mode
-			close_callback = nil, -- run a function when closing Narrow mode
+			callbacks = { -- run functions when opening/closing Narrow mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		focus = {
-			open_callback = nil, -- run a function when opening Focus mode
-			close_callback = nil, -- run a function when closing Focus mode
+			callbacks = { -- run functions when opening/closing Focus mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		}
 	},
 	integrations = {
@@ -145,11 +161,15 @@ true-zen comes with the following defaults:
 			enabled = false,
 			font = "+3"
 		},
-		twilight = false -- enable twilight (ataraxis)
+		twilight = false, -- enable twilight (ataraxis)
 		lualine = false -- hide nvim-lualine (ataraxis)
 	},
 }
 ```
+
+### 🍤 Tweaks
+
+#### Setting up Key Mappings
 
 Additionally you may want to set up some key mappings for each true-zen mode:
 
@@ -179,6 +199,70 @@ end, { noremap = true })
 keymap.set('n', '<leader>zf', truezen.focus, { noremap = true })
 keymap.set('n', '<leader>zm', truezen.minimalist, { noremap = true })
 keymap.set('n', '<leader>za', truezen.ataraxis, { noremap = true })
+```
+
+#### API
+
+```lua
+require("true-zen.ataraxis") --[[
+	.toggle() - toggle on/off the mode
+	.running - `true` if the mode is on / `false` if the mode is off
+--]]
+
+require("true-zen.minimalist") --[[
+	.toggle() - toggle on/off the mode
+	.running - `true` if the mode is on / `false` if the mode is off
+--]]
+
+require("true-zen.narrow") --[[
+	.toggle(line1, line2) - toggle on/off the mode
+	vim.b.tz_narrowed_buffer - `true` if the mode is on / `false` if the mode is off
+--]]
+
+require("true-zen.focus") --[[
+	.toggle() - toggle on/off the mode
+	.running - `true` if the mode is on / `false` if the mode is off
+--]]
+
+--[[
+	Each one offers the following functions too:
+		.on() - turn on the mode
+		.off() - turn off the mode
+--]]
+
+```
+
+#### Callbacks
+
+Every mode has callbacks available in their conf:
+```lua
+callbacks = {
+	open_pre = nil,
+	open_pos = nil,
+	close_pre = nil,
+	close_pos = nil
+},
+```
+
+If its needed to disable certain callbacks use:
+```lua
+vim.g.tz_disable_mode_status_when
+```
+
+Where:
++ mode: `ataraxis`, `minimalist`, `narrow` or `focus`
++ status: `open` or `close`
++ when: `pre` or `pos`
+
+For example: Ataraxis mode uses Minimalist mode to hide some of NeoVim's UI components, so to stop Minimalist mode from running its `open_pre` callback this could be set within Ataraxis' config:
+
+```
+callbacks = {
+	open_pre = function()
+		-- do some stuff
+		vim.g.tz_disable_minimalist_open_pre = true
+	end,
+},
 ```
 
 &nbsp;

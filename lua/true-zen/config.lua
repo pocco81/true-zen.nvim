@@ -16,8 +16,12 @@ config.options = {
 				top = 0,
 				bottom = 0,
 			},
-			open_callback = nil, -- run a function when opening Ataraxis mode
-			close_callback = nil, -- run a function when closing Ataraxis mode
+			callbacks = { -- run functions when opening/closing Ataraxis mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		minimalist = {
 			ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
@@ -34,8 +38,12 @@ config.options = {
 				ruler = false,
 				numberwidth = 1
 			},
-			open_callback = nil, -- run a function when opening Minimalist mode
-			close_callback = nil, -- run a function when closing Minimalist mode
+			callbacks = { -- run functions when opening/closing Minimalist mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		narrow = {
 			--- change the style of the fold lines. Set it to:
@@ -44,12 +52,20 @@ config.options = {
 			--- function() end: pass a custom func with your fold lines. See :h foldtext
 			folds_style = "informative",
 			run_ataraxis = true, -- display narrowed text in a Ataraxis session
-			open_callback = nil, -- run a function when opening Narrow mode
-			close_callback = nil, -- run a function when closing Narrow mode
+			callbacks = { -- run functions when opening/closing Narrow mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		},
 		focus = {
-			open_callback = nil, -- run a function when opening Focus mode
-			close_callback = nil, -- run a function when closing Focus mode
+			callbacks = { -- run functions when opening/closing Focus mode
+				open_pre = nil,
+				open_pos = nil,
+				close_pre = nil,
+				close_pos = nil
+			},
 		}
 	},
 	integrations = {

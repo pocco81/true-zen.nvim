@@ -46,6 +46,8 @@ local function normalize_line(line, mode)
 end
 
 function M.on(line1, line2)
+	data.do_callback("narrow", "open", "pre")
+
 	local beg_line = normalize_line(line1, "head")
 	local end_line = normalize_line(line2, "tail")
 	local curr_pos = fn.getpos(".")
@@ -98,10 +100,12 @@ function M.on(line1, line2)
 	wo.fillchars = (o.fillchars ~= "" and o.fillchars .. "," or "") .. "fold: "
 
 	vim.g.active_buffs = vim.g.active_buffs + 1
-	data.do_callback("narrow", "open")
+	data.do_callback("narrow", "open", "pos")
 end
 
 function M.off()
+	data.do_callback("narrow", "close", "pre")
+
 	vim.g.active_buffs = (vim.g.active_buffs > 0 and vim.g.active_buffs or 1) - 1
 	b.tz_narrowed_buffer = nil
 
@@ -135,7 +139,7 @@ function M.off()
 	end
 
 	original_opts = {}
-	data.do_callback("narrow", "close")
+	data.do_callback("narrow", "close", "pos")
 end
 
 function M.toggle(line1, line2)
