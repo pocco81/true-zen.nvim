@@ -171,7 +171,9 @@ true-zen comes with the following defaults:
 
 #### Setting up Key Mappings
 
-Additionally you may want to set up some key mappings for each true-zen mode:
+Set up some key mappings for each true-zen mode:
+
+**With `vim.api`:**
 
 ```lua
 local api = vim.api
@@ -181,7 +183,11 @@ api.nvim_set_keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", {})
 api.nvim_set_keymap("n", "<leader>zf", ":TZFocus<CR>", {})
 api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})
+```
 
+**With `vim.keymap`:**
+
+```lua
 -- or
 local truezen = require('true-zen')
 local keymap = vim.keymap
