@@ -8,6 +8,7 @@ end
 
 function M.on()
 	lualine.hide()
+	vim.o.statusline = " "
 	status = true
 end
 
