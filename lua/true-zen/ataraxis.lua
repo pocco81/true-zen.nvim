@@ -61,6 +61,7 @@ local function save_opts()
 		VertSplit = colors.get_hl("VertSplit"),
 		SignColumn = colors.get_hl("SignColumn"),
 		WinBar = colors.get_hl("WinBar"),
+		NormalNC = colors.get_hl("NormalNC"),
 	}
 end
 
