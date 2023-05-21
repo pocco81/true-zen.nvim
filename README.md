@@ -278,13 +278,13 @@ callbacks = {
 
 ### 📜 License
 
-Koy is released under the MIT license, which grants the following permissions:
+True Zen is released under the GPL-3 license, which grants the following permissions:
 
 -   Commercial use
 -   Distribution
 -   Modification
 -   Private use
 
-For more convoluted language, see the [LICENSE](https://github.com/true-zen.nvim/true-zen.nvim/blob/main/LICENSE).
+For more convoluted language, see the [LICENSE](https://github.com/Pocco81/true-zen.nvim/blob/main/LICENSE).
 
 &nbsp;
