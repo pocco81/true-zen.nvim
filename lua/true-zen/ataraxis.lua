@@ -234,23 +234,24 @@ end
 
 function M.off()
 	data.do_callback("ataraxis", "close", "pre")
-
 	local cursor_pos
-	if api.nvim_win_is_valid(win.main) then
+	if pcall(function() api.nvim_win_is_valid(win.main) end) and  api.nvim_win_is_valid(win.main) then
 		if win.main ~= api.nvim_get_current_win() then
 			fn.win_gotoid(win.main)
 		end
 		cursor_pos = fn.getpos(".")
+	else
+		data.do_callback("ataraxis", "close", "pos")
+		return 1 -- already off
 	end
-
 	cmd("only")
-
 	if fn.filereadable(fn.expand("%:p")) == 1 then
-		cmd("q")
+		pcall(function () pcall(cmd("q")) end)
 	end
+    
 	require("true-zen.minimalist").off()
-
-	for k, v in pairs(original_opts) do
+	
+    for k, v in pairs(original_opts) do
 		if k ~= "highlights" then
 			o[k] = v
 		end
