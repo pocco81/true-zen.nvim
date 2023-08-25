@@ -33,6 +33,7 @@ https://user-images.githubusercontent.com/58336662/181860318-8834446a-e28f-4a75-
 -   integratons:
     -   [tmux](https://github.com/tmux/tmux)
     -   [kitty](https://sw.kovidgoyal.net/kitty/)
+    -   [alacritty](https://alacritty.org/)
     -   [twilight.nvim](https://github.com/folke/twilight.nvim)
 	- [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim)
 
@@ -160,6 +161,10 @@ true-zen comes with the following defaults:
 		kitty = { -- increment font size in Kitty. Note: you must set `allow_remote_control socket-only` and `listen_on unix:/tmp/kitty` in your personal config (ataraxis)
 			enabled = false,
 			font = "+3"
+		},
+		alacritty = { -- increment font size in Alacrity. Requires v 0.10.0 or higher. Uses `alacritty msg` subcommand to toggle font size
+			enabled = false,
+			font = "24"
 		},
 		twilight = false, -- enable twilight (ataraxis)
 		lualine = false -- hide nvim-lualine (ataraxis)
