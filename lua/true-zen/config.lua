@@ -74,6 +74,10 @@ config.options = {
 			enabled = false,
 			font = "+3"
 		},
+		alacritty = {
+			enabled = false,
+			font = "24"
+		},
 		twilight = false, -- enable twilight (ataraxis)
 		lualine = false -- hide nvim-lualine (ataraxis)
 	},
