@@ -10,6 +10,7 @@ local fn = vim.fn
 local w = vim.w
 local api = vim.api
 local IGNORED_BUF_TYPES = data.set_of(cnf.modes.minimalist.ignored_buf_types)
+local option_info = vim.api.nvim_get_all_options_info()
 
 local original_opts = {}
 
@@ -56,7 +57,13 @@ local function save_opts()
 	-- get the options from suitable_window
 	for user_opt, val in pairs(cnf.modes.minimalist.options) do
 		local opt = fn.gettabwinvar(currtab, suitable_window, "&" .. user_opt)
-		original_opts[user_opt] = (type(opt) == "number" and (opt == 1 and true or false) or opt)
+		local info = option_info[user_opt]
+		if info and info.type == "boolean" then
+			original_opts[user_opt] = (opt == 1)
+		else
+			original_opts[user_opt] = opt
+		end
+
 		o[user_opt] = val
 	end
 
